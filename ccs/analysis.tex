@@ -1,0 +1,20 @@
+\section{Security Analysis}
+\label{sec:analysis}
+
+%Discuss the security of the system in terms of the parameters.  For example, we should reason about the number of proxies that share a shared key with the origin (each proxy will not have a unique shared key with the origin, but they won't all share the same shared key with the origin).
+
+\subsection{Number of Proxies and Keys}
+
+\subsection{Increased Attack Surface}
+
+{\bf Inferring content from popularity.}
+An attacker inferring popularity of content based on the number of accesses and inferring the web page from the popularity.
+
+{\bf Spoofing origin server content updates.}
+An attacker who spoofs origin server content updates.
+
+{\bf Guessing attacks.}
+An attacker who is attempting to learn if a client is accessing a specific URL or not by submitting requests to see if they match other clients' requests (this should be fixed by adding blinding).
+
+{\bf Inferring content based on content length.}
+An attacker who infers the web page from the length of the content (or number of blocks).

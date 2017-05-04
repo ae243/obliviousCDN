@@ -1,0 +1,97 @@
+\section{Background}
+\label{sec:background}
+Before describing how \system{} works, we outline how a CDN typically operates, as well as some of 
+the policy issues that can arise when data is stored in multiple jurisdictions.
+
+\subsection{CDN}
+Content Delivery Networks (CDNs) provide content caching as a service to content publishers.  A 
+content publisher may wish to use a CDN provider for a number of reasons:
+
+\begin{itemize}
+\item CDNs cache content in geographically distributed locations, which allows for localized 
+data centers and faster download speeds.
+\item CDNs use caches, which reduces the load on the content publisher's server.
+\item CDNs typically provide usage analytics, which can help a content publisher get a better 
+understanding of usage.
+\item CDNs provide a high capacity infrastructure, and therefore provide higher availability, 
+lower network latency, and lower packet loss.  
+\item CDNs' data centers have high bandwidth, which allows them to handle and mitigate DDoS attacks better 
+than the content publisher's server.
+\end{itemize}
+
+CDN providers usually have a large number of edge servers on which content is cached; for example, 
+Akamai has more than 216,000 servers in over 120 countries around the world~\cite{akamai_facts}.  
+Having more edge servers in more locations increases the probability that a cache is geographically 
+close to a client, and could reduce the end-to-end latency.  Having content closer to the client can also 
+reduce the likelihood of some kinds of attacks, such as BGP (Border Gateway Protocol) hijacking.  When a client requests a web page, 
+the CDN serves it from its cache, one of its edge servers.  If the requested page's content is 
+not in its cache, then the request is forwarded to the content publisher's server, the CDN 
+caches the response, and returns the content to the client. 
+
+Because the CDN distributes content across many servers, it needs a way to direct the client 
+to the edge server that contains the correct content.  There are two different techniques commonly used 
+today to do so: 1) DNS redirection and 2) anycasting. DNS redirection occurs when the authoritative DNS 
+server receives the DNS request from the client (after locally resolving the domain), and redirects the client 
+to the correct edge server by responding with the IP address of the edge server that holds the correct content. 
+Figure \ref{fig:dns_redirection} shows an example of DNS redirection. Certain 
+optimizations can be made in selecting an edge server in the case that there are multiple edge servers 
+with cached copies of the content; these optimizations can be made based on availability, location, and 
+network conditions~\cite{krishnamurthy2001use}.  Whereas DNS redirection relies on the client's local DNS 
+resolver, and makes assumptions about where a client is from the location of the local DNS resolver, 
+anycast does not.  When anycast is used, the CDN's DNS resolver returns a set of IP addresses that 
+are on the most-preferred BGP (Border Gateway Protocol) path between the client's ISP and the CDN's 
+edge servers that announce the prefix associated with the requested domain.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\textwidth]{akamai_dns_example}
+\caption{Example of DNS redirection in Akamai~\cite{su2009drafting}.  (1) Client queries local DNS resolver 
+for \url{images.pcworld.com}, (2) Local DNS attempts name translation by contacting the name server 
+of \url{pcworld.com}, and it returns a CNAME entry \url{images.pcworld.com.edgesuite.net}, where \url{edgesuite.net} 
+is a domain owned by Akamai.  Two more DNS redirections occur, first for the \url{akam.net} domain and then to 
+a1694.g.akamai.net, where 1694 is PCWorld's customer number, (3) the Local DNS resolver contacts \url{akamai.net} 
+name server, (4) which forwards the Local DNS resolver to one the high-level Akamai DNS servers, and (5) then subsequently 
+forwards to one of the low-level Akamai DNS servers, which returns the IP address of edge servers close to the client.  (6) 
+the client then contacts these edge servers for the content. }
+\label{fig:dns_redirection}
+\end{figure}
+
+The CDN tries to serve content directly from its edge servers (unless the content is not currently 
+cached).  As a result, if a client requests a web page over HTTPS, the CDN terminates the TLS 
+connection.  Despite this practice, CDN providers are taking measures to increase the security of 
+their networks.  Akamai has established the Akamai Secure Content Delivery Network, which runs separately 
+from the rest of Akamai's systems~\cite{akamai_ssl}.  It was developed to comply with the Payment Card Industry Data
+Security Standards, and while it does comply with these standards, Akamai still essentially acts as a 
+Man in the Middle and intercepts (and terminates) the SSL session.  More recently, Cloudflare has 
+introduced Keyless SSL, which allows TLS keys to be stored on machines administered by the content 
+publishers~\cite{cloudflare_keyless}.  Unfortunately, Cloudflare will still be able to access the decrypted 
+content before it is sent to the client.
+
+\subsection{Legal Precedent and Cross-Border Data Storage}
+\label{sec:legal}
+We have seen in recent news that the United States government has issued secret 
+data requests to CDNs, particularly Cloudflare~\cite{cloudflare_nsl}.  An ongoing case, CREDO \& Cloudflare v. 
+Jefferson Sessions is being fought as a follow-up to the years-long National Security Letters that 
+Cloudflare has received.  
+
+While government access of data at a CDN could compromise a client's privacy, it becomes a more complex issue when the data being cached is geographically 
+distributed. This is clearly illustrated in the following example.  There is a content publisher in 
+country X, and she's a customer of a CDN, so her content is replicated at cache nodes in many 
+different countries.  The CDN is headquartered 
+in country Y and operates cache nodes around the world.  In this scenario it is not clear which government can ask the CDN for information; for 
+example, a government adversary may wish to learn the identity of the owner of the content, or which clients are accessing 
+this content.  Country X could demand the information of the CDN by arguing that the content is originating 
+from their country; Country Y could argue for the access to the data by stating that the CDN falls under their 
+law.  Lastly, another country may request the information because the content is replicated and stored within 
+their country.  The fact that CDNs distribute content and store it around the world opens the possibility of 
+many governments demanding access to publisher and client information.
+
+The stakeholders in this 
+example are the content publisher, the CDN, and the Internet users --- and each of these entities differ in what 
+they have at stake.  Alice may be punished for publishing controversial content (such as content that 
+goes against the current regime); the CDN 
+may be held liable for controversial information (or copyright infringing content); the Internet users' 
+privacy could be leaked.  Each stakeholder should be interested (and possibly worried) about the 
+consequences of overreaching government access.  \system{} is a novel design that allows technologists to play 
+a role in the way data is governed, and to protect users, operators, and publishers from an overreaching government (or 
+conflicting jurisdictional policies).

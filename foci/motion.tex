@@ -1,0 +1,58 @@
+\section{Data in Motion}
+\label{sec:motion}
+
+Data in motion refers to communications, or data that is being transitted.  For example, Alice is communicating with Bob, and thus her message to Bob is considered data in motion as it transits the network from her machine to Bob's machine.  A different example is when Alice fetches a web page; her request is data in motion as it travels to the web server, and the content of the web page is data in motion as it is returned to Alice.
+
+In the following subsections we point out the concerns associated with the privacy of data in motion, highlight relevant laws and policies, and how technology can be designed to help protect this type of data.
+
+\subsection{Questions/Concerns}
+While encryption seems like the obvious solution to protecting the privacy of data in motion, there are many reasons why cryptography is ill-suited as the only protection.  For data in motion, encryption provides a great deal of privacy protections.  Unfortunately, there are still a number of ways that a skilled adversary, such as a nation state, can learn information.  First, despite the content being encrypted, the mere presence of communication between two parties may be revealing.  Additionaly, there has been a wide variety of research in the area of website fingerprinting, which can reveal information about the content based on size, content, and location of third-party resources.  Some unencrypted communication may reveal information about the content of other (encrypted) communication; DNS traffic is extremely revealing and often unencrypted~\cite{isps_see}.  Lastly, some ISPs terminate TLS connections, thereby conducting man-in-the-middle attacks on encrypted traffic for network management purposes~\cite{gogo}.
+
+As we can see, encryption alone cannot protect data in motion from a nation state adversary --- we need systems (that go beyond encryption) designed for this purpose.  While these concerns have highlighted the technical questions, the privacy problem is complicated by the introduction of data flowing across many jurisdictions.  This calls for more investigation into technology that can preserve data privacy in light of conflicting jurisdictional policies.
+
+\subsection{Legal Precedent and Questions}
+Data in motion has different data protection requirements and privacy legislation in different jurisdictions.  For example, the European Union (EU) has stricter data protection laws than those of the U.S.  Therefore, in 1998 the European Commission's Directive on Data Protection went into effect, which ``would prohibit the transfer of personal data to non-European Union countries that do not meet the European Union (EU) `adequacy' standard for privacy protection''~\cite{safeharbor}.  The U.S. negotiated the Safe Harbor framework, which was accepted by the Commission in 2000, and relied on the concept of enforceable self-certifications to assure adequate protection.  This self-certification worked because the companies would publicly commit to protecting personal data by following specific principles, and because these commitments were public, they were enforceable under the Federal Trade Commission in the U.S.  
+
+In 2015, the highest European Court deemed the Safe Harbor framework invalid ``on the adequacy of the protection provided by the safe harbour privacy principles and related frequently asked questions issued by the US Department of Commerce''~\cite{safeharbor}.  The two main issues that were raised against Safe Harbor were: 1) excessive U.S. access to European data (largely due to the Snowden disclosures), and 2) no process for European citizens to address their concerns~\cite{safeharbor_ps_diffs}.  A new framework, the Privacy Shield, was negotiated to replace the Safe Harbor agreement and address these concerns.  Despite the relatively recent introduction of the Privacy Shield framework, more recent actions in the current U.S. administration may ultimately violate it.  In January 2017, the U.S. President signed an executive order titled ``Executive Order: Enhancing Public Safety in the Interior of the United States,'' which mainly targeted immigration laws, but also stated:
+
+\say{Sec. 14.  Privacy Act.  Agencies shall, to the extent consistent with applicable law, ensure that their privacy policies exclude persons who are not United States citizens or lawful permanent residents from the protections of the Privacy Act regarding personally identifiable information.~\cite{exec_order}}
+
+The primary takeaway from the history of cross-jurisdictional data flows is that privacy protection laws greatly vary between jurisdictions, and that the agreements and frameworks made are still being questioned and changed.  It is still unclear what the future of EU-US data transfer will be, but technologists have a role among these policy makers as well; technology can be designed to protect data privacy, as well as to prevent an overreaching government from access to a different jurisdiction's data.
+
+And while these frameworks are being negotiated between different nation states, and governing entities, they are not the only ones that are concerned about data privacy protections.  In fact, it was an EU citizen who brought a case against the Safe Harbor agreement, which eventually rendered it invalid; Max Schrems, an Austrian citizen, challenged the transfer of his data to the U.S. by Facebook~\cite{schrems}.  
+
+While the Privacy Shield addresses data transfers that start in the EU and end in the US, there is no mention of intermediate countries on the path.  For example, data that is transferred from the EU to the US, but perhaps it traverses Canada in between; once traffic enters a specific country (even if neither the client nor server are located in that country), it becomes subject to that country's policies on surveillance and censorship.  This means that data in motion protections can be compromised solely because the path taken to access information traverses an unfavorable jurisdiction.    These issues go far beyond EU personal data being accessed by the U.S.; recent research has shown that Internet traffic suffers ``collateral damage'' simply because it is routed through a specific jurisdiction~\cite{levis2012collateral}.  This study found that Korean traffic to German web sites (.de domains) often suffers ``collateral damage'' in the sense that it is censored because the path traverses an Autonomous System (AS) known for censorship within China.  This case is generalizable to both nation state level surveillance and censorship, and we've recently seen certain countries, such as Brazil, take extreme measures to avoid routing their Internet traffic through the United States for this exact reason~\cite{brazil}.    
+
+There are a number of ongoing debates surrounding the privacy of data in motion.  Some governments are demanding backdoors in encrypted communication applications, and other governments are trying to issue subpoenas for encrypted communications~\cite{whatsapp_uk,signal_fbi}.  On the other side, many companies are trying to keep their clients' data (in motion) secure; one example of this is the increased use of end-to-end encryption in communication applications.  End-to-end encryption is a step in the direction of protecting privacy using technology.  It has become increasingly common for governments to critize technologies that use end-to-end encryption; for example, the United Kingdom recently stated that they should have access to WhatsApp messages when necessary (this was in response to the recent terror attacks in London)~\cite{uk_whatsapp}.  The recent actions taken by many governments, not just the UK, should motivate technologists to design systems with cross-jurisdiction data flows in mind.  
+
+\subsection{Technical Approaches}
+\label{sec:tech_motion}
+
+There has been some research on developing techniques, systems, and clean-slate Internet architectures to protect data in motion.  Table \ref{tab:current_systems} shows which proposed systems/techniques address which type of data.
+
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{| l | l | l |}
+    \hline
+    System & Data in Motion & Data at Rest \\ \hline \hline
+    Alibi Routing~\cite{levin2015alibi} & \checkmark & {} \\ \hline
+    RAN~\cite{edmundson2017ran} & \checkmark & {} \\ \hline
+%    ARROW~\cite{peter2015one} & \checkmark & {} \\ \hline
+    SCION~\cite{zhang2011scion} & \checkmark & {} \\ \hline
+    Tor~\cite{dingledine2004tor} & \checkmark & {} \\ \hline
+    VPNGate~\cite{nobori2014vpn} & \checkmark & {} \\ \hline
+%    ObliviousCDN~\cite{edmundson2017cdn} & \checkmark & \checkmark \\ 
+%    \hline
+    \end{tabular}
+\caption{Proposed systems and techniques, and which type of data they aim to protect from nation state surveillance.}
+\label{tab:current_systems}
+\end{center}
+\end{table}
+
+Levin \ea, introduced Alibi Routing, which provides ``proofs of avoidance,'' which serves as evidence that a user's packets did not traverse a user-specified geographic region~\cite{levin2015alibi}.  This mechanism could be used to avoid (potentially with proof) a region or nation state known for surveillance.  Unfortunately, this mechanism is not very successful when trying to avoid a region that is geographically close to the client or server, and the client does not know until after the communication has occured whether or not the region was avoided.  Nevertheless, it was an initial work in country and region avoidance and paved the road for future work in routing for avoidance.  More recently, a system called RAN was introduced, which allows Internet users to avoid a user-specified country by using an overlay network~\cite{edmundson2017ran}.  This system uses traceroute measurements to determine the correct overlay network relay to use in order to avoid a country; unfortunately, these measurements cannot measure the reverse path from a server to a client, and thus provide no guarantee that the unfavorable country is not on the reverse path.
+
+There are a number of other censorship circumvention systems that use different techniques, one example is the Tor network.  Tor is a censorship circumvention system that employs a series of relays and layered encryption~\cite{dingledine2004tor}.  Tor does protect data in motion from surveillance, but is still susceptible to correlation attacks and fingerprinting attacks~\cite{sun2015raptor,shmatikov2006timing,feamster2004location,greschbach2016effect}.  Virtual Private Networks (VPNs) have also been used to circumvent censorship; a proposed system that uses VPNs is VPNGate~\cite{nobori2014vpn}.  While VPNs protect the data in motion on a portion of the path, it leaves the data susceptible to snooping on the other portion of the path.  Additionally, use of a VPN requires the client to place trust in the VPN provider, which a nation state could demand data from.   
+
+SCION is a clean-slate Internet architecture that is designed to provide route control, failure isolation, and explicit trust information for end-to-end communications~\cite{zhang2011scion}.  While SCION would help preserve the privacy of data in motion, it is not deployable because it requires fundamental changes to the Internet architecture.
+
+As we can see, there have been a number of proposed systems to avoid nation state adversaries from conducting surveillance on data in motion.  Unfortunately, we have not achieved complete privacy protections for this type of data, and we call for more research to protect citizens' data from adversarial governments.  
