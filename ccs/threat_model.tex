@@ -29,8 +29,10 @@ scope of this work.
 To protect against the attackers described in Section 
 \ref{sec:attacker}, we highlight the design goals for \system{}. 
 Each stakeholder, in this case the content publisher, the CDN, and the client, each have 
-different risks, and therefore should have different protections.  Here we outline 
-each stakeholder's risks and protections.
+different risks, and therefore should have different protections.  All three stakeholders 
+can be protected by preventing CDNs from learning information, changing jurisdictions, and 
+reducing the probability of attacks.  Our design goals are listed in Table \ref{tab:design_goals}, 
+and we further discuss our design decisions in Section \ref{sec:design}.
 
 \begin{table*}[h]
 \centering
@@ -47,9 +49,17 @@ each stakeholder's risks and protections.
 \label{tab:design_goals}
 \end{table*}
 
-{\bf Preventing the CDN from knowing information.}
+{\bf Preventing the CDN from knowing information.} First, and foremost, the CDN 
+should not have access to all the information that it currently has access to (as described 
+in Section \ref{sec:background}.  By limiting the information that the CDN knows, it limits 
+the amount of information that an adversary can learn or request.  \system{} should hide 
+content, content identifiers, and remove links between clients and their content requests, as well 
+as remove links between content (and content identifiers) and the content publisher.  If the CDN 
+does not know what content it is caching, who is requesting it, or who has created it, then an 
+inside attacker will not be able to learn information, and the CDN will not be able to supply 
+a government adversary with the requested data.
 
-{\bf Move jurisdictions.}
+{\bf Move jurisdictions.} 
 
 {\bf Reduce the attack surface.}
 

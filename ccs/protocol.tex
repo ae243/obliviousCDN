@@ -3,7 +3,28 @@
 
 \subsection{Publishing Content}
 
+[TODO: include figure]
+
+\begin{enumerate}
+\item Origin generates n shared keys k (origin already has a public key PK and private key PK$^{-1}$)\footnote{$n$ such that $1 < n < |proxies|$} 
+\item Origin generates HMAC$_{k1}$(URL), \{content\}$_{k1}$, , \{cert\}$_{k1}$, ..., HMAC$_{kn}$(URL), \{content\}$_{kn}$, \{cert\}$_{kn}$
+\item Cache node pulls HMAC$_{k1}$(URL), \{content\}$_{k1}$, , \{cert\}$_{k1}$, ..., HMAC$_{kn}$(URL), \{content\}$_{kn}$, \{cert\}$_{kn}$\footnote{For more security and reliability, cache nodes from different CDNs can pull this data.  Additionally, an origin server can use something like Cedexis to load balance between CDNs.}
+\end{enumerate}
+
 \subsection{Retrieving Content}
+
+[TODO: include figure]
+
+\begin{enumerate}
+\item Send GET foo.com request to proxy using TLS connection\footnote{Include some form of blinding here such that client1 and client2 request the same URL, but the contents of step 1 look different by adding some randomness at the client, and that the proxy can remove \url{https://en.wikipedia.org/wiki/Blinding_(cryptography)} --- this prevents a malicious CDN from running a client and sending requests to learn things about other clients.}
+\item DNS lookup from proxy for foo.com\footnote{This DNS info could be prefetched on the proxy, which would provide some optimization.}
+\item CDN DNS lookup for a19.akamai.net (some Akamai ID that represents foo.com)
+\item Proxy sends DNS request to origin’s authoritative server, and the origin publishes \{k\}$_{PK_{proxy}}$ in the SRV record.  Then the proxy decrypts the shared key with his own private key.\footnote{The origin can learn the proxy’s public key via DNS.}, \footnote{The shared keys are updated every X amount of time, so this fetching of the shared key needs to happen regularly.}
+\item Proxy generates GET HMAC$_k$(URL) request
+\item Proxy sends request to cache node
+\item Cache node returns \{content\}$_k$, \{cert\}$_k$ to proxy.  Proxy decrypts and validates the cert.  Once the cert is validated, proxy decrypts the content with origin server’s shared key.\footnote{Proxy can cache content in times of flash crowd to minimize correlation attacks if a provider has encrypted and unencrypted content on the same CDN. This raises the issue of charges for the origin (the CDN can’t charge as much if edge servers don’t see as many requests for the origin) --- RFC 2227 describes a solution for this: Simple Hit-Metering and Usage-Limiting for HTTP.}
+\item Proxy returns decrypted content to client (using TLS)
+\end{enumerate}
 
 \subsection{Partial Deployment}
 \label{sec:partial}
