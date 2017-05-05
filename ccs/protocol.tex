@@ -1,0 +1,64 @@
+\section{\system{} Protocol}
+\label{sec:protocol}
+
+\subsection{Publishing Content}
+
+\subsection{Retrieving Content}
+
+\subsection{Partial Deployment}
+\label{sec:partial}
+\system{} should be partially deployable in the sense that if only some of the content publishers participate or only some of the CDNs participate, then 
+the system should still provide protections.  We have two different partial deployment plans, and both provide protections for those 
+publishers, CDNs, and clients that use \system{}. 
+
+{\bf Plan 1.}
+One option for deploying \system{} is to ensure there is some set S of content publishers the participate fully in the 
+system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
+obfuscated data stored on the CDNs cache nodes.  Recall that there are n shared keys, resulting in n replicas of the 
+content that {\it appear} to the CDN as different content (because each replica is encrypted with a different key).  This 
+allows the minimum set of publishers S to be relatively small.  We discuss the security tradeoffs with different 
+values of S in Section \ref{sec:analysis}.  This partial deployment plan protects the set of content publishers S and it 
+partially protects the privacy of the clients accessing the content created by the set of publishers S.  It does not 
+protect the clients' privacy as completely as full participation of all publishers in \system{} because the CDN can 
+still view cross site browsing patterns among the publishers that are not participating. It is important to note though, that 
+because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to proxies, but 
+not to clients.  
+
+{\bf Plan 2.} 
+It is reasonable to believe that some content publishers are skeptical of \system{} and prioritize performance 
+and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
+both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of publishers 
+fully participating with only encrypted content, some other set of publishers partially participating with both 
+encrypted and plaintext content, and some last set of publishers that are not participating.  Unfortunately, if 
+a publisher has both encrypted and plaintext content at a cache node, and some event causes a flashcrowd --- 
+the CDN sees a significantly larger spike in accesses to certain content --- then the CDN can correlate the access 
+spike on encrypted and plaintext content for the same publisher.  In order to prevent this deanonymization of the 
+content publisher, we can utilize multiple CDNs.  The publisher can spread replicas over different CDNs such that 
+the encrypted replicas are on one CDN and the plaintext replicas are on a different CDN.  In this case the publisher 
+is not susceptible to flashcrowds correlations and can still partially join the system.
+
+\subsection{Optimizations}
+While there are some optimizations that CDNs typically perform today that would not be possible with \system{}, the architecture 
+of \system{} allows for new optimizations that are not possible in existing CDNs.  Here we first outline some ways in which \system{} 
+can be optimized in terms of performance, and then we point out what performance enhancements CDNs would not be able to do with 
+\system{}.
+
+{\bf Pre-Fetch DNS Responses.} One way to increase the performance of \system{} is to pre-fetch DNS responses at 
+the proxies.  This would allow the proxy to serve each client request faster because it would not have to send 
+as many DNS requests.  Pre-fetching DNS responses would not take up a large amount of space, but it also 
+would not be a complete set of all DNS responses.  Additionally, if the content is moved between cache nodes 
+at the CDN, then DNS response must also change; therefore, the pre-fetched DNS responses should have a 
+lifetime that is shorter than the lifetime of the content on a cache node.
+
+{\bf Load Balance Proxy Selection.} As the proxy performs a number of operations on the client's behalf, it 
+runs into the possibility of being overloaded.  With \system{}, a client can be redirected to different 
+proxies based on load; this can be implemented with a PAC file, which allows 
+a client to access different proxies for different domains.  In addition to being a performance benefit, 
+this could also prevent a country from blocking the set of proxies that all of the country's citizens use; if 
+this occurs, then the citizens can be redirected to a different proxy.   
+
+On the other hand, CDNs become more limited in some of their actions when following \system{}'s design.  For example, 
+many CDNs perform HTTPS re-writes on content that they cache, but this can only be done if the CDN has access to the 
+decrypted content.  Similarly, the CDN needs the decrypted content to perform minimizations on HTML, CSS, and Javascript 
+files.  Any algorithms used internally to distribute content to certain caches based on what the content is can no longer 
+be used in \system{} because the CDN does not know what the content is. 

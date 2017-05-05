@@ -1,12 +1,12 @@
 \section{Threat Model and Security Goals}
 \label{sec:threat}
 In this section, we describe our threat model, outline the capabilities of the 
-attacker, and introduce the goals and protections provided by \system{}.
+attacker, and introduce the design goals and protections provided by \system{}.
 
 \subsection{Threat Model}
 \label{sec:attacker}
-Our threat model involves a passive, but powerful adversary.  This adversary is 
-within the CDN, which includes two different types of attackers: 1) the CDN operator 
+Our threat model involves two different passive, but powerful adversaries.  Both adversaries 
+wish to take advantage of the knowledge that a CDN has; the two adversaries are: 1) the CDN operator 
 itself and 2) a government (or similar).  
 
 In the case of the CDN operator being the adversary, he might try to make inferences.  
@@ -15,48 +15,68 @@ He could be an inside attacker or an insider that is compelled to provide data.
 In the case of an adversarial government or nation-state, the attacker could compel 
 the CDN to divulge information, such as access logs or content.  This is a realized 
 attacker, as we know that this has actually already occured, and which was discussed 
-in Section \ref{sec:legal}~\cite{cloudflare_nsl}.
+in Section \ref{sec:background}~\cite{cloudflare_nsl}.
 
 We address an attacker who wants to learn what content each client is accessing; this 
 could mean learning either the identifier of the content, such as a URL, or the actual 
 content of the web page.  Additionally, we are concerned with a passive attacker with 
 the goal of surveillance of compromising the privacy of content publishers or Internet 
 users.  An active attacker that attempts to modify and/or delete data is out of the 
-scope of this work.  % AE: do we have to explicitly say we assume availability from the CDN?
+scope of this work.
 
 \subsection{Security and Privacy Goals for \system{}}
 \label{sec:goals}
-In addition to protecting against an attacker such as that described in Section 
-\ref{sec:attacker}, \system{} should provide protections for the different stakeholders.  
+To protect against the attackers described in Section 
+\ref{sec:attacker}, we highlight the design goals for \system{}. 
 Each stakeholder, in this case the content publisher, the CDN, and the client, each have 
 different risks, and therefore should have different protections.  Here we outline 
 each stakeholder's risks and protections.
 
-{\bf Origin Server.} The content publisher may want to publish sensitive or controversial 
-content.  For example, perhaps he wants to publish information that goes against the current 
-regime in his country.  An adversary could trace the content cached by a CDN back to the 
-publisher, and then that publisher could subsequently be punished.  \system{} provides a 
-degree of publishing anonymity; a CDN operator or overreaching government cannot determine 
-the publisher based on information at the CDN.
+\begin{table*}[h]
+\centering
+\begin{tabular}{| l | l |} 
+ \hline
+ {\bf Design Goal} & {\bf Design Decision} \\ 
+ \hline\hline
+ Prevent CDN from knowing information & (1) encrypt content, (2) obfuscate URL  \\ 
+ Move Jurisdictions & decouple content distribution from decision of trust via proxies  \\
+ Reduce Attack Surface & $n$ shared keys, for $1 < n < |proxies|$ \\ 
+ \hline
+\end{tabular}
+\caption{Design goals and the corresponding design choices made in \system{}.}
+\label{tab:design_goals}
+\end{table*}
 
-{\bf CDN.} The CDN provider may be worried about the content it is caching because there 
-have been recent debates on who is liable for the content.  CDNs may be at risk for being held 
-liable for content that they don't produce, and that they may not be aware they are distributing.  
-\system{} provides deniability to a CDN.  In the presence of a warrant or a subpoena, the CDN 
-cannot technically provide any information about whether they are distributing certain content.  An
-example is copyrighted content --- the CDN would not know they are caching copyrighted content and 
-subsequently couldn't be held liable for it.
+{\bf Preventing the CDN from knowing information.}
 
-{\bf Client.} Clients, or end-users, are currently risking their privacy; CDNs can see their 
-browsing patterns and which web pages they are visiting.  They are vulnerable to an insider at 
-the CDN from snooping on internal data, as well as to a government adversary that demands access 
-to the CDN's data.  \system{} provides privacy protections by hiding which client is accessing 
-which content at the CDN.  In addition, it hides cross site browsing patterns, which a CDN 
-is unique in having access to.  Some CDNs block legitimate Tor users because they are 
-trying to protect cached content from attacks; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
-privacy-concious Tor users from being blocked at CDNs.  Lastly, some CDNs, due to their ability 
-to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
-prevent a CDN from compromising the anonymity of Tor users.
+{\bf Move jurisdictions.}
+
+{\bf Reduce the attack surface.}
+
+%{\bf Origin Server.} The content publisher may want to publish sensitive or controversial 
+%content.  For example, perhaps he wants to publish information that goes against the current 
+%regime in his country.  An adversary could trace the content cached by a CDN back to the 
+%publisher, and then that publisher could subsequently be punished.  \system{} provides a 
+%degree of publishing anonymity; a CDN operator or overreaching government cannot determine 
+%the publisher based on information at the CDN.
+
+%{\bf CDN.}  CDNs may be at risk for being held 
+%liable for content that they don't produce, and that they may not be aware they are distributing.  
+%\system{} provides deniability to a CDN.  In the presence of a warrant or a subpoena, the CDN 
+%cannot technically provide any information about whether they are distributing certain content.  An
+%example is copyrighted content --- the CDN would not know they are caching copyrighted content and 
+%subsequently couldn't be held liable for it.
+
+%{\bf Client.} CDNs can see their 
+%browsing patterns and which web pages they are visiting.  They are vulnerable to an insider at 
+%the CDN from snooping on internal data, as well as to a government adversary that demands access 
+%to the CDN's data.  \system{} provides privacy protections by hiding which client is accessing 
+%which content at the CDN.  In addition, it hides cross site browsing patterns, which a CDN 
+%is unique in having access to.  Some CDNs block legitimate Tor users because they are 
+%trying to protect cached content from attacks; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
+%privacy-concious Tor users from being blocked at CDNs.  Lastly, some CDNs, due to their ability 
+%to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
+%prevent a CDN from compromising the anonymity of Tor users.
 
 A strength of \system{} is that it protects the origin server, the CDN itself, and the client, whereas 
 existing systems, such as Tor, only protect the client.
