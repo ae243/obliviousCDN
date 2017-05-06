@@ -1,6 +1,18 @@
 \section{Introduction}
 \label{sec:intro}
 
+While government access of data at a CDN could compromise a client's privacy, it becomes a more complex issue when the data being cached is geographically 
+distributed. This is clearly illustrated in the following example.  There is a content publisher in 
+country X, and she's a customer of a CDN, so her content is replicated at cache nodes in many 
+different countries.  The CDN is headquartered 
+in country Y and operates cache nodes around the world.  In this scenario it is not clear which government can ask the CDN for information; for 
+example, a government adversary may wish to learn the identity of the owner of the content, or which clients are accessing 
+this content.  Country X could demand the information of the CDN by arguing that the content is originating 
+from their country; Country Y could argue for the access to the data by stating that the CDN falls under their 
+law.  Lastly, another country may request the information because the content is replicated and stored within 
+their country.  The fact that CDNs distribute content and store it around the world opens the possibility of 
+many governments demanding access to publisher and client information.
+
 The stakeholders in this 
 example are the content publisher, the CDN, and the Internet users --- and each of these entities differ in what 
 they have at stake.  Alice may be punished for publishing controversial content (such as content that 

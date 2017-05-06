@@ -40,8 +40,8 @@ and we further discuss our design decisions in Section \ref{sec:design}.
  \hline
  {\bf Design Goal} & {\bf Design Decision} \\ 
  \hline\hline
- Prevent CDN from knowing information & (1) encrypt content, (2) obfuscate URL  \\ 
- Move Jurisdictions & decouple content distribution from decision of trust via proxies  \\
+ Prevent CDN from knowing information & (1) encrypt content, (2) obfuscate URL  \\ \hline
+ Move Jurisdictions & decouple content distribution from decision of trust via proxies  \\ \hline
  Reduce Attack Surface & $n$ shared keys, for $1 < n < |proxies|$ \\ 
  \hline
 \end{tabular}
@@ -59,9 +59,26 @@ does not know what content it is caching, who is requesting it, or who has creat
 inside attacker will not be able to learn information, and the CDN will not be able to supply 
 a government adversary with the requested data.
 
-{\bf Move jurisdictions.} 
+{\bf Move jurisdictions.} There have been many legal battles over which government is allowed access 
+to which data; for example, data can be stored in Country X, but belonging to an organization in Country Y, and 
+the data is about a person in Country Z.  It is unclear which of these countries can legally demand 
+the data with a subpoena or warrant.  The issue becomes much more complex when the specific laws 
+and policies of the different countries are compared.  Perhaps Country X has much stronger data privacy 
+guarantees and enforcement than Country Y or Z.  A recent approach taken by Microsoft was to establish 
+a datacenter in Germany, which is technically under control of the Deutsche Telekom subsidiary 
+T-Systems~\cite{microsoft_germany}.  This prevents the United States government from serving Microsoft with a subpoena 
+for data stored in Germany, where German citizens (or others) can request to have their data stored.
+  To complement these legal battles, \system{} should take 
+these conflicting jurisdictional issue into account.  Additionally, the system should be able to protect 
+the privacy of clients' locations; while addressing jurisdictional data privacy concerns, \system{} 
+should not reveal more information about clients.  It could also provide the possibility for clients 
+to hide their fine-grained location, while still following the policies of the jurisdictions in which 
+they reside.
 
-{\bf Reduce the attack surface.}
+{\bf Reduce the attack surface.} \system{} should be able to achieve the previously mentioned security 
+and privacy goals while not introducing many new attacks.  More specifically, it should aim to reduce 
+the probability of other attacks occuring, and reduce the probability of any information leakage in 
+the case of an attack.
 
 %{\bf Origin Server.} The content publisher may want to publish sensitive or controversial 
 %content.  For example, perhaps he wants to publish information that goes against the current 

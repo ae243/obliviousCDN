@@ -2,8 +2,46 @@
 \label{sec:protocol}
 
 \subsection{Publishing Content}
+In order to publish content such that the CDN never sees the content, the publisher 
+must first obfuscate her content.  There are two primary steps to publish content: 1) 
+obfuscate the data and identifier, and 2) push content to the CDN provider's cache.\footnote{Most CDNs
+allow the publisher to decide on a push or pull model, but this makes no difference in our 
+system design.}  Figure \ref{fig:publishing} shows the steps taken when publishing content.
 
-[TODO: include figure]
+\begin{figure}[h]
+\centering
+\includegraphics[width=.5\textwidth]{publishing_content}
+\caption{Step-by-step instructions on how content is published in \system{}.}
+\label{fig:publishing}
+\end{figure}
+
+The most important step in content publishing is obfuscating the data.  We assume that the origin 
+server already has a public and private key pair, as well as a certificate.  To obfuscate the data 
+the origin server will need to generate n shared keys, where n should be between 1 and the number of 
+proxies.  We reason about the security of different values of n in Section \ref{sec:analysis}.  
+
+Once all keys are established, the publisher must first pad the content to the same size for some 
+range of original content sizes (i.e., if content is between length x and y, then pad it to length 
+z).  This content padding is done to hide the original content's length, as it may be identifiable 
+simply by it's length.  After content is padded, then the content is divided into fixed size blocks and padded to 
+some standard length.  Then for each shared key k, each block is encrypted using the shared key, 
+such that there are n sets of encrypted blocks.  A visualization of this is shown in Figure \ref{fig:encrypt}.  
+As long as the CDN does not have access to any of the n shared keys, then the CDN cannot see what content 
+it is caching.  
+
+Now that the content is obfuscated, the publisher must also obfuscate the content's identifier --- usually 
+a URL.  To do so, she encrypts the URL with the n shared keys (separately), and then takes a hash of the 
+encrypted URL.  She must first encrypt the URL, otherwise an attacker can simply check if the content is 
+what he thinks it is by hashing the URL of his guess and checking whether or not it matches.  Since the attacker 
+does not know any of the n shared keys, if he hashes a URL, it will never match identifier he's trying to guess.  
+
+Once the identifier and the content are obfuscated n times (with n keys), it can be pushed to the 
+CDN.  To increase reliability, performance, and availability, the publisher can push the content to 
+multiple CDNs; a publisher can use something like Cedexis~\cite{cedexis} to load balance between 
+CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
+partial deployment.  Note that each proxy will only be able to fetch a specific replica of the content, that is a 
+specific \{content\}$_{kn}$ for the n$^{th}$ shared key that it holds.  We discuss the security and performance trade offs 
+associated with differing numbers of shared keys and proxies in Sections \ref{sec:analysis} and \ref{sec:performance}.
 
 \begin{enumerate}
 \item Origin generates n shared keys k (origin already has a public key PK and private key PK$^{-1}$)\footnote{$n$ such that $1 < n < |proxies|$} 
@@ -11,9 +49,49 @@
 \item Cache node pulls HMAC$_{k1}$(URL), \{content\}$_{k1}$, , \{cert\}$_{k1}$, ..., HMAC$_{kn}$(URL), \{content\}$_{kn}$, \{cert\}$_{kn}$\footnote{For more security and reliability, cache nodes from different CDNs can pull this data.  Additionally, an origin server can use something like Cedexis to load balance between CDNs.}
 \end{enumerate}
 
-\subsection{Retrieving Content}
+\subsubsection{Updating Content}
+For a content publisher to update content, she must follow similar steps as described in the previous subsection.  
+Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) padding the 
+original content length, 2) divide the content into fixed size blocks, and 3) encrypt n copies of the content blocks 
+with each of the shared keys.  Because she is updating the content (as opposed to creating new content), the 
+obfuscated identifier will remain the same (the hash of the URL after it has been encrypted with the shared keys).  She must 
+retain a copy of the obfuscated old content until after the new content has been updated on the CDN; this is to prove 
+that the old content owner is the same as the new content owner.  Only the origin and the proxy, both of which are 
+outside the CDN, know the old obfuscated content, so an attacker cannot update the content that belongs to 
+a legitimate publisher.  The publisher must present the old obfuscated content to the CDN in order to also push 
+her new obfuscated content to the CDN. 
 
-[TODO: include figure]
+\subsection{Retrieving Content}
+The steps taken for an end-user to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}.  
+The end-user must first configure her browser to use an \system{}-designated proxy.  A client could be assigned to a 
+specific proxy, and configure her browser to use the single proxy.  To provide more mixing than the proxy already provides, 
+the proxy that is used could be selected based 
+on a Proxy Auto Configuration (PAC) file.  Then, once she sends a request for a 
+web page, it goes to the proxy via a TLS connection.\footnote{Comment: Add blinding here such that client1's request for foo.com and 
+client2's request for foo.com looks different as it goes from the client to the proxy.  So the proxy must be able to un-blind 
+the request.}  The proxy then resolves the domain using it's local resolver, which will 
+redirect it to the CDN's DNS resolver (as discussed in Section \ref{sec:background}). 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.5\textwidth]{retrieving_content}
+\caption{Step-by-step instructions on how content is retrieved in \system{}.}
+\label{fig:retrieving}
+\end{figure}
+
+In order for the proxy to generate the obfuscated identifier to query the edge server for the correct content, 
+it must have one of the n shared keys that the origin server generated and obfuscated the content and identifier 
+with.  The origin server publishes the shared key encrypted with the proxy's public key\footnote{Additionally, the origin server 
+can learn the proxy's public key via DNS as well; for example, the proxy can publish it's public key in the DNS SRV record.} in the DNS SRV record; therefore, 
+when the proxy sends a DNS request to the origin server's authoritative DNS server, it will receive the the encrypted shared 
+key, which it can decrypt with it's private key.  
+
+Now that the proxy has obtained a shared key from the origin server, it can generate the obfuscated content identifier based 
+on the request the client sent.  It encrypts the URL with the shared key, and then hashes the encrypted result.  The proxy then 
+sends the (obfuscated) request to the edge server, where the CDN locates the content associated with the identifier.  The CDN returns 
+the associated obfuscated content, which we recall is the fixed size blocks encrypted with the same shared key that the identifier was 
+obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
+added padding, to reconstruct the original content.\footnote{Comment: Proxy can cache content in times of flash crowd to minimize correlation attacks if a provider has encrypted and unencrypted content on the same CDN.  This raises the issue of charges for the origin (the CDN can’t charge as much if edge servers don’t see as many requests for the origin) --- RFC 2227 describes a solution for this~\cite{rfc2227}.}  Finally, the proxy returns the content to the client over TLS.  
 
 \begin{enumerate}
 \item Send GET foo.com request to proxy using TLS connection\footnote{Include some form of blinding here such that client1 and client2 request the same URL, but the contents of step 1 look different by adding some randomness at the client, and that the proxy can remove \url{https://en.wikipedia.org/wiki/Blinding_(cryptography)} --- this prevents a malicious CDN from running a client and sending requests to learn things about other clients.}
