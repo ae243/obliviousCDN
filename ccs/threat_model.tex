@@ -10,7 +10,7 @@ wish to take advantage of the knowledge that a CDN has; the two adversaries are:
 itself and 2) a government (or similar).  
 
 In the case of the CDN operator being the adversary, he might try to make inferences.  
-He could be an inside attacker or an insider that is compelled to provide data. 
+He could be an inside attacker or an insider who is compelled to provide data. 
 
 In the case of an adversarial government or nation-state, the attacker could compel 
 the CDN to divulge information, such as access logs or content.  This is a realized 
@@ -19,8 +19,8 @@ in Section \ref{sec:background}~\cite{cloudflare_nsl}.
 
 We address an attacker who wants to learn what content each client is accessing; this 
 could mean learning either the identifier of the content, such as a URL, or the actual 
-content of the web page.  Additionally, we are concerned with a passive attacker with 
-the goal of surveillance of compromising the privacy of content publishers or Internet 
+content of the web page.  Additionally, we are concerned with a passive attacker who 
+wishes to learn information that compromises the privacy of content publishers and/or Internet 
 users.  An active attacker that attempts to modify and/or delete data is out of the 
 scope of this work.
 
@@ -42,7 +42,7 @@ and we further discuss our design decisions in Section \ref{sec:design}.
  \hline\hline
  Prevent CDN from knowing information & (1) encrypt content, (2) obfuscate URL  \\ \hline
  Move Jurisdictions & decouple content distribution from decision of trust via proxies  \\ \hline
- Reduce Attack Surface & $n$ shared keys, for $1 < n < |proxies|$ \\ 
+ Reduce Attack Surface & (1) $n$ shared keys, for $1 < n < |proxies|$, (2) secrecy in URL obfuscation \\ 
  \hline
 \end{tabular}
 \caption{Design goals and the corresponding design choices made in \system{}.}
@@ -51,32 +51,32 @@ and we further discuss our design decisions in Section \ref{sec:design}.
 
 {\bf Prevent the CDN from knowing information.} First, and foremost, the CDN 
 should not have access to all the information that it currently has access to (as described 
-in Section \ref{sec:background}.  By limiting the information that the CDN knows, it limits 
+in Section \ref{sec:background}).  By limiting the information that the CDN knows, it limits 
 the amount of information that an adversary can learn or request.  \system{} should hide 
 content, content identifiers, and remove links between clients and their content requests, as well 
 as remove links between content (and content identifiers) and the content publisher.  If the CDN 
 does not know what content it is caching, who is requesting it, or who has created it, then an 
-inside attacker will not be able to learn information, and the CDN will not be able to supply 
+inside attacker will not be able to learn valuable information, and the CDN will not be able to supply 
 a government adversary with the requested data.
 
 {\bf Move jurisdictions.} There have been many legal battles over which government is allowed access 
 to which data; for example, data can be stored in Country X, but belonging to an organization in Country Y, and 
 the data is about a person in Country Z.  It is unclear which of these countries can legally demand 
 the data with a subpoena or warrant.  The issue becomes much more complex when the specific laws 
-and policies of the different countries are compared.  Perhaps Country X has much stronger data privacy 
+and policies of the different countries are conflicting.  Perhaps Country X has much stronger data privacy 
 guarantees and enforcement than Country Y or Z.  A recent approach taken by Microsoft was to establish 
-a datacenter in Germany, which is technically under control of the Deutsche Telekom subsidiary 
+a datacenter in Germany, which is technically under the control of the Deutsche Telekom subsidiary 
 T-Systems~\cite{microsoft_germany}.  This prevents the United States government from serving Microsoft with a subpoena 
 for data stored in Germany, where German citizens (or others) can request to have their data stored.
   To complement these legal battles, \system{} should take 
-these conflicting jurisdictional issue into account.  Additionally, the system should be able to protect 
+these conflicting jurisdictional issues into account.  Additionally, the system should be able to protect 
 the privacy of clients' locations; while addressing jurisdictional data privacy concerns, \system{} 
-should not reveal more information about clients.  It could also provide the possibility for clients 
+should not reveal more information about clients.  It also provides the ability for clients 
 to hide their fine-grained location, while still following the policies of the jurisdictions in which 
 they reside.
 
 {\bf Reduce the attack surface.} \system{} should be able to achieve the previously mentioned security 
-and privacy goals while not introducing many new attacks.  More specifically, it should aim to reduce 
+and privacy goals while not introducing new attacks.  More specifically, it should aim to reduce 
 the probability of other attacks occuring, and reduce the probability of any information leakage in 
 the case of an attack.
 

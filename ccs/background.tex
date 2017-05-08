@@ -1,7 +1,7 @@
 \section{Background}
 \label{sec:background}
-Before describing how \system{} works, we outline how a CDN typically operates, and what information 
-it naturally has access to.  Content Delivery Networks (CDNs) provide content caching as a service to content publishers.  A 
+Before describing how \system{} works, we outline how a Content Delivery Network (CDN) typically operates, and what information 
+it naturally has access to.  CDNs provide content caching as a service to content publishers.  A 
 content publisher may wish to use a CDN provider for a number of reasons:
 
 \begin{itemize}
@@ -18,8 +18,8 @@ than the content publisher's server.
 CDN providers usually have a large number of edge servers on which content is cached; for example, 
 Akamai has more than 216,000 servers in over 120 countries around the world~\cite{akamai_facts}.  
 Having more edge servers in more locations increases the probability that a cache is geographically 
-close to a client, and could reduce the end-to-end latency.  Having content closer to the client can also 
-reduce the likelihood of some kinds of attacks, such as BGP (Border Gateway Protocol) hijacking.  When a client requests a web page, 
+close to a client, and could reduce the end-to-end latency, as well as the likelihood of some kinds of 
+attacks, such as BGP (Border Gateway Protocol) hijacking.  When a client requests a web page, 
 the CDN serves it from its cache, one of its edge servers.  If the requested page's content is 
 not in its cache, then the request is forwarded to the content publisher's server, the CDN 
 caches the response, and returns the content to the client. 
@@ -33,8 +33,8 @@ CDNs today.}
 \end{figure}
 
 Because the CDN interacts with both content publishers and clients, as shown in Figure \ref{fig:basic_cdn}, it is in a unique position 
-to learn an enormous amount of information.  CDN providers know information about any clients who
-access data stored at the CDN, information about any content publisher that caches content at 
+to learn an enormous amount of information.  CDN providers know information about all clients who
+access data stored at the CDN, information about all content publishers that cache content at 
 CDN edge servers, and information about the content itself.
 
 {\bf Knowing the content.}  CDNs, by nature, have access to all content that they distribute, as well as the 
