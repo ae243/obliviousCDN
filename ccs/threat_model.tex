@@ -9,20 +9,24 @@ Our threat model involves two different passive, but powerful adversaries.  Both
 wish to take advantage of the knowledge that a CDN has; the two adversaries are: 1) the CDN operator 
 itself and 2) a government (or similar).  
 
-In the case of the CDN operator being the adversary, he might try to make inferences.  
-He could be an inside attacker or an insider who is compelled to provide data. 
-
-In the case of an adversarial government or nation-state, the attacker could compel 
-the CDN to divulge information, such as access logs or content.  This is a realized 
-attacker, as we know that this has actually already occured, and which was discussed 
-in Section \ref{sec:background}~\cite{cloudflare_nsl}.
-
 We address an attacker who wants to learn what content each client is accessing; this 
 could mean learning either the identifier of the content, such as a URL, or the actual 
 content of the web page.  Additionally, we are concerned with a passive attacker who 
 wishes to learn information that compromises the privacy of content publishers and/or Internet 
 users.  An active attacker that attempts to modify and/or delete data is out of the 
 scope of this work.
+
+In the case of the CDN operator being the adversary, he might try to make inferences. He 
+can infer the popularity of content based on the number of accesses and infer the web page 
+from the popularity. Addiitonally, this attacker may be able to infer a web page based on the length of the 
+content.  This adversary could be an inside attacker or an insider who is 
+compelled to provide data. 
+
+In the case of an adversarial government or nation-state, the attacker could compel 
+the CDN to divulge information, such as access logs or content.  This adversary can 
+serve an overreaching subpoena or National Security Letter.  This is a realized 
+attacker, as we know that this has actually already occured, and which was discussed 
+in Section \ref{sec:background}~\cite{cloudflare_nsl}.
 
 \subsection{Security and Privacy Goals for \system{}}
 \label{sec:goals}
