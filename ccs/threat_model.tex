@@ -53,7 +53,7 @@ and we further discuss our design decisions in Section \ref{sec:design}.
 \label{tab:design_goals}
 \end{table*}
 
-{\bf Prevent the CDN from knowing information.} First, and foremost, the CDN 
+\paragraph{Prevent the CDN from knowing information.} First, and foremost, the CDN 
 should not have access to all the information that it currently has access to (as described 
 in Section \ref{sec:background}).  By limiting the information that the CDN knows, it limits 
 the amount of information that an adversary can learn or request.  \system{} should hide 
@@ -63,7 +63,7 @@ does not know what content it is caching, who is requesting it, or who has creat
 inside attacker will not be able to learn valuable information, and the CDN will not be able to supply 
 a government adversary with the requested data.
 
-{\bf Move jurisdictions.} There have been many legal battles over which government is allowed access 
+\paragraph{Move jurisdictions.} There have been many legal battles over which government is allowed access 
 to which data; for example, data can be stored in Country X, but belonging to an organization in Country Y, and 
 the data is about a person in Country Z.  It is unclear which of these countries can legally demand 
 the data with a subpoena or warrant.  The issue becomes much more complex when the specific laws 
@@ -79,7 +79,7 @@ should not reveal more information about clients.  It also provides the ability 
 to hide their fine-grained location, while still following the policies of the jurisdictions in which 
 they reside.
 
-{\bf Reduce the attack surface.} \system{} should be able to achieve the previously mentioned security 
+\paragraph{Reduce the attack surface.} \system{} should be able to achieve the previously mentioned security 
 and privacy goals while not introducing new attacks.  More specifically, it should aim to reduce 
 the probability of other attacks occuring, and reduce the probability of any information leakage in 
 the case of an attack.

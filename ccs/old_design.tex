@@ -26,7 +26,7 @@ obfuscate the data and identifier, and 2) push content to the CDN provider's cac
 allow the publisher to decide on a push or pull model, but this makes no difference in our 
 system design.}  Figure \ref{fig:publish1} shows the steps taken when publishing content.
 
-\begin{figure}[t]
+\begin{figure}[t][t]
 \centering
 \includegraphics[width=.5\textwidth]{publishing}
 \caption{Steps taken to publish content using \system{}.}
@@ -61,7 +61,7 @@ partial deployment.  Note that each proxy will only be able to fetch a specific 
 specific \{content\}$_{kn}$ for the n$^{th}$ shared key that it holds.  We discuss the security and performance trade offs 
 associated with differing numbers of shared keys and proxies in Sections \ref{sec:analysis} and \ref{sec:performance}.
 
-\begin{figure}
+\begin{figure}[t]
 \centering
    \begin{subfigure}[b]{0.45\textwidth}
    \includegraphics[width=1\linewidth]{encrypt}
@@ -149,7 +149,7 @@ this happens, the content publisher should push a new certificate to the CDN to 
 the system should still provide protections.  We have two different partial deployment plans, and both provide protections for those 
 publishers, CDNs, and clients that use \system{}. 
 
-{\bf Plan 1.}
+\paragraph{Plan 1.}
 One option for deploying \system{} is to ensure there is some set S of content publishers the participate fully in the 
 system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
 obfuscated data stored on the CDNs cache nodes.  Recall that there are n shared keys, resulting in n replicas of the 
@@ -162,7 +162,7 @@ still view cross site browsing patterns among the publishers that are not partic
 because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to proxies, but 
 not to clients.  
 
-{\bf Plan 2.} 
+\paragraph{Plan 2.} 
 It is reasonable to believe that some content publishers are skeptical of \system{} and prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
 both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of publishers 
@@ -181,14 +181,14 @@ of \system{} allows for new optimizations that are not possible in existing CDNs
 can be optimized in terms of performance, and then we point out what performance enhancements CDNs would not be able to do with 
 \system{}.
 
-{\bf Pre-Fetch DNS Responses.} One way to increase the performance of \system{} is to pre-fetch DNS responses at 
+\paragraph{Pre-Fetch DNS Responses.} One way to increase the performance of \system{} is to pre-fetch DNS responses at 
 the proxies.  This would allow the proxy to serve each client request faster because it would not have to send 
 as many DNS requests.  Pre-fetching DNS responses would not take up a large amount of space, but it also 
 would not be a complete set of all DNS responses.  Additionally, if the content is moved between cache nodes 
 at the CDN, then DNS response must also change; therefore, the pre-fetched DNS responses should have a 
 lifetime that is shorter than the lifetime of the content on a cache node.
 
-{\bf Load Balance Proxy Selection.} As the proxy performs a number of operations on the client's behalf, it 
+\paragraph{Load Balance Proxy Selection.} As the proxy performs a number of operations on the client's behalf, it 
 runs into the possibility of being overloaded.  With \system{}, a client can be redirected to different 
 proxies based on load; this can be implemented with a PAC file, which allows 
 a client to access different proxies for different domains.  In addition to being a performance benefit, 

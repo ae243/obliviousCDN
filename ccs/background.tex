@@ -24,7 +24,7 @@ the CDN serves it from its cache, one of its edge servers.  If the requested pag
 not in its cache, then the request is forwarded to the content publisher's server, the CDN 
 caches the response, and returns the content to the client. 
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.5\textwidth]{background_cdn}
 \caption{The relationships between clients, the CDN, and content publishers in 
@@ -37,7 +37,7 @@ to learn an enormous amount of information.  CDN providers know information abou
 access data stored at the CDN, information about all content publishers that cache content at 
 CDN edge servers, and information about the content itself.
 
-{\bf Knowing the content.}  CDNs, by nature, have access to all content that they distribute, as well as the 
+\paragraph{Knowing the content.}  CDNs, by nature, have access to all content that they distribute, as well as the 
 content identifier, the URL.  First, the CDN must use the URL, which is not 
 encrypted or hidden, to locate the content. Therefore, it is evident that the CDN already knows what content is 
 stored in its caches.  And because CDNs provide analytics to content publishers, they keep track of cache hit 
@@ -58,7 +58,7 @@ targets of the actual lawsuit.''  This case highlights the problem that CDNs fac
 that they distribute: it may burden them with the legal responsibility for the actions of their customers 
 and clients.
 
-{\bf Knowing client information.} Clients fetch content directly from the CDN's edge servers, which reveals 
+\paragraph{Knowing client information.} Clients fetch content directly from the CDN's edge servers, which reveals 
 information about the client's location and what the client is accessing.  Unique to CDNs is the fact that 
 they can see each client's cross site browsing patterns.  CDNs host content for many different publishers, which allows 
 them to see content requests for content published by different publishers.  This gives an enormous amount of 
@@ -68,7 +68,8 @@ went public with the years-long National Security Letters they had received~\cit
 demand information collected by the CDN and also include a gag order, which prohibits the CDN from publicly announcing 
 the information request.  
 
-{\bf Knowing content publisher information.} A CDN must know information about their customers, the content 
+\paragraph{Knowing content publisher information.} A CDN must know information
+about their customers, the content
 publishers.  Publishers must be billed, which causes the CDN to keep track of who the content publisher is, and 
 what the publisher's content is.  And the combination of the CDN seeing all content in plaintext and the content's 
 linkability with the publisher, gives the CDN even more power.  Additionally, as mentioned previously, the CDN often 

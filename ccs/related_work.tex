@@ -4,7 +4,7 @@ To our knowledge, there has been no prior work on preventing surveillance at CDN
 has been relevant research on securing CDNs, finding security vulnerabilities in CDNs, and 
 conducting different types of measurements on CDNs.
 
-{\bf Securing CDNs.} Most prior work on securing CDNs has focused on providing content 
+\paragraph{Securing CDNs.} Most prior work on securing CDNs has focused on providing content 
 integrity at the CDN as opposed to content confidentiality (and unlinkability).  In 2005, 
 Lesniewski-Laas and Kaashoek use SSL-splitting --- a technique 
 where the proxy simulates an SSL connection with the client by using authentication records from 
@@ -27,7 +27,7 @@ therefore do not receive the DDoS protections provided by them.  CDN-on-Demand i
 defense that relies on managing flexible cloud resources as opposed to using a CDN provider's 
 service.\\
 
-{\bf Security Issues in CDNs.} More prevalent in the literature than defense are attacks on CDNs.  Recent work 
+\paragraph{Security Issues in CDNs.} More prevalent in the literature than defense are attacks on CDNs.  Recent work 
 has studied how HTTPS and CDNs work together (as both have been studied extensively separately).  Liang et. al., studied 
 20 CDN providers and found that there are many problems with HTTPS practice in CDNs~\cite{liang2014https}.  Some of these 
 problems include: invalid certificates, private key sharing, neglected revocation of stale certificates, and 
@@ -49,7 +49,7 @@ Recently, researchers have studied the privacy implications of peer-assisted CDN
 content on behalf of a website.  It is starting to be supported by CDNs, such as Akamai, but the design of the paradigm
 makes clients susceptible to privacy attacks; one client can infur the cross site browsing patterns of another client~\cite{jia2016anonymity}.\\
 
-{\bf Measuring and Mapping CDNs.} As CDNs have increased in popularity, and are predicted to grow even more~\cite{predict}, much research has 
+\paragraph{Measuring and Mapping CDNs.} As CDNs have increased in popularity, and are predicted to grow even more~\cite{predict}, much research has 
 studied the deployment of CDNs.  Huang et. al., have mapped the locations of servers, and evaluated the server availability for two CDNs: 
 Akamai and Limelight~\cite{huang2008measuring}.  More recently, Calder et. al., mapped Google's infrastructure; this included 
 developing techniques for mapping, enumerating the IP addresses of servers, and identifying associations between clients and clusters of 

@@ -32,7 +32,7 @@ The results of time to obfuscate data are shown in Figure \ref{fig:encrypt_time}
 is relatively small for file sizes less than 100.0MB.  In addition, this publishing overhead has no performance impact 
 on a client's experience of retrieving, as the client never has to encrypt the content.  
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.5\textwidth]{encrypt_time3}
 \caption{The time it takes to encrypt/obfuscate different sizes of objects in \system{}.}
@@ -66,7 +66,7 @@ these modifications at the proxy.
 In this experiment, the client machine requests the objects using {\tt curl} with specific options to use the designated proxy, 
 and to measure the transfer time.  
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.5\textwidth]{transfer}
 \caption{The total transfer time for accessing different sizes of objects using \system{} and without \system{}'s cryptographic operations.}

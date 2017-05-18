@@ -1,13 +1,13 @@
 \documentclass[sigconf]{acmart}
 
 \usepackage{booktabs} % For formal tables
-
 \usepackage{graphics}
 \usepackage{subcaption}
+\usepackage{balance}
 
 \graphicspath{ {./figures/} }
 
-\newcommand{\system}{ObliviousCDN}
+\newcommand{\system}{Oblivious~CDN}
 
 % Copyright
 %\setcopyright{none}
@@ -27,12 +27,12 @@
 \acmISBN{123-4567-24-567/08/06}
 
 %Conference
-\acmConference[WOODSTOCK'97]{ACM Woodstock conference}{July 1997}{El
-  Paso, Texas USA} 
-\acmYear{1997}
-\copyrightyear{2016}
+%\acmConference[WOODSTOCK'97]{ACM Woodstock conference}{July 1997}{El
+%  Paso, Texas USA} 
+%\acmYear{1997}
+%\copyrightyear{2016}
 
-\acmPrice{15.00}
+%\acmPrice{15.00}
 
 \begin{document}
 \date{}
@@ -83,8 +83,6 @@
 \input{threat_model}
 \input{design}
 \input{protocol}
-%\input{details}
-%\input{analysis}
 \input{performance}
 \input{discussion}
 \input{related_work}
@@ -92,6 +90,6 @@
 \label{lastpage} 
 
 \bibliographystyle{acm}
-\bibliography{sigproc} 
+\balance\bibliography{sigproc} 
 
 \end{document}
