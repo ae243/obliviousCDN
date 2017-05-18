@@ -1,6 +1,6 @@
 \section{Background}
 \label{sec:background}
-Before describing how \system{} works, we outline how a Content Delivery Network (CDN) typically operates, and what information 
+Before describing how \system{} works, we outline how a Content Distribution Network (CDN) typically operates, and what information 
 it naturally has access to.  CDNs provide content caching as a service to content publishers.  A 
 content publisher may wish to use a CDN provider for a number of reasons:
 
@@ -47,7 +47,9 @@ for example, CDNs minimize CSS, HTML, and JavaScript files, which reduces file s
 also inspect content to conduct HTTPS re-writes. In addition, requesting content via HTTPS does not hide any information 
 from the CDN; if a client requests a web page over HTTPS, the CDN terminates the TLS connection on behalf of the 
 content publisher.  This means that not only does the CDN know the content, the content identifier, but also knows 
-public and private keys, as well as certificates associated with the content it caches.  Recently, the fact that CDNs 
+public and private keys, as well as certificates associated with the content it caches.  
+
+Recently, the fact that CDNs 
 know the content they are distributing has made its way into the legal system.  A court order was given to Cloudflare 
 that required the CDN to search out and block publishers who use a variation of a trademark held by a group of 
 music labels~\cite{eff_cloudflare_trademark}.  Originally, the music labels went after the trademark infringing 

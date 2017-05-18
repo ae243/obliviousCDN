@@ -4,11 +4,11 @@ We describe the evolution of the design of \system{} starting with an initial st
 alter the design as we address each of the design goals discussed in the previous section (and in Table \ref{tab:design_goals}), which brings us 
 to a complete design.
 
-\subsection{Strawman Approach: Hiding Information From CDN}
+\subsection{Strawman: Hiding Information From CDN}
 \label{sec:obfuscate_content}
 To prevent an inside attacker or government demanding data from learning information, the CDN 
 must not have the knowledge of what content it is caching.  Therefore, the content {\it and} the 
-associated URL must be obfuscated before it enters the CDN.  
+associated URL must be obfuscated before they enter the CDN.  
 
 \paragraph{Encrypt Content.}  The content can be obfuscated by encrypting it with a key that is not 
 known to the CDN.  Because this must be done prior to any caching, the content publisher 
@@ -61,7 +61,7 @@ trust is simply shifted from the CDN to the proxy, the use of this proxy is esse
 the system design for a number of reasons.  First, the use of proxies distributes trust; instead of a 
 central entity, the CDN, having access to all information, it is now a set of proxies that each have 
 access to some subset of information.  Each proxy only knows information about a much smaller set of clients.  
-Additionally, the proxy does not cache content or keep some state, whereas the CDN does both of these.  Apart 
+Additionally, the proxy does not cache content or keep state, whereas the CDN does both of these.  Apart 
 from addressing jurisdictional issues, proxies also improve usability; instead of each client having knowledge 
 of each $k$ for each domain, each proxy could have knowledge of each $k$.  This means that clients would 
 not have to keep track of secret knowledge, and overall, the number of entities that know this secret key 
