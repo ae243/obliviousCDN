@@ -12,14 +12,16 @@
 %%%
 \LoadClass[pdftex,letterpaper]{extarticle}
 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%
 %%%  Custom variables to be set appropriately.
 %%%
-\newcommand{\AUTHORS}{Arpit Gupta, Rudiger Birkner, Robert MacDavid, 
-  Marco Canini, Nick Feamster, Larent Vanbever, Jennifer Rexford}
-\newcommand{\TITLE}{An Industrial-Scale Software Defined Internet Exchange Point}
+\newcommand{\AUTHORS}{Anne Edmundson, Nick Feamster, Jennifer}
+\newcommand{\TITLE}{OCD: Oblivious Content Distribution}
 \newcommand{\KEYWORDS}{Keywords}
 \newcommand{\CONFERENCE}{Conference}
 \newcommand{\PAGENUMBERS}{yes} % "yes" or "no"
@@ -83,6 +85,8 @@
 \RequirePackage{url}
 \RequirePackage{ifthen}
 %\RequirePackage{dvips}
+
+
 
 %%%%%%% Colors
 \usepackage[dvips]{color}
@@ -231,9 +235,13 @@
 %%%
 %%%  Fonts
 %%%
+\RequirePackage[tt=false, type1=true]{libertine}
+\RequirePackage[varqu]{zi4}
+%\RequirePackage[libertine]{newtxmath}
+\RequirePackage[T1]{fontenc}
+
 \RequirePackage{mathptmx} % Times/Times-like math symbols
 \RequirePackage{courier}
-\RequirePackage[scaled=0.92]{helvet}
 
 %%%
 %%%  PDF setup
@@ -376,67 +384,3 @@ Copyright 200X ACM X-XXXXX-XX-X/XX/XX ...\$5.00}
 \setlength{\codewidth}{\textwidth}
 \addtolength{\codewidth}{-0.5in}
 
-
-\newcommand{\defprog}[1]{\txr{\mbox{{\sc #1}}}}
-\newcommand{\prog}[1]{\mbox{{\sc #1}}}   %%% same as defprog
-\newcommand{\noprog}[1]{\mbox{{\sc #1}}} %%% same as defprog
-%\newcommand{\system}[1]{\mbox{{\sc #1}}} %%% same as defprog
-%\newcommand{\nosystem}[1]{\mbox{{\sc #1}}} %%% same as defprog
-\newcommand{\act}[1]{{\it #1}}
-\newcommand{\key}[1]{\txb{{\bf #1}}}
-\def\k{\key}
-\newcommand{\var}[1]{\txg{{\it #1}}}
-\def\v{\var}
-\def\p{\prg}
-\newcommand{\setq}[2]{#1\hbox{$\,\leftarrow\,$}#2}
-\newcommand{\setqmath}[2]{#1 \leftarrow #2}
-
-%%pnorvig Mar 14 1994:
-\newcommand{\labl}[1]{\prog{#1}}	% Statement Label in code
-\newcommand{\cmt}[1]{{\tt /*} {\it #1} {\tt */}}	% Comment in code
-\newcommand{\rcmt}[1]{\hfill {\tt /*} {\it #1} {\tt */}}
-\newcommand{\Endfn}[1]{}		% End of a function in code
-\newcommand{\fnsep}{\hspace*{0in}\raisebox{3pt}{\rule{\codewidth}{0.2pt}}\hfill}	% Between functions in code
-
-\def\code{\noindent\nobreak\begin{LARGE}
-        \begingroup\obeylines\obeyspaces\docode}
-\def\docode#1{\noindent\framebox[\columnwidth][l]%
-{~~\begin{minipage}{\codewidth}~
-#1
-~\end{minipage}}\endgroup%
-\nobreak\end{LARGE}\noindent\ignorespaces}
-\def\asis{\obeylines\obeyspaces}
-\def\ttp{.\skip -0.5em\ }
-{\obeyspaces\global\def {\ }}
-
-
-%% Fine tuning for perfect formatting
-
-\newcommand{\ac}{,\hspace{0.15em}}
-\newcommand{\ts}{\,}
-\newcommand{\bodysep}{\vspace{0.1in}}
-\newcommand{\subfnsep}{\vspace{0.06in}}
-\newcommand{\prebnfsep}{\vspace{-0.25in}}
-\newcommand{\postbnfsep}{\vspace{0.1in}}
-\newcommand{\fnvar}[1]{\prog{#1}}
-\newcommand{\func}[3]{\key{function} \defprog{#1}(\txg{#2}) \key{returns} #3}
-\newcommand{\nofunc}[3]{\key{function} \noprog{#1}(#2) \key{returns} #3}
-\newcommand{\proc}[2]{\key{procedure} \defprog{#1}(\txg{#2})}
-\newcommand{\noproc}[2]{\key{procedure} \noprog{#1}(#2)}
-\newcommand{\firstinputs}[2]{\key{inputs}: \var{#1}, #2}
-\newcommand{\inputs}[2]{\phantom{\key{inputs}: }\var{#1}, #2}
-\newcommand{\firstlocal}[2]{\key{local variables}: \var{#1}, #2}
-\newcommand{\local}[2]{\phantom{\key{local variables}: }\var{#1}, #2}
-\newcommand{\firststatic}[2]{\key{static}: \var{#1}, #2}
-\newcommand{\static}[2]{\phantom{\key{static}: }\var{#1}, #2}
-
-\newcommand{\FigBox}[1]{%%% The alternative to figbox - pnorvig
-\noindent\framebox[\textwidth]{%
-\begin{minipage}{\codewidth}%
-#1%
-\end{minipage}}%
-}
-
-
-
-\endinput
