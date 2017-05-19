@@ -1,15 +1,20 @@
-\begin{abstract}
-
-There has been an increase in concern over where data is located, as 
-this can affect which governing authority can access it.  This is exacerbated 
-by the prevalence of Content Distribution Networks (CDNs) because they can cache 
-content in many different countries, regardless of who that data pertains to.  While many of 
-the battles over stored data privacy have played out in the courts, technology 
-can be designed to complement the legal system.  In this work, we analyze the privacy 
-issues a CDN faces in the presence of an inside attacker or overreaching government, and 
-design \system{}, which provides oblivious content distribution.  \system{} allows 
-CDNs to provide the performance benefits of content distribution and caching, while 
-hiding what the content is and who is accessing it.  We describe the protocol for publishing 
-retrieving content using \system{} and show that the performance overhead is negligible.  
+\begin{abstract} Recent episodes of governments' attempts to access user data
+have drawn increased concern to where a user's data is located. The location
+of a user's data  can affect which governing authorities can access it.
+Because Content Distribution Networks (CDNs) can cache content in many
+different countries, often without regard to the owner of the data, a user's data
+may reside in a country that differs from their own. Many  battles over stored
+data privacy have played out in the courts, with legal opinions rendering
+essentially ambiguous outcomes thus far. This paper offers a technical
+contribution to this tussle. We first analyze the privacy  issues a CDN faces
+in the presence of a government (or insider) who would wish to access
+information about what data is being stored on the CDN and who is accessing
+it. To mitigate the resulting threats, we design and implement \system{}, a
+system provides {\em oblivious content distribution}, a property that allows
+CDNs to provide the performance benefits of content distribution and caching,
+while  preventing the CDN from knowing what content that is stored on the CDN
+or who is accessing it. We design a the protocol for publishing retrieving
+content using \system{} and, through a prototype implementation and
+evaluation, show that the performance overhead is negligible.
 
 \end{abstract}
