@@ -45,9 +45,11 @@ and we further discuss our design decisions in Section \ref{sec:design}.
  \hline
  {\bf Design Goal} & {\bf Design Decision} \\ 
  \hline\hline
- Prevent CDN from knowing information & (1) encrypt content, (2) obfuscate URL  \\ \hline
- Move Jurisdictions & decouple content distribution from decision of trust via proxies  \\ \hline
- Reduce Attack Surface & (1) $n$ shared keys, for $1 < n < |proxies|$, (2) secrecy in URL obfuscation \\ 
+ Prevent CDN from knowing information & (1) encrypt content   \\ 
+                                        & (2) obfuscate URL \\ \hline
+ Move Jurisdictions & (1) decouple content distribution from decision of trust via proxies  \\ \hline
+ Reduce Attack Surface & (1) $n$ shared keys, for $1 < n < |proxies|$ \\ 
+                        & (2) secrecy in URL obfuscation \\ 
  \hline
 \end{tabular}
 \caption{Design goals and the corresponding design choices made in \system{}.}

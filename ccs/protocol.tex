@@ -39,8 +39,9 @@ Now that the content is obfuscated, the publisher must also obfuscate the conten
 she computes the HMAC of the URL using the shared key $k$, for each shared key.
 
 Once the identifier and the content replicas are obfuscated $n$ times (with $n$ keys), they can be pushed to the 
-CDN.  To increase reliability, performance, and availability, the publisher can push the content to 
-multiple CDNs; a publisher can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
+CDN.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; a content 
+publisher could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
+performance, and availability; a publisher can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
 CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
 partial deployment.  Note that each proxy will only be able to fetch a specific replica of the content, that is a 
 specific \{content\}$_{kn}$ for the $n^{th}$ shared key that it holds.  We discuss the performance trade offs 
@@ -59,15 +60,19 @@ original content length, 2) divide the content into fixed size blocks, and 3) en
 with each of the shared keys.  Because she is updating the content (as opposed to creating new content), the 
 obfuscated identifier will remain the same.  She must 
 retain a copy of the obfuscated old content until after the new content has been updated on the CDN; this is to prove 
-that the old content owner is the same as the new content owner.  Only the origin and the proxy, both of which are 
+that the old content owner is the same as the new content owner.  The CDN cannot simply authenticate the content publisher, as this 
+typically requires some type of identification for the content publisher; the CDN does not need to know --- and should not know --- 
+the identity of the publisher, just that the organization that originally published the content is the same as the one that is 
+updating the content.  Only the origin and the proxy, both of which are 
 outside the CDN, know the old obfuscated content, so an attacker cannot update the content that belongs to 
 a legitimate publisher.  The publisher must present the old obfuscated content to the CDN in order to also push 
 her new obfuscated content to the CDN. 
 
 \subsection{Retrieving Content}
 The steps taken for an end-user to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}.  
-The end-user must first configure her browser to use an \system{}-designated proxy.  A client is assigned to a 
-specific proxy, and she configures her browser to use the assigned proxy.    Then, once she sends a request for a 
+The end-user must first configure her browser to use an \system{}-designated proxy, meaning a proxy that is a part of the system, but not controlled by the 
+CDN provider.  A client is assigned to a 
+specific proxy based on her location, and she configures her browser to use the assigned proxy.    Then, once she sends a request for a 
 web page, it goes to the proxy via a TLS connection.\footnote{Comment: Add blinding here such that client1's request for foo.com and 
 client2's request for foo.com looks different as it goes from the client to the proxy.  So the proxy must be able to un-blind 
 the request.}  The proxy then resolves the domain using it's local resolver, which will 
@@ -78,7 +83,8 @@ it must have one of the $n$ shared keys that the origin server generated and obf
 with.  The origin server publishes the shared key encrypted with the proxy's public key\footnote{Additionally, the origin server 
 can learn the proxy's public key via DNS as well; for example, the proxy can publish it's public key in the DNS SRV record.} in the DNS SRV record; therefore, 
 when the proxy sends a DNS request to the origin server's authoritative DNS server, it will receive the encrypted shared 
-key, which it can decrypt with it's private key.  
+key, which it can decrypt with it's private key.  Because the list of \system{} proxies is publicly available, it is simple for a 
+content publisher to retrieve the list of proxies and ensure that she encrypts the shared key with each proxy's public key.
 
 Now that the proxy has obtained a shared key from the origin server, it can generate the obfuscated content identifier based 
 on the request the client sent.  It computes the HMAC of the URL with the shared key.  The proxy then 
@@ -116,20 +122,19 @@ added padding, to reconstruct the original content.\footnote{Comment: Proxy can 
 the system should still provide protections.  We have two different partial deployment plans, and both provide protections for those 
 publishers, CDNs, and clients that use \system{}. 
 
-\paragraph{Plan 1.}
-One option for deploying \system{} is to ensure there is some set S of content publishers the participate fully in the 
+\paragraph{Deployment Option 1.}
+One option for deploying \system{} is to ensure there is some set $S$ of content publishers the participate fully in the 
 system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
-obfuscated data stored on the CDNs cache nodes.  Recall that there are n shared keys, resulting in n replicas of the 
+obfuscated data stored on the CDNs cache nodes.  Recall that there are $n$ shared keys, resulting in $n$ replicas of the 
 content that {\it appear} to the CDN as different content (because each replica is encrypted with a different key).  This 
-allows the minimum set of publishers S to be relatively small.  We discuss the security tradeoffs with different 
-values of S in Section \ref{sec:analysis}.  This partial deployment plan protects the set of content publishers S and it 
-partially protects the privacy of the clients accessing the content created by the set of publishers S.  It does not 
+allows the minimum set of publishers $S$ to be relatively small.  This partial deployment plan protects the set of content publishers $S$ and it 
+partially protects the privacy of the clients accessing the content created by the set of publishers $S$.  It does not 
 protect the clients' privacy as completely as full participation of all publishers in \system{} because the CDN can 
 still view cross site browsing patterns among the publishers that are not participating. It is important to note though, that 
 because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to proxies, but 
 not to clients.  
 
-\paragraph{Plan 2.} 
+\paragraph{Deployment Option 2.} 
 It is reasonable to believe that some content publishers are skeptical of \system{} and prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
 both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of publishers 
