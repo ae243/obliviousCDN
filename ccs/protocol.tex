@@ -53,7 +53,7 @@ associated with differing numbers of shared keys and proxies in Sections \ref{se
 %\item Cache node pulls HMAC$_{k1}$(URL), \{content\}$_{k1}$, , \{cert\}$_{k1}$, ..., HMAC$_{kn}$(URL), \{content\}$_{kn}$, \{cert\}$_{kn}$\footnote{For more security and reliability, cache nodes from different CDNs can pull this data.  Additionally, an origin server can use something like Cedexis to load balance between CDNs.}
 %\end{enumerate}
 
-{\bf Updating Content}
+\paragraph{Updating Content}
 For a content publisher to update content, she must follow similar steps as described in publishing content.  
 Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) padding the 
 original content length, 2) divide the content into fixed size blocks, and 3) encrypt $n$ copies of the content blocks 
