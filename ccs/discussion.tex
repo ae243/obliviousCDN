@@ -48,10 +48,12 @@ to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
 
-\subsection{Political Push Back}
-
-%\subsection{Law Enforcement}
-%\subsection{Active Measurements + Overreaching Subpoena}
-
-\paragraph{Guessing attacks.}
-An attacker who is attempting to learn if a client is accessing a specific URL or not by submitting requests to see if they match other clients' requests (this should be fixed by adding blinding).
+\paragraph{Legal questions and political pushback.} Recent cases surrounding
+the Stored Communications Act in the United States raise some questions over
+whether a system like \system{} might face legal challenges from law
+enforcement agencies. To protect user data against these types of challenges,
+Microsoft has already taken steps such as moving user data to data centers in
+Germany that are operated by entities outside the United States, such as
+T-Systems. It remains to be seen, of course, whether \system{} would face similar
+hurdles, but similar systems in the past have faced scrutiny and pushback from law
+enforcement.
