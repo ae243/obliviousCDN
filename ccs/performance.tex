@@ -2,7 +2,7 @@
 \label{sec:performance}
 
 We evaluate the performance impact of \system{} in comparison to a CDN that does not perform extra cryptographic operations by simulating both systems.   
-We use a series of Virtual Private Servers (VPSs), where each VPS represents a stakeholder in \system{}; Figure \ref{fig:perf_setup} shows our 
+We use two Virtual Private Servers (VPSs), one for the proxy and one for a cache node; Figure \ref{fig:perf_setup} shows our 
 experimental setup.  The design of \system{} will likely affect the time that it takes a content publisher to publish her data as
 the data has to obfuscated.  Therefore, we measure the time it takes to obfuscate data.  Additionally, \system{} may affect the performance of web page retrieval; therefore, we measure the time to retrieve a objects of varying sizes.  Additionally, we simulate and analyze cache hit rates with varying numbers of 
 shared keys $k$, as a higher number of shared keys will result in a lower cache hit rate, and thus negatively affect performance. Analyzing the relationship between cache hit
@@ -33,11 +33,11 @@ In our experiment, we setup a client, a proxy, and an edge server. For this expe
 the edge server --- we are not concerned with the amount of time it takes for the content to be transmitted from 
 the publisher's origin server to the edge server, only the amount of time the content publisher takes to obfuscate the data.  Therefore, 
 the content and URL are obfuscated on the edge server, and the time it takes to do these operations is measured.  This 
-measurement is taken for obfuscating the following file sizes: .000001MB, .001MB, .01MB, .1MB, 1.0MB, 10.0MB, and 100.0MB. \\
+measurement is taken for obfuscating the following file sizes: 1 byte, 1 KB, 10 KB, 100 KB, 1 MB, 10 MB, and 100 MB. \\
 
 \paragraph{Results}
 The results of time to obfuscate data are shown in Figure \ref{fig:encrypt_time}.  We can see that the overhead 
-is relatively small for file sizes less than 100.0MB.  In addition, this publishing overhead has no performance impact 
+is relatively small for file sizes less than 100 MB.  In addition, this publishing overhead has no performance impact 
 on a client's experience of retrieving, as the client never has to encrypt the content.  
 
 \begin{figure}[t]
@@ -58,13 +58,13 @@ objects.  The metric used to do so is the end-to-end time to download a single o
 \paragraph{Experimental Setup}
 In our experiment, we setup a client, a proxy, and an edge server.  The client is a  Fujitsu CX2570 M2 servers with dual, 
 14-core 2.4GHz Intel Xeon E5 2680 v4 processors with 384GB RAM running the Springdale distribution of Linux machine, 
-and both the proxy and edge servers are VPSs running Ubuntu 12.04 x64 LTS with 10GB of storage. The proxy is located in 
+and both the proxy and edge servers are VPSs running Ubuntu 12.04 x64 LTS with 10 GB of storage. The proxy is located in 
 Montreal, Canada, and the edge server is located in Chicago, USA.  To account for any additional latency on the links between 
 the client and proxy, or proxy and edge server, we treat a traditional CDN as a system of client, proxy, and edge server, where 
 the edge server acts as a simple proxy and does not perform any operations.  
 
 First, different sizes of objects are generated, encrypted, and obfuscated on the edge server; the sizes of objects we create are: 
-.000001MB, .001MB, .01MB, .1MB, 1.0MB, 10.0MB, and 100.0MB.  These are the objects that will be downloaded by the client, and we 
+1 byte, 1 KB, 10 KB, 100 KB, 1 MB, 10 MB, and 100 MB.  These are the objects that will be downloaded by the client, and we 
 assume all objects are in the cache, as the time it takes the CDN to fetch the content from the origin server (if there is a cache 
 miss) should not differ between \system{} and a traditional CDN. 
 
@@ -72,22 +72,26 @@ Our proxy runs {\tt mitmproxy}, which allows for interception and manipulation o
 these modifications at the proxy.  
 
 In this experiment, the client machine requests the objects using {\tt curl} with specific options to use the designated proxy, 
-and to measure the transfer time.  \\
+and measures the transfer time.  In addition to object transfer time, it would also be helpful to measure the full page 
+download time for \system{} in comparison to a traditional CDN; unfortunately, this is challenging to simulate.  For the 
+simulation, we would have to know a priori knowledge of exactly what objects (the size and quantity) are embedded into a the 
+full web page, we would then have to obfuscate these objects and store them at a cache node.  Due to these challenges, we measure 
+object downloads, which additively should be representative of full page download times. \\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=.5\textwidth]{transfer}
+\includegraphics[width=.45\textwidth]{transfer_new.png}
 \caption{The total transfer time for accessing different sizes of objects using \system{} and without \system{}'s cryptographic operations.}
 \label{fig:transfer}
 \end{figure}
 
 \paragraph{Results}
 After conducting the experiment, we find the results shown in Figure \ref{fig:transfer}.  We can see that total download times are comparable 
-for objects that are smaller than 10MB; objects larger than 10MB take slightly longer to download using \system{} than a traditional CDN, 
+for objects that are smaller than 10 MB; objects larger than 10 MB take slightly longer to download using \system{} than a traditional CDN, 
 due to the cryptographic operations performed at the proxy.  
 
-Additionally, recent work has reported that the average object size retrieval from Akamai is only 335 Kb, and the average object size 
-of popular objects ($>$ 200,000 requests) is only 8.6 Kb~\cite{berger2016achieving}.  Both of these object sizes are less than 10MB, resulting in negligible 
+Additionally, recent work has reported that the average object size retrieval from Akamai is only 335 KB, and the average object size 
+of popular objects ($>$ 200,000 requests) is only 8.6 KB~\cite{berger2016achieving}.  Both of these object sizes are less than 10 MB, resulting in negligible 
 performance differences between \system{} and a traditional CDN.
 
 \subsection{Cache Hit Rates}
@@ -116,6 +120,6 @@ values of $k$; therefore, for larger values of $k$ there is greater security wit
 \begin{figure}[t]
 \centering
 \includegraphics[width=.5\textwidth]{cache_hit_rate.pdf}
-\caption{The cache hit ratio for different numbers of shared keys.}
+\caption{The cache hit rate for different numbers of shared keys.}
 \label{fig:cache_hits}
 \end{figure}

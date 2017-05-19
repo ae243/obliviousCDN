@@ -48,7 +48,8 @@ countries and clients in many countries)?
 %, do malicious clients have more power as the CDN's attack 
 %detection and prevention capabilities are severely limited?
 
-\subsection{Moving Jurisdictions}
+\subsection{Closed System of Proxies}
+\label{sec:proxies}
 As it is still unclear which jurisdiction is legally allowed to subpoena information from the CDN (such as which 
 clients are accessing any content distributed by the CDN), this 
 system should complement the legal framework; it should make clear which jurisdictions are allowed 
@@ -82,15 +83,23 @@ need to trust as well.  Now the client can simply trust the proxy, which interac
 is a completely separate entity from the CDN.  Therefore this design allows a client to decouple these 
 issues, where she can trust only a proxy, not the CDN, but still access cached content at the CDN.
 
-\subsection{Reducing Attack Surface}
+\subsection{Key Use and Management}
+\label{sec:keys}
 The design has evolved into a system where: 1) the CDN does not know the content, the content identifier, 
 or which clients are accessing any content, 2) the client's data is only subject to subpoenas in her jurisdiction 
 (or the jurisdiction of the proxy), 3) trust has been distributed, as opposed to centralized.  There are still 
-some remaining security vulnerabilities that must be addressed.  First, the shared key $k$ for each content 
+some remaining security vulnerabilities that must be addressed.  First, simply hashing the URL allows an attacker who simply 
+wishes to guess whether the obfuscated URL is a specified plaintext URL or not.  Second, the shared key $k$ for each content 
 publisher is shared among all the proxies; therefore, if one proxy is compromised, then the key must be replaced 
-on all proxies.  Second, simply hashing the URL allows an attacker who simply 
-wishes to guess whether the obfuscated URL is a specified plaintext URL or not.  By increasing the number of shared 
-keys $k$ and introducing shared secrets to URL obfuscation, the design reduces the probability of attacks.
+on all proxies.  By increasing the number of shared keys $k$ and introducing shared secrets to URL obfuscation, 
+the design reduces the probability of attacks.
+
+\paragraph{Adding Secrecy to URL Obfuscation.} According to the strawman approach, the URL is obfuscated via hashing.  Unfortunately, 
+an attacker could guess what the content identifier is by hashing his guesses and comparing with the hashes stored in the 
+CDNs caches.  To mitigate this vulnerability, the content publisher should incorporate the use of the shared key $k$ in the 
+hash of the URL by using an HMAC.  This provides the property of fixed length identifiers, which does not reveal information about 
+the plaintext identifiers, while obfuscating and preventing 
+against guessing attacks.  
 
 \paragraph{Increasing the Number of Keys.} If a single shared key $k$ associated with a single content publisher gets 
 compromised, then all proxies have a compromised $k$ for that content publisher.  By increasing the number of shared 
@@ -102,14 +111,7 @@ different $k$ with the content publisher; unfortunately, this defeats the purpos
 proxy is requesting a unique copy of the content, then cache hit rates decrease and performance becomes worse.  To make 
 a tradeoff between security and performance, there should be $n$ keys where $1 < n < |proxies|$, such that subsets of 
 proxies share the same shared key $k$ with the content publisher.  If one of these shared keys is leaked (or otherwise learned), only that 
-subset of proxies that use that shared key must get a new key.  
-
-\paragraph{Adding Secrecy to URL Obfuscation.} According to the strawman approach, the URL is obfuscated via hashing.  Unfortunately, 
-an attacker could guess what the content identifier is by hashing his guesses and comparing with the hashes stored in the 
-CDNs caches.  To mitigate this vulnerability, the content publisher should incorporate the use of the shared key $k$ in the 
-hash of the URL by using an HMAC.  This provides the property of fixed length identifiers, which does not reveal information about 
-the plaintext identifiers, while obfuscating and preventing 
-against guessing attacks.  
+subset of proxies that use that shared key must get a new key.  \\
 
 The resulting system is the basis of \system{}, and the high-level view of the system is shown in Figure \ref{fig:ocd_overview}, 
 which can be compared to what CDNs look like today (Figure \ref{fig:basic_cdn}).  The next section describes \system{} in more 

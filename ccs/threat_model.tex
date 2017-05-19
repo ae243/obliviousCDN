@@ -46,10 +46,11 @@ and we further discuss our design decisions in Section \ref{sec:design}.
  {\bf Design Goal} & {\bf Design Decision} \\ 
  \hline\hline
  Prevent CDN from knowing information & (1) encrypt content   \\ 
-                                        & (2) obfuscate URL \\ \hline
- Move Jurisdictions & (1) decouple content distribution from decision of trust via proxies  \\ \hline
- Reduce Attack Surface & (1) $n$ shared keys, for $1 < n < |proxies|$ \\ 
-                        & (2) secrecy in URL obfuscation \\ 
+  (Section \ref{sec:obfuscate_content})                          & (2) obfuscate URL \\ \hline
+ Closed system of proxies & (1) decouple content distribution from decision of trust via proxies  \\ 
+  (Section \ref{sec:proxies})  & \\ \hline
+ Key use and management & (1) $n$ shared keys, for $1 < n < |proxies|$ \\ 
+   (Section \ref{sec:keys})                     & (2) secrecy in URL obfuscation \\ 
  \hline
 \end{tabular}
 \caption{Design goals and the corresponding design choices made in \system{}.}
@@ -66,15 +67,17 @@ does not know what content it is caching, who is requesting it, or who has creat
 inside attacker will not be able to learn valuable information, and the CDN will not be able to supply 
 a government adversary with the requested data.
 
-\paragraph{Move jurisdictions.} There have been many legal battles over which government is allowed access 
+\paragraph{Closed system of proxies.} There have been many legal battles over which government is allowed access 
 to which data; for example, data can be stored in Country X, but belonging to an organization in Country Y, and 
 the data is about a person in Country Z.  It is unclear which of these countries can legally demand 
 the data with a subpoena or warrant.  The issue becomes much more complex when the specific laws 
 and policies of the different countries are conflicting.  Perhaps Country X has much stronger data privacy 
 guarantees and enforcement than Country Y or Z.  A recent approach taken by Microsoft was to establish 
 a datacenter in Germany, which is technically under the control of the Deutsche Telekom subsidiary 
-T-Systems~\cite{microsoft_germany}.  This prevents the United States government from serving Microsoft with a subpoena 
-for data stored in Germany, where German citizens (or others) can request to have their data stored.
+T-Systems~\cite{microsoft_germany}.  This was deployed in hopes of preventing the United States government from serving Microsoft with a subpoena 
+for data stored in Germany, where German citizens (or others) can request to have their data stored.  Unfortunately, this issue has 
+been debated in courts with varying outcomes; in a current legal battle, Google 
+has been ordered to comply with the warrant, despite the data requested, emails, are stored abroad~\cite{google_warrant}.
   To complement these legal battles, \system{} should take 
 these conflicting jurisdictional issues into account.  Additionally, the system should be able to protect 
 the privacy of clients' locations; while addressing data privacy concerns in the client's jurisdiction, \system{} 
@@ -82,7 +85,7 @@ should not reveal more information about clients.  It also provides the ability 
 to hide their fine-grained location, while still following the policies of the jurisdictions in which 
 they reside.
 
-\paragraph{Reduce the attack surface.} \system{} should be able to achieve the previously mentioned security 
+\paragraph{Key use and management.} \system{} should be able to achieve the previously mentioned security 
 and privacy goals while not introducing new attacks.  More specifically, \system{} should maintain the 
 caching benefits of a traditional CDN while still reducing 
 the probability of attacks occuring, and reducing the probability of any information leakage in 
