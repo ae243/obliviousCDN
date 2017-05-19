@@ -6,7 +6,7 @@ to a complete design.
 
 \subsection{Strawman: Hiding Information From CDN}
 \label{sec:obfuscate_content}
-To prevent an inside attacker or government demanding data from learning information, the CDN 
+To prevent an inside attacker or overreaching government from learning information, the CDN 
 must not have the knowledge of what content it is caching.  Therefore, the content {\it and} the 
 associated URL must be obfuscated before they enter the CDN.  
 
@@ -24,8 +24,10 @@ the client uses $k$ to decrypt the content.
 \paragraph{Obfuscate URL.} Encrypting the content alone does not hide much from the CDN; the content 
 identifier, or URL, must also be obfuscated, otherwise the CDN can still reveal information about 
 which clients accessed which URLs (which is indicative of the content).  In obfuscating the 
-URL, the result should be a fixed, and relatively small size.  Hashing the URL provides this 
-property, and hides the actual URL from the CDN. With obfuscated content and 
+URL, the result should be a fixed, and relatively small size; these requirements are to preserve 
+storage space and to prevent the adversary from guessing the URL based on the length of the obfuscated 
+URL.  Hashing the URL provides these 
+properties, and hides the actual URL from the CDN. With obfuscated content and 
 URLs, the CDN does not know what content a given client is accessing.
 
 \paragraph{Client Anonymization.}  The CDN may not know the content that a client is accessing, but it 
@@ -36,22 +38,27 @@ amount of information about the client, including the client's location and a di
 client to content request.
 
 This strawman approach obfuscates content from the viewpoint of the CDN, which also allows the CDN 
-to claim plausible deniability when served with a subpoena.  Unfortunately, this approach raises 
+to claim plausible deniability when served with a subpoena.  Despite only cachine encrypted and obfuscated 
+content and identifiers, the CDN still has knowledge of which clients are requesting any content and how often 
+they are requesting content.  Unfortunately, this approach raises 
 many questions: are anonymizing proxies/VPNs trustworthy?, should clients be trusted to know $k$?, 
 can any jurisdiction still subpoena the CDN for information (presumably the CDN has locations in many 
-countries and clients in many countries)?, do malicious clients have more power as the CDN's attack 
-detection and prevention capabilities are severely limited?
+countries and clients in many countries)?
+
+%, do malicious clients have more power as the CDN's attack 
+%detection and prevention capabilities are severely limited?
 
 \subsection{Moving Jurisdictions}
-As it is still unclear which jurisdiction is legally allowed to subpoena information from the CDN, this 
-system should be a complement to the legal framework; it should make clear which jurisdictions are allowed 
-which information, and also prevent an overreaching government from demanding data it should not have.  This 
+As it is still unclear which jurisdiction is legally allowed to subpoena information from the CDN (such as which 
+clients are accessing any content distributed by the CDN), this 
+system should complement the legal framework; it should make clear which jurisdictions are allowed 
+which information, and also prevent an overreaching government from demanding data.  This 
 can be addressed by introducing a closed system of proxies, where a client uses a single proxy when requesting 
 content --- not only does this proxy provide a level of client anonymity, but also decides which jurisdiction 
 the data falls under.  
 
 \paragraph{Proxy in Client's Jurisdiction.} By replacing the use of an anonymizing proxy or VPN with the use 
-of a specified proxy, the system can specify which juridiction each client falls under.  For example, 
+of a proxy---one that is part of \system{} and supplied to clients based on their location---, the system can specify which juridiction each client falls under.  For example, 
 each country could have a set of proxies, where all clients in each country use one of the proxies that 
 is located in their country.  This should allow the client's jurisdiction to serve a subpoena for information 
 passing through the specific proxy that a client uses in the client's jurisdiction in 
@@ -81,7 +88,7 @@ or which clients are accessing any content, 2) the client's data is only subject
 (or the jurisdiction of the proxy), 3) trust has been distributed, as opposed to centralized.  There are still 
 some remaining security vulnerabilities that must be addressed.  First, the shared key $k$ for each content 
 publisher is shared among all the proxies; therefore, if one proxy is compromised, then the key must be replaced 
-on all proxies.  Second, simply hashing the URL for obfuscation purposes leaves room for an attacker who simply 
+on all proxies.  Second, simply hashing the URL allows an attacker who simply 
 wishes to guess whether the obfuscated URL is a specified plaintext URL or not.  By increasing the number of shared 
 keys $k$ and introducing shared secrets to URL obfuscation, the design reduces the probability of attacks.
 
@@ -94,13 +101,14 @@ will be $n$ copies of the content, where each copy is encrypted with a different
 different $k$ with the content publisher; unfortunately, this defeats the purpose of CDNs caching content.  If each 
 proxy is requesting a unique copy of the content, then cache hit rates decrease and performance becomes worse.  To make 
 a tradeoff between security and performance, there should be $n$ keys where $1 < n < |proxies|$, such that subsets of 
-proxies share the same shared key $k$ with the content publisher.  If one of these shared keys gets compromised, only that 
+proxies share the same shared key $k$ with the content publisher.  If one of these shared keys is leaked (or otherwise learned), only that 
 subset of proxies that use that shared key must get a new key.  
 
 \paragraph{Adding Secrecy to URL Obfuscation.} According to the strawman approach, the URL is obfuscated via hashing.  Unfortunately, 
 an attacker could guess what the content identifier is by hashing his guesses and comparing with the hashes stored in the 
 CDNs caches.  To mitigate this vulnerability, the content publisher should incorporate the use of the shared key $k$ in the 
-hash of the URL by using an HMAC.  This provides the property of fixed length identifiers, while obfuscating and preventing 
+hash of the URL by using an HMAC.  This provides the property of fixed length identifiers, which does not reveal information about 
+the plaintext identifiers, while obfuscating and preventing 
 against guessing attacks.  
 
 The resulting system is the basis of \system{}, and the high-level view of the system is shown in Figure \ref{fig:ocd_overview}, 

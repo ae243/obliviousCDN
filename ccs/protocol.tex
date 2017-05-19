@@ -28,7 +28,8 @@ proxies.  We evaluate the performance tradeoffs of different values of $n$ in Se
 
 Once all keys are established, the publisher must first pad the content to the same size for some 
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
-z).  This content padding is done to hide the original content's length, as it may be identifiable 
+z).  The range of content sizes should be small, such that this causes negligible padding overhead, but 
+reduces the linkability between exact content length and content identification.  This content padding is done to hide the original content's length, as it may be identifiable 
 simply by its length.  After content is padded, then the content is divided into fixed size blocks and padded to 
 some standard length.  Then for each shared key $k$, each block is encrypted using the shared key, 
 such that there are $n$ sets of encrypted blocks. As long as the CDN does not have access to any 
