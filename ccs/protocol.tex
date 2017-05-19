@@ -10,16 +10,23 @@ must first obfuscate her content, as described in Section \ref{sec:obfuscate_con
 Figure \ref{fig:publishing} shows the steps taken when publishing content.
 
 \begin{figure*}[t]
-    \centering
-    \begin{subfigure}[h]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{publishing_content}
-    \end{subfigure}%
-    \begin{subfigure}[h]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{Publishing_steps}
-    \end{subfigure}
-    \caption{Step-by-step instructions on how content is published in \system{}.}
-    \label{fig:publishing}
+\centering
+\includegraphics[width=.9\textwidth]{publishing_content}
+\caption{Step-by-step instructions on how content is published in \system{}.}
+\label{fig:publishing}
 \end{figure*}
+
+%\begin{figure*}[t]
+%    \centering
+%    \begin{subfigure}[h]{0.5\textwidth}
+%        \includegraphics[width=\textwidth]{publishing_content}
+%    \end{subfigure}%
+%    \begin{subfigure}[h]{0.5\textwidth}
+%        \includegraphics[width=\textwidth]{Publishing_steps}
+%    \end{subfigure}
+%    \caption{Step-by-step instructions on how content is published in \system{}.}
+%    \label{fig:publishing}
+%\end{figure*}
 
 The most important step in content publishing is obfuscating the data.  We assume that the origin 
 server already has a public and private key pair, as well as a certificate.  To obfuscate the data 
@@ -78,7 +85,7 @@ redirect it to the CDN's DNS resolver.
 
 In order for the proxy to generate the obfuscated identifier to query the edge server for the correct content, 
 it must have one of the $n$ shared keys that the origin server generated and obfuscated the content and identifier 
-with.  The origin server publishes the shared key encrypted with the proxy's public key\footnote{Additionally, the origin server 
+with.  These steps are shown in Figure \ref{fig:keys}.  The origin server publishes the shared key encrypted with the proxy's public key\footnote{Additionally, the origin server 
 can learn the proxy's public key via DNS as well; for example, the proxy can publish its public key in the DNS SRV record.} in the DNS SRV record; therefore, 
 when the proxy sends a DNS request to the origin server's authoritative DNS server, it will receive the encrypted shared 
 key, which it can decrypt with it's private key.  Because the list of \system{} proxies is publicly available, it is simple for a 
@@ -103,16 +110,30 @@ added padding, to reconstruct the original content.\footnote{Proxies can cache c
 %\end{enumerate}
 
 \begin{figure*}[t]
-    \centering
-    \begin{subfigure}[h]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{retrieving_content}
-    \end{subfigure}%
-    \begin{subfigure}[h]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{Retrieving_steps}
-    \end{subfigure}
-    \caption{Step-by-step instructions on how content is retrieved in \system{}.}
-    \label{fig:retrieving}
+\centering
+\includegraphics[width=.9\textwidth]{retrieving_content}
+\caption{Step-by-step instructions on how content is retrieved in \system{}.}
+\label{fig:retrieving}
 \end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.45\textwidth]{key_management}
+\caption{Step-by-step instructions on how to distribute keys to proxies.}
+\label{fig:keys}
+\end{figure}
+
+%\begin{figure*}[t]
+%    \centering
+%    \begin{subfigure}[h]{0.5\textwidth}
+%        \includegraphics[width=\textwidth]{retrieving_content}
+%    \end{subfigure}%
+%    \begin{subfigure}[h]{0.5\textwidth}
+%        \includegraphics[width=\textwidth]{Retrieving_steps}
+%    \end{subfigure}
+%    \caption{}
+%    \label{fig:retrieving}
+%\end{figure*}
 
 \subsection{Partial Deployment}
 \label{sec:partial}
