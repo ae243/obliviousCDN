@@ -109,3 +109,13 @@ replicated five times, where we increase the number of shared keys by one each t
 by values of $1~<=~k~<= 5$.
 
 {\bf Results}
+Our results from this experiment are shown in Figure \ref{fig:cache_hits}.  We can see that cache hit rates decrease 
+as the number of shared keys increase.  Interestingly, for larger numbers of $k$ the difference between $k-1$ keys and $k$ is less than for larger 
+values of $k$; therefore, for larger values of $k$ there is greater security with a relatively low performance trade off.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\textwidth]{cache_hit_rate.pdf}
+\caption{The cache hit ratio for different numbers of shared keys.}
+\label{fig:cache_hits}
+\end{figure}
