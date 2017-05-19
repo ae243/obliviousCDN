@@ -73,15 +73,13 @@ The steps taken for an end-user to retrieve a web page that has been cached by \
 The end-user must first configure her browser to use an \system{}-designated proxy, meaning a proxy that is a part of the system, but not controlled by the 
 CDN provider.  A client is assigned to a 
 specific proxy based on her location, and she configures her browser to use the assigned proxy.    Then, once she sends a request for a 
-web page, it goes to the proxy via a TLS connection.\footnote{Comment: Add blinding here such that client1's request for foo.com and 
-client2's request for foo.com looks different as it goes from the client to the proxy.  So the proxy must be able to un-blind 
-the request.}  The proxy then resolves the domain using it's local resolver, which will 
+web page, it goes to the proxy via a TLS connection.  The proxy then resolves the domain using it's local resolver, which will 
 redirect it to the CDN's DNS resolver. 
 
 In order for the proxy to generate the obfuscated identifier to query the edge server for the correct content, 
 it must have one of the $n$ shared keys that the origin server generated and obfuscated the content and identifier 
 with.  The origin server publishes the shared key encrypted with the proxy's public key\footnote{Additionally, the origin server 
-can learn the proxy's public key via DNS as well; for example, the proxy can publish it's public key in the DNS SRV record.} in the DNS SRV record; therefore, 
+can learn the proxy's public key via DNS as well; for example, the proxy can publish its public key in the DNS SRV record.} in the DNS SRV record; therefore, 
 when the proxy sends a DNS request to the origin server's authoritative DNS server, it will receive the encrypted shared 
 key, which it can decrypt with it's private key.  Because the list of \system{} proxies is publicly available, it is simple for a 
 content publisher to retrieve the list of proxies and ensure that she encrypts the shared key with each proxy's public key.
@@ -91,7 +89,7 @@ on the request the client sent.  It computes the HMAC of the URL with the shared
 sends the (obfuscated) request to the edge server, where the CDN locates the content associated with the identifier.  The CDN returns 
 the associated obfuscated content, which we recall is the fixed size blocks encrypted with the same shared key that the identifier was 
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
-added padding, to reconstruct the original content.\footnote{Comment: Proxy can cache content in times of flash crowd to minimize correlation attacks if a provider has encrypted and unencrypted content on the same CDN.  This raises the issue of charges for the origin (the CDN can’t charge as much if edge servers don’t see as many requests for the origin) --- RFC 2227 describes a solution for this~\cite{rfc2227}.}  Finally, the proxy returns the content to the client over TLS.  
+added padding, to reconstruct the original content.\footnote{Proxies can cache content in times of a flash crowd to minimize correlation attacks when a provider has encrypted and unencrypted content on the same CDN.  This raises billing issues because the CDN can’t charge as much if edge servers don’t see as many requests for the origin; fortunately, RFC 2227 describes a solution for this~\cite{rfc2227}.}  Finally, the proxy returns the content to the client over TLS.  
 
 %\begin{enumerate}
 %\item Send GET foo.com request to proxy using TLS connection\footnote{Include some form of blinding here such that client1 and client2 request the same URL, but the contents of step 1 look different by adding some randomness at the client, and that the proxy can remove \url{https://en.wikipedia.org/wiki/Blinding_(cryptography)} --- this prevents a malicious CDN from running a client and sending requests to learn things about other clients.}
