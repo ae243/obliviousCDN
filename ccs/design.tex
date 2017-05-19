@@ -45,6 +45,14 @@ many questions: are anonymizing proxies/VPNs trustworthy?, should clients be tru
 can any jurisdiction still subpoena the CDN for information (presumably the CDN has locations in many 
 countries and clients in many countries)?
 
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=.9\textwidth]{full_ocd_system}
+\caption{The relationships between clients, the CDN, proxies, and content publishers in 
+\system{}.}
+\label{fig:ocd_overview}
+\end{figure*}
+
 %, do malicious clients have more power as the CDN's attack 
 %detection and prevention capabilities are severely limited?
 
@@ -116,11 +124,3 @@ subset of proxies that use that shared key must get a new key.  \\
 The resulting system is the basis of \system{}, and the high-level view of the system is shown in Figure \ref{fig:ocd_overview}, 
 which can be compared to what CDNs look like today (Figure \ref{fig:basic_cdn}).  The next section describes \system{} in more 
 detail and outlines the specific steps for publishing and retrieving content.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.9\textwidth]{full_ocd_system}
-\caption{The relationships between clients, the CDN, proxies, and content publishers in 
-\system{}.}
-\label{fig:ocd_overview}
-\end{figure*}

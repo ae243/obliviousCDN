@@ -1,3 +1,10 @@
+\begin{figure*}[t!]
+\centering
+\includegraphics[width=.8\textwidth]{publishing_content}
+\caption{Step-by-step instructions on how content is published in \system{}.}
+\label{fig:publishing}
+\end{figure*}
+
 \section{\system{} Protocol}
 \label{sec:protocol}
 Based on the design decisions discussed in the previous section, we specify the 
@@ -8,13 +15,6 @@ steps taken to publish and retrieve content in \system{}.
 In order to publish content such that the CDN never sees the content, the publisher 
 must first obfuscate her content, as described in Section \ref{sec:obfuscate_content}. 
 Figure \ref{fig:publishing} shows the steps taken when publishing content.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.9\textwidth]{publishing_content}
-\caption{Step-by-step instructions on how content is published in \system{}.}
-\label{fig:publishing}
-\end{figure*}
 
 %\begin{figure*}[t]
 %    \centering
@@ -109,20 +109,6 @@ added padding, to reconstruct the original content.\footnote{Proxies can cache c
 %\item Proxy returns decrypted content to client (using TLS)
 %\end{enumerate}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.9\textwidth]{retrieving_content}
-\caption{Step-by-step instructions on how content is retrieved in \system{}.}
-\label{fig:retrieving}
-\end{figure*}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=.45\textwidth]{key_management}
-\caption{Step-by-step instructions on how to distribute keys to proxies.}
-\label{fig:keys}
-\end{figure}
-
 %\begin{figure*}[t]
 %    \centering
 %    \begin{subfigure}[h]{0.5\textwidth}
@@ -140,6 +126,13 @@ added padding, to reconstruct the original content.\footnote{Proxies can cache c
 \system{} should be partially deployable in the sense that if only some of the content publishers participate or only some of the CDNs participate, then 
 the system should still provide protections.  We have two different partial deployment plans, and both provide protections for those 
 publishers, CDNs, and clients that use \system{}. 
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=.8\textwidth]{retrieving_content}
+\caption{Step-by-step instructions on how content is retrieved in \system{}.}
+\label{fig:retrieving}
+\end{figure*}
 
 \paragraph{Deployment Option 1.}
 One option for deploying \system{} is to ensure there is some set $S$ of content publishers the participate fully in the 
@@ -166,6 +159,13 @@ spike on encrypted and plaintext content for the same publisher.  In order to pr
 content publisher, we can utilize multiple CDNs.  The publisher can spread replicas over different CDNs such that 
 the encrypted replicas are on one CDN and the plaintext replicas are on a different CDN.  In this case the publisher 
 is not susceptible to flashcrowds correlations and can still join the system.
+
+\begin{figure}[b]
+\centering
+\includegraphics[width=.45\textwidth]{key_management}
+\caption{Step-by-step instructions on how to distribute keys to proxies.}
+\label{fig:keys}
+\end{figure}
 
 \subsection{Optimizations}
 \label{sec:optimizations}
