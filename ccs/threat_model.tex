@@ -5,9 +5,9 @@ attacker, and introduce the design goals and protections provided by \system{}.
 
 \subsection{Threat Model}
 \label{sec:attacker}
-Our threat model involves two different passive, but powerful adversaries.  Both adversaries 
-wish to take advantage of the knowledge that a CDN has; the two adversaries are: 1) the CDN operator 
-itself and 2) a government (or similar).  
+Our threat model addresses a passive, but powerful attacker.  This passive attacker can 
+be described by two different models: 1) the CDN operator itself and 2) a government (or similar). 
+Both types of adversaries wish to take advantage of the knowledge that a CDN has.  
 
 We address an attacker who wants to learn what content each client is accessing; this 
 could mean learning either the identifier of the content, such as a URL, or the actual 
@@ -16,7 +16,8 @@ wishes to learn information that compromises the privacy of content publishers a
 users.  An active attacker that attempts to modify and/or delete data is out of the 
 scope of this work.
 
-In the case of the CDN provider being the adversary, he might try to make inferences. He 
+In the case of the CDN provider being the adversary, he can view access logs and 
+plaintext content. But in the case that he cannot view the content identifiers, he can try to make inferences. He 
 can infer the popularity of content based on the number of accesses and infer the web page 
 from the popularity. Addiitonally, this attacker may be able to infer a web page based on the length of the 
 content.  This adversary could be an inside attacker or an insider who is 
