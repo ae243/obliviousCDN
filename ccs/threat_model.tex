@@ -35,8 +35,8 @@ To protect against the attackers described in Section
 \ref{sec:attacker}, we highlight the design goals for \system{}. 
 Each stakeholder, in this case the content publisher, the CDN, and the client, each have 
 different risks, and therefore should have different protections.  All three stakeholders 
-can be protected by preventing CDNs from learning information, changing jurisdictions, and 
-reducing the probability of attacks.  Our design goals are listed in Table \ref{tab:design_goals}, 
+can be protected by preventing CDNs from learning information, decoupling content distribution from trust, and 
+maintaining the performance benefits of a CDN while reducing the probability of attacks.  Our design goals are listed in Table \ref{tab:design_goals}, 
 and we further discuss our design decisions in Section \ref{sec:design}.
 
 \begin{table*}[h]
@@ -55,8 +55,8 @@ and we further discuss our design decisions in Section \ref{sec:design}.
 \end{table*}
 
 \paragraph{Prevent the CDN from knowing information.} First, and foremost, the CDN 
-should not have access to all the information that it currently has access to (as described 
-in Section \ref{sec:background}).  By limiting the information that the CDN knows, it limits 
+should not have access to all the information that was outlined 
+in Section \ref{sec:background}.  By limiting the information that the CDN knows, \system{} limits 
 the amount of information that an adversary can learn or request.  \system{} should hide 
 content, content identifiers, and remove links between clients and their content requests, as well 
 as remove links between content (and content identifiers) and the content publisher.  If the CDN 
@@ -75,14 +75,15 @@ T-Systems~\cite{microsoft_germany}.  This prevents the United States government 
 for data stored in Germany, where German citizens (or others) can request to have their data stored.
   To complement these legal battles, \system{} should take 
 these conflicting jurisdictional issues into account.  Additionally, the system should be able to protect 
-the privacy of clients' locations; while addressing jurisdictional data privacy concerns, \system{} 
+the privacy of clients' locations; while addressing data privacy concerns in the client's jurisdiction, \system{} 
 should not reveal more information about clients.  It also provides the ability for clients 
 to hide their fine-grained location, while still following the policies of the jurisdictions in which 
 they reside.
 
 \paragraph{Reduce the attack surface.} \system{} should be able to achieve the previously mentioned security 
-and privacy goals while not introducing new attacks.  More specifically, it should aim to reduce 
-the probability of other attacks occuring, and reduce the probability of any information leakage in 
+and privacy goals while not introducing new attacks.  More specifically, \system{} should maintain the 
+caching benefits of a traditional CDN while still reducing 
+the probability of attacks occuring, and reducing the probability of any information leakage in 
 the case of an attack.
 
 %{\bf Origin Server.} The content publisher may want to publish sensitive or controversial 
