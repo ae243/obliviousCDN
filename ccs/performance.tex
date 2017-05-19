@@ -21,19 +21,19 @@ all cryptographic operations in Python.
 \subsection{Obfuscation Overhead: Publishing}
 As content publishers must compute the HMAC$_k$(URL) and \{content\}$_k$, the act of publishing potentially 
 takes longer than not having to perform any cryptographic operations.  In this experiment, we analyze the overhead 
-the publisher faces when obfuscating her content.
+the publisher faces when obfuscating her content.\\
 
 {\bf Metrics}
 When comparing the time to publish using \system{} to a typical CDN, the only difference is the obfuscation of 
 data (as discussed in Section \ref{sec:publish_protocol}).  This results in our analysis simply of the 
-obfuscation; the metric of interest is the total time it takes to encrypt content.  
+obfuscation; the metric of interest is the total time it takes to encrypt content.  \\
 
 {\bf Experimental Setup}
 In our experiment, we setup a client, a proxy, and an edge server. For this experiment, the only machine necessary is 
 the edge server --- we are not concerned with the amount of time it takes for the content to be transmitted from 
 the publisher's origin server to the edge server, only the amount of time the content publisher takes to obfuscate the data.  Therefore, 
 the content and URL are obfuscated on the edge server, and the time it takes to do these operations is measured.  This 
-measurement is taken for obfuscating the following file sizes: .000001MB, .001MB, .01MB, .1MB, 1.0MB, 10.0MB, and 100.0MB.
+measurement is taken for obfuscating the following file sizes: .000001MB, .001MB, .01MB, .1MB, 1.0MB, 10.0MB, and 100.0MB. \\
 
 {\bf Results}
 The results of time to obfuscate data are shown in Figure \ref{fig:encrypt_time}.  We can see that the overhead 
@@ -49,11 +49,11 @@ on a client's experience of retrieving, as the client never has to encrypt the c
 
 \subsection{Obfuscation Overhead: Retrieving}
 There is also some overhead associated with retrieving objects when using \system{} due to the operations that 
-the proxy must perform.  
+the proxy must perform.  \\
 
 {\bf Metrics}
 We are interested in measuring the affect of cryptographic functions on the retrieval of single 
-objects.  The metric used to do so is the end-to-end time to download a single object.  
+objects.  The metric used to do so is the end-to-end time to download a single object.  \\
 
 {\bf Experimental Setup}
 In our experiment, we setup a client, a proxy, and an edge server.  The client is a  Fujitsu CX2570 M2 servers with dual, 
@@ -72,7 +72,7 @@ Our proxy runs {\tt mitmproxy}, which allows for interception and manipulation o
 these modifications at the proxy.  
 
 In this experiment, the client machine requests the objects using {\tt curl} with specific options to use the designated proxy, 
-and to measure the transfer time.  
+and to measure the transfer time.  \\
 
 \begin{figure}[t]
 \centering
@@ -94,14 +94,18 @@ performance differences between \system{} and a traditional CDN.
 The other reason for lower performance in \system{} is because there are fewer copies of the content that a single proxy can request.  As each set 
 of proxies use a different shared key, and these proxies can only request the content encrypted with their shared key, this can lead to high cache misses.  
 This would cause the CDN to fetch the object from the content publisher's server, which increases the latency, and degrades performance for the client.  
-In this experiment, we measure just how much of an impact the number of shared keys has on the cache hit rate.
+In this experiment, we measure just how much of an impact the number of shared keys has on the cache hit rate.\\
 
 {\bf Metrics}
 In addition to the use of proxies and cryptographic operations, \system{} could suffer performance losses from lower cache hit ratios.  As the number 
 of shared keys (between the proxies and the content publishers' servers) increases, the cache hit ratio will likely decrease.  The metric we are interested 
-in to evaluate the performance impact of multiple shared keys is the cache hit ratio.
+in to evaluate the performance impact of multiple shared keys is the cache hit ratio.\\
 
 {\bf Experimental Setup}
-Simulate the cache hit ratio with different numbers of shared keys $k$ ($k$ = 1 to $k$ = 100) when using a cache size of 1.2 GB~\cite{berger2017adaptsize} and a sequence of object requests from ??, where we assume each object to be 100 Kb~\cite{berger2016achieving}.
+In this experiment, we simulate the cache hit rate with a fixed number of clients while varying the number of shared keys $k$.  We use 
+access logs from prior research~\cite{andersen2005improving} to simulate cache requests, and we assume a cache size of 1.2 GB~\cite{berger2017adaptsize} and that all objects have 
+the same size of 12 KB~\cite{berger2016achieving}.  The experiment starts with a cold cache, five clients, and a single shared key; this is 
+replicated five times, where we increase the number of shared keys by one each time, resulting in an analysis of how the cache hit rate is affected 
+by values of $1~<=~k~<= 5$.
 
 {\bf Results}
