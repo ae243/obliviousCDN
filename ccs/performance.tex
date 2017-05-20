@@ -14,7 +14,7 @@ all cryptographic operations in Python.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=.5\textwidth]{perf_setup}
-\caption{Our experimental setup used to evaluate the performance overhead of \system{}.}
+\caption{Experiment setup for evaluating \system{}.}
 \label{fig:perf_setup}
 \end{figure}
 
@@ -78,7 +78,7 @@ simulation, we would have to know a priori knowledge of exactly what objects (th
 full web page, we would then have to obfuscate these objects and store them at a cache node.  Due to these challenges, we measure 
 object downloads, which additively should be representative of full page download times. \\
 
-\begin{figure}[b]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.45\textwidth]{transfer_new.png}
 \caption{The total transfer time for accessing different sizes of objects using \system{} and without \system{}'s cryptographic operations.}
@@ -117,7 +117,7 @@ Our results from this experiment are shown in Figure \ref{fig:cache_hits}.  We c
 as the number of shared keys increase.  Interestingly, for larger numbers of $k$ the difference between $k-1$ keys and $k$ is less than for larger 
 values of $k$; therefore, for larger values of $k$ there is greater security with a relatively low performance trade off.
 
-\begin{figure}[b]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.45\textwidth]{cache_hit_rate.png}
 \caption{The cache hit rate for different numbers of shared keys.}
