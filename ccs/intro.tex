@@ -14,15 +14,16 @@ borders to facilitate surveillance~\cite{arnbak2015loopholes}.
 The rise of content distribution networks (CDNs) makes the threat to citizens'
 privacy more widespread, because data may be replicated in geographically
 diverse regions, and users may not have purview over where their data is
-stored, or where their traffic goes.  One way to address this issue is to give
-users better control over the routes that either traffic takes between the
-client and a content provider; previous work has developed defenses that can
-better help users control such routing of traffic. Yet, control over routing
-is only part of the story: if content is {\em hosted} in a particular country,
-then user traffic might traverse that country simply to retrieve the content.
-Thus, protecting user privacy requires protecting not only the routes that
-traffic traverses, but also the contents and the access patterns of data
-stored on CDN cache nodes.
+stored, or where their traffic goes. Another twist is that the CDNs themselves
+may become liable for the content that they are hosting. For example, the
+European Union has been considering laws that would remove safe harbor
+protection on copyright infringment for online service providers if they do
+not deploy tools that can automatically inspect and remove infringing content.
+Both of these tussles are currently being addressed in the courts, yet the
+legal outcomes remain ambiguous and uncertain, sometimes with courts issuing
+opposing rulings in different cases. In this paper, we explore whether redesigning
+the CDN itself could help resolve this tussle.
+
 
 In this paper, we design and implement a content distribution network that
 allows clients to retrieve web objects, while preventing the CDN cache nodes
