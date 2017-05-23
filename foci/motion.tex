@@ -30,24 +30,24 @@ There are a number of ongoing debates surrounding the privacy of data in motion.
 
 There has been some research on developing techniques, systems, and clean-slate Internet architectures to protect data in motion.  Table \ref{tab:current_systems} shows which proposed systems/techniques address which type of data.
 
-\begin{table}[h]
-\begin{center}
-    \begin{tabular}{| l | l | l |}
-    \hline
-    System & Data in Motion & Data at Rest \\ \hline \hline
-    Alibi Routing~\cite{levin2015alibi} & \checkmark & {} \\ \hline
-    RAN~\cite{edmundson2017ran} & \checkmark & {} \\ \hline
+%\begin{table}[h]
+%\begin{center}
+%    \begin{tabular}{| l | l | l |}
+%    \hline
+%    System & Data in Motion & Data at Rest \\ \hline \hline
+%    Alibi Routing~\cite{levin2015alibi} & \checkmark & {} \\ \hline
+%    RAN~\cite{edmundson2017ran} & \checkmark & {} \\ \hline
 %    ARROW~\cite{peter2015one} & \checkmark & {} \\ \hline
-    SCION~\cite{zhang2011scion} & \checkmark & {} \\ \hline
-    Tor~\cite{dingledine2004tor} & \checkmark & {} \\ \hline
-    VPNGate~\cite{nobori2014vpn} & \checkmark & {} \\ \hline
+%    SCION~\cite{zhang2011scion} & \checkmark & {} \\ \hline
+%    Tor~\cite{dingledine2004tor} & \checkmark & {} \\ \hline
+%    VPNGate~\cite{nobori2014vpn} & \checkmark & {} \\ \hline
 %    ObliviousCDN~\cite{edmundson2017cdn} & \checkmark & \checkmark \\ 
 %    \hline
-    \end{tabular}
-\caption{Proposed systems and techniques, and which type of data they aim to protect from nation state surveillance.}
-\label{tab:current_systems}
-\end{center}
-\end{table}
+%    \end{tabular}
+%\caption{Proposed systems and techniques, and which type of data they aim to protect from nation state surveillance.}
+%\label{tab:current_systems}
+%\end{center}
+%\end{table}
 
 Levin \ea, introduced Alibi Routing, which provides ``proofs of avoidance,'' which serves as evidence that a user's packets did not traverse a user-specified geographic region~\cite{levin2015alibi}.  This mechanism could be used to avoid (potentially with proof) a region or nation state known for surveillance.  Unfortunately, this mechanism is not very successful when trying to avoid a region that is geographically close to the client or server, and the client does not know until after the communication has occured whether or not the region was avoided.  Nevertheless, it was an initial work in country and region avoidance and paved the road for future work in routing for avoidance.  More recently, a system called RAN was introduced, which allows Internet users to avoid a user-specified country by using an overlay network~\cite{edmundson2017ran}.  This system uses traceroute measurements to determine the correct overlay network relay to use in order to avoid a country; unfortunately, these measurements cannot measure the reverse path from a server to a client, and thus provide no guarantee that the unfavorable country is not on the reverse path.
 
