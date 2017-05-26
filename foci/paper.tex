@@ -1,39 +1,11 @@
-% TEMPLATE for Usenix papers, specifically to meet requirements of
-%  USENIX '05
-% originally a template for producing IEEE-format articles using LaTeX.
-%   written by Matthew Ward, CS Department, Worcester Polytechnic Institute.
-% adapted by David Beazley for his excellent SWIG paper in Proceedings,
-%   Tcl 96
-% turned into a smartass generic template by De Clarke, with thanks to
-%   both the above pioneers
-% use at your own risk.  Complaints to /dev/null.
-% make it two column with no page numbering, default is 10 point
-
-% Munged by Fred Douglis <douglis@research.att.com> 10/97 to separate
-% the .sty file from the LaTeX source template, so that people can
-% more easily include the .sty file into an existing document.  Also
-% changed to more closely follow the style guidelines as represented
-% by the Word sample file. 
-
-% Note that since 2010, USENIX does not require endnotes. If you want
-% foot of page notes, don't include the endnotes package in the 
-% usepackage command, below.
-
-% This version uses the latex2e styles, not the very ancient 2.09 stuff.
-\documentclass[letterpaper,twocolumn,10pt]{article}
-\usepackage{usenix,epsfig,endnotes}
-%\usepackage{url}
+\documentclass[twocolumn,10pt]{confpaper}
 \usepackage[hyphens]{url}
 \usepackage{dirtytalk}
-\usepackage[hidelinks]{hyperref}
-\hypersetup{breaklinks=true}
 \usepackage{tikz}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \clubpenalty=10000  % Don't allow orphans
 \widowpenalty=10000 % Don't allow widows
-
-\newcommand{\ea}{{\em et al.}}
 
 \begin{document}
 
@@ -41,7 +13,8 @@
 \date{}
 
 %make title bold and 14 pt font (Latex default is non-bold, 16 pt)
-\title{\Large \bf Attacks on Privacy: Nation-States, Wiretapping, and Subpoenas}
+\title{\Large \bf Data Without Borders: Protecting
+User Data in a Borderless Internet}
 
 %for single author (just remove % characters)
 %\author{
@@ -64,23 +37,15 @@
 
 
 \input{abstract}
-
 \input{intro}
-
-%\input{background}
-
 \input{motion}
-
 \input{rest}
-
 %\input{discussion}
-
 \input{related}
-
 \input{conclusion}
 
 {\footnotesize \bibliographystyle{acm}
-\bibliography{paper}}
+\balance \bibliography{paper}}
 
 \end{document}
 
