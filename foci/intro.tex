@@ -15,7 +15,7 @@ One example that presents these types of cross-jurisdictional issues is a
 Content Delivery Network (CDN).  A CDN consists of a set of cache nodes, which
 replicate  and distribute content produced by other entities.  Suppose that
 Alice has a blog and lives in Russia.  The content of her blog may be
-replicated across CDN, which replicates her content on a cache node in France.
+replicated across a CDN, which replicates her content on a cache node in France.
 The company operating the CDN is headquartered in the United States and
 operates cache nodes around the world. Several questions arise: (1)~Does the government
 where the data resides (or where the data transits) have the ability to access that
@@ -42,7 +42,7 @@ content, regardless of the provenance of that content. The Cloudflare CDN has
 been required to share data with the FBI~\cite{cloudflare_gag}; similarly,
 leaked  NSA documents showed that the government agency ``collected
 information ``by exploiting inherent weaknesses  in Facebook's security model''
-through its use of the popular Akamai content delivery network''~\cite{}.
+through its use of the popular Akamai content delivery network''~\cite{nsa_akamai}.
 
 In this work, we focus on the privacy implications of cross-border data flows
 and data  storage, and how technology can be designed to protect citizens'
@@ -67,8 +67,8 @@ Internet users' privacy, but they can also provide protections  for content
 creators and content distributors (regardless of their geographic location).
 
 In this paper, we provide background on some of the jurisdictional differences
-on both data in motion and data at rest, discuss historical and current laws
-and cases of  government access to data (in motion and at rest), as well as
+on data privacy, discuss historical and current laws
+and cases of  government access to data, as well as
 put these cases into the context  of technology development. We also highlight
 current systems that aim to protect data privacy from nation  state
 adversaries, and discuss how they stop short of circumventing nation state
@@ -80,8 +80,8 @@ These systems and techniques should be applied to two separate types of data:
 types of data for a number of reasons.   First, there are different policies
 and regulations applicable to the two types of data.  Second,  they have
 different characteristics, which lead to different technological requirements
-to preserve  privacy from nation-state surveillance, especially considering
-this surveillance can come from   wiretapping or serving a subpoena.
+to preserve  privacy from nation state surveillance, especially considering
+ surveillance can be conducted via wiretapping or serving a subpoena.
 
 The rest of the paper is organized as follows.  We discuss data in motion in
 more depth in Section \ref{sec:motion}, where we highlight  historical cases,
