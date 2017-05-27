@@ -44,44 +44,45 @@ leaked  NSA documents showed that the government agency ``collected
 information ``by exploiting inherent weaknesses  in Facebook's security model''
 through its use of the popular Akamai content delivery network''~\cite{nsa_akamai}.
 
-In this work, we focus on the privacy implications of cross-border data flows
-and data  storage, and how technology can be designed to protect citizens'
-data, regardless of the  jurisdiction in which the client, data, or service
-resides.  In light of  the Snowden revelations, many countries have taken
-measures to avoid United States surveillance on their citizens' Internet
-traffic; some of  the ways some countries are avoiding known surveillance
-states include: controlling the route  that Internet traffic takes by
-deploying underwater cables that avoid surveillance states~\cite{brazil};
-requiring their citizens' data to be stored locally, so as to prevent their
-citizens' data from  being stored in a country that conducts
-surveillance~\cite{russia}; controlling Internet paths by building  IXPs;
+Countries are increasingly seeking to control the location of their citizens'
+data. For example, as a result of the Snowden revelations, many countries have
+taken measures to avoid United States surveillance on their citizens' Internet
+traffic; some of the ways some countries are avoiding known surveillance
+states include controlling the route  that Internet traffic takes by deploying
+underwater cables that avoid surveillance states~\cite{brazil}; requiring
+their citizens' data to be stored locally, so as to prevent their citizens'
+data from  being stored in a country that conducts surveillance~\cite{russia};
+controlling Internet paths by building Internet exchange points (IXPs); and
 halting the use of technology designed and developed in surveillance states.
-While some of these  solutions are technical, many are political, and in most
-cases solutions come from court decisions, not  technology.
+Yet, the legal mechanisms for controlling data access remain uncertain, and
+many existing mechanisms to control the location and flow of data can
+sometimes be uncertain and difficult to control.
 
-While policy and regulation are being created and challenged, technologists
-have a role  in this area too.  Technology and systems can be developed to
-facilitate data privacy in the  face of an overreaching government or
-conflicting jurisdictional policies.  Not only can  these systems protect
-Internet users' privacy, but they can also provide protections  for content
-creators and content distributors (regardless of their geographic location).
 
-In this paper, we provide background on some of the jurisdictional differences
-on data privacy, discuss historical and current laws
-and cases of  government access to data, as well as
-put these cases into the context  of technology development. We also highlight
-current systems that aim to protect data privacy from nation  state
-adversaries, and discuss how they stop short of circumventing nation state
-surveillance.  Lastly, we  point out the gaps in this technology landscape,
-and  subsequently call for future work.
+In this work, we focus on the privacy implications of cross-border data flows
+and data storage, with a focus on how emerging {\em technology} can be
+designed to protect citizens' data, regardless of the  jurisdiction in which
+the client, data, or service resides. We believe that certain technologies can
+help provide privacy protections for end users, even when the laws governing
+access to user data may be either ambiguous or unfavorable. Not only can these
+systems protect Internet users' privacy, but also they can  provide
+protections  for content creators and content distributors, regardless of
+their geographic location. To this end, we provide background on some of the
+jurisdictional differences on data privacy, discuss historical and current
+laws and cases of  government access to data, as well as put these cases into
+the context  of technology development. We also highlight current systems that
+aim to protect data privacy from nation  state adversaries, and discuss how
+they stop short of circumventing nation state surveillance.  Finally, we
+highlight various aspects where existing technology fails to provide adequate
+protection, and highlight new avenues for future work in this regard.
 
-These systems and techniques should be applied to two separate types of data:
-(1)~data in motion and (2)~data at rest.  We differentiate between these two
-types of data for a number of reasons.   First, there are different policies
-and regulations applicable to the two types of data.  Second,  they have
-different characteristics, which lead to different technological requirements
-to preserve  privacy from nation state surveillance, especially considering
- surveillance can be conducted via wiretapping or serving a subpoena.
+We explore questions for two types of user data on the Internet: (1)~data in
+motion and (2)~data at rest.  We differentiate between these two types of data
+for a number of reasons.   First, there are different policies and regulations
+applicable to the two types of data.  Second,  they have different
+characteristics, which lead to different technological requirements to
+preserve  privacy from nation state surveillance, especially considering
+surveillance can be conducted via wiretapping or serving a subpoena.
 
 The rest of the paper is organized as follows.  We discuss data in motion in
 more depth in Section \ref{sec:motion}, where we highlight  historical cases,
