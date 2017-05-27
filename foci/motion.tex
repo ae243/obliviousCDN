@@ -102,7 +102,20 @@ countries, such as Brazil, take extreme measures to avoid routing their
 Internet traffic through the United States for this exact
 reason~\cite{brazil}.
 
-There are a number of ongoing debates surrounding the privacy of data in motion.  Some governments are demanding backdoors in encrypted communication applications, and other governments are trying to issue subpoenas for encrypted communications~\cite{whatsapp_uk,signal_fbi}.  On the other side, many companies are trying to keep their clients' data (in motion) secure; one example of this is the increased use of end-to-end encryption in communication applications.  End-to-end encryption is a step in the direction of protecting privacy using technology.  It has become increasingly common for governments to critize technologies that use end-to-end encryption; for example, the United Kingdom recently stated that they should have access to WhatsApp messages when necessary (this was in response to the recent terror attacks in London)~\cite{uk_whatsapp}.  The recent actions taken by many governments, not just the UK, should motivate technologists to design systems with cross-jurisdiction data flows in mind.  
+Several ongoing debates concern the privacy of data in motion.  Some
+governments are demanding backdoors in encrypted communication applications,
+and other governments are trying to issue subpoenas for encrypted
+communications~\cite{whatsapp_uk,signal_fbi}.  On the other side, many
+companies are trying to keep their clients' data (in motion) secure; one
+example of this is the increased use of end-to-end encryption in communication
+applications.  End-to-end encryption is a step in the direction of protecting
+privacy using technology.  It has become increasingly common for governments
+to critize technologies that use end-to-end encryption; for example, the
+United Kingdom recently stated that they should have access to WhatsApp
+messages when necessary (this was in response to the recent terror attacks in
+London)~\cite{uk_whatsapp}.  The recent actions taken by many governments, not
+just the UK, should motivate technologists to design systems with cross-
+jurisdiction data flows in mind.
 
 \subsection{Technical Approaches}
 \label{sec:tech_motion}
@@ -126,10 +139,51 @@ There are a number of ongoing debates surrounding the privacy of data in motion.
 %\end{center}
 %\end{table}
 
-There has been some research on developing techniques, systems, and clean-slate Internet architectures to protect data in motion.  Levin \ea, introduced Alibi Routing, which provides ``proofs of avoidance,'' which serves as evidence that a user's packets did not traverse a user-specified geographic region~\cite{levin2015alibi}.  This mechanism could be used to avoid (potentially with proof) a region or nation state known for surveillance.  Unfortunately, this mechanism is not very successful when trying to avoid a region that is geographically close to the client or server, and the client does not know until after the communication has occured whether or not the region was avoided.  Nevertheless, it was an initial work in country and region avoidance and paved the road for future work in routing for avoidance.  More recently, a system called RAN was introduced, which allows Internet users to avoid a user-specified country by using an overlay network~\cite{edmundson2017ran}.  This system uses traceroute measurements to determine the correct overlay network relay to use in order to avoid a country; unfortunately, these measurements cannot measure the reverse path from a server to a client, and thus provide no guarantee that the unfavorable country is not on the reverse path.
+Various technologies can help protect data in motion.  One strategy is to {\em
+route around} the jurisdictions that have unfavorable or ambiguous laws.
+Recent work on Alibi Routing provides ``proofs of avoidance'' that as evidence
+that a user's packets did not traverse a user-specified geographic
+region~\cite{levin2015alibi}.   This mechanism could be used to prove that a
+packet did not traverse a region or nation state known for surveillance. Yet,
+this mechanism is not effective for avoiding regions that are  is
+geographically close to the client or server; furthermore,  the client does
+not know until after the communication has occured whether or not the region
+was avoided. It also does not provide proactive mechanisms for avoiding a
+region. 
 
-There are a number of other censorship circumvention systems that use different techniques, one example is the Tor network.  Tor is a censorship circumvention system that employs a series of relays and layered encryption~\cite{dingledine2004tor}.  Tor does protect data in motion from surveillance, but is still susceptible to correlation attacks and fingerprinting attacks~\cite{sun2015raptor,shmatikov2006timing,feamster2004location,greschbach2016effect}.  Virtual Private Networks (VPNs) have also been used to circumvent censorship; a proposed system that uses VPNs is VPNGate~\cite{nobori2014vpn}.  While VPNs protect the data in motion on a portion of the path, it leaves the data susceptible to snooping on the other portion of the path.  Additionally, use of a VPN requires the client to place trust in the VPN provider, which a nation state could demand data from.   
+A more recent system called RAN allows  Internet users to avoid a
+user-specified country using an overlay network~\cite{edmundson2017ran}.  This
+system uses traceroute measurements to determine the correct overlay network
+relay to use in order to avoid a country; unfortunately, these measurements
+cannot measure the reverse path from a server to a client, and thus provide no
+guarantee that the unfavorable country is not on the reverse path. Finally, these
+systems cannot help protect user privacy in the case where the data to be protected
+is hosted in the country that the client may wish to avoid; for example, many clients
+simply cannot avoid the United States or certain European countries because they
+are the locations where the data is hosted.
 
-SCION is a clean-slate Internet architecture that is designed to provide route control, failure isolation, and explicit trust information for end-to-end communications~\cite{zhang2011scion}.  While SCION would help preserve the privacy of data in motion, it is not deployable because it requires fundamental changes to the Internet architecture.
+SCION is a clean-slate Internet architecture that is designed to provide route
+control, failure isolation, and explicit trust information for end-to-end
+communications~\cite{zhang2011scion}.  While SCION would help preserve the
+privacy of data in motion, it is not deployable because it requires
+fundamental changes to the Internet architecture.
 
-As we can see, there have been a number of proposed systems to avoid nation state adversaries from conducting surveillance on data in motion.  Unfortunately, we have not achieved complete privacy protections for this type of data, and we call for more research to protect citizens' data from adversarial governments.  
+
+Another strategy is to {\em obfuscate} the existence of communications from
+the jurisdictions that may wish to discover it. One such system, Tor, uses a
+series of relays and layered encryption~\cite{dingledine2004tor}.  Tor
+protects data in motion from surveillance, but is still susceptible to
+correlation and fingerprinting
+attacks~\cite{sun2015raptor,shmatikov2006timing,feamster2004loc
+ation,greschbach2016effect}.  Virtual Private Networks (VPNs) have also been
+used to circumvent censorship; a proposed system that uses VPNs is
+VPNGate~\cite{nobori2014vpn}.  While VPNs protect the data in motion on a
+portion of the path, they leave the data susceptible to snooping on the
+portion of the path that is not covered by the VPN.  Additionally, using a VPN
+requires the client to trust the VPN provider, which a nation state could
+demand data from.
+
+Although there have been a number of proposed systems to avoid nation state
+adversaries from conducting surveillance on data in motion.  Unfortunately, we
+have not achieved complete privacy protections for this type of data. More research
+is needed to address the shortcomings of these existing technologies.

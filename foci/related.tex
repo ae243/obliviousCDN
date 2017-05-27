@@ -1,8 +1,14 @@
 \section{Related Work}
 \label{sec:related}
 
-A number of systems are designed to protect either data in motion or data at rest; these are described in Sections \ref{sec:tech_motion} and \ref{sec:tech_rest}.  In addition to these systems, there are a number of works that measure national Internet topologies and analyze routing that crosses jurisdictional borders.
+Several systems protect the privacy of data in motion or data at rest, as
+described in Sections~\ref{sec:tech_motion} and~\ref{sec:tech_rest}.  In
+addition to these systems, other related work concerns measuring national
+Internet topologies and analyzing routing that crosses jurisdictional borders.
 
-{\bf Analyzing Nation State Routing.}  Previous work has studied international routing detours~\cite{shah2015characterizing}; these paths start and end in the same country, but traverse a foreign country at some point on the path.  Obar and Clement analyzed these types of detours, but only for those paths starting and ending in Canada, as it was seen as a violation of Canadian network sovereignty~\cite{obar2013internet}.  Karlin \ea, conducted a country-level routing analysis and quantified how central each country is to interdomain routing~\cite{karlin2009nation}.  In 2015, researchers found a loophole in U.S. surveillance law, which would allow the U.S. to conduct surveillance on domestic traffic.  The study proposed that the government could potentially re-route domestic U.S. traffic through a foreign country, where it is legal for the U.S. to conduct surveillance because the traffic {\it appears} foreign (as opposed to domestic)~\cite{arnbak2015loopholes}.
+\paragraph{Mapping National Internet Topologies.}  Prior research has measured
+and analyzed the network within specific countries, such as Germany~\cite{wahlisch2010framework,wahlisch2012exposing} and China~\cite{zhou2007chinese}.  Other work has measured a country's interconnectivity~\cite{bischof2015and,fanou2015diversity,gupta2014peering}, where the authors study the intra-country paths, as opposed to the paths between separate countries.
 
-{\bf Mapping National Internet Topologies.}  Prior research has measured and analyzed the network within specific countries, such as Germany~\cite{wahlisch2010framework,wahlisch2012exposing} and China~\cite{zhou2007chinese}.  Other work has measured a country's interconnectivity~\cite{bischof2015and,fanou2015diversity,gupta2014peering}, where the authors study the intra-country paths, as opposed to the paths between separate countries.  
+
+\paragraph{Analyzing Nation State Routing.}  Previous work has studied international
+routing detours~\cite{shah2015characterizing}; these paths start and end in the same country, but traverse a foreign country at some point on the path.  Obar and Clement analyzed these types of detours, but only for those paths starting and ending in Canada, as it was seen as a violation of Canadian network sovereignty~\cite{obar2013internet}.  Karlin \ea, conducted a country-level routing analysis and quantified how central each country is to interdomain routing~\cite{karlin2009nation}.  In 2015, researchers found a loophole in U.S. surveillance law, which would allow the U.S. to conduct surveillance on domestic traffic.  The study proposed that the government could potentially re-route domestic U.S. traffic through a foreign country, where it is legal for the U.S. to conduct surveillance because the traffic {\it appears} foreign (as opposed to domestic)~\cite{arnbak2015loopholes}.
