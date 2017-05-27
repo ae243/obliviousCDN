@@ -1,7 +1,7 @@
 \section{Data in Motion}
 \label{sec:motion}
 
-{\em Data in motion} refers to communications or data that is en route between
+{\em Data in motion} refers to communications or data that are en route between
 Internet endpoints. For example, if Alice is communicating with Bob, her
 message to Bob is considered data in motion.  When Alice fetches a web page,
 her request is data in motion as it travels to the web server; similarly, the
@@ -141,11 +141,11 @@ jurisdiction data flows in mind.
 
 Various technologies can help protect data in motion.  One strategy is to {\em
 route around} the jurisdictions that have unfavorable or ambiguous laws.
-Recent work on Alibi Routing provides ``proofs of avoidance'' that as evidence
+Recent work on Alibi Routing provides ``proofs of avoidance'' that are evidence
 that a user's packets did not traverse a user-specified geographic
 region~\cite{levin2015alibi}.   This mechanism could be used to prove that a
 packet did not traverse a region or nation state known for surveillance. Yet,
-this mechanism is not effective for avoiding regions that are  is
+this mechanism is not effective for avoiding regions that are 
 geographically close to the client or server; furthermore,  the client does
 not know until after the communication has occurred whether or not the region
 was avoided. It also does not provide proactive mechanisms for avoiding a
@@ -174,8 +174,7 @@ the jurisdictions that may wish to discover it. One such system, Tor, uses a
 series of relays and layered encryption~\cite{dingledine2004tor}.  Tor
 protects data in motion from surveillance, but is still susceptible to
 correlation and fingerprinting
-attacks~\cite{sun2015raptor,shmatikov2006timing,feamster2004loc
-ation,greschbach2016effect}.  Virtual Private Networks (VPNs) have also been
+attacks~\cite{sun2015raptor,shmatikov2006timing,feamster2004location,greschbach2016effect}.  Virtual Private Networks (VPNs) have also been
 used to circumvent censorship; a proposed system that uses VPNs is
 VPNGate~\cite{nobori2014vpn}.  While VPNs protect the data in motion on a
 portion of the path, they leave the data susceptible to snooping on the
@@ -184,6 +183,6 @@ requires the client to trust the VPN provider, which a nation state could
 demand data from.
 
 Although there have been a number of proposed systems to avoid nation state
-adversaries from conducting surveillance on data in motion.  Unfortunately, we
+adversaries from conducting surveillance on data in motion, we
 have not achieved complete privacy protections for this type of data. More research
 is needed to address the shortcomings of these existing technologies.

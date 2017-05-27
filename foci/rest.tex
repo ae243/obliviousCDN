@@ -4,11 +4,11 @@
 Data at rest refers to stored data. Bruce Schneier described stored data as a
 subset of communications: \say{...a stored message is a way for someone to
 communicate with himself through time~\cite{schneier2007applied}.} Although
-this characterization is valid in an abstract, in practice the measures needed
+this characterization is valid in an abstract sense, in practice the measures needed
 to protect the privacy of both types of data are quite different.  An example
 of data at rest is a database of credit card information associated with a
 website. This information is stored on some machine and is accessible to
-incoming requests. In this section, we discuss some of technical questions
+incoming requests. In this section, we discuss some of the technical questions
 regarding the privacy of data at rest, existing legal precedent, and how (and
 why) systems must protect data at rest differently than data in motion.
 
@@ -26,12 +26,12 @@ capability to eavesdrop on data, but also it can in many cases serve an
 organization, ISP, or company with a subpoena to access user data: (1)~A
 subpoena may be served {\em to an ISP}, which may also have the ability to
 man-in-the-middle TLS connections; because the ISP can see the plaintext data
-in motion, then it must hand over the requested to data to the nation state,
+in motion, then it must hand over the requested data to the nation state,
 (2)~A subpoena may be served to a CDN, which may encrypt the data at rest, but
 also stores the encryption keys, and {\it can} see the data and which clients
 are accessing it, so it must provide the requested data to the nation state.
-Technology must protections beyond encryption, especially in the face of a
-governments that can gather the data without a user's knowledge, or simply
+Technology must provide protections beyond encryption, especially in the face of a
+government that can gather the data without a user's knowledge, or simply
 demand the data.
 
 \subsection{Legal Precedent and Questions}
@@ -69,7 +69,7 @@ speech~\cite{cloudflare_gag}.
 Many of these companies that have received NSLs under gag order have publicly
 pushed for more transparency; Google made the statement ``We have fought for
 the right to be transparent about our receipt of NSLs. This includes working
-with the government to publish statistics about NSLs we’ve received,
+with the government to publish statistics about NSLs we've received,
 successfully fighting NSL gag provisions in court, and leading the effort to
 ensure that Internet companies can be more transparent with users about the
 volume and scope of national security demands that we receive.'' Along similar
@@ -102,7 +102,7 @@ search.  This blow to Facebook's attempt at expanding privacy protections for
 their users motivates the general need for systems that preserve the privacy
 of data at rest.  Additionally, a recent second circuit court case ruled that
 Google must turn over emails stored overseas; this effectively has the {\it
-opposite} ruling as compared to the Microsoft vs. Ireland case, in which held
+opposite} ruling as compared to the Microsoft vs. Ireland case, which held
 that warrants for customer emails are unenforceable when stored on a server
 outside the United States~\cite{google_overseas,microsoft_ireland}.
 
