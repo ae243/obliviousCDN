@@ -1,19 +1,68 @@
 \section{Data in Motion}
 \label{sec:motion}
 
-Data in motion refers to communications, or data that is being transitted.  For example, Alice is communicating with Bob, and thus her message to Bob is considered data in motion as it transits the network from her machine to Bob's machine.  A different example is when Alice fetches a web page; her request is data in motion as it travels to the web server, and the content of the web page is data in motion as it is returned to Alice.
+{\em Data in motion} refers to communications or data that is en route between
+Internet endpoints. For example, if Alice is communicating with Bob, her
+message to Bob is considered data in motion.  When Alice fetches a web page,
+her request is data in motion as it travels to the web server; similarly, the
+content of the web page is data in motion as it is returned to Alice. In this
+section, we highlight the concerns associated with the privacy of data in
+motion, discuss the applicable laws and policies governing the privacy of user
+data for data in motion, and explore how specific technologies may help protect
+user privcacy in these settings.
 
-In the following subsections we point out the concerns associated with the privacy of data in motion, highlight relevant laws and policies, and how technology can be designed to help protect this type of data.
+\subsection{Privacy Concerns}
 
-\subsection{Questions/Concerns}
-While encryption seems like the obvious solution to protecting the privacy of data in motion, there are many reasons why cryptography is ill-suited as the only protection.  For data in motion, encryption provides a great deal of privacy protections.  Unfortunately, there are still a number of ways that a skilled adversary, such as a nation state, can learn information.  First, despite the content being encrypted, the mere presence of communication between two parties may be revealing.  Additionaly, there has been a wide variety of research in the area of website fingerprinting, which can reveal information about the content based on size, content, and location of third-party resources.  Some unencrypted communication may reveal information about the content of other (encrypted) communication; DNS traffic is extremely revealing and often unencrypted~\cite{isps_see}.  Lastly, some ISPs terminate TLS connections, thereby conducting man-in-the-middle attacks on encrypted traffic for network management purposes~\cite{gogo}.
-
-As we can see, encryption alone cannot protect data in motion from a nation state adversary --- we need systems (that go beyond encryption) designed for this purpose.  While these concerns have highlighted the technical questions, the privacy problem is complicated by the introduction of data flowing across many jurisdictions.  This calls for more investigation into technology that can preserve data privacy in light of conflicting jurisdictional policies.
+While encryption seems like the obvious solution to protecting the privacy of
+data in motion, there are many reasons why cryptography is not a panacaea.
+Specifically, there are still a number of ways that a skilled adversary, such
+as a nation state, can learn information.  First, the mere presence of
+communication between two parties may be revealing.  Additionaly, there has
+been a wide variety of research in the area of website fingerprinting, which
+can reveal information about the content based on size, content, and location
+of third- party resources.  Some unencrypted communication may reveal
+information about the content of other (encrypted) communication; DNS traffic
+is extremely revealing and often unencrypted~\cite{isps_see}.  Lastly, some
+ISPs terminate TLS connections, thereby conducting man-in-the-middle attacks
+on encrypted traffic for network management purposes~\cite{gogo}. Thus,
+encryption alone cannot protect data in motion from a nation state adversary.
+Additional systems are needed to conceal the nature or extent of
+communications in these scenarios. These concerns are complicated by the fact
+that geo-replicated services such as CDNs may also result in data traversing
+many jurisdictions.  We explore these complications next and subsequently
+discuss how technology may help address some of the legal ambiguity
+surrounding data in motion.
 
 \subsection{Legal Precedent and Questions}
-Data in motion has different data protection requirements and privacy legislation in different jurisdictions.  For example, the European Union (EU) has stricter data protection laws than those of the U.S.  Therefore, in 1998 the European Commission's Directive on Data Protection went into effect, which ``would prohibit the transfer of personal data to non-European Union countries that do not meet the European Union (EU) `adequacy' standard for privacy protection''~\cite{safeharbor}.  The U.S. negotiated the Safe Harbor framework, which was accepted by the Commission in 2000, and relied on the concept of enforceable self-certifications to assure adequate protection.  This self-certification worked because the companies would publicly commit to protecting personal data by following specific principles, and because these commitments were public, they were enforceable under the Federal Trade Commission in the U.S.  
 
-In 2015, the highest European Court deemed the Safe Harbor framework invalid ``on the adequacy of the protection provided by the safe harbour privacy principles and related frequently asked questions issued by the US Department of Commerce''~\cite{safeharbor}.  The two main issues that were raised against Safe Harbor were: 1) excessive U.S. access to European data (largely due to the Snowden disclosures), and 2) no process for European citizens to address their concerns~\cite{safeharbor_ps_diffs}.  A new framework, the Privacy Shield, was negotiated to replace the Safe Harbor agreement and address these concerns.  Despite the relatively recent introduction of the Privacy Shield framework, more recent actions in the current U.S. administration may ultimately violate it.  In January 2017, the U.S. President signed an executive order titled ``Executive Order: Enhancing Public Safety in the Interior of the United States,'' which mainly targeted immigration laws, but also stated:
+Data in motion is subject to different data protection requirements and
+privacy legislation in different jurisdictions.  For example, the European
+Union (EU) has stricter data protection laws than those of the U.S.
+In 1998 the, European Commission's Directive on Data Protection went
+into effect, which ``would prohibit the transfer of personal data to non-
+European Union countries that do not meet the European Union (EU) `adequacy'
+standard for privacy protection''~\cite{safeharbor}.  The U.S. negotiated the
+Safe Harbor framework, which was accepted by the Commission in 2000, and
+relied on the concept of enforceable self-certifications to assure adequate
+protection. This self-certification worked because the companies would
+publicly commit to protecting personal data by following specific principles,
+and because these commitments were public, they were enforceable by the
+U.S. Federal Trade Commission.
+
+In 2015, the highest European Court deemed the Safe Harbor framework invalid
+``on the adequacy of the protection provided by the safe harbour privacy
+principles and related frequently asked questions issued by the US Department
+of Commerce''~\cite{safeharbor}.  The two main issues that were raised against
+Safe Harbor were: (1)~excessive U.S. access to European data (largely due to
+the Snowden disclosures), and (2)~no process for European citizens to address
+their concerns~\cite{safeharbor_ps_diffs}.  A new framework, the Privacy
+Shield, was negotiated to replace the Safe Harbor agreement and address these
+concerns.  Despite the relatively recent introduction of the Privacy Shield
+framework, more recent actions in the current U.S. administration may
+ultimately violate it.  In January 2017, the U.S. President signed an
+executive order titled ``Executive Order: Enhancing Public Safety in the
+Interior of the United States,'' which mainly targeted immigration laws, but
+also stated:
 
 \say{Sec. 14.  Privacy Act.  Agencies shall, to the extent consistent with applicable law, ensure that their privacy policies exclude persons who are not United States citizens or lawful permanent residents from the protections of the Privacy Act regarding personally identifiable information.~\cite{exec_order}}
 
