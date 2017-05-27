@@ -64,13 +64,43 @@ executive order titled ``Executive Order: Enhancing Public Safety in the
 Interior of the United States,'' which mainly targeted immigration laws, but
 also stated:
 
+\begin{displayquote}
 \say{Sec. 14.  Privacy Act.  Agencies shall, to the extent consistent with applicable law, ensure that their privacy policies exclude persons who are not United States citizens or lawful permanent residents from the protections of the Privacy Act regarding personally identifiable information.~\cite{exec_order}}
+\end{displayquote}
+\noindent
+The primary takeaway from the history of cross-jurisdictional data flows is
+that privacy protection laws greatly vary between jurisdictions, and that the
+agreements and frameworks made are still very much in flux.  It is
+still unclear what the future of EU-US data transfer will be, but
+technologists have a role among these policy makers as well; technology can be
+designed to protect data privacy, as well as to prevent an overreaching
+government from access to a different jurisdiction's data.
 
-The primary takeaway from the history of cross-jurisdictional data flows is that privacy protection laws greatly vary between jurisdictions, and that the agreements and frameworks made are still being questioned and changed.  It is still unclear what the future of EU-US data transfer will be, but technologists have a role among these policy makers as well; technology can be designed to protect data privacy, as well as to prevent an overreaching government from access to a different jurisdiction's data.
+While these frameworks are being negotiated between different nation states
+and governing entities, they are not the only ones that are concerned about
+data privacy protections.  In fact, it was an EU citizen who brought a case
+against the Safe Harbor agreement, which eventually rendered it invalid; Max
+Schrems, an Austrian citizen, challenged the transfer of his data to the U.S.
+by Facebook~\cite{schrems}.
 
-And while these frameworks are being negotiated between different nation states, and governing entities, they are not the only ones that are concerned about data privacy protections.  In fact, it was an EU citizen who brought a case against the Safe Harbor agreement, which eventually rendered it invalid; Max Schrems, an Austrian citizen, challenged the transfer of his data to the U.S. by Facebook~\cite{schrems}.  
-
-While the Privacy Shield addresses data transfers that start in the EU and end in the US, there is no mention of intermediate countries on the path.  For example, data that is transferred from the EU to the US, but perhaps it traverses Canada in between; once traffic enters a specific country (even if neither the client nor server are located in that country), it becomes subject to that country's policies on surveillance and censorship.  This means that data in motion protections can be compromised solely because the path taken to access information traverses an unfavorable jurisdiction.    These issues go far beyond EU personal data being accessed by the U.S.; recent research has shown that Internet traffic suffers ``collateral damage'' simply because it is routed through a specific jurisdiction~\cite{levis2012collateral}.  This study found that Korean traffic to German web sites (.de domains) often suffers ``collateral damage'' in the sense that it is censored because the path traverses an Autonomous System (AS) known for censorship within China.  This case is generalizable to both nation state level surveillance and censorship, and we've recently seen certain countries, such as Brazil, take extreme measures to avoid routing their Internet traffic through the United States for this exact reason~\cite{brazil}.    
+The Privacy Shield addresses data transfers that start in the EU and end in
+the US, but the law does not mention intermediate countries on the path.  For
+example, data transferred from the EU to the US may traverse Canada en route;
+once traffic enters a specific country (even if neither the client nor server
+are located in that country), it becomes subject to that country's policies on
+surveillance and censorship.  As a result, data in motion protections can be
+compromised solely because the path taken to access information traverses an
+unfavorable jurisdiction.    These issues go far beyond EU personal data being
+accessed by the U.S.; recent research has shown that Internet traffic suffers
+``collateral damage'' simply because it is routed through a specific
+jurisdiction~\cite{levis2012collateral}.  This study found that Korean traffic
+to German web sites (.de domains) often suffers ``collateral damage'' in the
+sense that it is censored because the path traverses an Autonomous System (AS)
+known for censorship within China.  This case is generalizable to both nation
+state level surveillance and censorship, and we've recently seen certain
+countries, such as Brazil, take extreme measures to avoid routing their
+Internet traffic through the United States for this exact
+reason~\cite{brazil}.
 
 There are a number of ongoing debates surrounding the privacy of data in motion.  Some governments are demanding backdoors in encrypted communication applications, and other governments are trying to issue subpoenas for encrypted communications~\cite{whatsapp_uk,signal_fbi}.  On the other side, many companies are trying to keep their clients' data (in motion) secure; one example of this is the increased use of end-to-end encryption in communication applications.  End-to-end encryption is a step in the direction of protecting privacy using technology.  It has become increasingly common for governments to critize technologies that use end-to-end encryption; for example, the United Kingdom recently stated that they should have access to WhatsApp messages when necessary (this was in response to the recent terror attacks in London)~\cite{uk_whatsapp}.  The recent actions taken by many governments, not just the UK, should motivate technologists to design systems with cross-jurisdiction data flows in mind.  
 
