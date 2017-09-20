@@ -1,0 +1,66 @@
+\section{Related Work}
+\label{sec:related}
+
+\annie{Do a new lit search for any recent papers that may be related, such as \cite{xiao2017personalized}.}
+
+To our knowledge, there has been no prior work on preventing surveillance at CDNs, but there 
+has been relevant research on securing CDNs, finding security vulnerabilities in CDNs, and 
+conducting different types of measurements on CDNs.
+
+\paragraph{Securing CDNs} Most prior work on securing CDNs has focused on providing content 
+integrity at the CDN as opposed to content confidentiality (and unlinkability).  In 2005, 
+Lesniewski-Laas and Kaashoek use SSL-splitting --- a technique 
+where the proxy simulates an SSL connection with the client by using authentication records from 
+the server with data records from the cache (in the proxy) --- to maintain the 
+integrity of content being served by a proxy~\cite{lesniewski2005ssl}.  While this work does not 
+explicitly apply SSL-splitting to CDNs, it is a technique that could be used for content 
+distribution.  Michalakis et. al., present a system for ensuring content integrity for untrusted 
+peer-to-peer content delivery networks~\cite{michalakis2007ensuring}.  This system, Repeat and 
+Compare, use attestation records and a number of peers act as verifiers.  More recently, Levy et. al., 
+introduced Stickler, which is a system that allows content publishers to guarantee the end-to-end 
+authenticity of their content to users~\cite{levy2015stickler}.  Stickler includes content publishers 
+signing their content, and users verifying the signature without having to modify the browser.  Unfortunately, 
+systems like Stickler do not protect against an adversary that wishes to learn information about content, clients, 
+or publishers; \system{} is complementary to Stickler.
+
+There has been prior work in securing CDNs against DDoS attacks; Gilad 
+et. al., introduce a DDoS defense called CDN-on-Demand~\cite{gilad2016cdn}.  In this work they 
+provide a complement to CDNs, as some smaller organizations cannot afford the use of CDNs and 
+therefore do not receive the DDoS protections provided by them.  CDN-on-Demand is a software 
+defense that relies on managing flexible cloud resources as opposed to using a CDN provider's 
+service.\\
+
+\paragraph{Security Issues in CDNs} More prevalent in the literature than defense are attacks on CDNs.  Recent work 
+has studied how HTTPS and CDNs work together (as both have been studied extensively separately).  Liang et. al., studied 
+20 CDN providers and found that there are many problems with HTTPS practice in CDNs~\cite{liang2014https}.  Some of these 
+problems include: invalid certificates, private key sharing, neglected revocation of stale certificates, and 
+insecure back-end communications; the authors point out that some of these problems are fundamental issues due to 
+the man-in-the-middle characteristic of CDNs.  Similarly, Zolfaghari and Houmansadr found problems with HTTPS usage by 
+CDNBrowsing, a system that relies on CDNs for censorship circumvention~\cite{zolfaghari2016practical}.  They found that HTTPS 
+leaks the identity of the content being accessed, which defeats the purpose of a censorship circumvention tool. 
+
+Research has also covered other attacks on CDNs, such as flash crowds and denial of service attacks; Jung et. al., show 
+that some CDNs might not actually provide much defense against flash events (and they differentiate flash events from denial 
+of service events)~\cite{jung2002flash}. Su and Kuzmanovic show that some CDNs are more susceptible to intential service 
+degradation, despite being known for being resilient to network outages and denial of service attacks~\cite{su2008thinning}. 
+Additionally, researchers implemented an attack that can affect popular CDNs, such as Akamai and Limelight; this attack 
+defeats CDNs' denial of service protection and actually utilizes the CDN to amplify the attack~\cite{triukose2009content}.  In the 
+past year, researchers have found forwarding loop attacks that are possible in CDNs, which cause requests to be served repeatedly, which 
+subsequently consumes resources, decreases availability, and could potentially lead to a denial of service attack~\cite{chen2016forwarding}.
+
+Recently, researchers have studied the privacy implications of peer-assisted CDNs; peer-assisted CDNs allow clients to cache and distribute 
+content on behalf of a website.  It is starting to be supported by CDNs, such as Akamai, but the design of the paradigm
+makes clients susceptible to privacy attacks; one client can infur the cross site browsing patterns of another client~\cite{jia2016anonymity}.\\
+
+\paragraph{Measuring and Mapping CDNs} As CDNs have increased in popularity, and are predicted to grow even more~\cite{predict}, much research has 
+studied the deployment of CDNs.  Huang et. al., have mapped the locations of servers, and evaluated the server availability for two CDNs: 
+Akamai and Limelight~\cite{huang2008measuring}.  More recently, Calder et. al., mapped Google's infrastructure; this included 
+developing techniques for mapping, enumerating the IP addresses of servers, and identifying associations between clients and clusters of 
+servers~\cite{calder2013mapping}. Scott et. al., develop a clustering technique to identify the IP footprints of CDN deployments; this analysis
+ also analyzes network-level interference to aid in the identification of CDN deployments~\cite{scott2016satellite}.  In 2017, researchers 
+conducted an empirical study of CDN deployment in China; they found that it is significantly different than in other parts of the world 
+due to their unique economic, technical, and regulatory factors~\cite{xue2017cdns}. 
+
+Other measurement studies on CDNs have focused on characterizing and quantifying flash crowds on CDNs~\cite{wendell2011going}, inferring 
+and using network measurements performed by a large CDN to identify quality Internet paths~\cite{su2009drafting}, and measuring object size distributions and 
+request characteristics to optimize caching policies~\cite{berger2017adaptsize}.

@@ -1,0 +1,122 @@
+\section{Threat Model and Security Goals}
+\label{sec:threat}
+In this section, we describe our threat model, outline the capabilities of the 
+attacker, and introduce the design goals and protections provided by \system{}.
+
+\subsection{Threat Model}
+\label{sec:attacker}
+Our threat model addresses a passive, but powerful attacker.  This passive attacker can 
+be described by two different models: 1) the CDN operator itself and 2) a government (or similar). 
+Both types of adversaries wish to take advantage of the knowledge that a CDN has.  
+
+We address an attacker who wants to learn what content each client is accessing; this 
+could mean learning either the identifier of the content, such as a URL, or the actual 
+content of the web page.  Additionally, we are concerned with a passive attacker who 
+wishes to learn information that compromises the privacy of content publishers and/or Internet 
+users.  An active attacker that attempts to modify and/or delete data is out of the 
+scope of this work.
+
+In the case of the CDN provider being the adversary, he can view access logs and 
+plaintext content. But in the case that he cannot view the content identifiers, he can try to make inferences. He 
+can infer the popularity of content based on the number of accesses and infer the web page 
+from the popularity. Addiitonally, this attacker may be able to infer a web page based on the length of the 
+content.  This adversary could be an inside attacker or an insider who is 
+compelled to provide data. 
+
+In the case of an adversarial government or nation-state, the attacker could compel 
+the CDN to divulge information, such as access logs or content.  This adversary can 
+serve an overreaching subpoena or National Security Letter.  This is a realized 
+attacker, as we know that this has actually already occured, and which was discussed 
+in Section \ref{sec:background}~\cite{cloudflare_nsl}.
+
+\subsection{Security and Privacy Goals for \system{}}
+\label{sec:goals}
+To protect against the attackers described in Section 
+\ref{sec:attacker}, we highlight the design goals for \system{}. 
+Each stakeholder, in this case the content publisher, the CDN, and the client, each have 
+different risks, and therefore should have different protections.  All three stakeholders 
+can be protected by preventing CDNs from learning information, decoupling content distribution from trust, and 
+maintaining the performance benefits of a CDN while reducing the probability of attacks.  Our design goals are listed in Table \ref{tab:design_goals}, 
+and we further discuss our design decisions in Section \ref{sec:design}.
+
+\begin{table*}[t!]
+\centering
+\begin{tabular}{| l | l |} 
+ \hline
+ {\bf Design Goal} & {\bf Design Decision} \\ 
+ \hline\hline
+ Prevent CDN from knowing information & (1) encrypt content   \\ 
+  (Section \ref{sec:obfuscate_content})                          & (2) obfuscate URL \\ \hline
+ Closed system of proxies & (1) decouple content distribution from decision of trust via proxies  \\ 
+  (Section \ref{sec:proxies})  & \\ \hline
+ Key use and management & (1) $n$ shared keys, for $1 < n < |proxies|$ \\ 
+   (Section \ref{sec:keys})                     & (2) secrecy in URL obfuscation \\ 
+ \hline
+\end{tabular}
+\caption{Design goals and the corresponding design choices made in \system{}.}
+\label{tab:design_goals}
+\end{table*}
+
+\paragraph{Prevent the CDN from knowing information} First, and foremost, the CDN 
+should not have access to all the information that was outlined 
+in Section \ref{sec:background}.  By limiting the information that the CDN knows, \system{} limits 
+the amount of information that an adversary can learn or request.  \system{} should hide 
+content, content identifiers, and remove links between clients and their content requests, as well 
+as remove links between content (and content identifiers) and the content publisher.  If the CDN 
+does not know what content it is caching, who is requesting it, or who has created it, then an 
+inside attacker will not be able to learn valuable information, and the CDN will not be able to supply 
+a government adversary with the requested data.
+
+\paragraph{Closed system of proxies} There have been many legal battles over which government is allowed access 
+to which data; for example, data can be stored in Country X, but belonging to an organization in Country Y, and 
+the data is about a person in Country Z.  It is unclear which of these countries can legally demand 
+the data with a subpoena or warrant.  The issue becomes much more complex when the specific laws 
+and policies of the different countries are conflicting.  Perhaps Country X has much stronger data privacy 
+guarantees and enforcement than Country Y or Z.  A recent approach taken by Microsoft was to establish 
+a datacenter in Germany, which is technically under the control of the Deutsche Telekom subsidiary 
+T-Systems~\cite{microsoft_germany}.  This was deployed in hopes of preventing the United States government from serving Microsoft with a subpoena 
+for data stored in Germany, where German citizens (or others) can request to have their data stored.  Unfortunately, this issue has 
+been debated in courts with varying outcomes; in a current legal battle, Google 
+has been ordered to comply with the warrant, despite the data requested, emails, are stored abroad~\cite{google_warrant}.
+  To complement these legal battles, \system{} should take 
+these conflicting jurisdictional issues into account.  Additionally, the system should be able to protect 
+the privacy of clients' locations; while addressing data privacy concerns in the client's jurisdiction, \system{} 
+should not reveal more information about clients.  It also provides the ability for clients 
+to hide their fine-grained location, while still following the policies of the jurisdictions in which 
+they reside.
+
+\paragraph{Key use and management} \system{} should be able to achieve the previously mentioned security 
+and privacy goals while not introducing new attacks.  More specifically, \system{} should maintain the 
+caching benefits of a traditional CDN while still reducing 
+the probability of attacks occuring, and reducing the probability of any information leakage in 
+the case of an attack.
+
+%{\bf Origin Server.} The content publisher may want to publish sensitive or controversial 
+%content.  For example, perhaps he wants to publish information that goes against the current 
+%regime in his country.  An adversary could trace the content cached by a CDN back to the 
+%publisher, and then that publisher could subsequently be punished.  \system{} provides a 
+%degree of publishing anonymity; a CDN operator or overreaching government cannot determine 
+%the publisher based on information at the CDN.
+
+%{\bf CDN.}  CDNs may be at risk for being held 
+%liable for content that they don't produce, and that they may not be aware they are distributing.  
+%\system{} provides deniability to a CDN.  In the presence of a warrant or a subpoena, the CDN 
+%cannot technically provide any information about whether they are distributing certain content.  An
+%example is copyrighted content --- the CDN would not know they are caching copyrighted content and 
+%subsequently couldn't be held liable for it.
+
+%{\bf Client.} CDNs can see their 
+%browsing patterns and which web pages they are visiting.  They are vulnerable to an insider at 
+%the CDN from snooping on internal data, as well as to a government adversary that demands access 
+%to the CDN's data.  \system{} provides privacy protections by hiding which client is accessing 
+%which content at the CDN.  In addition, it hides cross site browsing patterns, which a CDN 
+%is unique in having access to.  Some CDNs block legitimate Tor users because they are 
+%trying to protect cached content from attacks; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
+%privacy-concious Tor users from being blocked at CDNs.  Lastly, some CDNs, due to their ability 
+%to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
+%prevent a CDN from compromising the anonymity of Tor users.
+
+A strength of \system{} is that it protects the origin server, the CDN itself, and the client, whereas 
+existing systems, such as Tor, only protect the client.
+
+% where do we include this information? Proxy: 1) Protects clients by blinding, etc., 2) Jurisdictional protections by only being vulnerable to a single country’s subpoena (and this puts a smaller set of clients at risk than all CDN customers)

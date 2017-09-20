@@ -1,0 +1,59 @@
+\section{Discussion}
+\label{sec:discussion}
+
+In this section, we discuss the various technical, political, and legal limitations
+of OCD, as well as possible avenues for future work. 
+
+\paragraph{CDNs operated by content hosts} The design of \system{}
+assumes that the entities operating the proxies and delivering content are
+distinct from original content provider. In many cases, however---particularly
+for large content providers such as Netflix, Facebook, and Google---the
+content provider operates their own CDN cache nodes; in these cases, \system{} will
+not be able to obfuscate the content from the CDN operator, since the content host
+and the CDN are the same party.  Similarly, because the CDN operator is the same
+entity as the original server, it also knows the keys that are shared with the clients.
+As a result, the CDN cache nodes could also discover the keys and identify both
+the content, as well as which clients are requesting which content.
+
+\paragraph{Better mixing with proxy selection} In the current implementation of
+\system{}, a client's requests are all directed through the same \system{} proxy.
+Instead, a client could use a proxy autoconfiguration (PAC) file, which could direct
+requests through different proxies depending on characteristics such as which URL
+is being requested. The selection of proxies might even be randomized.  Randomizing
+the proxy that serves a particular client request ensures that no single proxy knows
+all of the requests that any particular client is making; additionally, it may make
+it more difficult for a CDN to identify the group of requests coming from a single
+client, since a client's requests would mixed among multiple proxies. 
+
+\paragraph{Chosen plaintext attacks} A CDN operator could attempt to
+determine whether a particular URL was being accessed by sending requests
+through specific \system{} proxies and observing the corresponding obfuscated
+requests and responses in the CDN cache logs. Blinding the clients' requests
+with a random nonce that is added by the proxy should prevent against this
+attack. We also believe that such an attack reflects a stronger attack: from a
+law enforcement perspective, receiving a subpoena for {\em existing} logs and
+data may present a lower legal barrier than compelling a CDN to attack a
+system.
+
+\paragraph{Defending against spoofed content updates} Because the CDN cache
+nodes do not know either the content that they are hosting or the URLs
+corresponding to the content, an attacker could masquerade as an origin server
+and could potentially push bogus content for a URL to a cache node. There are
+a number of defenses against this possible attack. This simplest solution is
+for CDN cache nodes to authenticate origin servers and only accept updates
+from trusted origins; this approach is plausible, since many origin servers already
+have a corresponding public key certificate through the web PKI hierarchy.  An additional
+defense is to make it difficult for to discover which obfuscated URLs correspond
+to which content that an attacker wishes to spoof; this is achievable by design.
+A third defense would be to only accept updates for content from the same origin
+server that populated the cache with the original content.
+
+\paragraph{Legal questions and political pushback} Recent cases surrounding
+the Stored Communications Act in the United States raise some questions over
+whether a system like \system{} might face legal challenges from law
+enforcement agencies. To protect user data against these types of challenges,
+Microsoft has already taken steps such as moving user data to data centers in
+Germany that are operated by entities outside the United States, such as
+T-Systems. It remains to be seen, of course, whether \system{} would face similar
+hurdles, but similar systems in the past have faced scrutiny and pushback from law
+enforcement.
