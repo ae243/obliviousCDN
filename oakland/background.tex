@@ -91,6 +91,33 @@ linkability with the publisher, gives the CDN even more power.  Additionally, as
 holds the publisher's keys (including the private key!), and the publisher's certificates.  This has led to doubts 
 about the integrity of content because a CDN can impersonate the publisher from the client's point of view~\cite{levy2015stickler}.
 
-\subsection{Open Legal and Policy Questions}
+\subsection{Open Legal Questions}
+There are numerous open questions in the legal realm regarding which government can request data stored in different countries, which 
+has led to much uncertainty.  A series of recent events have illustrated this uncertainty.  In the struggle over government access to 
+user data, cases such as {\it Microsoft vs. United States} (often known as the ``Microsoft Ireland Case'') concerns whether the United 
+States Government should have access to data about U.S. citizens stored abroad, given that Microsoft is a U.S. corporation.  In the 
+copyright realm, the European Commision is considering legislation that would remove safe harbor protection against copyright law for 
+online service providers if they host infringing content, regardless of the provenance of that content.  The Cloudflare CDN has been required
+to share data with FBI \cite{cloudflare_nsl}; similarly, leaked NSA documents showed that the government agency ``collected information `by exploiting inherent 
+weaknesses in Facebook's security model' through its use of the popular Akamai content delivery network'' \cite{facebook_surv}.
 
-\annie{Fill me in with FOCI content}
+More recently, questions on intermediary liability have been in the spotlight.  For example, many groups, including the Recording Industry 
+Association of America (RIAA) and the Motion Picture Association of America (MPAA), have started targeting CDNs with takedown notices for 
+content that allegedly infringes on copyright, trademarks, and patent rights; CDNs are a more convenient target of these takedown notices than 
+the content provider because oftentimes the content provider is either located in a jurisdiction where it is difficult to enforce the takedown, 
+or it is difficult to determine the owner of the content \cite{medium_copyright,eff_copyright}.  While U.S. law Section 230 protects intermediaries, such as CDNs, from being held 
+liable for the content they distribute, there have been cases where CDNs are forced to remove content.  In 2015, a district court ruled in 
+favor of RIAA, which forced Cloudflare to remove Grooveshark-related sites (sites with pretending to be Grooveshark, but were in fact not) within 48 hours \cite{techdirt_copyright}.  
+And again in 2017, a district court ruled that Cloudflare is not protected from anti-piracy injuctions by the Digital Millennium Copyright Act (DMCA); the 
+RIAA obtained a permanent injunction against a site known as MP3Skull, which contained pirated content, and was distributed by Cloudflare.  The ruling 
+did not specify that Cloudflare was enjoined with MP3Skull under the DMCA, but rather that Cloudflare was helping MP3Skull in evading the injunction (under 
+Rule 65 of the Federal Rules of Civil Procedure) \cite{stack_copyright}.
+
+The role of a CDN as an intermediary has also come into question in the announcement of new legislation, including a new German hate speech law and 
+a bill proposed by the U.S. Senate called Stop Enabling Sex Traffickers Act (SESTA).  In October 2017, Germany passed a new law that imposes large fines, upwards of five million euros,
+on social media companies that do not take down illegal, racist, or slanderous comments and posts within 24 hours \cite{nytimes_hatespeech}.  The law 
+targets companies like Facebook, Google, and Twitter, but could also apply to smaller companies, which could be serviced by CDNs.  In the latter case, it is 
+an open question whether this new law also applies to CDNs.  In the United States, a new bill, SESTA, would make Internet platforms liable for their user's illegal comments 
+and posts \cite{medium_sesta}.  SESTA would CDNs liable for the content that they distribute (despite the CDN not being a party in the content publishing); this could potentially lead to 
+censoring content too much (an intermediary may be more willing to err on the side of caution--censorship).  This type of law could set a dangerous precedent 
+for the censoring other types of content that are unpopular, but still legal. 
