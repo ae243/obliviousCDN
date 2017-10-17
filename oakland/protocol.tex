@@ -30,29 +30,35 @@ Figure \ref{fig:publishing} shows the steps taken when publishing content.
 
 The most important step in content publishing is obfuscating the data.  We assume that the origin 
 server already has a public and private key pair, as well as a certificate.  To obfuscate the data 
-the origin server will need to generate $n$ shared keys, where $n$ should be between 1 and the number of 
-proxies.  We evaluate the performance tradeoffs of different values of $n$ in Section \ref{sec:performance}.  
+the origin server will need to generate a shared key $k$. 
 
-Once all keys are established, the publisher must first pad the content to the same size for some 
+Once the key is established, the publisher must first pad the content to the same size for some 
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
 z).  The range of content sizes should be small, such that this causes negligible padding overhead, but 
-reduces the linkability between exact content length and content identification.  This content padding is done to hide the original content's length, as it may be identifiable 
-simply by its length.  After content is padded, then the content is divided into fixed size blocks and padded to 
-some standard length.  Then for each shared key $k$, each block is encrypted using the shared key, 
-such that there are $n$ sets of encrypted blocks. As long as the CDN does not have access to any 
-of the $n$ shared keys, then the CDN cannot see what content it is caching.  
+reduces the linkability between exact content length and content identification.  This content padding 
+is done to hide the original content's length, as it may be identifiable simply by its length.  After 
+content is padded, then the content is divided into fixed size blocks and padded to 
+some standard length.  Then each block is encrypted using the shared key $k$, 
+resulting in a set of encrypted blocks. As long as the CDN does not have access to the shared key, 
+then the CDN cannot see what content it is caching.  
 
 Now that the content is obfuscated, the publisher must also obfuscate the content's identifier.  To do so, 
-she computes the HMAC of the URL using the shared key $k$, for each shared key.
+she computes the HMAC of the URL using the shared key $k$.
 
-Once the identifier and the content replicas are obfuscated $n$ times (with $n$ keys), they can be pushed to the 
+Once the identifier and the content replicas are obfuscated with $k$, they can be pushed to the 
 CDN.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; a content 
 publisher could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
 performance, and availability; a publisher can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
 CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
-partial deployment.  Note that each proxy will only be able to fetch a specific replica of the content, that is a 
-specific \{content\}$_{kn}$ for the $n^{th}$ shared key that it holds.  We discuss the performance trade offs 
-associated with differing numbers of shared keys and proxies in Sections \ref{sec:performance}.
+partial deployment.  %Note that each proxy will only be able to fetch a specific replica of the content, that is a 
+%specific \{content\}$_{kn}$ for the $n^{th}$ shared key that it holds.  We discuss the performance trade offs 
+%associated with differing numbers of shared keys and proxies in Sections \ref{sec:performance}.
+
+As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the content publisher
+determines which exit proxy is correct (based on consistent hashing).  The content publisher then encrypts the 
+shared key $k$ with the correct exit proxy's public key $PK_{proxy}$.  To distribute this value, the publisher 
+then publishes \{$k$\}$_{PK_{proxy}}$ in its DNS Service (SRV) record, which allows the exit proxy to retrieve it (this is discussed in more 
+detail in Section \ref{sec:retrieve}).
 
 %\begin{enumerate}
 %\item Origin generates n shared keys k (origin already has a public key PK and private key PK$^{-1}$)\footnote{$n$ such that $1 < n < |proxies|$} 
@@ -63,8 +69,8 @@ associated with differing numbers of shared keys and proxies in Sections \ref{se
 \paragraph{Updating Content}
 For a content publisher to update content, she must follow similar steps as described in publishing content.  
 Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) padding the 
-original content length, 2) divide the content into fixed size blocks, and 3) encrypt $n$ copies of the content blocks 
-with each of the shared keys.  Because she is updating the content (as opposed to creating new content), the 
+original content length, 2) divide the content into fixed size blocks, and 3) encrypt the content blocks 
+with the shared key $k$.  Because she is updating the content (as opposed to creating new content), the 
 obfuscated identifier will remain the same.  She must 
 retain a copy of the obfuscated old content until after the new content has been updated on the CDN; this is to prove 
 that the old content owner is the same as the new content owner.  The CDN cannot simply authenticate the content publisher, as this 
@@ -79,6 +85,7 @@ her new obfuscated content to the CDN.
 \annie{fill me in}
 
 \subsection{Retrieving Content}
+\label{sec:retrieve}
 The steps taken for an end-user to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}.  
 The end-user must first configure her browser to use an \system{}-designated proxy, meaning a proxy that is a part of the system, but not controlled by the 
 CDN provider.  A client is assigned to a 
