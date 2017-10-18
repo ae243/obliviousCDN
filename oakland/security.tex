@@ -2,11 +2,34 @@
 \label{sec:sec}
 \annie{Fill me in with a security analysis/evaluation.}
 
-{\bf Malicious Client(s).}
+{\bf Popularity Attacks.}
 
-{\bf Popularity Attack.}
+{\bf Traffic Correlation Attacks.}
 
-{\bf Traffic Correlation Attack.}
+{\bf Chosen Plaintext Attacks.} A CDN operator could attempt to
+determine whether a particular URL was being accessed by sending requests
+through specific \system{} proxies and observing the corresponding obfuscated
+requests and responses in the CDN cache logs. Blinding the clients' requests
+with a random nonce that is added by the proxy should prevent against this
+attack. We also believe that such an attack reflects a stronger attack: from a
+law enforcement perspective, receiving a subpoena for {\em existing} logs and
+data may present a lower legal barrier than compelling a CDN to attack a
+system.
+
+{\bf Denial of Service Attacks.}
+
+{\bf Spoofed Content Updates.} Because the CDN cache
+nodes do not know either the content that they are hosting or the URLs
+corresponding to the content, an attacker could masquerade as an origin server
+and could potentially push bogus content for a URL to a cache node. There are
+a number of defenses against this possible attack. This simplest solution is
+for CDN cache nodes to authenticate origin servers and only accept updates
+from trusted origins; this approach is plausible, since many origin servers already
+have a corresponding public key certificate through the web PKI hierarchy.  An additional
+defense is to make it difficult for to discover which obfuscated URLs correspond
+to which content that an attacker wishes to spoof; this is achievable by design.
+A third defense would be to only accept updates for content from the same origin
+server that populated the cache with the original content.
 
 {\bf Flashcrowds.}
 
