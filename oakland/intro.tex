@@ -33,19 +33,22 @@ content that clients are requesting. We call this system an {\em oblivious
 CDN}~(\system{}), because the CDN itself is oblivious to both the content it is
 storing and the content that clients are requesting. \system{} allows clients to
 request individual objects with identifiers that are encrypted with a key that
-is shared by a client proxy and the origin server that is pushing content to
+is shared by a proxy and the origin server that is pushing content to
 cache nodes, but is not known to any of the CDN cache nodes.  To do so, the
-origin server publishes multiple replicas of each object, each encrypted under
-a different shared key that is subsequently shared with a corresponding client
-proxy. To retrieve content, a client proxy transforms the URL that it receives
+origin server publishes content obfuscated with a shared key, which is subsequently 
+shared with a corresponding proxy. To retrieve content, a client forwards her request 
+through a set of peers (other clients) in a way that provides unlinkability---other clients 
+and the CDN cannot link the client's identity with a given request.  After being routed 
+through other clients' proxies, the request is handled by an exit proxy; the exit proxy 
+transforms the URL that it receives
 from a client to an obfuscated identifier using the key shared with the origin
 server. The CDN cache node then returns the object corresponding to the object
 identifier; that object is also encrypted with a key that is shared between
 the origin and the proxy. This approach allows a user to retrieve content from
 a CDN without the cache node ever seeing the URL or the corresponding content.
-Users can use \system{} with minimal modification to their existing configuration:
-merely directing a web browser to an \system{} proxy allows a client to use the
-system.
+Users can use \system{} with minimal modification to their existing configuration and
+specify one of two modes that \system{} operates in, one in which performance is a higher 
+priority and another in which security is a higher priority.
 
 Although the basic mechanisms for obfuscating the URL and the corresponding
 content are relatively straightforward, ensuring that the CDN operator never
@@ -58,13 +61,9 @@ yield information about the web page that was being fetched~\cite{panchenko2016w
 cai2012touching}. Similarly, URLs
 can often be inferred from relative popularity in a distribution of web
 requests, even when the requests themselves are encrypted. \system{} addresses
-these challenges by creating copies of the same object that are encrypted
-under different keys, and deploying multiple versions of the same object to
-the same CDN cache node, with each copy being encrypted with a different key.
-While this approach reduces the threat of various types of inference and also
-limits the number of \system{} proxies that share a key, each CDN cache node must
-store multiple copies of the same object, reducing both storage efficiency and
-cache hit rates. Our evaluation explores the implications of this tradeoff, as
+these challenges using different techniques, most of which are tunable to different 
+performance and privacy requirements.  Our evaluation explores the implications of 
+the tradeoffs between performance and privacy, as
 well as how \system{} performs relative to a conventional CDN.
 
 We make the following contributions. First, we explore the problems that
@@ -82,7 +81,8 @@ typically know today, and the types of information we aim to obfuscate.  Section
 \ref{sec:threat} describes the threat model and security objectives for \system{}; based
 on these threats, Section~\ref{sec:design} outlines various design decisions. Section~
 \ref{sec:protocol} describes the protocol for both publishing and retrieving content,
-and Section~\ref{sec:performance} evaluates the performance overhead of \system{}. Section~
+Section~\ref{sec:sec} analyzes the security of \system{}, and Section \ref{sec:performance} 
+evaluates the performance overhead of the system. Section~
 \ref{sec:discussion} describes various limitations and possible avenues for future
 work, Section~\ref{sec:related} discusses related work, and Section~\ref{sec:conclusion}
 concludes.
