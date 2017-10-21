@@ -1,0 +1,9 @@
+GOPATH=$(shell pwd)
+
+default: http_proxy
+
+http_proxy: http_proxy_paul.go
+	@GOPATH=$(GOPATH) go build http_proxy_paul.go
+
+clean:
+	rm -f http_proxy_paul
