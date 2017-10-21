@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-    "fmt"
+    //"fmt"
 	"io"
     "io/ioutil"
 	"log"
@@ -12,6 +12,7 @@ import (
 	"strings"
 )
 
+// TODO: Make MAX_BUFF larger than largest response
 const MAX_BUFFER   = 4*1460
 const (
 	SERVERROR = 500
@@ -53,6 +54,7 @@ func handleRequest(w net.Conn) {
 	// modify the request as per the proxy specifications
 	req.Header.Set("Connection", "close")
 
+
     // [Annie] TODO: look up shared key in file
     key_bytes, _ := ioutil.ReadFile("shared_key.txt")
     shared_key := string(key_bytes)
@@ -61,9 +63,9 @@ func handleRequest(w net.Conn) {
     c := "/"
     req.URL.Path = c + string(enc_host)
 
-    //enc_session_key := req.Header.Get("x-ocdn") [Exit proxy] Annie added this because the exit proxy needs to extract the session key (and decrypt it with its private key)
-    //priv_key := readPrivateKey() // [Annie] Get own private key
-    //session_key := decryptAsymmetric(enc_session_key, priv_key) // [Annie] decrypt session key with private key
+    enc_session_key := req.Header.Get("x-ocdn") //[Exit proxy] Annie added this because the exit proxy needs to extract the session key (and decrypt it with its private key)
+    priv_key := readPrivateKey() // [Annie] Get own private key
+    session_key := decryptAsymmetric(enc_session_key, priv_key) // [Annie] decrypt session key with private key
 
 	req.Proto = "HTTP/1.1"
 	req.ProtoMajor = 1
@@ -76,8 +78,6 @@ func handleRequest(w net.Conn) {
 	} else {
 		newHost = req.Host + ":http"
 	}
-    fmt.Println("****")
-    fmt.Println("Req: %s %s\n", req.Host, req.URL.Path)
 
 	// start a new TCP connection with the server
 	conn, err := net.Dial("tcp", newHost)
@@ -109,11 +109,23 @@ func handleRequest(w net.Conn) {
 				}
 				return
 			}
+            // [Annie] response formatting (strip all response headers)
+            temp := strings.Split(string(buf),"Server: lighttpd/1.4.33")[1]
+            temp2 := strings.TrimSpace(temp)
+
+            // [Annie] decrypt content with shared key
+            plain_text := decryptAES(temp2, shared_key)
+
+            // [Annie] encrypt content with session key
+            new_cipher_text := encryptAES(plain_text, session_key)
+            
+            // [Annie] buf should now hold new encrypted content
+            buf = []byte(new_cipher_text)
 			w.Write(buf)
 			return
 		}
 		if len(buf) >= MAX_BUFFER {
-            // [Exit proxy] Annie added this because the exit proxy has to decrypt str with shared key
+            // TODO (possibly): [Exit proxy] Annie added this because the exit proxy has to decrypt str with shared key
             // [Exit proxy] Annie added this because the exit proxy has to encrypt str with session key
 			_, err := w.Write(buf)
 			if err != nil {

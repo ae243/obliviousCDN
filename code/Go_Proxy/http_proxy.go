@@ -105,11 +105,26 @@ func handleRequest(w net.Conn) {
 				}
 				return
 			}
+
+            // [Annie] response formatting (strip all response headers) TODO: check what format the client proxy gets the response from exit in (are there response headers?)
+            temp := strings.Split(string(buf),"Server: lighttpd/1.4.33")
+            var temp2 string            
+            if len(temp) > 1 {
+                temp2 = strings.TrimSpace(temp[1])
+            } else {
+                temp2 = strings.TrimSpace(temp[0])
+            }
+
+            // [Annie] decrypt content with session key
+            plain_text := decryptAES(temp2, skey)
+
+            // [Annie] buf should now hold new plaintext content
+            buf = []byte(plain_text)
 			w.Write(buf)
 			return
 		}
 		if len(buf) >= MAX_BUFFER {
-            // [Client proxy] Annie added this -- decrypt str here (with session key)
+            // TODO (possibly): [Client proxy] Annie added this -- decrypt str here (with session key)
 			_, err := w.Write(buf)
 			if err != nil {
 				return
