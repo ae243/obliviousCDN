@@ -2,7 +2,9 @@ package main
 
 import (
 	"bufio"
+    "fmt"
 	"io"
+    "io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -52,13 +54,16 @@ func handleRequest(w net.Conn) {
 	req.Header.Set("Connection", "close")
 
     // [Annie] TODO: look up shared key in file
-    shared_key := generateSessionKey() // TODO replace this with shared key lookup in file (based on URL)
-    enc_host := generateMAC(req.Host, shared_key) // [Annie] Mangle the URL
+    key_bytes, _ := ioutil.ReadFile("shared_key.txt")
+    shared_key := string(key_bytes)
+    t := strings.Replace(req.URL.Path, "/", "", -1)
+    enc_host := generateMAC(t, shared_key) // [Annie] Mangle the URL
+    c := "/"
+    req.URL.Path = c + string(enc_host)
 
-	req.Header.Set("Host", enc_host) // req.Header.Set("Host", obf_host) [Exit proxy] Annie added this because req.Host should be replaced with HMAC(req.host)
-    enc_session_key := req.Header.Get("x-ocdn") [Exit proxy] Annie added this because the exit proxy needs to extract the session key (and decrypt it with its private key)
-    priv_key := readPrivateKey() // [Annie] Get own private key
-    session_key := decryptAsymmetric(enc_session_key, priv_key) // [Annie] decrypt session key with private key
+    //enc_session_key := req.Header.Get("x-ocdn") [Exit proxy] Annie added this because the exit proxy needs to extract the session key (and decrypt it with its private key)
+    //priv_key := readPrivateKey() // [Annie] Get own private key
+    //session_key := decryptAsymmetric(enc_session_key, priv_key) // [Annie] decrypt session key with private key
 
 	req.Proto = "HTTP/1.1"
 	req.ProtoMajor = 1
@@ -71,6 +76,8 @@ func handleRequest(w net.Conn) {
 	} else {
 		newHost = req.Host + ":http"
 	}
+    fmt.Println("****")
+    fmt.Println("Req: %s %s\n", req.Host, req.URL.Path)
 
 	// start a new TCP connection with the server
 	conn, err := net.Dial("tcp", newHost)
