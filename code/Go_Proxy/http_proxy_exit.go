@@ -51,12 +51,14 @@ func handleRequest(w net.Conn) {
 	// modify the request as per the proxy specifications
 	req.Header.Set("Connection", "close")
 
-    // obf_host := HMAC(req.Host) [Exit Proxy] Annie added this to compute the HMAC(URL)
-	req.Header.Set("Host", req.Host) // req.Header.Set("Host", obf_host) [Exit proxy] Annie added this because req.Host should be replaced with HMAC(req.host)
-    //session_key := req.Header.Get("skey") [Exit proxy] Annie added this because the exit proxy needs to extract the session key (and decrypt it with its private key)
+    // [Annie] TODO: look up shared key in file
+    shared_key := generateSessionKey() // TODO replace this with shared key lookup in file (based on URL)
+    enc_host := generateMAC(req.Host, shared_key) // [Annie] Mangle the URL
 
-    // skey := encrypt(generateKey(), pk) [Client proxy] generate session key
-    // req.Header.Add("skey", skey)  //[Client proxy] Annie added this for adding a session key to the message (encrypted with exit proxy's public key)
+	req.Header.Set("Host", enc_host) // req.Header.Set("Host", obf_host) [Exit proxy] Annie added this because req.Host should be replaced with HMAC(req.host)
+    enc_session_key := req.Header.Get("x-ocdn") [Exit proxy] Annie added this because the exit proxy needs to extract the session key (and decrypt it with its private key)
+    priv_key := readPrivateKey() // [Annie] Get own private key
+    session_key := decryptAsymmetric(enc_session_key, priv_key) // [Annie] decrypt session key with private key
 
 	req.Proto = "HTTP/1.1"
 	req.ProtoMajor = 1
@@ -92,8 +94,6 @@ func handleRequest(w net.Conn) {
 	partial := false
 	for {
 		str, err := connbuf.ReadBytes('\n')
-        // [Client proxy] Annie added this -- decrypt str here (with session key) --- or do we decrypt somewhere else? 
-        // [Exit proxy] Annie added this because the exit proxy has to decrypt str with shared key, and encrypt with session key --- where?
 		buf = append(buf, str...)
 		if err != nil {
 			if err != io.EOF {
@@ -106,6 +106,8 @@ func handleRequest(w net.Conn) {
 			return
 		}
 		if len(buf) >= MAX_BUFFER {
+            // [Exit proxy] Annie added this because the exit proxy has to decrypt str with shared key
+            // [Exit proxy] Annie added this because the exit proxy has to encrypt str with session key
 			_, err := w.Write(buf)
 			if err != nil {
 				return

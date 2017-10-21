@@ -51,8 +51,17 @@ func handleRequest(w net.Conn) {
 	// modify the request as per the proxy specifications
 	req.Header.Set("Connection", "close")
 
-    skey := encrypt(generateKey(), pk) [Client proxy] generate session key
-    req.Header.Add("skey", skey)  //[Client proxy] Annie added this for adding a session key to the message (encrypted with exit proxy's public key)
+    // [Annie] TODO: Client must look up exit proxy in file (this file has URL -> exit_IP)
+    
+    // [Annie] read in public key -- assume we know all public keys
+    pub := readPublicKey()                                
+
+    // [Annie] create a session key
+    skey := generateSessionKey()
+
+    // [Annie] encrypt the session key with the proxy's public key and add as header
+    enc_skey := encryptAsymmetric(skey, pub)
+    req.Header.Add("x-ocdn", enc_skey) 
 
 	req.Proto = "HTTP/1.1"
 	req.ProtoMajor = 1
@@ -100,7 +109,7 @@ func handleRequest(w net.Conn) {
 			return
 		}
 		if len(buf) >= MAX_BUFFER {
-            // [Client proxy] Annie added this -- decrypt str here (with session key) --- or do we decrypt somewhere else? 
+            // [Client proxy] Annie added this -- decrypt str here (with session key)
 			_, err := w.Write(buf)
 			if err != nil {
 				return

@@ -7,10 +7,14 @@ import (
 	"crypto/rand"
     "crypto/rsa"
     "crypto/sha256"
+    "crypto/x509"
+    "encoding/asn1"
     "encoding/base64"
-	"fmt"
+    "encoding/pem"
+	//"fmt"
 	"io"
 	"io/ioutil"
+    "os"
 )
 
 func decryptAES(cipherstring string, keystring string) string {
@@ -88,6 +92,52 @@ func generateMAC(url string, keystring string) string {
 	return base64.StdEncoding.EncodeToString(h.Sum(nil))
 }
 
+func generateSessionKey() string {
+    key := make([]byte, 32)
+	rand.Read(key)
+    return string(key)
+}
+
+func generateAsymmetricKeys() {
+    reader := rand.Reader
+	bitSize := 2048
+    key, _ := rsa.GenerateKey(reader, bitSize)
+    publicKey := key.PublicKey
+
+    // save private key to file
+    outFile, _ := os.Create("private.pem")
+	defer outFile.Close()
+	var privateKey = &pem.Block{
+		Type:  "PRIVATE KEY",
+		Bytes: x509.MarshalPKCS1PrivateKey(key),
+	}
+	pem.Encode(outFile, privateKey)
+
+    // save public key to file
+    asn1Bytes, _ := asn1.Marshal(publicKey)
+	var pemkey = &pem.Block{
+		Type:  "PUBLIC KEY",
+		Bytes: asn1Bytes,
+	}
+	pemfile, _ := os.Create("public.pem")
+	defer pemfile.Close()
+	pem.Encode(pemfile, pemkey)
+}
+
+func readPublicKey() *rsa.PublicKey {
+    pub_bytes, _ := ioutil.ReadFile("pub_test.pem")
+    pub_pem := string(pub_bytes)
+    pub_parsed, _ := ParseRsaPublicKeyFromPemStr(pub_pem)
+    return pub_parsed
+}
+
+func readPrivateKey() *rsa.PrivateKey {
+    priv_bytes, _ := ioutil.ReadFile("priv_test.pem")
+    priv_pem := string(priv_bytes)
+    priv_parsed, _ := ParseRsaPrivateKeyFromPemStr(priv_pem)
+    return priv_parsed
+}
+
 func encryptAsymmetric(plainstring string, publickey *rsa.PublicKey) string {
     encryptedmsg, _ := rsa.EncryptPKCS1v15(rand.Reader, publickey, []byte(plainstring))
     return string(encryptedmsg)
@@ -107,23 +157,25 @@ func readFromFile(file string) ([]byte, error) {
 	return data, err
 }
 
-
+/*
 func main() {
 
 	content := []byte("Hello this is Annie!!")
     file := "test_file.txt"
-	key := "testtesttesttest"
+	key := generateSessionKey()
     url := "www.foo.com"
 
-    test_case := "aes"
+    //generateAsymmetricKeys()
+
+    test_case := "rsa"
 
     if test_case == "mac" {
         mac := generateMAC(url, key)
         fmt.Println(string(mac))    
     } else if test_case == "rsa" {
-        priv, _ := rsa.GenerateKey(rand.Reader, 2048)
-        pub := &priv.PublicKey
-    
+        priv := readPrivateKey()
+        pub := readPublicKey()
+
         encrypted := encryptAsymmetric(string(content), pub)
         writeToFile(encrypted, file+".rsa.enc")
     
@@ -136,4 +188,4 @@ func main() {
 		decrypted := decryptAES(string(encrypted), key)
 		writeToFile(decrypted, file+".dec")
     }
-}
+}*/
