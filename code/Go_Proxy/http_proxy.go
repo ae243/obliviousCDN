@@ -188,8 +188,9 @@ func handleRequest(w net.Conn, t int64) {
         t := strings.Replace(req.URL.Path, "/", "", -1)
         // [Annie] Mangle the URL
 		enc_host := generateMAC(t, shared_key)
-		c := "/"
-		req.URL.Path = c + string(enc_host)
+        clean_enc_host := strings.Replace(enc_host, "/", "-", -1)
+		c := "/obf/"
+		req.URL.Path = c + string(clean_enc_host)
 		log.Println("Egress mangled URL:", req.Host+req.URL.Path)
 
         decode_key_bytes, err := base64.StdEncoding.DecodeString(enc_session_key)
