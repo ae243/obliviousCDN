@@ -197,7 +197,7 @@ func handleRequest(w net.Conn, t int64) {
 		}
 
         // [Annie] look up shared key in file
-		key_bytes, _ := ioutil.ReadFile(string("shared_key_" + req.URL.Path[1:]))
+		key_bytes, _ := ioutil.ReadFile(string("../keys/shared_key_" + req.URL.Path[1:]))
 		shared_key := string(key_bytes)
 
         t := strings.Replace(req.URL.Path, "/", "", -1)
