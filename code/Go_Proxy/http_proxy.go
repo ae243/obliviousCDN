@@ -47,7 +47,7 @@ func getExitProxy(url string) string {
             exit_address = exit
         }
     }
-	return exit_address
+	return strings.TrimSpace(exit_address)
 }
 
 func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey string, originkey string) {
@@ -62,6 +62,7 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 	// Send the serialized request to the server
 	err = req.Write(conn)
 	if err != nil {
+        log.Println("HERE2")
 		sendError(w, SERVERROR)
 		return
 	}
@@ -77,6 +78,7 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 		if err != nil {
 			if err != io.EOF {
 				if !partial {
+                    log.Println("HERE3")
 					sendError(w, SERVERROR)
 				}
 				return
@@ -173,7 +175,8 @@ func handleRequest(w net.Conn, t int64) {
         // decode session key for use later
         session_key_bytes, _ := base64.StdEncoding.DecodeString(session_key)
         decoded_session_key := string(session_key_bytes)
-		tcpProxy(w, req, getExitProxy(string(req.Host + req.URL.Path)), ingress, decoded_session_key, "")
+        exit_proxy := getExitProxy(string(req.Host + req.URL.Path))
+		tcpProxy(w, req, exit_proxy, ingress, decoded_session_key, "")
 	} else {
 
 		// Egress - open connection to actual server and encrypt / decrypt content
