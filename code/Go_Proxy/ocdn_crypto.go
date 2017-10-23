@@ -11,7 +11,7 @@ import (
     "encoding/asn1"
     "encoding/base64"
     "encoding/pem"
-	//"fmt"
+	"fmt"
 	"io"
 	"io/ioutil"
     "os"
@@ -19,6 +19,8 @@ import (
 
 func decryptAES(cipherstring string, keystring string) string {
 	// Byte array of the string
+    //decode_cipher, err := base64.URLEncoding.DecodeString(cipherstring)
+
 	ciphertext := []byte(cipherstring)
 
 	// Key
@@ -95,6 +97,8 @@ func generateMAC(url string, keystring string) string {
 func generateSessionKey() string {
     key := make([]byte, 32)
 	rand.Read(key)
+    //fmt.Println(len(base64.StdEncoding.EncodeToString(key)))
+    //return base64.StdEncoding.EncodeToString(key)
     return string(key)
 }
 
@@ -140,11 +144,15 @@ func readPrivateKey() *rsa.PrivateKey {
 
 func encryptAsymmetric(plainstring string, publickey *rsa.PublicKey) string {
     encryptedmsg, _ := rsa.EncryptPKCS1v15(rand.Reader, publickey, []byte(plainstring))
+    ioutil.WriteFile("testing_encryption_proxy.txt", encryptedmsg, 777)
     return string(encryptedmsg)
 }
 
 func decryptAsymmetric(cipherstring string, privatekey *rsa.PrivateKey) string {
-    decryptedmsg, _ := rsa.DecryptPKCS1v15(rand.Reader, privatekey, []byte(cipherstring))
+    decryptedmsg, err := rsa.DecryptPKCS1v15(rand.Reader, privatekey, []byte(cipherstring))
+    if err != nil {
+        fmt.Println(err)
+    }
     return string(decryptedmsg)
 }
 
@@ -176,7 +184,9 @@ func main() {
         priv := readPrivateKey()
         pub := readPublicKey()
 
-        encrypted := encryptAsymmetric(string(content), pub)
+        fmt.Println(key)
+
+        encrypted := encryptAsymmetric(key, pub)
         writeToFile(encrypted, file+".rsa.enc")
     
         decrypted := decryptAsymmetric(encrypted, priv)
