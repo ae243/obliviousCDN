@@ -31,11 +31,23 @@ func sendError(w net.Conn, err int) {
 	}
 }
 
-func getExitProxy() string {
+func getExitProxy(url string) string {
 	// read exit proxy table to fill in IP:Port
-
-	// dummy values for testing on local machine - this should be read from a file or table
-	return "127.0.0.1:9090"
+    file, err := os.Open("url_exit_mapping.txt")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer file.Close()
+    scanner := bufio.NewScanner(file)
+    var exit_address string
+    for scanner.Scan() {
+        s := strings.Split(scanner.Text(), ",")
+        url_from_map, exit := s[0], s[1]
+        if url == url_from_map {
+            exit_address = exit
+        }
+    }
+	return exit_address
 }
 
 func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey string, originkey string) {
@@ -161,7 +173,7 @@ func handleRequest(w net.Conn, t int64) {
         // decode session key for use later
         session_key_bytes, _ := base64.StdEncoding.DecodeString(session_key)
         decoded_session_key := string(session_key_bytes)
-		tcpProxy(w, req, getExitProxy(), ingress, decoded_session_key, "")
+		tcpProxy(w, req, getExitProxy(string(req.Host + req.URL.Path)), ingress, decoded_session_key, "")
 	} else {
 
 		// Egress - open connection to actual server and encrypt / decrypt content
@@ -181,8 +193,8 @@ func handleRequest(w net.Conn, t int64) {
 			return
 		}
 
-        // [Annie] TODO: look up shared key in file
-		key_bytes, _ := ioutil.ReadFile("shared_key.txt")
+        // [Annie] look up shared key in file
+		key_bytes, _ := ioutil.ReadFile(string("shared_key_" + req.URL.Path[1:]))
 		shared_key := string(key_bytes)
 
         t := strings.Replace(req.URL.Path, "/", "", -1)
