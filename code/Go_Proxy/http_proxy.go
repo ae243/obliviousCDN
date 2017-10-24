@@ -62,7 +62,6 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 	// Send the serialized request to the server
 	err = req.Write(conn)
 	if err != nil {
-        log.Println("HERE2")
 		sendError(w, SERVERROR)
 		return
 	}
@@ -78,7 +77,6 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 		if err != nil {
 			if err != io.EOF {
 				if !partial {
-                    log.Println("HERE3")
 					sendError(w, SERVERROR)
 				}
 				return
@@ -89,8 +87,9 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 			var temp2 string
             //var plain_text string
             var plain_text_bytes []byte
-
+            var headers string
 			if len(temp) > 1 {
+                headers = string(temp[0] + "Server: lighttpd/1.4.33\n\n")
 				temp2 = strings.TrimSpace(temp[1])
 			} else {
 				temp2 = strings.TrimSpace(temp[0])
@@ -101,7 +100,8 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 				enc_text_bytes, _ := base64.StdEncoding.DecodeString(temp2)
                 plain_text_bytes = []byte(decryptAES(string(enc_text_bytes), skey))
 				// [Annie] buf should now hold new plaintext content
-				buf = plain_text_bytes
+                whole_resp := string(headers + string(plain_text_bytes))
+				buf = []byte(whole_resp)
             } else {   
                 // [Annie] decrypt content with shared key
                 dec1, err := base64.StdEncoding.DecodeString(temp2)
@@ -113,7 +113,8 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
                 	// [Annie] encrypt content with session key
 				new_cipher_text := base64.StdEncoding.EncodeToString([]byte(encryptAES(plain_text, skey)))
 				// [Annie] buf should now hold new encrypted content
-				buf = []byte(new_cipher_text)
+                whole_resp := string(headers + new_cipher_text)
+				buf = []byte(whole_resp)
             }
 
 			w.Write(buf)
