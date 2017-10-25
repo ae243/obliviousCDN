@@ -1,22 +1,33 @@
 \section{Security Analysis}
 \label{sec:sec}
-\annie{Fill me in with a security analysis/evaluation.}
+We analyze and discuss how \system{} addresses different attacks.
 
-{\bf Popularity Attacks.}
+{\bf Popularity Attacks.}  An attacker that has requested or otherwise 
+gained access to CDN cache logs can learn information about how often 
+content was requested.  Because not all content is requested uniformly, the 
+attacker could potentially correlate the most commonly requested content with 
+very popular webpages.  While this does not allow the CDN to learn which 
+clients are accessing the content, it can reveal information about what content 
+is stored on the CDN cache nodes.  \system{} handles this type of attacker by making 
+the distribution of content requests appear uniform.  The content publisher (of popular 
+content) generates multiple shared keys 
+and encrypts their content under each key, such that they have multiple, different-looking 
+copies of their content.  All of the content copies are pushed to the CDN and each key is 
+shared with the exit proxies.\footnote{This also provides load balancing for exit proxies 
+that hold originally held the sole key for the popular webpage, but this is now distributed 
+across multiple exit proxies.}  Now, the popular content does not appear as popular, 
+and it makes difficult for an attacker to infer the popularity of the content.
 
-{\bf Traffic Correlation Attacks.}
-
-{\bf Chosen Plaintext Attacks.} A CDN operator could attempt to
+{\bf Chosen Plaintext Attacks.} An attacker could attempt to
 determine whether a particular URL was being accessed by sending requests
-through specific \system{} proxies and observing the corresponding obfuscated
-requests and responses in the CDN cache logs. Blinding the clients' requests
+through specific \system{} proxies and requesting access to the CDN cache logs, 
+which contain the corresponding obfuscated
+requests and responses. Blinding the clients' requests
 with a random nonce that is added by the proxy should prevent against this
 attack. We also believe that such an attack reflects a stronger attack: from a
 law enforcement perspective, receiving a subpoena for {\em existing} logs and
 data may present a lower legal barrier than compelling a CDN to attack a
 system.
-
-{\bf Denial of Service Attacks.}
 
 {\bf Spoofed Content Updates.} Because the CDN cache
 nodes do not know either the content that they are hosting or the URLs
@@ -31,6 +42,8 @@ to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
 
-{\bf Flashcrowds.}
+{\bf Flashcrowds.}  
+
+{\bf Denial of Service Attacks.}
 
 {\bf Censorship.}
