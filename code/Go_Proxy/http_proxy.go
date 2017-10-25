@@ -142,7 +142,7 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 
 }
 
-func handleRequest(w net.Conn, t int64, exit_map map[string]string, pub *rsa.PublicKey) {
+func handleRequest(w net.Conn, t int64, exit_map map[string]string, pub *rsa.PublicKey, shared_key string) {
 	// close the connection with the socket once finished handling request
 	defer w.Close()
 
@@ -220,8 +220,8 @@ func handleRequest(w net.Conn, t int64, exit_map map[string]string, pub *rsa.Pub
 
         time1 := int64(time.Now().UnixNano())
         // [Annie] look up shared key in file
-		key_bytes, _ := ioutil.ReadFile(string("../keys/shared_key_" + req.URL.Path[1:]))
-		shared_key := string(key_bytes)
+		//key_bytes, _ := ioutil.ReadFile(string("../keys/shared_key_" + req.URL.Path[1:]))
+		//shared_key := string(key_bytes)
         time2 := int64(time.Now().UnixNano())
         fmt.Printf("4,%d,%s\n", time2-time1,filename)
 
@@ -280,6 +280,10 @@ func main() {
     // read in public key(s)
     pub := readPublicKey()
 
+    // read in shared key(s)
+    key_bytes, _ := ioutil.ReadFile(string("../keys/shared_key_9991.txt"))
+	shared_key := string(key_bytes)
+
 	// listen on socket
 	ln, err := net.Listen("tcp", portStr)
 	if err != nil {
@@ -297,6 +301,6 @@ func main() {
 		t := int64(time.Now().UnixNano())
 
 		// start goroutine to handle client
-		go handleRequest(conn, t, exit_mapping_data, pub)
+		go handleRequest(conn, t, exit_mapping_data, pub, shared_key)
 	}
 }
