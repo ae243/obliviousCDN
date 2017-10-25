@@ -144,7 +144,7 @@ func readPrivateKey() *rsa.PrivateKey {
 
 func encryptAsymmetric(plainstring string, publickey *rsa.PublicKey) string {
     encryptedmsg, _ := rsa.EncryptPKCS1v15(rand.Reader, publickey, []byte(plainstring))
-    ioutil.WriteFile("testing_encryption_proxy.txt", encryptedmsg, 777)
+    //ioutil.WriteFile("testing_encryption_proxy.txt", encryptedmsg, 777)
     return string(encryptedmsg)
 }
 
