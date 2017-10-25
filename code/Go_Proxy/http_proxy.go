@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+    "crypto/rsa"
     "encoding/base64"
     "fmt"
 	"io"
@@ -141,7 +142,7 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 
 }
 
-func handleRequest(w net.Conn, t int64) {
+func handleRequest(w net.Conn, t int64, exit_map map[string]string, pub *rsa.PublicKey) {
 	// close the connection with the socket once finished handling request
 	defer w.Close()
 
@@ -177,7 +178,7 @@ func handleRequest(w net.Conn, t int64) {
         // Ingress - need to set session key and redirect connection to exit proxy
 
         ingress = true
-        pub := readPublicKey()
+        //pub := readPublicKey()
         session_key := base64.StdEncoding.EncodeToString([]byte(generateSessionKey()))
         time2 := int64(time.Now().UnixNano())
         fmt.Printf("1,%d,%s\n", time2-t,filename)
@@ -192,7 +193,8 @@ func handleRequest(w net.Conn, t int64) {
         decoded_session_key := string(session_key_bytes)
 
         time4 := int64(time.Now().UnixNano())
-        exit_proxy := getExitProxy(string(req.Host + req.URL.Path))
+        exit_proxy := exit_map[string(req.Host + req.URL.Path)]
+        //exit_proxy := getExitProxy(string(req.Host + req.URL.Path))
         time5 := int64(time.Now().UnixNano())
         fmt.Printf("3,%d,%s\n", time5-time4,filename)
 		tcpProxy(w, req, exit_proxy, ingress, decoded_session_key, "", filename)
@@ -261,6 +263,23 @@ func main() {
 	}
 	portStr := ":" + os.Args[1]
 
+    // read in url_exit_mapping
+    exit_mapping_data := make(map[string]string)
+    url_exit_file, err := os.Open("url_exit_mapping.txt")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer url_exit_file.Close()
+    scanner := bufio.NewScanner(url_exit_file)
+    for scanner.Scan() {
+        s := strings.Split(scanner.Text(), ",")
+        url_from_map, exit := s[0], s[1]
+        exit_mapping_data[url_from_map] = strings.TrimSpace(exit)
+    }
+
+    // read in public key(s)
+    pub := readPublicKey()
+
 	// listen on socket
 	ln, err := net.Listen("tcp", portStr)
 	if err != nil {
@@ -278,6 +297,6 @@ func main() {
 		t := int64(time.Now().UnixNano())
 
 		// start goroutine to handle client
-		go handleRequest(conn, t)
+		go handleRequest(conn, t, exit_mapping_data, pub)
 	}
 }
