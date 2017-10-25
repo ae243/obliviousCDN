@@ -42,8 +42,13 @@ to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
 
-{\bf Flashcrowds.}  
+{\bf Flashcrowds.}  A flashcrowd is large spike in traffic to a specific web page.  An attacker 
+could see that some content on the CDN has just seen a surge in traffic and correlate that with 
+other information (for example, major world events).  This leaks information about what the content the 
+CDN is caching.  Fortunately, the design of \system{} can defend against this type of inference attack.  
+The exit proxy can cache content in time of a flashcrowd, such that the CDN (and therefore the attacker) 
+does not see the surge in traffic.  
 
-{\bf Denial of Service Attacks.}
+{\bf Denial of Service Attacks.}  
 
 {\bf Censorship.}
