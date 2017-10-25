@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
     "encoding/base64"
+    "fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -50,7 +51,7 @@ func getExitProxy(url string) string {
 	return strings.TrimSpace(exit_address)
 }
 
-func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey string, originkey string) {
+func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey string, originkey string, fname string) {
 	// start a new TCP connection with the server
 	conn, err := net.Dial("tcp", host)
 	if err != nil {
@@ -96,13 +97,17 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
 			}
 
             if ingress {
+                time1 := int64(time.Now().UnixNano())
                 // [Annie] decrypt content with session key
 				enc_text_bytes, _ := base64.StdEncoding.DecodeString(temp2)
                 plain_text_bytes = []byte(decryptAES(string(enc_text_bytes), skey))
 				// [Annie] buf should now hold new plaintext content
                 whole_resp := string(headers + string(plain_text_bytes))
 				buf = []byte(whole_resp)
-            } else {   
+                time2 := int64(time.Now().UnixNano())
+                fmt.Printf("8,%d,%s\n", time2-time1,fname)
+            } else {
+                time1 := int64(time.Now().UnixNano())
                 // [Annie] decrypt content with shared key
                 dec1, err := base64.StdEncoding.DecodeString(temp2)
                 if err != nil {
@@ -110,11 +115,15 @@ func tcpProxy(w net.Conn, req *http.Request, host string, ingress bool, skey str
                 }
                 dec2 := string(dec1)
 				plain_text := decryptAES(dec2, originkey)
-                	// [Annie] encrypt content with session key
+                time2 := int64(time.Now().UnixNano())
+                fmt.Printf("6,%d,%s\n", time2-time1,fname)
+                // [Annie] encrypt content with session key
 				new_cipher_text := base64.StdEncoding.EncodeToString([]byte(encryptAES(plain_text, skey)))
 				// [Annie] buf should now hold new encrypted content
                 whole_resp := string(headers + new_cipher_text)
 				buf = []byte(whole_resp)
+                time3 := int64(time.Now().UnixNano())
+                fmt.Printf("7,%d,%s\n", time3-time2,fname)
             }
 
 			w.Write(buf)
@@ -159,6 +168,8 @@ func handleRequest(w net.Conn, t int64) {
 
 	ingress := false
 
+    filename := strings.Replace(req.URL.Path, "/", "", -1)
+
 	// Check for presence of X-OCDN header - ingress or egress
 	enc_session_key := req.Header.Get("X-OCDN")
 
@@ -167,17 +178,24 @@ func handleRequest(w net.Conn, t int64) {
 
         ingress = true
         pub := readPublicKey()
-
         session_key := base64.StdEncoding.EncodeToString([]byte(generateSessionKey()))
+        time2 := int64(time.Now().UnixNano())
+        fmt.Printf("1,%d,%s\n", time2-t,filename)
+
         enc_skey := base64.StdEncoding.EncodeToString([]byte(encryptAsymmetric(session_key, pub)))
         req.Header.Set("X-OCDN", enc_skey)
-        log.Println("Ingress Header Overhead (nanoseconds): ", int64(time.Now().UnixNano())-t)
+        time3 := int64(time.Now().UnixNano())
+        fmt.Printf("2,%d,%s\n", time3-time2,filename)
 
         // decode session key for use later
         session_key_bytes, _ := base64.StdEncoding.DecodeString(session_key)
         decoded_session_key := string(session_key_bytes)
+
+        time4 := int64(time.Now().UnixNano())
         exit_proxy := getExitProxy(string(req.Host + req.URL.Path))
-		tcpProxy(w, req, exit_proxy, ingress, decoded_session_key, "")
+        time5 := int64(time.Now().UnixNano())
+        fmt.Printf("3,%d,%s\n", time5-time4,filename)
+		tcpProxy(w, req, exit_proxy, ingress, decoded_session_key, "", filename)
 	} else {
 
 		// Egress - open connection to actual server and encrypt / decrypt content
@@ -190,6 +208,7 @@ func handleRequest(w net.Conn, t int64) {
 		}
 
 		// [Annie] Get own private key
+
 		priv_key := readPrivateKey()
 
 		if priv_key == nil {
@@ -197,9 +216,12 @@ func handleRequest(w net.Conn, t int64) {
 			return
 		}
 
+        time1 := int64(time.Now().UnixNano())
         // [Annie] look up shared key in file
 		key_bytes, _ := ioutil.ReadFile(string("../keys/shared_key_" + req.URL.Path[1:]))
 		shared_key := string(key_bytes)
+        time2 := int64(time.Now().UnixNano())
+        fmt.Printf("4,%d,%s\n", time2-time1,filename)
 
         t := strings.Replace(req.URL.Path, "/", "", -1)
         // [Annie] Mangle the URL
@@ -207,7 +229,8 @@ func handleRequest(w net.Conn, t int64) {
         clean_enc_host := strings.Replace(enc_host, "/", "-", -1)
 		c := "/obf/"
 		req.URL.Path = c + string(clean_enc_host)
-		log.Println("Egress mangled URL:", req.Host+req.URL.Path)
+        time3 := int64(time.Now().UnixNano())
+        fmt.Printf("5,%d,%s\n", time3-time2,filename)
 
         decode_key_bytes, err := base64.StdEncoding.DecodeString(enc_session_key)
         if err != nil {
@@ -225,7 +248,7 @@ func handleRequest(w net.Conn, t int64) {
 			log.Fatal("Session key empty!")
             return
 		} else {
-			tcpProxy(w, req, newHost, ingress, session_key2_str, shared_key)
+			tcpProxy(w, req, newHost, ingress, session_key2_str, shared_key,filename)
 		}
 	}
 
