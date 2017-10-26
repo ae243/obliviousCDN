@@ -11,7 +11,7 @@ may depend on the laws of the country where their data is stored. Recent work,
 for example, highlights the possibility that governments may move data across
 borders to facilitate surveillance~\cite{arnbak2015loopholes}.  
 
-The rise of content distribution networks (CDNs) makes the threat to citizens'
+Content distribution networks (CDNs) makes the threat to citizens'
 privacy more widespread, because data may be replicated in geographically
 diverse regions, and users may not have purview over where their data is
 stored, or where their traffic goes. Another recent development is that the
@@ -30,7 +30,7 @@ In this paper, we design and implement a content distribution network that
 allows clients to retrieve web objects, while preventing the CDN cache nodes
 from learning either the content that is stored on the cache nodes or the
 content that clients are requesting. We call this system an {\em oblivious
-CDN}~(\system{}), because the CDN itself is oblivious to both the content it is
+CDN}~(\system{}), because the CDN is oblivious to both the content it is
 storing and the content that clients are requesting. \system{} allows clients to
 request individual objects with identifiers that are encrypted with a key that
 is shared by a proxy and the origin server that is pushing content to
@@ -50,10 +50,9 @@ Users can use \system{} with minimal modification to their existing configuratio
 specify one of two modes that \system{} operates in, one in which performance is a higher 
 priority and another in which security is a higher priority.
 
-Although the basic mechanisms for obfuscating the URL and the corresponding
-content are relatively straightforward, ensuring that the CDN operator never
+Ensuring that the CDN operator never
 learns information about either (1)~what content is being stored on its cache
-nodes or (2)~which objects individual clients are requesting is more
+nodes or (2)~which objects individual clients are requesting is
 challenging, due to the many possible inference attacks that a CDN might be
 able to run. For example, previous work has shown that even when web content
 is encrypted, the retrieval of a collection of objects of various sizes can
