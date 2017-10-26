@@ -57,21 +57,17 @@ from the CDN; if a client requests a web page over HTTPS, the CDN terminates the
 content publisher.  This means that not only does the CDN know the content, the content identifier, but also knows 
 public and private keys, as well as certificates associated with the content it caches.  
 
-Recently, the fact that CDNs 
-know the content they are distributing has made its way into the legal system.  A court order was given to Cloudflare 
-that required the CDN to search out and block publishers who use a variation of a trademark held by a group of 
-music labels~\cite{eff_cloudflare_trademark}.  Originally, the music labels went after the trademark infringing 
-website, but later the order was extended to Cloudflare; the order ``required CloudFlare to block all of its customers 
-from using domain names that contained `grooveshark,' regardless of whether those domains contained First 
-Amendment-protected speech, or had any connection with the `New Grooveshark' defendants who were the 
-targets of the actual lawsuit.'' CDNs may also run the risk of running afoul of
-copyright law: for example, recent developments in the European Union propose to
-remove safe harbor protections for some CDNs if they do not employ automated detection
-techniques for removing copyrighted content~\cite{eu-copyright}.
-These cases highlight a key problem that CDNs face by knowing all
-the content
-that they distribute: it may burden them with the legal responsibility for the actions of their customers 
-and clients.
+%Recently, the fact that CDNs 
+%know the content they are distributing has made its way into the legal system.  A court order was given to Cloudflare 
+%that required the CDN to search out and block publishers who use a variation of a trademark held by a group of 
+%music labels~\cite{eff_cloudflare_trademark}.  Originally, the music labels went after the trademark infringing 
+%website, but later the order was extended to Cloudflare; the order ``required CloudFlare to block all of its customers 
+%from using domain names that contained `grooveshark,' regardless of whether those domains contained First 
+%Amendment-protected speech, or had any connection with the `New Grooveshark' defendants who were the 
+%targets of the actual lawsuit.'' CDNs may also run the risk of running afoul of
+%copyright law: for example, recent developments in the European Union propose to
+%remove safe harbor protections for some CDNs if they do not employ automated detection
+%techniques for removing copyrighted content~\cite{eu-copyright}.
 
 \paragraph{Knowing client information} Clients fetch content directly from the CDN's edge servers, which reveals 
 information about the client's location and what the client is accessing.  Unique to CDNs is the fact that 
@@ -121,3 +117,7 @@ an open question whether this new law also applies to CDNs.  In the United State
 and posts \cite{medium_sesta}.  SESTA would CDNs liable for the content that they distribute (despite the CDN not being a party in the content publishing); this could potentially lead to 
 censoring content too much (an intermediary may be more willing to err on the side of caution--censorship).  This type of law could set a dangerous precedent 
 for the censoring other types of content that are unpopular, but still legal. 
+
+All these cases highlight a key problem that CDNs face by knowing all the content
+that they distribute: it may burden them with the legal responsibility for the actions of their customers 
+and clients.
