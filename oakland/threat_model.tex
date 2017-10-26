@@ -40,23 +40,23 @@ can be protected by preventing CDNs from learning information, decoupling conten
 maintaining the performance benefits of a CDN while reducing the probability of attacks.  Our design goals are listed in Table \ref{tab:design_goals}, 
 and we further discuss our design decisions in Section \ref{sec:design}.
 
-\begin{table*}[t!]
-\centering
-\begin{tabular}{| l | l |} 
- \hline
- {\bf Design Goal} & {\bf Design Decision} \\ 
- \hline\hline
- Prevent CDN from knowing information & (1) encrypt content   \\ 
-  (Section \ref{sec:obfuscate_content})                          & (2) obfuscate URL \\ \hline
- System of proxies & (1) decouple content distribution from decision of trust via proxies  \\ 
-  (Section \ref{sec:proxies})  & (2) hiding client identities \\ \hline
- Key use and management & (1) key churn \\ 
-   (Section \ref{sec:keys})                     & (2) secrecy in URL obfuscation \\ 
- \hline
-\end{tabular}
-\caption{Design goals and the corresponding design choices made in \system{}.}
-\label{tab:design_goals}
-\end{table*}
+%\begin{table*}[t!]
+%\centering
+%\begin{tabular}{| l | l |} 
+% \hline
+% {\bf Design Goal} & {\bf Design Decision} \\ 
+% \hline\hline
+% Prevent CDN from knowing information & (1) encrypt content   \\ 
+%  (Section \ref{sec:obfuscate_content})                          & (2) obfuscate URL \\ \hline
+% System of proxies & (1) decouple content distribution from decision of trust via proxies  \\ 
+%  (Section \ref{sec:proxies})  & (2) hiding client identities \\ \hline
+% Key use and management & (1) key churn \\ 
+%   (Section \ref{sec:keys})                     & (2) secrecy in URL obfuscation \\ 
+% \hline
+%\end{tabular}
+%\caption{Design goals and the corresponding design choices made in \system{}.}
+%\label{tab:design_goals}
+%\end{table*}
 
 \paragraph{Prevent the CDN from knowing information} First, and foremost, the CDN 
 should not have access to all the information that was outlined 
