@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: bare_conf.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: sigproc.bib
+Warning--I didn't find a database entry for "????"
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in arnbak2015loopholes
+Warning--empty author in eu-copyright
+Warning--empty journal in eu-copyright
+
+Done.
+You've used 41 entries,
+            4087 wiz_defined-function locations,
+            1026 strings with 15410 characters,
+and the built_in function-call counts, 23503 in all, are:
+= -- 1711
+> -- 530
+< -- 142
++ -- 290
+- -- 93
+* -- 1018
+:= -- 3395
+add.period$ -- 94
+call.type$ -- 41
+change.case$ -- 42
+chr.to.int$ -- 354
+cite$ -- 44
+duplicate$ -- 1830
+empty$ -- 2232
+format.name$ -- 117
+if$ -- 5526
+int.to.chr$ -- 0
+int.to.str$ -- 41
+missing$ -- 351
+newline$ -- 146
+num.names$ -- 25
+pop$ -- 952
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1852
+stack$ -- 0
+substring$ -- 869
+swap$ -- 1260
+text.length$ -- 24
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 41
+warning$ -- 3
+while$ -- 85
+width$ -- 43
+write$ -- 344
+(There were 4 warnings)
