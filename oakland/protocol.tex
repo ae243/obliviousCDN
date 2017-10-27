@@ -56,7 +56,9 @@ partial deployment.  %Note that each proxy will only be able to fetch a specific
 
 As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the content publisher
 determines which exit proxy is correct (based on consistent hashing).  The content publisher then encrypts the 
-shared key $k$ with the correct exit proxy's public key $PK_{proxy}$.  To distribute this value, the publisher 
+shared key $k$ with the correct exit proxy's public key $PK_{proxy}$.  \annie{Discuss self-certifying file names here --- 
+the format is IP:hostID where hostID is a hash of the proxy's public key~\cite{mazieres2000self}.  The correct exit proxy uses 
+this as a proof that he is in the correct part of the consistent hashing circle, and that he is not in the CDN's subnet.} To distribute this value, the publisher 
 then publishes \{$k$\}$_{PK_{proxy}}$ in its DNS Service (SRV) record, which allows the exit proxy to retrieve it (this is discussed in more 
 detail in Section \ref{sec:retrieve}).
 
@@ -103,9 +105,9 @@ keys for.  The client generates a request for a specific URL, and looks up which
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 
 route, which has better performance, or 2) a source route, which has better privacy.  If the client decides to use the privacy-preserving mode, 
 then she generates a source route, which includes some of her peers, and could potentially include a false originator (as described in Section \ref{sec:proxies}).
-Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the exit proxy's public key.  The client appends both the source route and \{k$_{session}$\}$_{PK_proxy}$ to the request, and sends it onto the next proxy in the source route, which could be either another client proxy or the exit proxy.  The request is forwarded 
+Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the exit proxy's public key.  The client appends both the source route and \{k$_{session}$\}$_{PK_proxy}$ to the request and encyrpts the URL with $k_{session}$ such that no other clients on the path can learn what the requested URL is.  The client then sends it onto the next proxy in the source route, which could be either another client proxy or the exit proxy.  The request is forwarded 
 through all subsequent hops in the source route until it reaches the exit proxy.  The exit proxy decrypts \{k$_{session}$\}$_{PK_proxy}$ with its private key and stores 
-the source route locally.   The exit proxy then resolves the domain using it's local resolver, which will redirect it to the CDN's DNS resolver. 
+the source route locally; it then decrypts the URL with k$_{session}$.   The exit proxy then resolves the domain using it's local resolver, which will redirect it to the CDN's DNS resolver. 
 
 In order for the proxy to generate the obfuscated identifier to query the edge server for the correct content, 
 it must have the shared key $k$ that the origin server generated and obfuscated the content and identifier 

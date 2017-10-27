@@ -2,28 +2,23 @@
 \label{sec:sec}
 We analyze and discuss how \system{} addresses different attacks.
 
-\begin{table*}[t!]
+\begin{table}[t!]
 \centering
-\begin{tabular}{| l | l | l | l | l |} 
- \hline
- {} & Preserves Integrity at CDN & Preserves Confidentiality at CDN & Protects Client Identity & Protects Publisher Identity\\ 
-\hline \hline
- Stickler~\cite{levy2015stickler} & \checkmark & {} & {} & {}\\ 
+\begin{tabular}{| l | l | l | l |} 
 \hline
- Repeat \& Compare~\cite{michalakis2007ensuring} & \checkmark & {} & {} & {}\\
+ {} & Preserves  & Preserves   & Protects \\ 
+ {} & Integrity & Confidentiality & Client\\
+ {} & at CDN & at CDN & Identity \\
 \hline
- OCDN & {} & \checkmark & \checkmark & {}\\
+ Stickler~\cite{levy2015stickler} & \checkmark & {} & {}\\ 
+ Repeat \& Compare~\cite{michalakis2007ensuring} & \checkmark & {} & {}\\
+ OCDN & {} & \checkmark & \checkmark\\
+ Tor~\cite{dingledine2004tor} & {} & {} & \checkmark \\
 \hline
- Anonymity Systems (such as Tor~\cite{dingledine2004tor}) & {} & {} & \checkmark & {} \\
-\hline 
-  Onion Services~\cite{dingledine2004tor} & {} & {} & \checkmark & \checkmark \\
-\hline
-  Freenet~\cite{clarke2001freenet} & {} & {} & \checkmark & \checkmark \\
- \hline
 \end{tabular}
 \caption{The security and privacy features offered by related systems.}
 \label{tab:sec_table}
-\end{table*}
+\end{table}
 
 {\bf Popularity Attacks.}  An attacker that has requested or otherwise 
 gained access to CDN cache logs can learn information about how often 

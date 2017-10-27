@@ -35,8 +35,7 @@ exit then forwards the response onto the client proxy.
 content.  This proxy uses the same implementation as the exit proxy, but provides 
 different cryptographic functions on the requests and responses.  When a client makes 
 a request, the client proxy generates a session key  (AES 256-bit) and looks up the correct exit proxy's 
-public key.\footnote{We do not address key distribution, as this is a well-studied problem.  We 
-assume all exit proxies' public keys are known.}  The client proxy then adds a header to the request, 
+public key.  The client proxy then adds a header to the request, 
 where X-OCDN is the key, the encrypted session key is the value.  The client then forwards this on to the 
 exit proxy.  When the client receives a response from the exit proxy, it must decrypt the content 
 with the session key it originally generated.   
