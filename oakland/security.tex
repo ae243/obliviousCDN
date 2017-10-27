@@ -6,11 +6,23 @@ We analyze and discuss how \system{} addresses different attacks.
 \centering
 \begin{tabular}{| l | l | l | l | l |} 
  \hline
-
+ {} & Preserves Integrity at CDN & Preserves Confidentiality at CDN & Protects Client Identity & Protects Publisher Identity\\ 
+\hline \hline
+ Stickler~\cite{levy2015stickler} & \checkmark & {} & {} & {}\\ 
+\hline
+ Repeat \& Compare~\cite{michalakis2007ensuring} & \checkmark & {} & {} & {}\\
+\hline
+ OCDN & {} & \checkmark & \checkmark & {}\\
+\hline
+ Anonymity Systems (such as Tor~\cite{dingledine2004tor}) & {} & {} & \checkmark & {} \\
+\hline 
+  Onion Services~\cite{dingledine2004tor} & {} & {} & \checkmark & \checkmark \\
+\hline
+  Freenet~\cite{clarke2001freenet} & {} & {} & \checkmark & \checkmark \\
  \hline
 \end{tabular}
-\caption{Design goals and the corresponding design choices made in \system{}.}
-\label{tab:design_goals}
+\caption{The security and privacy features offered by related systems.}
+\label{tab:sec_table}
 \end{table*}
 
 {\bf Popularity Attacks.}  An attacker that has requested or otherwise 

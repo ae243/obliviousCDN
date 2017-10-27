@@ -60,16 +60,22 @@ and we further discuss our design decisions in Section \ref{sec:design}.
 should not have access to all the information that was outlined 
 in Section \ref{sec:background}.  By limiting the information that the CDN knows, \system{} limits 
 the amount of information that an adversary can learn or request.  \system{} should hide 
-content, content identifiers, and remove links between clients and their content requests, as well 
-as remove links between content (and content identifiers) and the content publisher.  If the CDN 
-does not know what content it is caching, who is requesting it, or who has created it, then an 
-inside attacker will not be able to learn valuable information, and the CDN will not be able to supply 
-a government adversary with the requested data.
+the content as well as the URL associated with the content.  If the CDN 
+does not know what content it is caching then the CDN will not be able to supply an adversary 
+with the requested data and it will have a strong argument as to why it cannot be held 
+liable for its customers' content.
 
-\paragraph{Prevent the CDN from knowing the identity of users accessing content}
+\paragraph{Prevent the CDN from knowing the identity of users accessing content} CDNs can currently see clients' 
+browsing patterns and which web pages they are visiting. \system{} should provide privacy protections by hiding which client is accessing 
+which content at the CDN.  In addition, it should hide cross site browsing patterns, which a CDN 
+is unique in having access to.  Some CDNs block legitimate Tor users because they are 
+trying to protect cached content from attacks; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
+privacy-concious Tor users from being blocked at CDNs.  Lastly, some CDNs, due to their ability 
+to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
+prevent a CDN from compromising the anonymity of clients.
 
-\paragraph{Prevent an adversary from ...} \annie{I'm trying to get at protecting against an adversary that 
-joins the system as a client/exit/publisher, and requests access from the CDN}
+%\paragraph{Prevent an adversary from ...} \annie{I'm trying to get at protecting against an adversary that 
+%joins the system as a client/exit/publisher, and requests access from the CDN}
 
 %\paragraph{System of proxies} There have been many legal battles over which government is allowed access 
 %to which data; for example, data can be stored in Country X, but belonging to an organization in Country Y, and 
@@ -121,3 +127,9 @@ A strength of \system{} is that it protects the origin server, the CDN itself, a
 existing systems, such as Tor, only protect the client.
 
 \subsection{Performance Considerations}
+As one of the primary functions of a CDN is to make accessing content faster and more 
+reliable, \system{} should not hinder performance significantly.  The performance of \system{} will 
+be worse than that of traditional CDNs because it is performing more operations on content, but \system{} 
+is offering confidentiality, whereas traditional CDNs are not. Therefore, the system can incur some small overhead, 
+but not so much that it defeats the use of a CDN in the first place.  Additionally, \system{} should be able to 
+scale with number of clients using the system, as well as with the growing number of web pages on the internet.
