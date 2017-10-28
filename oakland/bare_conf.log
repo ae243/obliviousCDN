@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 09:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 10:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -921,18 +921,13 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
  [7]
-<./figures/retrieving_content_new2.pdf, id=685, 784.15947pt x 318.16498pt>
-File: ./figures/retrieving_content_new2.pdf Graphic file (type pdf)
+<./figures/request_diagram_simple.pdf, id=685, 526.678pt x 606.13132pt>
+File: ./figures/request_diagram_simple.pdf Graphic file (type pdf)
 
-<use ./figures/retrieving_content_new2.pdf>
-Package pdftex.def Info: ./figures/retrieving_content_new2.pdf used on input li
-ne 173.
-(pdftex.def)             Requested size: 258.0pt x 104.6792pt.
-
-Overfull \hbox (6.0pt too wide) in paragraph at lines 173--174
- [][] 
- []
-
+<use ./figures/request_diagram_simple.pdf>
+Package pdftex.def Info: ./figures/request_diagram_simple.pdf used on input lin
+e 173.
+(pdftex.def)             Requested size: 206.39685pt x 237.52786pt.
 
 <./figures/retrieving_content_new_complex2.pdf, id=686, 845.04686pt x 597.50786
 pt>
@@ -952,8 +947,11 @@ File: ./figures/key_lookup_new.pdf Graphic file (type pdf)
 <use ./figures/key_lookup_new.pdf>
 Package pdftex.def Info: ./figures/key_lookup_new.pdf used on input line 213.
 (pdftex.def)             Requested size: 232.19843pt x 185.03154pt.
- [8 <./figures/retrieving_content_new2.pdf> <./figures/retrieving_content_new_c
-omplex2.pdf
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <./figures/request_diagram_simple.pdf> <./figures/retrieving_content_new_co
+mplex2.pdf
 
 pdfTeX warning: pdflatex (file ./figures/retrieving_content_new_complex2.pdf): 
 PDF inclusion: multiple pdfs with page group included in a single page
@@ -962,7 +960,7 @@ PDF inclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./figures/key_lookup_new.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]) (./implementation.tex
-<./figures/implementation.pdf, id=1227, 759.92746pt x 339.19672pt>
+<./figures/implementation.pdf, id=1084, 759.92746pt x 339.19672pt>
 File: ./figures/implementation.pdf Graphic file (type pdf)
 
 <use ./figures/implementation.pdf>
@@ -970,7 +968,7 @@ Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
 (pdftex.def)             Requested size: 232.19843pt x 103.63858pt.
  [9 <./figures/implementation.pdf>])
 (./security.tex) (./performance.tex
-<./figures/TTFB.pdf, id=1366, 325.215pt x 216.81pt>
+<./figures/TTFB.pdf, id=1224, 325.215pt x 216.81pt>
 File: ./figures/TTFB.pdf Graphic file (type pdf)
  <use ./figures/TTFB.pdf>
 Package pdftex.def Info: ./figures/TTFB.pdf used on input line 8.
@@ -980,7 +978,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 8--9
  [][] 
  []
 
-<./figures/completion.pdf, id=1367, 325.215pt x 216.81pt>
+<./figures/completion.pdf, id=1225, 325.215pt x 216.81pt>
 File: ./figures/completion.pdf Graphic file (type pdf)
 
 <use ./figures/completion.pdf>
@@ -991,7 +989,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
  [][] 
  []
 
-<./figures/Latency.pdf, id=1368, 433.62pt x 289.08pt>
+<./figures/Latency.pdf, id=1226, 433.62pt x 289.08pt>
 File: ./figures/Latency.pdf Graphic file (type pdf)
 
 <use ./figures/Latency.pdf>
@@ -1002,7 +1000,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<./figures/loggrouped.pdf, id=1369, 398.00568pt x 361.05177pt>
+<./figures/loggrouped.pdf, id=1227, 398.00568pt x 361.05177pt>
 File: ./figures/loggrouped.pdf Graphic file (type pdf)
 
 <use ./figures/loggrouped.pdf>
@@ -1013,8 +1011,12 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
-) (./discussion.tex [10 <./figures/TTFB.pdf>]) (./related_work.tex [11 <./figur
-es/completion.pdf> <./figures/Latency.pdf
+) (./discussion.tex [10]) (./related_work.tex [11 <./figures/TTFB.pdf> <./figur
+es/completion.pdf
+
+pdfTeX warning: pdflatex (file ./figures/completion.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+> <./figures/Latency.pdf
 
 pdfTeX warning: pdflatex (file ./figures/Latency.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
@@ -1055,6 +1057,10 @@ case-[]by-[]an-[]evenly-[]divided-[]vote /
  []
 
 
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[12]
 Underfull \hbox (badness 1755) in paragraph at lines 35--38
 []\OT1/ptm/m/n/8 ``EU Pro-posal for a Di-rec-tive of The Eu-ro-pean Par-lia-men
 t and
@@ -1073,10 +1079,6 @@ p / 1 / 2016 / EN /
  []
 
 
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
-
-[12]
 Underfull \hbox (badness 5374) in paragraph at lines 51--53
 []\OT1/ptm/m/n/8 ``Akamai: Facts & Fig-ures,'' $https : / / www . akamai . com 
 / us / en / about /
@@ -1226,8 +1228,8 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
  ) 
 Here is how much of TeX's memory you used:
  17385 strings out of 493014
- 328962 string characters out of 6133351
- 404581 words of memory out of 5000000
+ 328957 string characters out of 6133351
+ 409581 words of memory out of 5000000
  20532 multiletter control sequences out of 15000+600000
  42689 words of font info for 88 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1242,10 +1244,10 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on bare_conf.pdf (13 pages, 1507209 bytes).
+Output written on bare_conf.pdf (13 pages, 1470131 bytes).
 PDF statistics:
- 1586 PDF objects out of 1728 (max. 8388607)
- 1193 compressed objects within 12 object streams
+ 1443 PDF objects out of 1728 (max. 8388607)
+ 1071 compressed objects within 11 object streams
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
