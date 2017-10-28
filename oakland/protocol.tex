@@ -56,11 +56,14 @@ partial deployment.  %Note that each proxy will only be able to fetch a specific
 
 As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the content publisher
 determines which exit proxy is correct (based on consistent hashing).  The content publisher then encrypts the 
-shared key $k$ with the correct exit proxy's public key $PK_{proxy}$.  \annie{Discuss self-certifying file names here --- 
-the format is IP:hostID where hostID is a hash of the proxy's public key~\cite{mazieres2000self}.  The correct exit proxy uses 
-this as a proof that he is in the correct part of the consistent hashing circle, and that he is not in the CDN's subnet.} To distribute this value, the publisher 
+shared key $k$ with the correct exit proxy's public key $PK_{proxy}$.  The exit proxies' identifiers in this consistent 
+hashing scheme are self-certifying names---the format of the exit proxy's identifier is IP:hostID, where hostID is a 
+hash of the exit proxy's public key and the IP is the exit proxy's IP address.  This technique was introduced 
+in a self-certifying file system~\cite{mazieres2000self}, and it allows for certification of the exit proxy. To distribute this value, the publisher 
 then publishes \{$k$\}$_{PK_{proxy}}$ in its DNS Service (SRV) record, which allows the exit proxy to retrieve it (this is discussed in more 
-detail in Section \ref{sec:retrieve}).
+detail in Section \ref{sec:retrieve}).  When the exit proxy retrieves \{$k$\}$_{PK_{proxy}}$ it must prove to the publisher that it 
+is responsible for that publisher's content.  This protects against any (malicious) exit proxy from requesting the shared key 
+from all publishers.
 
 %\begin{enumerate}
 %\item Origin generates n shared keys k (origin already has a public key PK and private key PK$^{-1}$)\footnote{$n$ such that $1 < n < |proxies|$} 
@@ -111,12 +114,14 @@ the source route locally; it then decrypts the URL with k$_{session}$.   The exi
 
 In order for the proxy to generate the obfuscated identifier to query the edge server for the correct content, 
 it must have the shared key $k$ that the origin server generated and obfuscated the content and identifier 
-with.  These steps are shown in Figure \ref{fig:keys}.  The origin server publishes the shared key encrypted with the proxy's public key%\footnote{Additionally, the origin server 
-%can learn the proxy's public key via DNS as well; for example, the proxy can publish its public key in the DNS SRV record.} 
-in the DNS SRV record; therefore, 
-when the proxy sends a DNS request to the origin server's authoritative DNS server, it will receive the encrypted shared 
-key, which it can decrypt with it's private key.  Because the list of \system{} proxies is publicly available, it is simple for a 
-content publisher to retrieve the list of proxies and ensure that she encrypts the shared key with the correct proxy's public key (based on consistent hashing).
+with.  These steps are shown in Figure \ref{fig:keys}.  The origin server publishes the shared key encrypted with the proxy's public key
+in the DNS SRV record. When the exit proxy sends a DNS request to the origin server's authoritative DNS server, it includes its self-certifying 
+identifier (IP:hostID).  The origin server can hash the exit proxy's public key and verify it against hostID; this acts as a proof of the 
+exit proxy's position in the consistent hashing circle.  Additionally, the origin server can use the IP part of the exit proxy identifier 
+to verify that the exit proxy is not in the same network as the CDN.  If the origin is able to verify both of these, then it will send the DNS response, and the 
+exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.  
+%Because the list of \system{} proxies is publicly available, it is simple for a 
+%content publisher to retrieve the list of proxies and ensure that she encrypts the shared key with the correct proxy's public key (based on consistent hashing).
 
 Now that the proxy has obtained the shared key $k$ from the origin server, it can generate the obfuscated content identifier based 
 on the request the client sent.  It computes the HMAC of the URL with the shared key.  The proxy then 

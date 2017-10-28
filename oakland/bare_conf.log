@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 11:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 12:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -906,13 +906,13 @@ File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/publishing_content_new2.pdf used on input li
 ne 3.
 (pdftex.def)             Requested size: 232.19843pt x 84.60631pt.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 62.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 63.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
  [6 <./figures/publishing_content_new2.pdf>]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
@@ -926,7 +926,7 @@ File: ./figures/request_diagram_simple.pdf Graphic file (type pdf)
 
 <use ./figures/request_diagram_simple.pdf>
 Package pdftex.def Info: ./figures/request_diagram_simple.pdf used on input lin
-e 173.
+e 178.
 (pdftex.def)             Requested size: 206.39685pt x 237.52786pt.
 
 <./figures/request_diagram_complex.pdf, id=795, 673.41388pt x 387.38942pt>
@@ -934,10 +934,10 @@ File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
 
 <use ./figures/request_diagram_complex.pdf>
 Package pdftex.def Info: ./figures/request_diagram_complex.pdf used on input li
-ne 180.
+ne 185.
 (pdftex.def)             Requested size: 258.0pt x 148.41536pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 180--181
+Overfull \hbox (6.0pt too wide) in paragraph at lines 185--186
  [][] 
  []
 
@@ -945,8 +945,11 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 180--181
 File: ./figures/key_lookup.pdf Graphic file (type pdf)
 
 <use ./figures/key_lookup.pdf>
-Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 213.
+Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 218.
 (pdftex.def)             Requested size: 232.19843pt x 142.7754pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [8 <./figures/request_diagram_simple.pdf> <./figures/request_diagram_complex.p
 df
 
@@ -1008,11 +1011,12 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
-) (./discussion.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+) (./discussion.tex [10]) (./related_work.tex [11 <./figures/TTFB.pdf> <./figur
+es/completion.pdf
 
- [10 <./figures/TTFB.pdf>]) (./related_work.tex [11 <./figures/completion.pdf> 
-<./figures/Latency.pdf
+pdfTeX warning: pdflatex (file ./figures/completion.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+> <./figures/Latency.pdf
 
 pdfTeX warning: pdflatex (file ./figures/Latency.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
@@ -1217,33 +1221,29 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[13] (./bare_conf.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[13] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
  17385 strings out of 493014
  328897 string characters out of 6133351
- 407581 words of memory out of 5000000
+ 409581 words of memory out of 5000000
  20532 multiletter control sequences out of 15000+600000
  42689 words of font info for 88 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  55i,10n,77p,618b,553s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
-xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texliv
-e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
-016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-
-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/font
-s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/ur
-w/times/utmri8a.pfb>
-Output written on bare_conf.pdf (13 pages, 1444246 bytes).
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/bas
+e/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texliv
+e/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (13 pages, 1444261 bytes).
 PDF statistics:
- 1358 PDF objects out of 1440 (max. 8388607)
- 988 compressed objects within 10 object streams
+ 1357 PDF objects out of 1440 (max. 8388607)
+ 987 compressed objects within 10 object streams
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
