@@ -62,7 +62,7 @@
 \citation{karger1997consistent,lewin1998consistent}
 \citation{cedexis}
 \citation{mazieres2000self}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Step-by-step instructions on how content is published in OCDN{}.\relax }}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces How content is published in OCDN{}.\relax }}{6}}
 \newlabel{fig:publishing}{{3}{6}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-C}0b}Minimizing Shared Key Holders}{6}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-C}0c}Key Churn}{6}}
@@ -77,19 +77,19 @@
 \newlabel{sec:retrieve}{{\unhbox \voidb@x \hbox {V-B}}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Clients Joining \& Leaving}{7}}
 \newlabel{sec:join}{{\unhbox \voidb@x \hbox {V-C}}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Steps for retrieving content in OCDN{}.\relax }}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Steps for retrieving content in OCDN{} when a client is prioritizing performance and goes directly to an exit proxy.\relax }}{8}}
 \newlabel{fig:retrieving}{{4}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Steps for retrieving content in OCDN{}.\relax }}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Steps for retrieving content in OCDN{} when a client is prioritizing privacy and proxies her request through two other clients before reaching the exit proxy.\relax }}{8}}
 \newlabel{fig:retrieving2}{{5}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Partial Deployment}{8}}
 \newlabel{sec:partial}{{\unhbox \voidb@x \hbox {V-D}}{8}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-D}0a}Deployment Option 1}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Steps for distributing keys to proxies.\relax }}{8}}
-\newlabel{fig:keys}{{6}{8}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-D}0b}Deployment Option 2}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-E}}Optimizations}{8}}
+\newlabel{sec:optimizations}{{\unhbox \voidb@x \hbox {V-E}}{8}}
 \citation{barford1998generating}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-E}}Optimizations}{9}}
-\newlabel{sec:optimizations}{{\unhbox \voidb@x \hbox {V-E}}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Steps for certifying exit proxies and distributing shared keys to exit proxies.\relax }}{9}}
+\newlabel{fig:keys}{{6}{9}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0a}Pre-Fetch DNS Responses}{9}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0b}Load Balance Proxy Selection}{9}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0c}Use OCDN{} for Partial Content}{9}}
@@ -101,18 +101,18 @@
 \citation{levy2015stickler}
 \citation{michalakis2007ensuring}
 \citation{dingledine2004tor}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces The security and privacy features offered by related systems.\relax }}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, OCDN{} is the first to address confidentiality at the CDN.\relax }}{10}}
 \newlabel{tab:sec_table}{{I}{10}}
 \@writefile{toc}{\contentsline {section}{\numberline {VII}Security Analysis}{10}}
 \newlabel{sec:sec}{{VII}{10}}
 \@writefile{toc}{\contentsline {section}{\numberline {VIII}Performance Analysis}{10}}
 \newlabel{sec:performance}{{VIII}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VIII-A}}OCDN{} Overhead}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time to first byte.\relax }}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time to First Byte measurements with and without OCDN{}.\relax }}{11}}
 \newlabel{fig:ttfb}{{8}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Time for completion.\relax }}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Time to complete a request with and without OCDN{}.\relax }}{11}}
 \newlabel{fig:completion}{{9}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Latency.\relax }}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Time to First Byte and time to complete a request with varying the file size and latency; increasing the latency is representative of increasing the number of client proxies on the path to the exit proxy.\relax }}{11}}
 \newlabel{fig:latency}{{10}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VIII-B}}Scalability}{11}}
 \citation{lesniewski2005ssl}
@@ -121,7 +121,7 @@
 \citation{gilad2016cdn}
 \citation{liang2014https}
 \citation{zolfaghari2016practical}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Overhead of different operations\relax }}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Overhead of different operations performed by OCDN{}.\relax }}{12}}
 \newlabel{fig:overhead2}{{11}{12}}
 \@writefile{toc}{\contentsline {section}{\numberline {IX}Discussion}{12}}
 \newlabel{sec:discussion}{{IX}{12}}
@@ -131,7 +131,6 @@
 \@writefile{toc}{\contentsline {section}{\numberline {X}Related Work}{12}}
 \newlabel{sec:related}{{X}{12}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0a}Securing CDNs}{12}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0b}Security Issues in CDNs}{12}}
 \citation{jung2002flash}
 \citation{su2008thinning}
 \citation{triukose2009content}
@@ -160,11 +159,12 @@
 \bibcite{medium_copyright}{11}
 \bibcite{eff_copyright}{12}
 \bibcite{techdirt_copyright}{13}
-\bibcite{stack_copyright}{14}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0b}Security Issues in CDNs}{13}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0c}Measuring and Mapping CDNs}{13}}
 \@writefile{toc}{\contentsline {section}{\numberline {XI}Conclusion}{13}}
 \newlabel{sec:conclusion}{{XI}{13}}
 \@writefile{toc}{\contentsline {section}{References}{13}}
+\bibcite{stack_copyright}{14}
 \bibcite{nytimes_hatespeech}{15}
 \bibcite{medium_sesta}{16}
 \bibcite{khattak2016you}{17}
