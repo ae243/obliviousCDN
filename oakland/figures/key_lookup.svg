@@ -15,9 +15,22 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="key_lookup.svg">
   <defs
      id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         id="path4498"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) translate(1,0)" />
+    </marker>
     <marker
        inkscape:stockid="Arrow2Lend"
        orient="auto"
@@ -1768,9 +1781,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.66"
-     inkscape:cx="584.75946"
-     inkscape:cy="459.39394"
+     inkscape:zoom="0.68002117"
+     inkscape:cx="526.18109"
+     inkscape:cy="372.04724"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1795,7 +1808,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3034,94 +3047,119 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4626"
-       style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(-20,182.55341)"><flowRegion
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(10.5625,186.33345)"><flowRegion
          id="flowRegion4628"><rect
            id="rect4630"
            width="442.85715"
            height="94.285713"
            x="71.428574"
            y="604.09448"
-           style="font-size:32px" /></flowRegion><flowPara
+           style="font-size:20px" /></flowRegion><flowPara
          id="flowPara4632">Exit Proxy</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4634"
-       style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(440,-183.16087)"><flowRegion
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(482.84375,-160.22905)"><flowRegion
          id="flowRegion4636"><rect
            id="rect4638"
            width="377.14285"
            height="102.85714"
            x="57.142857"
            y="592.66589"
-           style="font-size:32px" /></flowRegion><flowPara
+           style="font-size:20px" /></flowRegion><flowPara
          id="flowPara4640">Authoritative DNS</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4740"
-       style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(482.10156,345.41056)"><flowRegion
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(514.5625,342.6147)"><flowRegion
          id="flowRegion4742"><rect
            id="rect4744"
            width="574.28571"
            height="68.571426"
            x="51.42857"
            y="609.80878"
-           style="font-size:32px" /></flowRegion><flowPara
+           style="font-size:20px" /></flowRegion><flowPara
          id="flowPara4746">Origin Server</flowPara></flowRoot>    <path
-       style="fill:none;stroke:#000000;stroke-width:1.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
        d="m 620,444.09448 0,-100"
        id="path4750"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
        d="m 540,304.09448 -320,100"
        id="path4752"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
-       d="m 140,304.09448 c 20,-100 400,-100 400,-100 l 0,0 0,0"
-       id="path4754"
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 140,304.09448 0,-80"
+       id="path3516"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 520,224.09448 -380,0"
+       id="path3518"
+       inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)" />
     <flowRoot
        xml:space="preserve"
-       id="flowRoot6332"
-       style="font-size:28px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(406.65625,122.17196)"><flowRegion
-         id="flowRegion6334"><rect
-           id="rect6336"
-           width="124.24242"
-           height="51.515152"
-           x="233.33333"
-           y="562.27631"
-           style="font-size:28px" /></flowRegion><flowPara
-         id="flowPara6338">(1)</flowPara></flowRoot>    <flowRoot
+       id="flowRoot4922"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(0,308.2677)"><flowRegion
+         id="flowRegion4924"><rect
+           id="rect4926"
+           width="344.10693"
+           height="67.644951"
+           x="642.62708"
+           y="372.04724"
+           style="font-size:20px" /></flowRegion><flowPara
+         id="flowPara4928">Publisher publishes {k}<flowSpan
+   style="font-size:65%;baseline-shift:sub"
+   id="flowSpan4930">PK_exit</flowSpan> in DNS SRV record</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
-       id="flowRoot6340"
-       style="font-size:28px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(53.9375,-70.234294)"><flowRegion
-         id="flowRegion6342"><rect
-           id="rect6344"
-           width="236.36363"
-           height="89.393936"
-           x="206.06061"
-           y="554.70056"
-           style="font-size:28px" /></flowRegion><flowPara
-         id="flowPara6346">(2)</flowPara></flowRoot>    <flowRoot
+       id="flowRoot4932"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(109.40625,-137.85405)"><flowRegion
+         id="flowRegion4934"><rect
+           id="rect4936"
+           width="460.00772"
+           height="79.941086"
+           x="70.586037"
+           y="610.27515"
+           style="font-size:20px" /></flowRegion><flowPara
+         id="flowPara4938"> (1) DNS lookup, sending </flowPara><flowPara
+         id="flowPara4950">self-certifying ID</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
-       id="flowRoot6348"
-       style="font-size:28px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(178.1875,85.921956)"><flowRegion
-         id="flowRegion6350"><rect
-           id="rect6352"
-           width="263.63635"
-           height="96.969696"
-           x="181.81818"
-           y="586.51874"
-           style="font-size:28px" /></flowRegion><flowPara
-         id="flowPara6354">(3)</flowPara></flowRoot>  </g>
+       id="flowRoot4940"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(254.71875,88.208449)"><flowRegion
+         id="flowRegion4942"><rect
+           id="rect4944"
+           width="291.16742"
+           height="88.232544"
+           x="85.291466"
+           y="588.21698"
+           style="font-size:20px" /></flowRegion><flowPara
+         id="flowPara4946">SRV {k}<flowSpan
+   style="font-size:65.00091553%;baseline-shift:sub"
+   id="flowSpan4948">PK_exit</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4952"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-2.90625,306.27095)"><flowRegion
+         id="flowRegion4954"><rect
+           id="rect4956"
+           width="251.46275"
+           height="79.409294"
+           x="702.91931"
+           y="166.1713"
+           style="font-size:20px" /></flowRegion><flowPara
+         id="flowPara4958">(2) Certifies exit proxy is responsible for this server's content</flowPara></flowRoot>  </g>
 </svg>
