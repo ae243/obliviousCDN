@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 13:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -886,7 +886,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 34--36
  []
 
 [2 <./figures/plain_cdn_new2.pdf>]) (./threat_model.tex [3]) (./design.tex
-[4] <./figures/ocdn_overview_new2.pdf, id=277, 788.91154pt x 423.17014pt>
+<./figures/ocdn_overview_new2.pdf, id=273, 788.91154pt x 423.17014pt>
 File: ./figures/ocdn_overview_new2.pdf Graphic file (type pdf)
 
 <use ./figures/ocdn_overview_new2.pdf>
@@ -898,7 +898,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 48--50
  [][] 
  []
 
-[5 <./figures/ocdn_overview_new2.pdf>]) (./protocol.tex
+[4] [5 <./figures/ocdn_overview_new2.pdf>]) (./protocol.tex
 <./figures/publishing_content_new2.pdf, id=694, 671.76979pt x 244.78076pt>
 File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 
@@ -952,19 +952,20 @@ df
 
 pdfTeX warning: pdflatex (file ./figures/request_diagram_complex.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
+> <./figures/key_lookup.pdf
+
+pdfTeX warning: pdflatex (file ./figures/key_lookup.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
 >]) (./implementation.tex
-<./figures/implementation.pdf, id=857, 759.92746pt x 339.19672pt>
+<./figures/implementation.pdf, id=999, 759.92746pt x 339.19672pt>
 File: ./figures/implementation.pdf Graphic file (type pdf)
 
 <use ./figures/implementation.pdf>
 Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
 (pdftex.def)             Requested size: 232.19843pt x 103.63858pt.
- [9 <./figures/key_lookup.pdf> <./figures/implementation.pdf
-
-pdfTeX warning: pdflatex (file ./figures/implementation.pdf): PDF inclusion: mu
-ltiple pdfs with page group included in a single page
->]) (./security.tex) (./performance.tex [10]
-<./figures/TTFB.pdf, id=1141, 325.215pt x 216.81pt>
+ [9 <./figures/implementation.pdf>])
+(./security.tex) (./performance.tex
+<./figures/TTFB.pdf, id=1138, 325.215pt x 216.81pt>
 File: ./figures/TTFB.pdf Graphic file (type pdf)
  <use ./figures/TTFB.pdf>
 Package pdftex.def Info: ./figures/TTFB.pdf used on input line 22.
@@ -974,7 +975,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<./figures/completion.pdf, id=1142, 325.215pt x 216.81pt>
+[10] <./figures/completion.pdf, id=1142, 325.215pt x 216.81pt>
 File: ./figures/completion.pdf Graphic file (type pdf)
 
 <use ./figures/completion.pdf>
@@ -1007,7 +1008,10 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 66--67
  [][] 
  []
 
-) (./discussion.tex [11 <./figures/TTFB.pdf> <./figures/completion.pdf
+
+Underfull \vbox (badness 2443) has occurred while \output is active []
+
+ [11 <./figures/TTFB.pdf> <./figures/completion.pdf
 
 pdfTeX warning: pdflatex (file ./figures/completion.pdf): PDF inclusion: multip
 le pdfs with page group included in a single page
@@ -1015,92 +1019,74 @@ le pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figures/Latency.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
->]) (./related_work.tex
+> <./figures/loggrouped.pdf
+
+pdfTeX warning: pdflatex (file ./figures/loggrouped.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+>]) (./discussion.tex) (./related_work.tex
 Underfull \hbox (badness 10000) in paragraph at lines 24--30
 
  []
 
-[12 <./figures/loggrouped.pdf>]
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 49--52
 
  []
 
 ) (./conclusion.tex) (./bare_conf.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
-[]\OT1/ptm/m/n/8 ``2nd Cir-cuit de-nies re-hear-ing in Mi-crosoft Ire-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
-\OT1/ptm/m/n/8 land case by an evenly di-vided vote,'' $https : / / www .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
-\OT1/ptm/m/n/8 washingtonpost . com / news / volokh-[]conspiracy / wp / 2017 / 
-01 / 24 /
- []
-
-
-Overfull \hbox (36.4533pt too wide) in paragraph at lines 25--28
-\OT1/ptm/m/n/8 2nd-[]circuit-[]denies-[]rehearing-[]in-[]microsoft-[]ireland-[]
-case-[]by-[]an-[]evenly-[]divided-[]vote /
- []
-
-
-Underfull \hbox (badness 1755) in paragraph at lines 35--38
+Underfull \hbox (badness 1755) in paragraph at lines 25--28
 []\OT1/ptm/m/n/8 ``EU Pro-posal for a Di-rec-tive of The Eu-ro-pean Par-lia-men
 t and
  []
 
 
-Underfull \hbox (badness 4940) in paragraph at lines 35--38
+Underfull \hbox (badness 4940) in paragraph at lines 25--28
 \OT1/ptm/m/n/8 of the Coun-cil on Copy-right in the Dig-i-tal Sin-gle Mar-ket,'
 '
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--38
+Underfull \hbox (badness 10000) in paragraph at lines 25--28
 \OT1/ptm/m/n/8 2016, $https : / / ec . europa . eu / transparency / regdoc / re
 p / 1 / 2016 / EN /
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 51--53
+Underfull \hbox (badness 5374) in paragraph at lines 41--43
 []\OT1/ptm/m/n/8 ``Akamai: Facts & Fig-ures,'' $https : / / www . akamai . com 
 / us / en / about /
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 55--58
+Underfull \hbox (badness 5374) in paragraph at lines 45--48
 []\OT1/ptm/m/n/8 ``Akamai Em-pow-ers Op-er-a-tors to De-ploy Their Own Con-tent
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--58
+Underfull \hbox (badness 10000) in paragraph at lines 45--48
 \OT1/ptm/m/n/8 Dis-tri-bu-tion Net-work,'' $https : / / www . akamai . com / us
  / en / resources /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--62
+Underfull \hbox (badness 10000) in paragraph at lines 50--52
 []\OT1/ptm/m/n/8 ``CREDO and Cloud-flare Ar-gue Against Na-tional Se-cu-rity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--62
+Underfull \hbox (badness 10000) in paragraph at lines 50--52
 \OT1/ptm/m/n/8 Let-ter Gag Or-ders,'' $https : / / techcrunch . com / 2017 / 03
  / 23 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--71
+Underfull \hbox (badness 10000) in paragraph at lines 59--61
 []\OT1/ptm/m/n/8 ``How the NSA & FBI made Face-book the per-fect
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--71
+Underfull \hbox (badness 10000) in paragraph at lines 59--61
 \OT1/ptm/m/n/8 mass surveil-lance tool.'' $https : / / venturebeat . com / 2014
  / 05 / 15 /
  []
@@ -1109,42 +1095,80 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--75
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
 []\OT1/ptm/m/n/8 ``Content De-liv-ery Net-works Ar-ent No-to-ri-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--75
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
 \OT1/ptm/m/n/8 ous Mar-kets,'' $https : / / medium . com / niskanen-[]center /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--79
+Underfull \hbox (badness 10000) in paragraph at lines 67--69
 []\OT1/ptm/m/n/8 ``Content De-liv-ery Net-works (CDNs),'' $https : / / www . e
  . org /
  []
 
 
-Underfull \hbox (badness 3735) in paragraph at lines 81--84
+Underfull \hbox (badness 3735) in paragraph at lines 71--74
 []\OT1/ptm/m/n/8 ``Court Says RIAA Can Just Tell Cloud-flare Any Site Is A
  []
 
 
-Underfull \hbox (badness 2837) in paragraph at lines 81--84
+Underfull \hbox (badness 2837) in paragraph at lines 71--74
 \OT1/ptm/m/n/8 Groove-shark Clone... And Cloud-flare Has 48 Hours To Dump
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--84
+Underfull \hbox (badness 10000) in paragraph at lines 71--74
 \OT1/ptm/m/n/8 Them,'' $https : / / www . techdirt . com / articles / 20151214 
 / 17392833079 /
  []
 
 
-Overfull \hbox (125.75652pt too wide) in paragraph at lines 81--84
+Overfull \hbox (125.75652pt too wide) in paragraph at lines 71--74
 \OT1/ptm/m/n/8 court-[]says-[]riaa-[]can-[]just-[]tell-[]cloud^^Mare-[]any-[]si
 te-[]is-[]grooveshark-[]clone-[]cloud^^Mare-[]has-[]48-[]hours-[]to-[]dump-[]th
 em .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
+[]\OT1/ptm/m/n/8 ``District court rules against Cloud-flare in anti-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
+\OT1/ptm/m/n/8 piracy suit,'' $https : / / thestack . com / security / 2017 / 0
+3 / 29 /
+ []
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 80--82
+[]\OT1/ptm/m/n/8 ``Delete Hate Speech or Pay Up, Ger-many Tells So-cial Me-dia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
+\OT1/ptm/m/n/8 Com-pa-nies,'' $https : / / www . nytimes . com / 2017 / 06 / 30
+ / business /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--86
+[]\OT1/ptm/m/n/8 ``Balancing Child Pro-tec-tion and Dig-i-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--86
+\OT1/ptm/m/n/8 tal Rights,'' $https : / / medium . com / @jmalcolm /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--96
+[]\OT1/ptm/m/n/8 ``The Trou-ble with Tor,'' $https : / / blog . cloud^^Mare . c
+om /
  []
 
 
@@ -1152,50 +1176,12 @@ Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
-[]\OT1/ptm/m/n/8 ``District court rules against Cloud-flare in anti-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
-\OT1/ptm/m/n/8 piracy suit,'' $https : / / thestack . com / security / 2017 / 0
-3 / 29 /
- []
-
-
-Underfull \hbox (badness 2134) in paragraph at lines 90--92
-[]\OT1/ptm/m/n/8 ``Delete Hate Speech or Pay Up, Ger-many Tells So-cial Me-dia
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--92
-\OT1/ptm/m/n/8 Com-pa-nies,'' $https : / / www . nytimes . com / 2017 / 06 / 30
- / business /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 94--96
-[]\OT1/ptm/m/n/8 ``Balancing Child Pro-tec-tion and Dig-i-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 94--96
-\OT1/ptm/m/n/8 tal Rights,'' $https : / / medium . com / @jmalcolm /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
-[]\OT1/ptm/m/n/8 ``The Trou-ble with Tor,'' $https : / / blog . cloud^^Mare . c
-om /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--200
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
 []\OT1/ptm/m/n/8 ``The Zettabyte Era -- Trends and Anal-y-sis -- Cisco,''
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--200
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
 \OT1/ptm/m/n/8 http : / / www . cisco . com / c / en / us / solutions / collate
 ral / service-[]provider /
  []
@@ -1212,12 +1198,16 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
+
+Overfull \vbox (1.23193pt too high) has occurred while \output is active []
+
+
 [14] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 17385 strings out of 493014
- 328897 string characters out of 6133351
- 394581 words of memory out of 5000000
- 20532 multiletter control sequences out of 15000+600000
+ 17382 strings out of 493014
+ 328839 string characters out of 6133351
+ 387573 words of memory out of 5000000
+ 20529 multiletter control sequences out of 15000+600000
  42689 words of font info for 88 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  55i,10n,77p,618b,553s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1231,10 +1221,10 @@ fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 al/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texliv
 e/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/tex
 mf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (14 pages, 1448159 bytes).
+Output written on bare_conf.pdf (14 pages, 1447153 bytes).
 PDF statistics:
- 1361 PDF objects out of 1440 (max. 8388607)
- 990 compressed objects within 10 object streams
+ 1360 PDF objects out of 1440 (max. 8388607)
+ 989 compressed objects within 10 object streams
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 

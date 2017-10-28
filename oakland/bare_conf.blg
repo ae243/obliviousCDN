@@ -11,50 +11,49 @@ Database file #1: sigproc.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty journal in arnbak2015loopholes
 Warning--empty author in eu-copyright
 Warning--empty journal in eu-copyright
 
 Done.
-You've used 43 entries,
+You've used 41 entries,
             4087 wiz_defined-function locations,
-            1034 strings with 15851 characters,
-and the built_in function-call counts, 24871 in all, are:
-= -- 1819
-> -- 567
+            1027 strings with 15393 characters,
+and the built_in function-call counts, 24248 in all, are:
+= -- 1777
+> -- 557
 < -- 151
-+ -- 310
-- -- 100
-* -- 1079
-:= -- 3604
-add.period$ -- 99
-call.type$ -- 43
-change.case$ -- 44
++ -- 305
+- -- 98
+* -- 1058
+:= -- 3502
+add.period$ -- 95
+call.type$ -- 41
+change.case$ -- 42
 chr.to.int$ -- 378
-cite$ -- 46
-duplicate$ -- 1925
-empty$ -- 2348
-format.name$ -- 125
-if$ -- 5847
+cite$ -- 43
+duplicate$ -- 1864
+empty$ -- 2281
+format.name$ -- 122
+if$ -- 5707
 int.to.chr$ -- 0
-int.to.str$ -- 43
-missing$ -- 370
-newline$ -- 152
-num.names$ -- 27
-pop$ -- 998
+int.to.str$ -- 41
+missing$ -- 358
+newline$ -- 146
+num.names$ -- 26
+pop$ -- 960
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1957
+skip$ -- 1906
 stack$ -- 0
-substring$ -- 927
-swap$ -- 1335
+substring$ -- 925
+swap$ -- 1307
 text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 43
-warning$ -- 3
-while$ -- 91
-width$ -- 45
-write$ -- 362
-(There were 3 warnings)
+type$ -- 41
+warning$ -- 2
+while$ -- 90
+width$ -- 43
+write$ -- 349
+(There were 2 warnings)
