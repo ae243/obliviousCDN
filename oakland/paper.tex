@@ -1,0 +1,76 @@
+\documentclass[10pt,twocolumn]{confpaper}
+
+%%%%%%%%%%%%%%%%%%%%  INCLUDES  %%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pifont}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%%%%%%%%%%%%%%%%%%%%  LOCALS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\system}{{\em OCDN}}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\graphicspath{ {./figures/} }
+\newcommand{\annie}[1]{\emph{\color{blue}(#1)}}
+
+
+%%%%%%%%%%%%%%%%%%%%  TITLE/AUTHORS  %%%%%%%%%%%%%%%%%%%%%
+
+\date{}
+\title{\LARGE{\bf OCDN: Oblivious Content Distribution Networks}}
+\author{
+\aufnt{\AUTHORS} \\
+\affaddr{Affiliation}
+}
+
+%%%%%%%%%%%%%%%%%%%%  START OF DOCUMENT  %%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%\AcmCopyright
+%\ToAppear
+
+\begin{sloppypar}
+
+
+
+
+\input{abstract}
+\ifthenelse{\equal{\onlyAbstract}{no}}{% !onlyAbstract
+
+
+\input{intro}
+\input{background}
+\input{threat_model}
+\input{design}
+\input{protocol}
+\input{implementation}
+\input{security}
+\input{performance}
+\input{discussion}
+\input{related_work}
+\balance\input{conclusion}\label{lastpage}
+
+\end{sloppypar}
+
+%\vspace{-0.1in}
+%\section*{Acknowledgments}
+% Comments for people we need to acknowledge in the final version.
+
+
+\small
+%\setlength{\bibsep}{0pt}
+\setlength{\parskip}{-1pt}
+\setlength{\itemsep}{-1pt}
+% \footnotesize % SPACE
+\balance\bibliography{paper}
+\bibliographystyle{abbrv}
+%\bibliographystyle{abbrvnat_noaddr} % SPACE
+%\theendnotes % ENDNOTES
+}{% onlyAbstract
+}
+\pagebreak
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%  END OF DOCUMENT  %%%%%%%%%%%%%%%%%%%%
