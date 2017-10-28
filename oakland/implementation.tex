@@ -4,8 +4,19 @@
 We have implemented a prototype of \system{} to demonstrate its feasibility and 
 evaluate its performance.  Our implementation allows a client to send a request 
 for content through an exit proxy, which will fetch the corresponding 
-encrypted content.  Here we will discuss each component---client proxy, exit proxy, 
+encrypted content.  Figure \ref{fig:impl} shows our prototype; the solid line represents
+how \system{} communicates between the components, and the dotted line represents how 
+a traditional CDN would communicate in our prototype.  Here we will discuss each component---client proxy, exit proxy, 
 and CDN---separately, and how they fit together.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.45\textwidth]{implementation}
+\caption{The implementation of our \system{} prototype.  The solid line represents
+how \system{} communicates between the components; the dotted line represents how 
+a traditional CDN would communicate.}
+\label{fig:impl}
+\end{figure}
 
 {\bf CDN.} As the design for \system{} requires encrypted content and identifiers 
 to be stored in the CDN, we cannot request content from real-world CDNs.  Additionally, 

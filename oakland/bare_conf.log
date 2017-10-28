@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  27 OCT 2017 20:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 09:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -961,8 +961,16 @@ PDF inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figures/key_lookup_new.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
->]) (./implementation.tex) (./security.tex [9]) (./performance.tex
-<./figures/TTFB.pdf, id=1230, 325.215pt x 216.81pt>
+>]) (./implementation.tex
+<./figures/implementation.pdf, id=1227, 759.92746pt x 339.19672pt>
+File: ./figures/implementation.pdf Graphic file (type pdf)
+
+<use ./figures/implementation.pdf>
+Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
+(pdftex.def)             Requested size: 232.19843pt x 103.63858pt.
+ [9 <./figures/implementation.pdf>])
+(./security.tex) (./performance.tex
+<./figures/TTFB.pdf, id=1366, 325.215pt x 216.81pt>
 File: ./figures/TTFB.pdf Graphic file (type pdf)
  <use ./figures/TTFB.pdf>
 Package pdftex.def Info: ./figures/TTFB.pdf used on input line 8.
@@ -972,7 +980,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 8--9
  [][] 
  []
 
-<./figures/completion.pdf, id=1231, 325.215pt x 216.81pt>
+<./figures/completion.pdf, id=1367, 325.215pt x 216.81pt>
 File: ./figures/completion.pdf Graphic file (type pdf)
 
 <use ./figures/completion.pdf>
@@ -983,7 +991,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
  [][] 
  []
 
-<./figures/Latency.pdf, id=1232, 433.62pt x 289.08pt>
+<./figures/Latency.pdf, id=1368, 433.62pt x 289.08pt>
 File: ./figures/Latency.pdf Graphic file (type pdf)
 
 <use ./figures/Latency.pdf>
@@ -994,7 +1002,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<./figures/loggrouped.pdf, id=1233, 398.00568pt x 361.05177pt>
+<./figures/loggrouped.pdf, id=1369, 398.00568pt x 361.05177pt>
 File: ./figures/loggrouped.pdf Graphic file (type pdf)
 
 <use ./figures/loggrouped.pdf>
@@ -1005,20 +1013,21 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
-) (./discussion.tex [10 <./figures/TTFB.pdf> <./figures/completion.pdf
+) (./discussion.tex [10 <./figures/TTFB.pdf>]) (./related_work.tex [11 <./figur
+es/completion.pdf> <./figures/Latency.pdf
 
-pdfTeX warning: pdflatex (file ./figures/completion.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
->]) (./related_work.tex
-Underfull \hbox (badness 10000) in paragraph at lines 24--30
-
- []
-
-[11 <./figures/Latency.pdf> <./figures/loggrouped.pdf
+pdfTeX warning: pdflatex (file ./figures/Latency.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+> <./figures/loggrouped.pdf
 
 pdfTeX warning: pdflatex (file ./figures/loggrouped.pdf): PDF inclusion: multip
 le pdfs with page group included in a single page
 >]
+Underfull \hbox (badness 10000) in paragraph at lines 24--30
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 49--52
 
  []
@@ -1064,6 +1073,10 @@ p / 1 / 2016 / EN /
  []
 
 
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[12]
 Underfull \hbox (badness 5374) in paragraph at lines 51--53
 []\OT1/ptm/m/n/8 ``Akamai: Facts & Fig-ures,'' $https : / / www . akamai . com 
 / us / en / about /
@@ -1146,10 +1159,6 @@ em .
  []
 
 
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
-
-[12]
 Underfull \hbox (badness 10000) in paragraph at lines 86--88
 []\OT1/ptm/m/n/8 ``District court rules against Cloud-flare in anti-
  []
@@ -1216,10 +1225,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 17380 strings out of 493014
- 328817 string characters out of 6133351
- 394571 words of memory out of 5000000
- 20527 multiletter control sequences out of 15000+600000
+ 17385 strings out of 493014
+ 328962 string characters out of 6133351
+ 404581 words of memory out of 5000000
+ 20532 multiletter control sequences out of 15000+600000
  42689 words of font info for 88 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  55i,10n,77p,618b,553s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1233,10 +1242,10 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on bare_conf.pdf (13 pages, 1453267 bytes).
+Output written on bare_conf.pdf (13 pages, 1507209 bytes).
 PDF statistics:
- 1450 PDF objects out of 1728 (max. 8388607)
- 1078 compressed objects within 11 object streams
+ 1586 PDF objects out of 1728 (max. 8388607)
+ 1193 compressed objects within 12 object streams
  0 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
