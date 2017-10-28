@@ -128,8 +128,8 @@ existing systems, such as Tor, only protect the client.
 
 \subsection{Performance Considerations}
 As one of the primary functions of a CDN is to make accessing content faster and more 
-reliable, \system{} should not hinder performance significantly.  The performance of \system{} will 
+reliable, \system{} should consider performance in design decisions.  The performance of \system{} will 
 be worse than that of traditional CDNs because it is performing more operations on content, but \system{} 
-is offering confidentiality, whereas traditional CDNs are not. Therefore, the system can incur some small overhead, 
-but not so much that it defeats the use of a CDN in the first place.  Additionally, \system{} should be able to 
-scale with number of clients using the system, as well as with the growing number of web pages on the internet.
+is offering confidentiality, whereas traditional CDNs are not.  \system{} should scale linearly with 
+increasing file sizes; additionally, it should be able to 
+scale with the number of clients using the system, as well as with the growing number of web pages on the internet.
