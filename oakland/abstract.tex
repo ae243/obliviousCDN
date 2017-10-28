@@ -1,0 +1,19 @@
+\begin{abstract}
+Recent episodes of governments' attempts to access user data
+have drawn increased concern to where data belonging to or about a user
+(including a user's access patterns) is located. The location of user data
+can affect which governing authorities can access it. Because Content
+Distribution Networks (CDNs) can cache content in many different countries,
+often without regard to the owner of the data, a user's data may reside in a
+country that differs from their own. Many  battles over stored data privacy
+have played out in the courts, with legal opinions rendering essentially
+ambiguous outcomes thus far. This paper offers a technical contribution to
+this tussle.  We design and implement \system{}, a system that provides {\em
+oblivious content distribution}, a property that allows CDNs to provide the
+performance benefits of content distribution and caching, while preventing the
+CDN from knowing what content is stored on the CDN or who is accessing
+it. These properties of \system{} provide protections for both the client, the
+content owner, and the CDN operator. We design a protocol for publishing and 
+retrieving content using \system{} and, through a prototype implementation and
+evaluation, show that the performance overhead is negligible.
+\end{abstract}

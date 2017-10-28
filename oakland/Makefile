@@ -1,4 +1,4 @@
-TARGET=bare_conf
+TARGET=paper
 all: pdf
 
 pdf:
