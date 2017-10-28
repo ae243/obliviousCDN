@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 12:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  28 OCT 2017 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -967,52 +967,51 @@ File: ./figures/implementation.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
 (pdftex.def)             Requested size: 232.19843pt x 103.63858pt.
  [9 <./figures/implementation.pdf>])
-(./security.tex) (./performance.tex
-<./figures/TTFB.pdf, id=1138, 325.215pt x 216.81pt>
+(./security.tex) (./performance.tex [10]
+<./figures/TTFB.pdf, id=1141, 325.215pt x 216.81pt>
 File: ./figures/TTFB.pdf Graphic file (type pdf)
  <use ./figures/TTFB.pdf>
-Package pdftex.def Info: ./figures/TTFB.pdf used on input line 8.
+Package pdftex.def Info: ./figures/TTFB.pdf used on input line 22.
 (pdftex.def)             Requested size: 258.0pt x 172.01245pt.
-
-Overfull \hbox (6.0pt too wide) in paragraph at lines 8--9
- [][] 
- []
-
-<./figures/completion.pdf, id=1139, 325.215pt x 216.81pt>
-File: ./figures/completion.pdf Graphic file (type pdf)
-
-<use ./figures/completion.pdf>
-Package pdftex.def Info: ./figures/completion.pdf used on input line 15.
-(pdftex.def)             Requested size: 258.0pt x 172.01245pt.
-
-Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
- [][] 
- []
-
-<./figures/Latency.pdf, id=1140, 433.62pt x 289.08pt>
-File: ./figures/Latency.pdf Graphic file (type pdf)
-
-<use ./figures/Latency.pdf>
-Package pdftex.def Info: ./figures/Latency.pdf used on input line 22.
-(pdftex.def)             Requested size: 258.0pt x 172.00693pt.
 
 Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<./figures/loggrouped.pdf, id=1141, 398.00568pt x 361.05177pt>
-File: ./figures/loggrouped.pdf Graphic file (type pdf)
+<./figures/completion.pdf, id=1142, 325.215pt x 216.81pt>
+File: ./figures/completion.pdf Graphic file (type pdf)
 
-<use ./figures/loggrouped.pdf>
-Package pdftex.def Info: ./figures/loggrouped.pdf used on input line 29.
-(pdftex.def)             Requested size: 258.0pt x 234.0473pt.
+<use ./figures/completion.pdf>
+Package pdftex.def Info: ./figures/completion.pdf used on input line 35.
+(pdftex.def)             Requested size: 258.0pt x 172.01245pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
+Overfull \hbox (6.0pt too wide) in paragraph at lines 35--36
  [][] 
  []
 
-) (./discussion.tex [10]) (./related_work.tex [11 <./figures/TTFB.pdf> <./figur
-es/completion.pdf
+<./figures/Latency.pdf, id=1143, 433.62pt x 289.08pt>
+File: ./figures/Latency.pdf Graphic file (type pdf)
+
+<use ./figures/Latency.pdf>
+Package pdftex.def Info: ./figures/Latency.pdf used on input line 51.
+(pdftex.def)             Requested size: 258.0pt x 172.00693pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 51--52
+ [][] 
+ []
+
+<./figures/loggrouped.pdf, id=1144, 398.00568pt x 361.05177pt>
+File: ./figures/loggrouped.pdf Graphic file (type pdf)
+
+<use ./figures/loggrouped.pdf>
+Package pdftex.def Info: ./figures/loggrouped.pdf used on input line 65.
+(pdftex.def)             Requested size: 258.0pt x 234.0473pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 65--66
+ [][] 
+ []
+
+) (./discussion.tex [11 <./figures/TTFB.pdf> <./figures/completion.pdf
 
 pdfTeX warning: pdflatex (file ./figures/completion.pdf): PDF inclusion: multip
 le pdfs with page group included in a single page
@@ -1020,21 +1019,21 @@ le pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figures/Latency.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
-> <./figures/loggrouped.pdf
-
-pdfTeX warning: pdflatex (file ./figures/loggrouped.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
->]
+>]) (./related_work.tex
 Underfull \hbox (badness 10000) in paragraph at lines 24--30
 
  []
 
-
+[12 <./figures/loggrouped.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 49--52
 
  []
 
-) (./conclusion.tex) (./bare_conf.bbl
+) (./conclusion.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
+(./bare_conf.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 25--28
 []\OT1/ptm/m/n/8 ``2nd Cir-cuit de-nies re-hear-ing in Mi-crosoft Ire-
  []
@@ -1057,10 +1056,6 @@ case-[]by-[]an-[]evenly-[]divided-[]vote /
  []
 
 
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
-
-[12]
 Underfull \hbox (badness 1755) in paragraph at lines 35--38
 []\OT1/ptm/m/n/8 ``EU Pro-posal for a Di-rec-tive of The Eu-ro-pean Par-lia-men
 t and
@@ -1172,6 +1167,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--88
  []
 
 
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[13]
 Underfull \hbox (badness 2134) in paragraph at lines 90--92
 []\OT1/ptm/m/n/8 ``Delete Hate Speech or Pay Up, Ger-many Tells So-cial Me-dia
  []
@@ -1221,11 +1220,15 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[13] (./bare_conf.aux) ) 
+
+Overfull \vbox (1.73193pt too high) has occurred while \output is active []
+
+
+[14] (./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
  17385 strings out of 493014
  328897 string characters out of 6133351
- 409581 words of memory out of 5000000
+ 392581 words of memory out of 5000000
  20532 multiletter control sequences out of 15000+600000
  42689 words of font info for 88 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1240,10 +1243,10 @@ fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 al/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texliv
 e/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/tex
 mf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (13 pages, 1444261 bytes).
+Output written on bare_conf.pdf (14 pages, 1447966 bytes).
 PDF statistics:
- 1357 PDF objects out of 1440 (max. 8388607)
- 987 compressed objects within 10 object streams
+ 1361 PDF objects out of 1440 (max. 8388607)
+ 990 compressed objects within 10 object streams
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
