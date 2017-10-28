@@ -1,19 +1,21 @@
-\begin{abstract}
-Recent episodes of governments' attempts to access user data
-have drawn increased concern to where data belonging to or about a user
-(including a user's access patterns) is located. The location of user data
-can affect which governing authorities can access it. Because Content
-Distribution Networks (CDNs) can cache content in many different countries,
-often without regard to the owner of the data, a user's data may reside in a
-country that differs from their own. Many  battles over stored data privacy
-have played out in the courts, with legal opinions rendering essentially
-ambiguous outcomes thus far. This paper offers a technical contribution to
-this tussle.  We design and implement \system{}, a system that provides {\em
-oblivious content distribution}, a property that allows CDNs to provide the
-performance benefits of content distribution and caching, while preventing the
-CDN from knowing what content is stored on the CDN or who is accessing
-it. These properties of \system{} provide protections for both the client, the
-content owner, and the CDN operator. We design a protocol for publishing and 
-retrieving content using \system{} and, through a prototype implementation and
-evaluation, show that the performance overhead is negligible.
+\begin{abstract}  
+As publishers increasingly use Content Distribution Networks
+(CDNs) to distribute content across geographically diverse networks of
+proxies, CDNs themselves are becoming unwitting targets of requests for both
+access to user data and content takedown. From copyright infringement to
+moderation of online speech, CDNs have found themselves at the forefront of a
+many recent legal quandaries. At the heart of the tension, however, is the fact
+that CDNs have rich information both about the content they are serving and the
+users who are requesting that content. 
+This paper offers a technical contribution that relevant to this ongoing tension
+with design of an Oblivious CDN (OCDN), a CDN that is both compatible with the existing
+Web ecosystem of publishers and
+clients and hides from the CDN both the content it is serving and the users
+who are requesting that content. \system{} is compatible with the way that publishers
+currently host content on CDNs. Publishers can use multiple CDNs to publish content
+via \system{}; clients retrieve content through a peer-to-peer anonymizing network
+of proxies.
+Our prototype implementation and
+evaluation of \system{} show that the system can obfuscate both content and clients
+from the CDN operator while still delivering content with good performance.
 \end{abstract}
