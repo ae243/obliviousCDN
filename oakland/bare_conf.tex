@@ -324,6 +324,9 @@
 \usepackage{algorithm}
 \usepackage[sort]{cite}
 \usepackage{balance}
+\usepackage{svg}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \graphicspath{ {./figures/} }
 
@@ -403,10 +406,7 @@ often without regard to the owner of the data, a user's data may reside in a
 country that differs from their own. Many  battles over stored data privacy
 have played out in the courts, with legal opinions rendering essentially
 ambiguous outcomes thus far. This paper offers a technical contribution to
-this tussle. We first analyze the privacy  issues a CDN faces in the presence
-of a government (or third party) who would wish to access information about what
-data is being stored on the CDN and who is accessing it. To mitigate the
-resulting threats, we design and implement \system{}, a system that provides {\em
+this tussle.  We design and implement \system{}, a system that provides {\em
 oblivious content distribution}, a property that allows CDNs to provide the
 performance benefits of content distribution and caching, while preventing the
 CDN from knowing what content is stored on the CDN or who is accessing

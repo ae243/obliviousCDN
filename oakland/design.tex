@@ -1,7 +1,7 @@
 \section{Design}
 \label{sec:design}
 We describe the evolution of the design of \system{} starting with an initial strawman approach.  We then 
-alter the design as we address each of the design goals discussed in the previous section (and in Table \ref{tab:design_goals}), which brings us 
+alter the design to address each of the design goals discussed in the previous section, which brings us 
 to a complete design.
 
 \subsection{Strawman: Hiding Information From CDN}
@@ -41,17 +41,15 @@ This strawman approach obfuscates content from the viewpoint of the CDN, which a
 to claim plausible deniability when served with a subpoena.  Despite only caching encrypted and obfuscated 
 content and identifiers, the CDN still has knowledge of which clients are requesting any content and how often 
 they are requesting content.  Unfortunately, this approach raises 
-many questions: are anonymizing proxies/VPNs trustworthy?, should clients be trusted to know $k$?, 
-can any jurisdiction still subpoena the CDN for information (presumably the CDN has locations in many 
-countries and clients in many countries)?, and if a subpoena is served, what is learned?
+ questions: are anonymizing proxies/VPNs trustworthy?, should clients be trusted to know $k$?
 
-\begin{figure*}[t!]
+\begin{figure}[t!]
 \centering
-\includegraphics[width=.9\textwidth]{full_ocd_system}
+\includegraphics[width=.5\textwidth]{ocdn_overview_new2}
 \caption{The relationships between clients, the CDN, proxies, and content publishers in 
 \system{}.}
 \label{fig:ocd_overview}
-\end{figure*}
+\end{figure}
 
 \subsection{System of Proxies}
 \label{sec:proxies}
@@ -65,7 +63,7 @@ can achieve a level of anonymity.
 \paragraph{Hiding Clients' Identities} By replacing the use of an anonymizing proxy or VPN with the use of 
 a series of proxies---some of which are supplied by \system{} and some of which are simply other clients---, 
 the system can provide unlinkability of client to her requests/responses. There are two distinct sets of 
-proxies: 1) exit proxies and 2) client proxies.  We discuss in Section \ref{sec:xx} how these can be run by different 
+proxies: 1) exit proxies and 2) client proxies.  We discuss in Section \ref{sec:discussion} how these can be run by different 
 entities.  Exit proxies provide a way of requesting encrypted content from CDNs; these proxies store the keys generated 
 by content publishers (as described in the strawman approach).  Client proxies provide 
 a way for any client to route her traffic to an exit proxy, while hiding her identity.  When requesting content, she 
@@ -133,8 +131,9 @@ made possible by the use of proxies are discussed in Section \ref{sec:optimizati
 \subsection{Key Use and Management}
 \label{sec:keys}
 The design has evolved into a system where: 1) the CDN does not know the content, the content identifier, 
-or which clients are accessing any content, 2) the client's data is only subject to subpoenas in her jurisdiction 
-(or the jurisdiction of the proxy), 3) trust has been distributed, as opposed to centralized.  There are still 
+or which clients are accessing any content, 2) other clients do not know which client requested which content, and 
+3) the exit proxies do not know which clients are accessing which content (although, they do know what content is
+being requested by \system{} users).  There are still 
 some remaining security vulnerabilities that must be addressed.  First, simply hashing the URL allows an attacker who simply 
 wishes to guess whether the obfuscated URL is a specified plaintext URL or not.  Second, the shared key $k$ for each content 
 publisher has the potential to be compromised, and therefore, OCDN must have a way to create new keys and replace 
@@ -152,9 +151,10 @@ compromised, then all proxies have a compromised $k$ for that content publisher.
 is for the content publisher to generate a different $k$ for each proxy; unfortunately, this defeats the purpose of 
 CDNs caching content.  The approach \system{} takes is for each content publisher to generate a single shared key $k$, 
 and for a single proxy to hold that key; this maximizes the use of the CDNs caches.  The shared key is assigned 
-to an exit proxy based on consistent hashing~\cite{????}, which provides load balancing properties.  For more popular 
+to an exit proxy based on consistent hashing~\cite{karger1997consistent,lewin1998consistent}, which provides load balancing properties. 
+\annie{Should we describe consistent hashing (at a high level)?  Where is a good place for that?} For more popular 
 content, it may be useful to have more than one exit proxy serving that content; in this case, a few exit proxies can 
-hold this key.  We discuss this case in more detail in Section \ref{sec:xx}.
+hold this key.  We discuss this case in more detail in Section \ref{sec:optimizations}.
 
 \paragraph{Key Churn} To protect against attacks when a content publisher's shared key $k$ is compromised, the publisher
 should generate a new key $k$ and encrypt her content under the new key.  Keys have an expiration timestamp that indicates 

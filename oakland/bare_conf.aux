@@ -1,0 +1,192 @@
+\relax 
+\providecommand{\transparent@use}[1]{}
+\citation{eu-copyright}
+\citation{panchenko2016website,cai2012touching}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
+\newlabel{sec:intro}{{I}{1}}
+\citation{akamai_facts}
+\citation{akamai_global_traffic}
+\citation{cloudflare_nsl}
+\citation{levy2015stickler}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background}{2}}
+\newlabel{sec:background}{{II}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Content Distribution Networks}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Information Visible to CDNs}{2}}
+\newlabel{sec:info}{{\unhbox \voidb@x \hbox {II-B}}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The relationships between clients, the CDN, and content publishers in CDNs today.\relax }}{2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:basic_cdn}{{1}{2}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {II-B}0a}Knowing the content}{2}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {II-B}0b}Knowing client information}{2}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {II-B}0c}Knowing content publisher information}{2}}
+\citation{cloudflare_nsl}
+\citation{facebook_surv}
+\citation{medium_copyright,eff_copyright}
+\citation{techdirt_copyright}
+\citation{stack_copyright}
+\citation{nytimes_hatespeech}
+\citation{medium_sesta}
+\citation{cloudflare_nsl}
+\citation{levy2015stickler}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Open Legal Questions}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Threat Model and Security Goals}{3}}
+\newlabel{sec:threat}{{III}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Threat Model}{3}}
+\newlabel{sec:attacker}{{\unhbox \voidb@x \hbox {III-A}}{3}}
+\citation{khattak2016you}
+\citation{cloudflare_tor}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Security and Privacy Goals for OCDN{}}{4}}
+\newlabel{sec:goals}{{\unhbox \voidb@x \hbox {III-B}}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {III-B}0a}Prevent the CDN from knowing the content it is caching}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {III-B}0b}Prevent the CDN from knowing the identity of users accessing content}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Performance Considerations}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Design}{4}}
+\newlabel{sec:design}{{IV}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Strawman: Hiding Information From CDN}{4}}
+\newlabel{sec:obfuscate_content}{{\unhbox \voidb@x \hbox {IV-A}}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-A}0a}Encrypt Content}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-A}0b}Obfuscate URL}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-A}0c}Client Anonymization}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}System of Proxies}{4}}
+\newlabel{sec:proxies}{{\unhbox \voidb@x \hbox {IV-B}}{4}}
+\citation{karger1997consistent,lewin1998consistent}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The relationships between clients, the CDN, proxies, and content publishers in OCDN{}.\relax }}{5}}
+\newlabel{fig:ocd_overview}{{2}{5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0a}Hiding Clients' Identities}{5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0b}Decouple Content Distribution from Decision of Trust}{5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0c}Usability}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Key Use and Management}{5}}
+\newlabel{sec:keys}{{\unhbox \voidb@x \hbox {IV-C}}{5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-C}0a}Adding Secrecy to URL Obfuscation}{5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-C}0b}Minimizing Shared Key Holders}{5}}
+\citation{cedexis}
+\citation{mazieres2000self}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces How content is published in OCDN{}.\relax }}{6}}
+\newlabel{fig:publishing}{{3}{6}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-C}0c}Key Churn}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}OCDN{} Protocol}{6}}
+\newlabel{sec:protocol}{{V}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Publishing Content}{6}}
+\newlabel{sec:publish_protocol}{{\unhbox \voidb@x \hbox {V-A}}{6}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-A}0a}Updating Content}{6}}
+\citation{rfc2227}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-A}0b}Updating Keys}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Retrieving Content}{7}}
+\newlabel{sec:retrieve}{{\unhbox \voidb@x \hbox {V-B}}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Clients Joining \& Leaving}{7}}
+\newlabel{sec:join}{{\unhbox \voidb@x \hbox {V-C}}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Partial Deployment}{7}}
+\newlabel{sec:partial}{{\unhbox \voidb@x \hbox {V-D}}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Steps for retrieving content in OCDN{} when a client is prioritizing performance and goes directly to an exit proxy.\relax }}{8}}
+\newlabel{fig:retrieving}{{4}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Steps for retrieving content in OCDN{} when a client is prioritizing privacy and proxies her request through two other clients before reaching the exit proxy.\relax }}{8}}
+\newlabel{fig:retrieving2}{{5}{8}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-D}0a}Deployment Option 1}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Steps for certifying exit proxies and distributing shared keys to exit proxies.\relax }}{8}}
+\newlabel{fig:keys}{{6}{8}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-D}0b}Deployment Option 2}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-E}}Optimizations}{8}}
+\newlabel{sec:optimizations}{{\unhbox \voidb@x \hbox {V-E}}{8}}
+\citation{barford1998generating}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0a}Pre-Fetch DNS Responses}{9}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0b}Load Balance Proxy Selection}{9}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0c}Use OCDN{} for Partial Content}{9}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-E}0d}Different Modes of Operation}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The implementation of our OCDN{} prototype. The solid line represents how OCDN{} communicates between the components; the dotted line represents how a traditional CDN would communicate.\relax }}{9}}
+\newlabel{fig:impl}{{7}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Implementation}{9}}
+\newlabel{sec:implementation}{{VI}{9}}
+\citation{levy2015stickler}
+\citation{michalakis2007ensuring}
+\citation{dingledine2004tor}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, OCDN{} is the first to address confidentiality at the CDN.\relax }}{10}}
+\newlabel{tab:sec_table}{{I}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Security Analysis}{10}}
+\newlabel{sec:sec}{{VII}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Performance Analysis}{10}}
+\newlabel{sec:performance}{{VIII}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VIII-A}}OCDN{} Overhead}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time to First Byte measurements with and without OCDN{}.\relax }}{11}}
+\newlabel{fig:ttfb}{{8}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Time to complete a request with and without OCDN{}.\relax }}{11}}
+\newlabel{fig:completion}{{9}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Time to First Byte and time to complete a request with varying the file size and latency; increasing the latency is representative of increasing the number of client proxies on the path to the exit proxy.\relax }}{11}}
+\newlabel{fig:latency}{{10}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Overhead of different operations performed by OCDN{}.\relax }}{11}}
+\newlabel{fig:overhead2}{{11}{11}}
+\citation{lesniewski2005ssl}
+\citation{michalakis2007ensuring}
+\citation{levy2015stickler}
+\citation{gilad2016cdn}
+\citation{liang2014https}
+\citation{zolfaghari2016practical}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VIII-B}}Scalability}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Discussion}{12}}
+\newlabel{sec:discussion}{{IX}{12}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IX-}0a}CDNs operated by content hosts}{12}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IX-}0b}Exit proxies run by volunteers}{12}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IX-}0c}Legal questions and political pushback}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Related Work}{12}}
+\newlabel{sec:related}{{X}{12}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0a}Securing CDNs}{12}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0b}Security Issues in CDNs}{12}}
+\citation{jung2002flash}
+\citation{su2008thinning}
+\citation{triukose2009content}
+\citation{chen2016forwarding}
+\citation{jia2016anonymity}
+\citation{predict}
+\citation{huang2008measuring}
+\citation{calder2013mapping}
+\citation{scott2016satellite}
+\citation{xue2017cdns}
+\citation{wendell2011going}
+\citation{su2009drafting}
+\citation{berger2017adaptsize}
+\bibstyle{IEEEtran}
+\bibdata{sigproc}
+\bibcite{eu-copyright}{1}
+\bibcite{panchenko2016website}{2}
+\bibcite{cai2012touching}{3}
+\bibcite{akamai_facts}{4}
+\bibcite{akamai_global_traffic}{5}
+\bibcite{cloudflare_nsl}{6}
+\bibcite{levy2015stickler}{7}
+\bibcite{facebook_surv}{8}
+\bibcite{medium_copyright}{9}
+\bibcite{eff_copyright}{10}
+\bibcite{techdirt_copyright}{11}
+\bibcite{stack_copyright}{12}
+\bibcite{nytimes_hatespeech}{13}
+\bibcite{medium_sesta}{14}
+\bibcite{khattak2016you}{15}
+\bibcite{cloudflare_tor}{16}
+\bibcite{karger1997consistent}{17}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {X-}0c}Measuring and Mapping CDNs}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {XI}Conclusion}{13}}
+\newlabel{sec:conclusion}{{XI}{13}}
+\@writefile{toc}{\contentsline {section}{References}{13}}
+\bibcite{lewin1998consistent}{18}
+\bibcite{cedexis}{19}
+\bibcite{mazieres2000self}{20}
+\bibcite{rfc2227}{21}
+\bibcite{barford1998generating}{22}
+\bibcite{michalakis2007ensuring}{23}
+\bibcite{dingledine2004tor}{24}
+\bibcite{lesniewski2005ssl}{25}
+\bibcite{gilad2016cdn}{26}
+\bibcite{liang2014https}{27}
+\bibcite{zolfaghari2016practical}{28}
+\bibcite{jung2002flash}{29}
+\bibcite{su2008thinning}{30}
+\bibcite{triukose2009content}{31}
+\bibcite{chen2016forwarding}{32}
+\bibcite{jia2016anonymity}{33}
+\bibcite{predict}{34}
+\bibcite{huang2008measuring}{35}
+\bibcite{calder2013mapping}{36}
+\bibcite{scott2016satellite}{37}
+\bibcite{xue2017cdns}{38}
+\bibcite{wendell2011going}{39}
+\bibcite{su2009drafting}{40}
+\bibcite{berger2017adaptsize}{41}

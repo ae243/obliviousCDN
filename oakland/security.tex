@@ -1,6 +1,27 @@
 \section{Security Analysis}
 \label{sec:sec}
-We analyze and discuss how \system{} addresses different attacks.
+We analyze and discuss how \system{} addresses different attacks.  Table \ref{tab:sec_table} 
+shows what security and privacy features \system{} provides in comparison to other related 
+systems.
+
+\begin{table}[t!]
+\centering
+\begin{tabular}{| l | l | l | l |} 
+\hline
+ {} & Preserves  & Preserves   & Protects \\ 
+ {} & Integrity & Confidentiality & Client\\
+ {} & at CDN & at CDN & Identity \\
+\hline
+ Stickler~\cite{levy2015stickler} & \checkmark & {} & {}\\ 
+ Repeat \& Compare~\cite{michalakis2007ensuring} & \checkmark & {} & {}\\
+ OCDN & {} & \checkmark & \checkmark\\
+ Tor~\cite{dingledine2004tor} & {} & {} & \checkmark \\
+\hline
+\end{tabular}
+\caption{The security and privacy features offered by related systems.  To our knowledge, 
+\system{} is the first to address confidentiality at the CDN.}
+\label{tab:sec_table}
+\end{table}
 
 {\bf Popularity Attacks.}  An attacker that has requested or otherwise 
 gained access to CDN cache logs can learn information about how often 
@@ -48,7 +69,3 @@ other information (for example, major world events).  This leaks information abo
 CDN is caching.  Fortunately, the design of \system{} can defend against this type of inference attack.  
 The exit proxy can cache content in time of a flashcrowd, such that the CDN (and therefore the attacker) 
 does not see the surge in traffic.  
-
-{\bf Denial of Service Attacks.}  
-
-{\bf Censorship.}

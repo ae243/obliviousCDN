@@ -1,17 +1,17 @@
 \section{Introduction}
 \label{sec:intro}
 
-Governments are increasingly using their authority to access data from
-their citizens and foreigners, even when this data may be stored overseas.  For
-example, in a
-recent case, the United States government tried to compel Microsoft to
-surrender data about U.S. citizens, even when the data itself was stored
-abroad~\cite{microsoft_ireland}. Users may also face the converse problem, where access to their data
-may depend on the laws of the country where their data is stored. Recent work,
-for example, highlights the possibility that governments may move data across
-borders to facilitate surveillance~\cite{arnbak2015loopholes}.  
+%Governments are increasingly using their authority to access data from
+%their citizens and foreigners, even when this data may be stored overseas.  For
+%example, in a
+%recent case, the United States government tried to compel Microsoft to
+%surrender data about U.S. citizens, even when the data itself was stored
+%abroad~\cite{microsoft_ireland}. Users may also face the converse problem, where access to their data
+%may depend on the laws of the country where their data is stored. Recent work,
+%for example, highlights the possibility that governments may move data across
+%borders to facilitate surveillance~\cite{arnbak2015loopholes}.  
 
-The rise of content distribution networks (CDNs) makes the threat to citizens'
+Content distribution networks (CDNs) makes the threat to citizens'
 privacy more widespread, because data may be replicated in geographically
 diverse regions, and users may not have purview over where their data is
 stored, or where their traffic goes. Another recent development is that the
@@ -22,7 +22,7 @@ they do not deploy tools that can automatically inspect and remove infringing
 content~\cite{eu-copyright}. Both of these tussles are currently being
 addressed in the courts, yet the legal outcomes remain ambiguous and
 uncertain, sometimes with courts issuing opposing rulings in different cases.
-In this paper, we explore whether redesigning the CDN itself could help
+In this paper, we explore alternate designs that could help
 resolve this tussle.
 
 
@@ -30,15 +30,15 @@ In this paper, we design and implement a content distribution network that
 allows clients to retrieve web objects, while preventing the CDN cache nodes
 from learning either the content that is stored on the cache nodes or the
 content that clients are requesting. We call this system an {\em oblivious
-CDN}~(\system{}), because the CDN itself is oblivious to both the content it is
+CDN}~(\system{}), because the CDN is oblivious to both the content it is
 storing and the content that clients are requesting. \system{} allows clients to
 request individual objects with identifiers that are encrypted with a key that
 is shared by a proxy and the origin server that is pushing content to
 cache nodes, but is not known to any of the CDN cache nodes.  To do so, the
 origin server publishes content obfuscated with a shared key, which is subsequently 
 shared with a corresponding proxy. To retrieve content, a client forwards her request 
-through a set of peers (other clients) in a way that provides unlinkability---other clients 
-and the CDN cannot link the client's identity with a given request.  After being routed 
+through a set of peers (other clients) in a way that prevents other clients 
+and the CDN from learning her identity or what content she requested.  After being routed 
 through other clients' proxies, the request is handled by an exit proxy; the exit proxy 
 transforms the URL that it receives
 from a client to an obfuscated identifier using the key shared with the origin
@@ -50,10 +50,9 @@ Users can use \system{} with minimal modification to their existing configuratio
 specify one of two modes that \system{} operates in, one in which performance is a higher 
 priority and another in which security is a higher priority.
 
-Although the basic mechanisms for obfuscating the URL and the corresponding
-content are relatively straightforward, ensuring that the CDN operator never
+Ensuring that the CDN operator never
 learns information about either (1)~what content is being stored on its cache
-nodes or (2)~which objects individual clients are requesting is more
+nodes or (2)~which objects individual clients are requesting is
 challenging, due to the many possible inference attacks that a CDN might be
 able to run. For example, previous work has shown that even when web content
 is encrypted, the retrieval of a collection of objects of various sizes can
@@ -80,9 +79,10 @@ the typical operation of a CDN, the types of information that CDN operators
 typically know today, and the types of information we aim to obfuscate.  Section~
 \ref{sec:threat} describes the threat model and security objectives for \system{}; based
 on these threats, Section~\ref{sec:design} outlines various design decisions. Section~
-\ref{sec:protocol} describes the protocol for both publishing and retrieving content,
-Section~\ref{sec:sec} analyzes the security of \system{}, and Section \ref{sec:performance} 
-evaluates the performance overhead of the system. Section~
+\ref{sec:protocol} describes the protocol for both publishing and retrieving content and we describe 
+our prototype implementation in Section \ref{sec:implementation}.
+Section \ref{sec:performance} evaluates the performance overhead of the system and Section~\ref{sec:sec} 
+analyzes the security of \system{}. Section~
 \ref{sec:discussion} describes various limitations and possible avenues for future
 work, Section~\ref{sec:related} discusses related work, and Section~\ref{sec:conclusion}
 concludes.
