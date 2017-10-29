@@ -57,16 +57,16 @@ We further discuss our design decisions in Section \ref{sec:design}.
 %\end{table*}
 
 \paragraph{Prevent the CDN from knowing the content it is caching} First, and foremost, the CDN 
-should not have access to all the information that was outlined 
+should not have access to the information outlined 
 in Section \ref{sec:background}.  By limiting the information that the CDN knows, \system{} limits 
 the amount of information that an adversary can learn or request.  \system{} should hide 
 the content as well as the URL associated with the content.  If the CDN 
-does not know what content it is caching then the CDN will not be able to supply an adversary 
+does not know what content it is caching, then the CDN will not be able to supply an adversary 
 with the requested data and it will have a strong argument as to why it cannot be held 
 liable for its customers' content.
 
 \paragraph{Prevent the CDN from knowing the identity of users accessing content} CDNs can currently see clients' 
-browsing patterns and which web pages they are visiting. \system{} should provide privacy protections by hiding which client is accessing 
+browsing patterns. \system{} should provide privacy protections by hiding which client is accessing 
 which content at the CDN.  In addition, it should hide cross site browsing patterns, which a CDN 
 is unique in having access to.  Some CDNs block legitimate Tor users because they are 
 trying to protect cached content from attacks; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
@@ -130,6 +130,6 @@ existing systems, such as Tor, only protect the client.
 As one of the primary functions of a CDN is to make accessing content faster and more 
 reliable, \system{} should consider performance in design decisions.  The performance of \system{} will 
 be worse than that of traditional CDNs because it is performing more operations on content, but \system{} 
-is offering confidentiality, whereas traditional CDNs are not.  \system{} should scale linearly with 
-increasing file sizes; additionally, it should be able to 
+is offering confidentiality, whereas traditional CDNs are not.  \system{} should scale linearly in terms of load 
+and storage requirements on exit proxies; additionally, it should be able to 
 scale with the number of clients using the system, as well as with the growing number of web pages on the internet.

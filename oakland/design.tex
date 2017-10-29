@@ -1,6 +1,6 @@
 \section{Design}
 \label{sec:design}
-We describe the evolution of the design of \system{} starting with an initial strawman approach.  We then 
+We describe the design of \system{} as a progression of design decisions starting with an initial strawman approach.  We then 
 alter the design to address each of the design goals discussed in the previous section, which brings us 
 to a complete design.
 
@@ -61,8 +61,8 @@ forwarded through before reaching the CDN, clients no longer have to trust a sin
 can achieve a level of anonymity.
 
 \paragraph{Hiding Clients' Identities} By replacing the use of an anonymizing proxy or VPN with the use of 
-a series of proxies---some of which are supplied by \system{} and some of which are simply other clients---, 
-the system can provide unlinkability of client to her requests/responses. There are two distinct sets of 
+a series of proxies---some of which are supplied by \system{} and some of which are simply other clients---the 
+system can provide unlinkability of client to her requests/responses. There are two distinct sets of 
 proxies: 1) exit proxies and 2) client proxies.  We discuss in Section \ref{sec:discussion} how these can be run by different 
 entities.  Exit proxies provide a way of requesting encrypted content from CDNs; these proxies store the keys generated 
 by content publishers (as described in the strawman approach).  Client proxies provide 
@@ -81,7 +81,7 @@ looks like
 
 \noindent Neither {\it G}, {\it F}, or {\it E} know who the original requestor was; from {\it E}'s point of 
 view, the original requestor could have been {\it D}, {\it A}, {\it C}, {\it G}, or {\it F}.  By using a series of 
-client proxies, or even just that a client {\it can} use a series of client proxies, the identity of the client is 
+client proxies, or even just knowing that a client {\it can} use a series of client proxies, the identity of the client is 
 hidden from other clients, exit proxies, and the CDN.  Using both types of proxies is essential for a couple of 
 reasons: 1) just using client proxies would disallow any client behind a NAT, or any mobile client from joining 
 the system and 2) just using exit proxies would put too much trust in the proxies, as they would know the identity 
@@ -124,7 +124,7 @@ issues, but still access cached content at the CDN.
 \paragraph{Usability} Instead of each client having knowledge 
 of each $k$ for each domain, each proxy could have knowledge of each $k$.  This means that clients would 
 not have to keep track of secret knowledge, and overall, the number of entities that know this secret key 
-is much smaller (as the number of proxies is significantly smaller than the number of clients).  Lastly, 
+is much smaller (as the number of exit proxies is significantly smaller than the number of clients).  Lastly, 
 the proxy can perform attack detection and prevention before the attack even reaches the CDN; more optimizations 
 made possible by the use of proxies are discussed in Section \ref{sec:optimizations}.
 
@@ -150,7 +150,7 @@ against guessing attacks.
 compromised, then all proxies have a compromised $k$ for that content publisher.  A naive approach to address this 
 is for the content publisher to generate a different $k$ for each proxy; unfortunately, this defeats the purpose of 
 CDNs caching content.  The approach \system{} takes is for each content publisher to generate a single shared key $k$, 
-and for a single proxy to hold that key; this maximizes the use of the CDNs caches.  The shared key is assigned 
+and for a single proxy to hold that key; this maximizes the use of the CDNs' caches.  The shared key is assigned 
 to an exit proxy based on consistent hashing~\cite{karger1997consistent,lewin1998consistent}, which provides load balancing properties. 
 \annie{Should we describe consistent hashing (at a high level)?  Where is a good place for that?} For more popular 
 content, it may be useful to have more than one exit proxy serving that content; in this case, a few exit proxies can 
