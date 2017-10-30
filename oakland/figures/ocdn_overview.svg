@@ -755,15 +755,6 @@
          style="stop-color:#1d1d1d"
          id="stop4754-7-9-1-6" />
     </linearGradient>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter36622-5-5">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.6255048"
-         id="feGaussianBlur36624-8-7" />
-    </filter>
     <linearGradient
        id="linearGradient892-6-0-0">
       <stop
@@ -6354,7 +6345,8 @@
     <g
        transform="matrix(1.0949533,0,0,1.7965127,-158.10014,-305.97982)"
        inkscape:label="Capa 1"
-       id="layer1-97">
+       id="layer1-97"
+       style="opacity:0.25">
       <g
          class="Drawing"
          transform="matrix(0.056575,0,0,0.056575,64.27,246.75)"
@@ -7975,7 +7967,8 @@
     <g
        transform="matrix(0.90742868,0,0,0.88839367,281.68382,37.723285)"
        inkscape:label="Capa 1"
-       id="layer1-9">
+       id="layer1-9"
+       style="opacity:0.25">
       <g
          class="Drawing"
          transform="matrix(0.056575,0,0,0.056575,64.27,246.75)"
@@ -8185,7 +8178,8 @@
        id="use9994"
        transform="translate(-1.0714317e-8,279.50243)"
        width="1052.3622"
-       height="744.09448" />
+       height="744.09448"
+       style="opacity:0.706;fill:none" />
     <use
        x="0"
        y="0"

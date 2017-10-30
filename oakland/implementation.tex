@@ -14,7 +14,8 @@ and CDN---separately, and how they fit together.
 \includegraphics[width=.45\textwidth]{implementation}
 \caption{The implementation of our \system{} prototype.  The solid line represents
 how \system{} communicates between the components; the dotted line represents how 
-a traditional CDN would communicate.}
+a traditional CDN would communicate. $\alpha$ represents the latency between the client 
+and the exit proxy; we simulate additional clients on this path by increasing $\alpha$.}
 \label{fig:impl}
 \end{figure}
 
