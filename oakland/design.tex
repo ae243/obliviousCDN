@@ -33,13 +33,13 @@ keys are distributed.
 \hline
  Design Decision & Functionality Provided \\
 \hline \hline
- Shared Keys & {} \\
+ Shared Keys & {Hides content stored on CDN cache nodes} \\
 \hline
- Consistent Hashing & {} \\
+ Consistent Hashing & {Maps shared keys to exit proxies evenly} \\
 \hline
- Self-Certifying Identifiers & {} \\
+ Self-Certifying Identifiers & {Authenticates exit proxies to origin servers} \\
 \hline
- DNS for Key Sharing & {} \\
+ DNS for Key Sharing & {Allows origin server to share keys with exit proxies} \\
 \hline
 \end{tabular}
 \caption{The design decisions associated with the setup and logistical aspects of \system{}, and what these decisions provide.}
@@ -123,11 +123,11 @@ are routed from exit proxies back to the original client.
 \hline
  Design Decision & Functionality Provided \\
 \hline \hline
- Session Keys & {} \\
+ Potentially Spoofed Source Routes & {Hides client identity from other clients, exit proxies, and CDN} \\
 \hline
- Potentially Spoofed Source Routes & {} \\
+ Session Keys & {Hides URL in request and hides response} \\
 \hline
- Multicast Response & {} \\
+ Multicast Response & {Increases performance of returning response to client} \\
 \hline
 \end{tabular}
 \caption{The design decisions associated with content requests and responses, and what these 
@@ -191,12 +191,29 @@ is the true client that originated the request, therefore none of the other clie
 latency for sending the response to the client.  
 
 \subsection{Additional Options}
+Up to this point, we have discussed how \system{} is designed in the general case.  Here we describe some 
+additional options that \system{}'s design can include.
 
 \paragraph{Multiple CDNs}
+While describing the design decisions that went into \system{}, we referred to a single CDN for 
+simplicity.  In reality, \system{} allows for many CDNs to participate in the system; this means that 
+different CDNs could provide privacy and gain plausibile deniability.  This extends to origin servers 
+as well, if more CDNs participate, then their customers (origin servers) can participate too.
 
 \paragraph{Encoding URLs}
+As described earlier, each URL is obfuscated by using a HMAC and then stored on the CDN.  An adversary 
+could potentially correlate a URL's popularity with its access patterns.  To prevent this, \system{} allows 
+origin servers to generate multiple different encodings of its URLs, such that HMAC$_k$(enc$_1$(URL)) $\neq$ 
+HMAC$_k$(enc$_2$(URL)).  Each origin server could produce $n$ different encodings of popular URLs, such that 
+the popularity distribution seen by an adversary is a uniform distribution of URL requests across all URLs.  
 
 \paragraph{DHT Replicas}
+Each exit proxy's hash table can be replicated by another (or many other) exit proxies.  This 
+would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
+this would allow the CDN to cache the content associated with a given URL at more than one cache node; 
+if only one exit proxy is responsible for a given URL's content, then it would likely only be cached at 
+cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
+helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
 
 \paragraph{Partial Content}
 Different origin servers have different needs, and each origin server might 
