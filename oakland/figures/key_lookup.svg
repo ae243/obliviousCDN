@@ -3095,14 +3095,14 @@
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 140,304.09448 0,-80"
        id="path3516"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart);stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Lstart)"
        d="m 520,224.09448 -380,0"
        id="path3518"
        inkscape:connector-type="polyline"
@@ -3147,7 +3147,7 @@
            x="85.291466"
            y="588.21698"
            style="font-size:20px" /></flowRegion><flowPara
-         id="flowPara4946">SRV {k}<flowSpan
+         id="flowPara4946">(3) SRV {k}<flowSpan
    style="font-size:65.00091553%;baseline-shift:sub"
    id="flowSpan4948">PK_exit</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"

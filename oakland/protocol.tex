@@ -1,7 +1,8 @@
 \begin{figure}[t!]
 \centering
 \includegraphics[width=.45\textwidth]{publishing_content_new2}
-\caption{How content is published in \system{}.}
+\caption{How content is published in \system{}.  $k$ is shared between the 
+origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}
 \label{fig:publishing}
 \end{figure}
 
@@ -219,7 +220,8 @@ is not susceptible to flashcrowds correlations and can still join the system.
 \begin{figure}[t]
 \centering
 \includegraphics[width=.45\textwidth]{key_lookup}
-\caption{Steps for certifying exit proxies and distributing shared keys to exit proxies.}
+\caption{How an origin server certifies an exit proxy and distributes its shared key to an exit proxy.  In step (1), 
+the exit proxy sends his self-certifying ID in the {\it Additional} section of the DNS message.  }
 \label{fig:keys}
 \end{figure}
 

@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="implementation.svg">
   <defs
      id="defs4">
     <marker
@@ -1281,7 +1281,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.65851852"
-     inkscape:cx="716.76039"
+     inkscape:cx="526.18109"
      inkscape:cy="372.04724"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -1307,7 +1307,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1317,7 +1317,7 @@
      id="layer1"
      transform="translate(0,-308.2677)">
     <g
-       transform="matrix(0.65353279,0,0,0.61122853,731.25847,480.62266)"
+       transform="matrix(0.65353279,0,0,0.61122853,735.01189,480.62266)"
        inkscape:label="Layer 1"
        id="layer1-0">
       <g
@@ -2485,7 +2485,7 @@
        xml:space="preserve"
        id="flowRoot4326"
        style="font-size:36px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(482.85714,-140.30373)"><flowRegion
+       transform="translate(486.61056,-140.30373)"><flowRegion
          id="flowRegion4328"><rect
            id="rect4330"
            width="331.42859"
@@ -2519,7 +2519,7 @@
            x="134.28572"
            y="564.09448"
            style="font-size:36px;text-align:center;text-anchor:middle" /></flowRegion><flowPara
-         id="flowPara4352">Localhost</flowPara><flowPara
+         id="flowPara4352">New York City</flowPara><flowPara
          id="flowPara4354">(Client)</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4356"
@@ -2544,15 +2544,18 @@
        xml:space="preserve"
        id="flowRoot4366"
        style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(208.13155,181.55272)"><flowRegion
+       transform="translate(151.2756,181.55272)"><flowRegion
          id="flowRegion4368"><rect
            id="rect4370"
-           width="312.82339"
-           height="74.409447"
+           width="306.74911"
+           height="83.520782"
            x="569.46008"
            y="587.6828"
            style="font-size:32px" /></flowRegion><flowPara
-         id="flowPara4372">Web Server</flowPara></flowRoot>    <path
+         id="flowPara4372"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans">lighttpd/1.4.33</flowPara><flowPara
+         id="flowPara3439"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans">Web Server</flowPara></flowRoot>    <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Lstart);marker-end:url(#Arrow2Lend)"
        d="m 220,364.09448 220,0"
        id="path4376"
@@ -2567,25 +2570,204 @@
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline;stroke-miterlimit:4;stroke-dasharray:16,16;stroke-dashoffset:0"
-       d="m 160,504.09448 0,60"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:24, 24;stroke-dashoffset:0;display:inline;marker-start:url(#Arrow2Lstart)"
+       d="m 160.75928,816.80305 0,86.45234"
        id="path6146"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       transform="translate(0,308.2677)" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline;stroke-miterlimit:4;stroke-dasharray:16,16;stroke-dashoffset:0"
-       d="m 860,564.09448 -700,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:24,24;stroke-dashoffset:0;display:inline"
+       d="m 855.44432,898.1777 -700,0"
        id="path6148"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       transform="translate(0,308.2677)" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart);stroke-miterlimit:4;stroke-dasharray:16,16;stroke-dashoffset:0"
-       d="m 860,504.09448 0,60"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:16, 16;stroke-dashoffset:0;marker-start:url(#Arrow2Lstart)"
+       d="m 860,850.36218 0,60"
        id="path6150"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       transform="translate(0,308.2677)" />
-  </g>
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4405"
+       style="font-size:24px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-91.560547,320.35122)"><flowRegion
+         id="flowRegion4407"><rect
+           id="rect4409"
+           width="320.4162"
+           height="103.26209"
+           x="261.19235"
+           y="282.45218"
+           style="font-size:24px;text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         id="flowPara4411">59.1 Mbits/sec</flowPara><flowPara
+         id="flowPara4413">28.1 ms</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4415"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-97.533203,321.85122)"><flowRegion
+         id="flowRegion4417"><rect
+           id="rect4419"
+           width="387.23285"
+           height="118.44769"
+           x="593.75702"
+           y="280.93362"
+           style="font-size:24px" /></flowRegion><flowPara
+         id="flowPara4421"
+         style="text-align:center;text-anchor:middle">3.0 Gbits/sec</flowPara><flowPara
+         id="flowPara4423"
+         style="text-align:center;text-anchor:middle">.181 ms</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4425"
+       style="font-size:24px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-131.66896,293.15634)"><flowRegion
+         id="flowRegion4427"><rect
+           id="rect4429"
+           width="490.49493"
+           height="94.150734"
+           x="391.78851"
+           y="610.46118"
+           style="font-size:24px;text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         id="flowPara4431">67.6 Mbits/sec</flowPara><flowPara
+         id="flowPara4433">29.4ms</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4435"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Lucida Handwriting;font-style:italic;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Lucida Handwriting Italic;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr"><flowRegion
+         id="flowRegion4437"><rect
+           id="rect4439"
+           width="115.41058"
+           height="42.519684"
+           x="283.97076"
+           y="384.19571"
+           style="-inkscape-font-specification:Lucida Handwriting Italic;font-family:Lucida Handwriting;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:40px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%" /></flowRegion><flowPara
+         id="flowPara4443">l</flowPara></flowRoot>    <image
+       y="686.54211"
+       x="304.89371"
+       id="image4507"
+       xlink:href="data:image/png;base64,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
+"
+       height="42.213722"
+       width="50.212597" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4510"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4512"><rect
+           id="rect4514"
+           width="41.001125"
+           height="60.742409"
+           x="1040.2137"
+           y="288.52643" /></flowRegion><flowPara
+         id="flowPara4516"></flowPara></flowRoot>  </g>
 </svg>
