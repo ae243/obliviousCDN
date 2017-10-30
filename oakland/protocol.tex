@@ -225,45 +225,45 @@ the exit proxy sends his self-certifying ID in the {\it Additional} section of t
 \label{fig:keys}
 \end{figure}
 
-\subsection{Optimizations}
-\label{sec:optimizations}
-While there are some optimizations that CDNs typically perform today that would not be possible with \system{}, the architecture 
-of \system{} allows for new optimizations that are not possible in existing CDNs.  Here we describe how \system{} limits 
-current traditional CDN's optimizations, and then we outline some ways in which \system{} 
-can be optimized in terms of performance.
+%\subsection{Optimizations}
+%\label{sec:optimizations}
+%While there are some optimizations that CDNs typically perform today that would not be possible with \system{}, the architecture 
+%of \system{} allows for new optimizations that are not possible in existing CDNs.  Here we describe how \system{} limits 
+%current traditional CDN's optimizations, and then we outline some ways in which \system{} 
+%can be optimized in terms of performance.
 
-CDNs become slightly limited in terms of the possible performance optimizations when following \system{}'s design.  For example, 
-many CDNs perform HTTPS re-writes on content that they cache, but this can only be done if the CDN has access to the 
-decrypted content.  Similarly, the CDN needs the decrypted content to perform minimizations on HTML, CSS, and Javascript 
-files.  While this likely increases performance in traditional CDNs, it does not provide the greatest increase in performance; 
-content caching around the world is the greatest benefit to performance, which \system{} preserves.
+%CDNs become slightly limited in terms of the possible performance optimizations when following \system{}'s design.  For example, 
+%many CDNs perform HTTPS re-writes on content that they cache, but this can only be done if the CDN has access to the 
+%decrypted content.  Similarly, the CDN needs the decrypted content to perform minimizations on HTML, CSS, and Javascript 
+%files.  While this likely increases performance in traditional CDNs, it does not provide the greatest increase in performance; 
+%content caching around the world is the greatest benefit to performance, which \system{} preserves.
 
-\paragraph{Pre-Fetch DNS Responses} One way to increase the performance of \system{} is to pre-fetch DNS responses at 
-the proxies.  This would allow the proxy to serve each client request faster because it would not have to send 
-as many DNS requests.  Pre-fetching DNS responses would not take up a large amount of space, but it also 
-would not be a complete set of all DNS responses.  Additionally, if the content is moved between cache nodes 
-at the CDN, then DNS response must also change; therefore, the pre-fetched DNS responses should have a 
-lifetime that is shorter than the lifetime of the content on a cache node.
+%\paragraph{Pre-Fetch DNS Responses} One way to increase the performance of \system{} is to pre-fetch DNS responses at 
+%the proxies.  This would allow the proxy to serve each client request faster because it would not have to send 
+%as many DNS requests.  Pre-fetching DNS responses would not take up a large amount of space, but it also 
+%would not be a complete set of all DNS responses.  Additionally, if the content is moved between cache nodes 
+%at the CDN, then DNS response must also change; therefore, the pre-fetched DNS responses should have a 
+%lifetime that is shorter than the lifetime of the content on a cache node.
 
-\paragraph{Load Balance Proxy Selection} As the proxy performs a number of operations on the client's behalf, it 
-runs into the possibility of being overloaded.  \system{} uses consistent hashing to generally address the load balancing 
-problem, but an edge case that may still cause some exit proxies to be overloaded is extremely popular content.  To mitigate this, 
-multiple exit proxies can store the shared key $k$ for the URL that is extremely popular, and therefore divide the load, while 
-still taking advantage of the the CDNs caching benefits.  
+%\paragraph{Load Balance Proxy Selection} As the proxy performs a number of operations on the client's behalf, it 
+%runs into the possibility of being overloaded.  \system{} uses consistent hashing to generally address the load balancing 
+%problem, but an edge case that may still cause some exit proxies to be overloaded is extremely popular content.  To mitigate this, 
+%multiple exit proxies can store the shared key $k$ for the URL that is extremely popular, and therefore divide the load, while 
+%still taking advantage of the the CDNs caching benefits.  
 
-\paragraph{Use \system{} for Partial Content} Different content publishers have different needs, and each content publisher might 
-have different needs for different content.  The design of \system{} allows content publishers to publish some of their content 
-on \system{} and some on other CDNs.  This is useful in a case where some content is more sensitive, while other content needs better 
-performance.  
+%\paragraph{Use \system{} for Partial Content} Different content publishers have different needs, and each content publisher might 
+%have different needs for different content.  The design of \system{} allows content publishers to publish some of their content 
+%on \system{} and some on other CDNs.  This is useful in a case where some content is more sensitive, while other content needs better 
+%performance.  
 
-\paragraph{Different Modes of Operation}  As briefly mentioned in Section \ref{sec:retrieve}, there are two different modes of 
-operation, where one provides better performance, and the other provides better privacy.  In the first mode, the client 
-can choose to send her request directly to the exit proxy, and not forward her request through any of her peers.  While this 
-allows the exit proxy to identify her, it does not allow the CDN to identify her or her request.  In the second mode, the 
-client forwards her request through a set of peers before it reaches the exit proxy.  In this mode, the client can decide to 
-prepend other clients' identifiers before her own, so it appears as if the request came from a different client.  This 
-provides unlinkability between the client and the request.  This mode also provides the option of {\it only} prepending other clients' 
-identifiers and then forwarding the request directly to the exit proxy; this provides the same performance benefit as the first mode, 
-but also provides unlinkability.  While this seems like the optimal solution, it cannot be the only option because the exit proxy 
-would always know that the true client is the previous hop in the source route.  These two modes of operation provide the client 
-with different ways to use the system both based on their privacy preferences and based on the type of content they are requesting.
+%\paragraph{Different Modes of Operation}  As briefly mentioned in Section \ref{sec:retrieve}, there are two different modes of 
+%operation, where one provides better performance, and the other provides better privacy.  In the first mode, the client 
+%can choose to send her request directly to the exit proxy, and not forward her request through any of her peers.  While this 
+%allows the exit proxy to identify her, it does not allow the CDN to identify her or her request.  In the second mode, the 
+%client forwards her request through a set of peers before it reaches the exit proxy.  In this mode, the client can decide to 
+%prepend other clients' identifiers before her own, so it appears as if the request came from a different client.  This 
+%provides unlinkability between the client and the request.  This mode also provides the option of {\it only} prepending other clients' 
+%identifiers and then forwarding the request directly to the exit proxy; this provides the same performance benefit as the first mode, 
+%but also provides unlinkability.  While this seems like the optimal solution, it cannot be the only option because the exit proxy 
+%would always know that the true client is the previous hop in the source route.  These two modes of operation provide the client 
+%with different ways to use the system both based on their privacy preferences and based on the type of content they are requesting.

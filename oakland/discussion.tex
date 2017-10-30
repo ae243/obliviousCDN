@@ -4,6 +4,15 @@
 In this section, we discuss the various technical, political, and legal limitations
 of \system{}, as well as possible avenues for future work. 
 
+\paragraph{\system{} limitations} CDNs become slightly limited in terms of the 
+possible performance optimizations when following \system{}'s design.  For example, 
+many CDNs perform HTTPS re-writes on content that they cache, but this can only be 
+done if the CDN has access to the decrypted content.  Similarly, the CDN needs the 
+decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
+this likely increases performance in traditional CDNs, it does not provide the greatest 
+increase in performance; content caching around the world is the greatest benefit to 
+performance, which \system{} preserves.
+
 \paragraph{CDNs operated by content hosts} The design of \system{}
 assumes that the entities operating the proxies and delivering content are
 distinct from original content provider. In many cases, however---particularly

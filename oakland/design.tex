@@ -130,18 +130,65 @@ are routed from exit proxies back to the original client.
  Multicast Response & {} \\
 \hline
 \end{tabular}
-\caption{The design decisions associated with content requests and responses, and what these decisions provide.}
+\caption{The design decisions associated with content requests and responses, and what these 
+decisions provide.}
 \label{tab:request_response}
 \end{table*}
 
-\paragraph{Shared Keys}
+\paragraph{Potentially Spoofed Source Routes}
+As described in the previous section, exit proxies query the CDN on behalf of clients, but the exit proxy 
+should not be able to learn which client sent which request.  This is accomplished by routing requests through 
+a series of other clients.  In \system{}, each client is running a proxy, and is a peer in this system; this 
+forms a peer-to-peer system of clients, which, from the vast literature on peer-to-peer systems, borrows the 
+protocols used for clients joining, leaving, and learning about other clients. A client routes her request through 
+her peers by using source routing; when she generates a request, she also generates a source route, which includes 
+the addresses of a set of her peers.  The last hop in the source route is the exit proxy that is responsible for the 
+shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking this 
+up in a local mapping (which is retrieved from a central system that keeps the mapping of URLs to exit proxies).  
+She appends this source route to her request and forwards it on to the next peer in the route.  When a peer receives 
+a request, she simply forwards it on to the next peer; this continues until the last hop in the source route, which 
+is an exit proxy. 
+
+This may appear as if it is easy to identify the client who sent a request because she is the first hop in the 
+source route, so all of the peers on the path and the exit proxy can identify her.  \system{} prevents this by 
+allowing clients to spoof their own source routes; a client can lie by including other peers in the route before 
+herself.  For example, if a client has identity {\it C}, she could generate a route to exit proxy {\it E} that looks 
+like: 
+
+\[C \rightarrow G \rightarrow F \rightarrow E\] 
+
+\noindent She can hide her identity from {\it G} and {\it F} by using the route 
+
+\[D \rightarrow A \rightarrow C \rightarrow G \rightarrow F \rightarrow E\]  
+
+\noindent Neither {\it G}, {\it F}, nor {\it E} know who the original requestor was; from {\it E}'s point of 
+view, the original requestor could have been {\it D}, {\it A}, {\it C}, {\it G}, or {\it F}.  By using a series of 
+peers, or even just knowing that a client {\it can} use a series of peers, the identity of the client is 
+hidden from other clients, exit proxies, and the CDN. 
 
 \paragraph{Session Keys}
+In addition to shared keys between origin servers and exit proxies, \system{} uses session keys shared 
+between clients and exit proxies.  Session keys provide confidentiality of the requested URL and the 
+response.  When the client generates a request, she also generates a session key $skey$.  She then encrypts 
+the URL in her request with this key, which provides \{URL\}$_{skey}$.  She must also share this session key 
+with the exit proxy, so that the exit proxy can learn the plaintext URL and subsequently compute the HMAC to 
+query the CDN.  The client encrypts the session key with the exit proxy's public key, result in \{skey\}$_{PK_{exit}}$, 
+and appends this value as an additional header on her request.  Because her request could be forwarded through 
+a set of client peers, this hides the URL of her request from other clients.
 
-\paragraph{Potentially Spoofed Source Routes}
+When an exit proxy receives a request from a client, he first extracts the session key $skey$ by decrypting it with 
+his private key, and then he decrypts the URL with the session key.  This provides him with the original (plaintext) 
+URL, which he can then use the shared key $k$ from the origin server to compute HMAC$_k$(URL) and forward the request 
+to the CDN.  When he receives a response from the CDN, he then decrypts the content with the shared key $k$, and 
+encrypts the content with the session key $skey$ before sending it to the client.  On receiving the encrypted response, 
+the client can decrypt it because she knows $skey$.
 
-\paragraph{Multicast Response}
-
+\paragraph{Multicast Responses}
+Using session keys allows for a performance optimization in sending responses back to clients.  Instead of sending 
+the encrypted response from the exit proxy back to the client via the set of peers used in the source route, the exit 
+proxy can send it in a multicast manner to all clients that were on the source route.  The only client that knows $skey$ 
+is the true client that originated the request, therefore none of the other clients can see the response, and it reduces the 
+latency for sending the response to the client.  
 
 \subsection{Additional Options}
 
@@ -152,6 +199,34 @@ are routed from exit proxies back to the original client.
 \paragraph{DHT Replicas}
 
 \paragraph{Partial Content}
+Different origin servers have different needs, and each origin server might 
+have different needs for different content.  The design of \system{} allows origin servers
+ to publish some of their content on \system{} and some on other CDNs.  
+This is useful in a case where some content is more sensitive, while other content needs 
+better performance.
+
+\paragraph{Pre-Fetch DNS Responses} 
+One way to increase the performance of \system{} is to pre-fetch DNS responses at 
+the exit proxies.  This would allow the exit proxy to serve each client request faster 
+because it would not have to send as many DNS requests.  Pre-fetching DNS responses would 
+not take up a large amount of space, but it also would not be a complete set of all DNS 
+responses.  Additionally, if the content is moved between cache nodes at the CDN, then DNS 
+response must also change; therefore, the pre-fetched DNS responses should have a lifetime 
+that is shorter than the lifetime of the content on a cache node.
 
 \paragraph{Privacy Mode vs Performance Mode}
+There are two different modes that \system{} can operate in, where one provides better 
+performance, and the other provides better privacy.  In the first mode, the client can 
+choose to send her request directly to the exit proxy, and not forward her request through 
+any of her peers.  While this allows the exit proxy to identify her, it does not allow the 
+CDN to identify her or her request.  In the second mode, the client forwards her request 
+through a set of peers before it reaches the exit proxy.  In this mode, the client can decide 
+to prepend other clients' identifiers before her own, so it appears as if the request came from 
+a different client.  This provides hides the relationship between the client and the request.  This mode 
+also provides the option of {\it only} prepending other clients' identifiers and then forwarding 
+the request directly to the exit proxy; this provides the same performance benefit as the first 
+mode, but also provides some privacy.  While this seems like the optimal solution, it cannot be 
+the only option because the exit proxy would always know that the true client is the previous hop 
+in the source route.  These two modes of operation provide the client with different ways to use 
+the system both based on their privacy preferences and based on the type of content they are requesting.
 
