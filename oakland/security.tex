@@ -68,4 +68,4 @@ could see that some content on the CDN has just seen a surge in traffic and corr
 other information (for example, major world events).  This leaks information about what the content the 
 CDN is caching.  Fortunately, the design of \system{} can defend against this type of inference attack.  
 The exit proxy can cache content in time of a flashcrowd, such that the CDN (and therefore the attacker) 
-does not see the surge in traffic.  
+does not see the surge in traffic.\footnote{This raises billing issues because the CDN can’t charge as much if edge servers don’t see as many requests for the origin; fortunately, RFC 2227 describes a solution for this~\cite{rfc2227}.}  

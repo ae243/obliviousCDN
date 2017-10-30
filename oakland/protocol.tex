@@ -14,8 +14,8 @@ steps taken to publish and retrieve content in \system{}.
 \subsection{Publishing Content}
 \label{sec:publish_protocol}
 In order to publish content such that the CDN never sees the content, the publisher 
-must first obfuscate her content, as described in Section \ref{sec:obfuscate_content}. 
-Figure \ref{fig:publishing} shows the steps taken when publishing content.
+must first obfuscate her content, as described in Section \ref{sec:design}. 
+Figure \ref{fig:publishing} shows the steps taken to publish content.
 
 %\begin{figure*}[t]
 %    \centering
@@ -33,65 +33,48 @@ The most important step in content publishing is obfuscating the data.  We assum
 server already has a public and private key pair, as well as a certificate.  To obfuscate the data 
 the origin server will need to generate a shared key $k$. 
 
-Once the key is established, the publisher must first pad the content to the same size for some 
+Once the key is established, the origin server must first pad the content to the same size for some 
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
 z).  The range of content sizes should be small, such that this causes negligible padding overhead, but 
-reduces the linkability between exact content length and content identification.  This content padding 
+reduces the probability of identifying the content based on the content length.  This content padding 
 is done to hide the original content's length, as it may be identifiable simply by its length.  After 
 content is padded, then the content is divided into fixed size blocks and padded to 
 some standard length.  Then each block is encrypted using the shared key $k$, 
-resulting in a set of encrypted blocks. As long as the CDN does not have access to the shared key, 
-then the CDN cannot see what content it is caching.  
+resulting in a set of encrypted blocks. Because the CDN does not have access to the shared key, 
+it cannot see what content it is caching.  
 
-Now that the content is obfuscated, the publisher must also obfuscate the content's identifier.  To do so, 
+Now that the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
 she computes the HMAC of the URL using the shared key $k$.
 
-Once the identifier and the content replicas are obfuscated with $k$, they can be pushed to the 
-CDN.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; a content 
-publisher could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
-performance, and availability; a publisher can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
+Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN, or optionally to multiple 
+CDNs.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
+origin server could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
+performance, and availability; an origin server can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
 CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
-partial deployment.  %Note that each proxy will only be able to fetch a specific replica of the content, that is a 
-%specific \{content\}$_{kn}$ for the $n^{th}$ shared key that it holds.  We discuss the performance trade offs 
-%associated with differing numbers of shared keys and proxies in Sections \ref{sec:performance}.
+partial deployment.
 
-As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the content publisher
-determines which exit proxy is correct (based on consistent hashing).  The content publisher then encrypts the 
-shared key $k$ with the correct exit proxy's public key $PK_{proxy}$.  The exit proxies' identifiers in this consistent 
-hashing scheme are self-certifying names---the format of the exit proxy's identifier is IP:hostID, where hostID is a 
-hash of the exit proxy's public key and the IP is the exit proxy's IP address.  This technique was introduced 
-in a self-certifying file system~\cite{mazieres2000self}, and it allows for certification of the exit proxy. To distribute this value, the publisher 
-then publishes \{$k$\}$_{PK_{proxy}}$ in its DNS Service (SRV) record, which allows the exit proxy to retrieve it (this is discussed in more 
-detail in Section \ref{sec:retrieve}).  When the exit proxy retrieves \{$k$\}$_{PK_{proxy}}$ it must prove to the publisher that it 
-is responsible for that publisher's content.  This protects against any (malicious) exit proxy from requesting the shared key 
-from all publishers.
-
-%\begin{enumerate}
-%\item Origin generates n shared keys k (origin already has a public key PK and private key PK$^{-1}$)\footnote{$n$ such that $1 < n < |proxies|$} 
-%\item Origin generates HMAC$_{k1}$(URL), \{content\}$_{k1}$, , \{cert\}$_{k1}$, ..., HMAC$_{kn}$(URL), \{content\}$_{kn}$, \{cert\}$_{kn}$
-%\item Cache node pulls HMAC$_{k1}$(URL), \{content\}$_{k1}$, , \{cert\}$_{k1}$, ..., HMAC$_{kn}$(URL), \{content\}$_{kn}$, \{cert\}$_{kn}$\footnote{For more security and reliability, cache nodes from different CDNs can pull this data.  Additionally, an origin server can use something like Cedexis to load balance between CDNs.}
-%\end{enumerate}
+As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the origin server
+determines which exit proxy is correct (based on the consistent hashing circle).  The origin server then encrypts the 
+shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  The steps for retrieving a shared key are shown in 
+Figure \ref{fig:keys}.  First, the exit proxy sends a DNS request to the origin server's authoritative DNS server, including its self-certifying 
+identifier and its public key (these are both included in the {\tt Additional Info} section of the DNS message).  The origin server hashes the exit 
+proxy's public key and verifies it against its self-certifying identifier; this acts as a proof of the 
+exit proxy's position in the consistent hashing circle.  If the origin is able to certify the exit proxy, then it will send the DNS response with 
+\{$k$\}$_{PK_{proxy}}$ in the SRV record. The exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.
 
 \paragraph{Updating Content}
-For a content publisher to update content, she must follow similar steps as described in publishing content.  
+For an origin server to update content, she must follow similar steps as described in publishing content.  
 Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) pad the 
 original content length, 2) divide the content into fixed size blocks, and 3) encrypt the content blocks 
 with the shared key $k$.  Because she is updating the content (as opposed to creating new content), the 
-obfuscated identifier will remain the same.  She must 
-retain a copy of the obfuscated old content until after the new content has been updated on the CDN; this is to prove 
-that the old content owner is the same as the new content owner.  The CDN cannot simply authenticate the content publisher, as this 
-typically requires some type of identification for the content publisher; the CDN does not need to know --- and should not know --- 
-the identity of the publisher, just that the organization that originally published the content is the same as the one that is 
-updating the content.  Only the origin and the proxy, both of which are 
-outside the CDN, know the old obfuscated content, so an attacker cannot update the content that belongs to 
-a legitimate publisher.  The publisher must present the old obfuscated content to the CDN in order to also push 
-her new obfuscated content to the CDN. 
+obfuscated identifier will remain the same.  The origin server signs the updated obfuscated content with 
+her private key, such that the CDN can verify it was true origin server that sent the update.
 
 \paragraph{Updating Keys}
-A content publisher must be able to update keys in case of compromise.  To minimize the amount of time a key is compromised for, the 
-content publisher specifies an expiration date and time for the key when it is originally generated.  The content publisher 
-periodically checks if the key is valid or not based on the expiration timestamp.  If the key is still valid, the content publisher 
-continues to use it.  Otherwise, the content publisher generates a new key $k_{new}$, computes HMAC$_{k_{new}}$(URL), and 
+An origin server must be able to update keys in case of compromise.  To minimize the amount of time a key is compromised for, the 
+origin server specifies an expiration date and time for the key when it is originally generated.  The origin server 
+periodically checks if the key is valid or not based on the expiration timestamp.  If the key is still valid, the origin server 
+continues to use it.  Otherwise, the origin server generates a new key $k_{new}$, computes HMAC$_{k_{new}}$(URL), and 
 encrypts the content (and possibly certificate) with $k_{new}$.  The content publisher then follows the same steps as in Updating 
 Content to push the content to the CDN, and it publishes $k_{new}$ encrypted with the exit proxy's public key in it's DNS SRV record.
 
@@ -102,25 +85,22 @@ proxy decrypts it to obtain $k_{new}$, updates its version of the key, and proce
 
 \subsection{Retrieving Content}
 \label{sec:retrieve}
-The steps taken for an end-user to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}.  
-In this section, we assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
+The steps taken for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
+forwards her request directly to an exit proxy; Figure \ref{fig:retrieving2} shows the steps to retrieve content when the client forwards her
+request through two peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
 stage, the client has knowledge of a subset of its peers (other \system{} clients) and a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 
 route, which has better performance, or 2) a source route, which has better privacy.  If the client decides to use the privacy-preserving mode, 
-then she generates a source route, which includes some of her peers, and could potentially include a false originator (as described in Section \ref{sec:proxies}).
+then she generates a source route, which includes some of her peers, and could potentially include a false originator (as described in Section \ref{sec:design}).
 Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no other clients on the path can learn what the requested URL is.  The client then sends it onto the next proxy in the source route, which could be either another client proxy or the exit proxy.  The request is forwarded 
 through all subsequent hops in the source route until it reaches the exit proxy.  The exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
-the source route locally; it then decrypts the URL with $k_{session}$.   The exit proxy then resolves the domain using it's local resolver, which will redirect it to the CDN's DNS resolver. 
+the source route locally; it then decrypts the URL with $k_{session}$. 
 
-In order for the proxy to generate the obfuscated identifier to query the edge server for the correct content, 
+The exit proxy then resolves the domain using it's local resolver, which will redirect it to the CDN's DNS resolver. In order for the exit proxy to 
+generate the obfuscated identifier to query the cache node for the correct content, 
 it must have the shared key $k$ that the origin server generated and obfuscated the content and identifier 
-with.  These steps are shown in Figure \ref{fig:keys}.  The origin server publishes the shared key encrypted with the proxy's public key
-in the DNS SRV record. When the exit proxy sends a DNS request to the origin server's authoritative DNS server, it includes its self-certifying 
-identifier (IP:hostID).  The origin server can hash the exit proxy's public key and verify it against hostID; this acts as a proof of the 
-exit proxy's position in the consistent hashing circle.  Additionally, the origin server can use the IP part of the exit proxy identifier 
-to verify that the exit proxy is not in the same network as the CDN.  If the origin is able to verify both of these, then it will send the DNS response, and the 
-exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.  
+with.  The steps an exit proxy takes to retrieve the shared key were outlined in Section \ref{sec:publish_protocol} and are shown in Figure \ref{fig:keys}.
 %Because the list of \system{} proxies is publicly available, it is simple for a 
 %content publisher to retrieve the list of proxies and ensure that she encrypts the shared key with the correct proxy's public key (based on consistent hashing).
 
@@ -129,36 +109,13 @@ on the request the client sent.  It computes the HMAC of the URL with the shared
 sends the (obfuscated) request to the edge server, where the CDN locates the content associated with the identifier.  The CDN returns 
 the associated obfuscated content, which we recall is the fixed-size blocks encrypted with the same shared key that the identifier was 
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
-added padding, to reconstruct the original content.\footnote{Proxies can cache content in times of a flash crowd to minimize correlation attacks when a provider has encrypted and unencrypted content on the same CDN.  This raises billing issues because the CDN can’t charge as much if edge servers don’t see as many requests for the origin; fortunately, RFC 2227 describes a solution for this~\cite{rfc2227}.}  
+added padding, to reconstruct the original content.
 
 Lastly, the exit proxy must send the response back to the correct client without knowing who the client is.  First, the exit proxy fetches the session key $k_{session}$ 
 that it stored for the corresponding incoming request, and it uses this key to encrypt the response.  Then, it looks up the source route it stored for the corresponding request 
-and uses multicast routing to send to the encrypted response to all clients on the source route.  At this point, the exit proxy can delete the source route and session key entries 
+and uses a multicast technique to send to the encrypted response to all clients on the source route.  At this point, the exit proxy can delete the source route and session key entries 
 for this request/response.  Only the original (true) client has $k_{session}$, so only the original (true) client can decrypt the response.  All other clients will discard 
 the encrypted response because they cannot decrypt it.  
-
-%\begin{enumerate}
-%\item Send GET foo.com request to proxy using TLS connection\footnote{Include some form of blinding here such that client1 and client2 request the same URL, but the contents of step 1 look different by adding some randomness at the client, and that the proxy can remove \url{https://en.wikipedia.org/wiki/Blinding_(cryptography)} --- this prevents a malicious CDN from running a client and sending requests to learn things about other clients.}
-%\item DNS lookup from proxy for foo.com\footnote{This DNS info could be prefetched on the proxy, which would provide some optimization.}
-%\item CDN DNS lookup for a19.akamai.net (some Akamai ID that represents foo.com)
-%\item Proxy sends DNS request to origin’s authoritative server, and the origin publishes \{k\}$_{PK_{proxy}}$ in the SRV record.  Then the proxy decrypts the shared key with his own private key.\footnote{The origin can learn the proxy’s public key via DNS.}, \footnote{The shared keys are updated every X amount of time, so this fetching of the shared key needs to happen regularly.}
-%\item Proxy generates GET HMAC$_k$(URL) request
-%\item Proxy sends request to cache node
-%\item Cache node returns \{content\}$_k$, \{cert\}$_k$ to proxy.  Proxy decrypts and validates the cert.  Once the cert is validated, proxy decrypts the content with origin server’s shared key.\footnote{Proxy can cache content in times of flash crowd to minimize correlation attacks if a provider has encrypted and unencrypted content on the same CDN. This raises the issue of charges for the origin (the CDN can’t charge as much if edge servers don’t see as many requests for the origin) --- RFC 2227 describes a solution for this: Simple Hit-Metering and Usage-Limiting for HTTP.}
-%\item Proxy returns decrypted content to client (using TLS)
-%\end{enumerate}
-
-%\begin{figure*}[t]
-%    \centering
-%    \begin{subfigure}[h]{0.5\textwidth}
-%        \includegraphics[width=\textwidth]{retrieving_content}
-%    \end{subfigure}%
-%    \begin{subfigure}[h]{0.5\textwidth}
-%        \includegraphics[width=\textwidth]{Retrieving_steps}
-%    \end{subfigure}
-%    \caption{}
-%    \label{fig:retrieving}
-%\end{figure*}
 
 \subsection{Clients Joining \& Leaving}
 \label{sec:join}
@@ -170,9 +127,8 @@ information is propogated to its peers using a gossip protocol.
 
 \subsection{Partial Deployment}
 \label{sec:partial}
-\system{} should be partially deployable in the sense that if only some of the content publishers participate or only some of the CDNs participate, then 
-the system should still provide protections.  We have two different partial deployment plans, and both provide protections for those 
-publishers, CDNs, and clients that use \system{}. 
+\system{} should be partially deployable in the sense that if only some origin servers participate or only some CDNs participate, then 
+the system should still provide protections.  We have two different partial deployment plans, and both provide protections afforded by \system{}. 
 
 \begin{figure}[t!]
 \centering
@@ -192,30 +148,29 @@ exit proxy.}
 \end{figure}
 
 \paragraph{Deployment Option 1}
-One option for deploying \system{} is to ensure there is some set $S$ of content publishers the participate fully in the 
+One option for deploying \system{} is to ensure there is some set $S$ of origin servers that participate fully in the 
 system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
-obfuscated data stored on the CDNs cache nodes.  Recall that there are $n$ shared keys, resulting in $n$ replicas of the 
-content that {\it appear} to the CDN as different content (because each replica is encrypted with a different key).  This 
-allows the minimum set of publishers $S$ to be relatively small; $S$ must be greater than one, otherwise the CDN can infer 
+obfuscated data stored on the CDNs cache nodes.  $S$ must be greater than one, otherwise the CDN can infer 
 that a client accessing this obfuscated content is actually accessing content that can be identified.  This partial deployment plan 
-partially protects the privacy of the clients accessing the content created by the set of publishers $S$.  It does not 
-protect the clients' privacy as completely as full participation of all publishers in \system{} because the CDN can 
-still view cross site browsing patterns among the publishers that are not participating. It is important to note though, that 
-because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to proxies, but 
+ protects the privacy of the clients accessing the content created by the set of origin servers $S$.  It does not 
+protect the clients' privacy as completely as full participation of all origin servers in \system{} because the CDN can 
+still view cross site browsing patterns among the origin servers that are not participating. It is important to note though, that 
+because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to exit proxies, but 
 not to clients.  
 
 \paragraph{Deployment Option 2} 
-It is reasonable to believe that some content publishers are skeptical of \system{} and prioritize performance 
+It is reasonable to believe that some origin servers are skeptical of \system{} and prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
-both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of publishers 
-fully participating with only encrypted content, some other set of publishers partially participating with both 
+both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 
+fully participating with only encrypted content, some other set of origin servers partially participating with both 
 encrypted and plaintext content, and some last set of publishers that are not participating.  Unfortunately, if 
-a publisher has both encrypted and plaintext content at a cache node, and some event causes a flashcrowd --- 
-the CDN sees a significantly larger spike in accesses to certain content --- then the CDN can correlate the access 
-spike on encrypted and plaintext content for the same publisher.  In order to prevent this deanonymization of the 
-content publisher, we can utilize multiple CDNs.  The publisher can spread replicas over different CDNs such that 
-the encrypted replicas are on one CDN and the plaintext replicas are on a different CDN.  In this case the publisher 
-is not susceptible to flashcrowds correlations and can still join the system.
+a publisher has the same content that is both encrypted and plaintext content at a cache node, then an adversary can correlate the access 
+patterns on encrypted and plaintext content for the origin server.  In order to prevent this identification of the 
+content, \system{} can use encoded URLs (described in Section \ref{sec:design}), which obfuscates the access patterns for 
+a given piece of content; this holds true if an origin server chooses to distribute its content in an encrypted manner using \system{}
+ and in plaintext form on a different CDN.  In this case, the origin server can still encode its URLs in multiple ways to 
+prevent correlating access patterns between the encrypted and plaintext content.  Therefore, this deployment option allows for 
+differing levels of participation in the system, while still preserving the protections provided by \system{}.  
 
 \begin{figure}[t]
 \centering

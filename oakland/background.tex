@@ -52,7 +52,7 @@ rates, and how often content is accessed.  But the CDN does not just know about 
 has access to the plaintext content.  The CDN performs optimizations on the content to increase performance; 
 for example, CDNs minimize CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%.  They can 
 also inspect content to conduct HTTPS re-writes; we discuss how \system{} handles these types of optimizations later 
-in Section \ref{sec:optimizations}. In addition, requesting content via HTTPS does not hide any information 
+in Section \ref{sec:discussion}. In addition, requesting content via HTTPS does not hide any information 
 from the CDN; if a client requests a web page over HTTPS, the CDN terminates the TLS connection on behalf of the 
 content publisher.  This means that not only does the CDN know the content, the content identifier, but also knows 
 public and private keys, as well as certificates associated with the content it caches.  
