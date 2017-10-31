@@ -23,7 +23,7 @@ systems.
 \label{tab:sec_table}
 \end{table}
 
-{\bf Popularity Attacks.}  An attacker that has requested or otherwise 
+\paragraph{Popularity Attacks.}  An attacker that has requested or otherwise 
 gained access to CDN cache logs can learn information about how often 
 content was requested.  Because not all content is requested uniformly, the 
 attacker could potentially correlate the most commonly requested content with 
@@ -39,7 +39,7 @@ that hold originally held the sole key for the popular webpage, but this is now 
 across multiple exit proxies.}  Now, the popular content does not appear as popular, 
 and it makes difficult for an attacker to infer the popularity of the content.
 
-{\bf Chosen Plaintext Attacks.} An attacker could attempt to
+\paragraph{Chosen Plaintext Attacks.} An attacker could attempt to
 determine whether a particular URL was being accessed by sending requests
 through specific \system{} proxies and requesting access to the CDN cache logs, 
 which contain the corresponding obfuscated
@@ -50,7 +50,7 @@ law enforcement perspective, receiving a subpoena for {\em existing} logs and
 data may present a lower legal barrier than compelling a CDN to attack a
 system.
 
-{\bf Spoofed Content Updates.} Because the CDN cache
+\paragraph{Spoofed Content Updates.} Because the CDN cache
 nodes do not know either the content that they are hosting or the URLs
 corresponding to the content, an attacker could masquerade as an origin server
 and could potentially push bogus content for a URL to a cache node. There are
@@ -63,7 +63,8 @@ to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
 
-{\bf Flashcrowds.}  A flashcrowd is large spike in traffic to a specific web page.  An attacker 
+\paragraph{Flashcrowds.}  A flashcrowd is large spike in traffic to a specific web
+page. An attacker
 could see that some content on the CDN has just seen a surge in traffic and correlate that with 
 other information (for example, major world events).  This leaks information about what the content the 
 CDN is caching.  Fortunately, the design of \system{} can defend against this type of inference attack.  
