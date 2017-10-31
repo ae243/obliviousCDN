@@ -31,13 +31,14 @@ very popular webpages.  While this does not allow the CDN to learn which
 clients are accessing the content, it can reveal information about what content 
 is stored on the CDN cache nodes.  \system{} handles this type of attacker by making 
 the distribution of content requests appear uniform.  The content publisher (of popular 
-content) generates multiple shared keys 
-and encrypts their content under each key, such that they have multiple, different-looking 
-copies of their content.  All of the content copies are pushed to the CDN and each key is 
-shared with the exit proxies.\footnote{This also provides load balancing for exit proxies 
-that hold originally held the sole key for the popular webpage, but this is now distributed 
-across multiple exit proxies.}  Now, the popular content does not appear as popular, 
-and it makes difficult for an attacker to infer the popularity of the content.
+content) generates multiple encodings of their content and URLs, and encrypts each one 
+with the shared key $k$, such that they have multiple, different-looking 
+copies of their content.  All of the content copies are pushed to the CDN and the key is 
+shared with the exit proxy.\footnote{This also provides load balancing for exit proxies 
+that hold the shared key $k$ for the popular webpage because it distributes the load
+across multiple exit proxies (where each of these exit proxies are responsible for 
+one of the encodings).}  Now, the popular content does not appear as popular, 
+and it makes it difficult for an attacker to infer the popularity of the content.
 
 \paragraph{Chosen Plaintext Attacks.} An attacker could attempt to
 determine whether a particular URL was being accessed by sending requests
@@ -66,7 +67,7 @@ server that populated the cache with the original content.
 \paragraph{Flashcrowds.}  A flashcrowd is large spike in traffic to a specific web
 page. An attacker
 could see that some content on the CDN has just seen a surge in traffic and correlate that with 
-other information (for example, major world events).  This leaks information about what the content the 
+other information (for example, major world events).  This leaks information about what content the 
 CDN is caching.  Fortunately, the design of \system{} can defend against this type of inference attack.  
-The exit proxy can cache content in time of a flashcrowd, such that the CDN (and therefore the attacker) 
+The exit proxy can cache content in the time of a flashcrowd, such that the CDN (and therefore the attacker) 
 does not see the surge in traffic.\footnote{This raises billing issues because the CDN can’t charge as much if edge servers don’t see as many requests for the origin; fortunately, RFC 2227 describes a solution for this~\cite{rfc2227}.}  

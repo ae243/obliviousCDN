@@ -69,7 +69,8 @@ liable for its customers' content.
 browsing patterns. \system{} should provide privacy protections by hiding which client is accessing 
 which content at the CDN.  In addition, it should hide cross site browsing patterns, which a CDN 
 is unique in having access to.  Some CDNs block legitimate Tor users because they are 
-trying to protect cached content from attacks; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
+trying to protect cached content from attacks, such as comment spam, vulnerability scanning, 
+ad click fraud, content scraping, and login scanning~\cite{ars_tor}; for example, Akamai blocks Tor users~\cite{khattak2016you}.    \system{} would prevent 
 privacy-concious Tor users from being blocked at CDNs.  Lastly, some CDNs, due to their ability 
 to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
 prevent a CDN from compromising the anonymity of clients.
