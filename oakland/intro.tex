@@ -57,42 +57,62 @@ the identity of the client that made the original request. Using \system{} requi
 only minimal modification to existing clients; clients can also configure aspects
 of the system to trade off performance for privacy.
 
-Ensuring that the CDN operator never
-learns information about either (1)~what content is being stored on its cache
-nodes or (2)~which objects individual clients are requesting is
-challenging, due to the many possible inference attacks that a CDN might be
-able to run. For example, previous work has shown that even when web content
-is encrypted, the retrieval of a collection of objects of various sizes can
-yield information about the web page that was being retrieved~\cite{panchenko2016website,
-cai2012touching}. Similarly, URLs
+Ensuring that the CDN operator never learns information about either (1)~what
+content is being stored on its cache nodes or (2)~which objects individual
+clients are requesting is challenging, due to the many possible inference
+attacks that a CDN might be able to mount. For example, previous work has
+shown that even when web content is encrypted, the retrieval of a collection
+of objects of various sizes can yield information about the web page that was
+being retrieved~\cite{panchenko2016website, cai2012touching}. Similarly, URLs
 can often be inferred from relative popularity in a distribution of web
-requests, even when the requests themselves are encrypted. \system{} addresses
-these challenges using different techniques, most of which are tunable to different 
-performance and privacy requirements.  Our evaluation explores the implications of 
-the tradeoffs between performance and privacy, as
-well as how \system{} performs relative to a conventional CDN.
+requests, even when the requests themselves are encrypted. Additionally, the
+\system{} design (Section~\ref{sec:threat}) assumes a strong attack model,
+whereby an adversary can request logs from the CDN, interact with \system{} as
+a client, a proxy, or a publisher, and mount coordinated attacks that depend
+multiple such capabilities. Our threat model does not include active attempts
+to disrupt the system (\eg, blocking access to parts of the system, mounting
+denial of service attacks), but it includes essentially any type of attack
+that involves observing traffic and even directly interacting with the system
+as a client or a publisher.
 
-We make the following contributions. First, we explore the problems that
-arise when data is stored across jurisdictional boundaries and highlight the
-need for a CDN that is oblivious to the content it is hosting and serving.
-Second, we design and implement \system{}, a CDN that can be oblivious to the
-content that it is hosting, as well as the content that clients are
-retrieving. Finally, we evaluate the performance of \system{} for individual
-object retrieval and cache hit rates, showing that \system{} incurs a negligible performance
-overhead relative to conventional CDNs.
+The design of \system{} (Section~\ref{sec:design}) under such a strong attack
+model entails many unique aspects and features. Because the system allows any
+client to join as a proxy, even setting up the infrastructure is challenging.
+For example, an attacker could try to join the system as a proxy with the
+intent of proxying for specific web content, in an attempt to either disrupt
+or surveil those requests. To counter this threat, \system{} uses consistent
+hashing to map object identifiers (\ie, URLs) to the proxy responsible for
+ultimately routing traffic to the CDN that hosts the object; to ensure that
+publishers only communicate keys to the proxies responsible for their content,
+each proxy must prove its identity to the respective publisher using a proof
+that relies on a self-certifying identifier. 
 
-The rest of the paper is organized as follows. Section~\ref{sec:background} describes
-the typical operation of a CDN, the types of information that CDN operators
-typically know today, and the types of information we aim to obfuscate.  Section~
-\ref{sec:threat} describes the threat model and security objectives for \system{}; based
-on these threats, Section~\ref{sec:design} outlines various design decisions. Section~
-\ref{sec:protocol} describes the protocol for both publishing and retrieving content and we describe 
-our prototype implementation in Section \ref{sec:implementation}.
-Section \ref{sec:performance} evaluates the performance overhead of the system and Section~\ref{sec:sec} 
-analyzes the security of \system{}. Section~
-\ref{sec:discussion} describes various limitations and possible avenues for future
-work, Section~\ref{sec:related} discusses related work, and Section~\ref{sec:conclusion}
-concludes.
+Requesting and retrieving content, a process that we describe in detail in
+Section~\ref{sec:protocol}, is challenging since neither the CDN nor the proxy
+must know which client originated a request for a specific piece of content.
+The key exchange between an origina server and its respective proxy protects
+the confidentiality of both the content and the identifier (\ie, the URL) from
+the CDN. To obfuscate the source of the original request, clients construct a
+source route to an {\em exit proxy}, but the route can be prepended with
+proxies that precede the client who originated the request. To defend against
+various inference attacks, as well as to balance load, the \system{} design
+allows publishers to use multiple CDNs to distribute the same content,
+ensuring that no single CDN has access to information such as the relative
+popularity distribution of all objects. To ensure that no single proxy learns
+the request pattern for a single object, as well as to balance load, the
+design also can also use consistent hashing to assign a set of proxes to a
+single object. 
+
+The design of \system{} against a strong passive adversary is a major
+contribution of this work; additionally, we have also implemented \system{}
+(Section~\ref{sec:implementation}) and publicly released the source code.
+Section~\ref{sec:performance} studies the performance implications of the
+tradeoffs between performance and privacy, as well as how \system{} performs
+relative to a conventional CDN; Section~\ref{sec:sec} analyzes how \system{}
+defends against threats from our adversary.
+\ref{sec:discussion} describes various
+limitations and possible avenues for future work, Section~\ref{sec:related}
+discusses related work, and Section~\ref{sec:conclusion} concludes.
 
 
 \if 0
