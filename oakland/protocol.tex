@@ -154,7 +154,7 @@ and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
 \end{figure}
 
-\paragraph{Deployment Option 1}
+\paragraph{Deployment with Origin Servers' Full Participation}
 One option for deploying \system{} is to ensure there is some set $S$ of origin servers that participate fully in the 
 system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
 obfuscated data stored on the CDNs cache nodes.  $S$ must be greater than one, otherwise the CDN can infer 
@@ -165,7 +165,7 @@ still view cross site browsing patterns among the origin servers that are not pa
 because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to exit proxies, but 
 not to clients.  
 
-\paragraph{Deployment Option 2} 
+\paragraph{Deployment with Origin Servers' Partial Participation} 
 Some origin servers may prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
 both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 
