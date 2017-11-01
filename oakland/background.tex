@@ -3,12 +3,11 @@
 
 We now outline how a CDN typically operates, including what information it
 has access to by virtue of running a CDN. We also discuss some of the ongoing legal
-battles
-surrounding CDNs.
+questions that CDNs currently face.
 
 \subsection{Content Distribution Networks}
 CDNs provide content caching as a service to content publishers.  A 
-content publisher may wish to use a CDN provider for a number of reasons:
+content publisher may wish to use a CDN provider for several reasons:
 
 \begin{itemize}
 \item CDNs cache content in geographically distributed locations, which allows for localized 
@@ -40,24 +39,30 @@ CDNs today.}
 \label{fig:basic_cdn}
 \end{figure}
 
-\subsection{Information Visible to CDNs}
+\subsection{What CDNs Can See}
 \label{sec:info}
 Because the CDN interacts with both content publishers and clients, as shown in Figure \ref{fig:basic_cdn}, it is in a unique position 
 to learn an enormous amount of information.  CDN providers know information about all clients who
 access data stored at the CDN, information about all content publishers that cache content at 
 CDN edge servers, and information about the content itself.
 
-\paragraph{Knowing the content}  CDNs, by nature, have access to all content that they distribute, as well as 
-the URL.  First, the CDN must use the URL, which is not 
-encrypted or hidden, to locate the content. Therefore, it is evident that the CDN already knows what content is 
-stored in its caches.  And because CDNs provide analytics to content publishers, they keep track of cache hit 
-rates, and how often content is accessed.  But the CDN does not just know about the content identifier, it also 
-has access to the plaintext content.  The CDN performs optimizations on the content to increase performance; 
+\paragraph{Content}  CDNs, by nature, have access to all content that they distribute,
+as well as 
+the corresponding URL.  First, the CDN must use the URL, which is not 
+encrypted or hidden, to locate and serve the content. Therefore, it is evident that
+the CDN already knows what content is
+stored in its caches.  Because CDNs provide analytics to content publishers, they
+keep track of cache hit 
+rates, and how often content is accessed.  The CDN does not only knows
+about the content identifier; it also also 
+has access to the plaintext content.  A CDN performs optimizations on the content
+to increase performance; 
 for example, CDNs minimize CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%.  They can 
-also inspect content to conduct HTTPS re-writes; we discuss how \system{} handles these types of optimizations later 
+also inspect content to conduct HTTPS re-writes; we discuss how \system{} handles these types of optimizations  
 in Section \ref{sec:discussion}. In addition, requesting content via HTTPS does not hide any information 
 from the CDN; if a client requests a web page over HTTPS, the CDN terminates the TLS connection on behalf of the 
-content publisher.  This means that not only does the CDN know the content, the content identifier, but also knows 
+content publisher.  This means that not only does the CDN know the content, the
+content identifier, but also it knows 
 public and private keys, as well as certificates associated with the content it caches.  
 
 %Recently, the fact that CDNs 
@@ -72,17 +77,22 @@ public and private keys, as well as certificates associated with the content it 
 %remove safe harbor protections for some CDNs if they do not employ automated detection
 %techniques for removing copyrighted content~\cite{eu-copyright}.
 
-\paragraph{Knowing client information} Clients fetch content directly from the CDN's edge servers, which reveals 
-information about the client's location and what the client is accessing.  Unique to CDNs is the fact that 
-they can see each client's cross site browsing patterns.  CDNs host content for many different publishers, which allows 
+\paragraph{Client information} Clients retrieve content directly from the
+CDN's edge servers, which reveals
+information about the client's location and what the client is accessing.  
+CDNs can also see each client's cross-site browsing patterns: CDNs host content
+for
+many different publishers, which allows 
 them to see content requests for content published by different publishers.  This gives an enormous amount of 
 knowledge to CDNs; for example, Akamai caches enough content around the world to see up to 30\% of global Internet 
-traffic~\cite{akamai_global_traffic}.  And we have seen the implications of a CDN knowing this much information when Cloudflare 
-went public with the National Security Letters they had received~\cite{cloudflare_nsl}. These National Security Letters 
-demand information collected by the CDN and also include a gag order, which prohibits the CDN from publicly announcing 
-the information request.  
+traffic~\cite{akamai_global_traffic}.  The implications of a CDN having access to
+this much information was evident when Cloudflare
+went public with the National Security Letters they had received~\cite{cloudflare_nsl};
+these National Security Letters
+demanded information collected by the CDN and also included a gag order, which prohibits
+the CDN from publicly announcing the information request.  
 
-\paragraph{Knowing content publisher information} A CDN must know information
+\paragraph{Content publisher information} A CDN must know information
 about their customers, the content
 publishers; the CDN keeps track of who the content publisher is and 
 what the publisher's content is.  The combination of the CDN seeing all content in plaintext and the content's 
@@ -95,40 +105,54 @@ about the integrity of content because a CDN can impersonate the publisher from 
 %copyright realm, the European Commision is considering legislation that would remove safe harbor protection against copyright law for 
 %online service providers if they host infringing content, regardless of the provenance of that content. 
 
-Courts are currently battling over cases that pertain to user data requests and intermediary liability.  Large companies
+Various parties are battling in the courts over cases that pertain to user data
+requests and intermediary liability.  Large companies
 often have large numbers of users, which makes them a target of data requests, for example by a government entity.  Intermediary 
-liability would cause an Internet platform (or a CDN) to be liable for the content it provides on behalf of its customers or users. 
-In the following section we highlight some of these cases, which all point to a key problem that CDNs face: by knowing all the content 
-that they distribute, CDNs may be burden with the legal responsibility for the actions of their customers and clients.
+liability would impose criminal liability on an Internet platform (or a CDN) for
+the content it provides on behalf of its customers or users.
+In the following section, we highlight some of these cases, which all point to a key problem that CDNs face: by knowing all the content 
+that they distribute, CDNs may be burdened with the legal responsibility for the
+actions of their customers and clients.
 
-\subsection{User Data Requests}
+\paragraph{User Data Requests}
 There are numerous open questions in the legal realm regarding which government can request data stored in different countries, which 
 has led to much uncertainty.  A series of recent events have illustrated this uncertainty.  In the struggle over government access to 
 user data, cases such as {\it Microsoft vs. United States} (often known as the ``Microsoft Ireland Case'') concerns whether the United 
 States Government should have access to data about U.S. citizens stored abroad, given that Microsoft is a U.S. corporation.  
 
 Additionally, there have been user data requests asked of CDNs.  The Cloudflare CDN has been required
-to share data with FBI \cite{cloudflare_nsl}; similarly, leaked NSA documents showed that the government agency ``collected information `by exploiting inherent 
-weaknesses in Facebook's security model' through its use of the popular Akamai content delivery network'' \cite{facebook_surv}.
+to share data with FBI~\cite{cloudflare_nsl}; similarly, leaked NSA documents showed
+that the government agency ``collected information `by exploiting inherent 
+weaknesses in Facebook's security model' through its use of the popular Akamai content
+delivery network''~\cite{facebook_surv}.
 
-\subsection{Intermediary Liability}
+\paragraph{Intermediary Liability}
 More recently, questions on intermediary liability have been in the spotlight.  For example, many groups, including the Recording Industry 
 Association of America (RIAA) and the Motion Picture Association of America (MPAA), have started targeting CDNs with takedown notices for 
 content that allegedly infringes on copyright, trademarks, and patent rights; CDNs are a more convenient target of these takedown notices than 
 the content provider because oftentimes the content provider is either located in a jurisdiction where it is difficult to enforce the takedown, 
-or it is difficult to determine the owner of the content \cite{medium_copyright,eff_copyright}.  While U.S. law Section 230 protects intermediaries, such as CDNs, from being held 
-liable for the content they distribute, there have been cases where CDNs are forced to remove content.  This happened in 2015, as mentioned in Section \ref{sec:info}, which 
+or it is difficult to determine the owner of the content \cite{medium_copyright,eff_copyright}.
+Although Section 230 of the Communications Decency Act protects intermediaries,
+such as CDNs, from being held
+liable for the content they distribute, there have been cases where CDNs are forced
+to remove content.  This happened in 2015, as mentioned in Section~\ref{sec:info}, which 
 involved the RIAA, Cloudlfare, and Grooveshark \cite{techdirt_copyright}.  
 And again in 2017, a district court ruled that Cloudflare is not protected from anti-piracy injuctions by the Digital Millennium Copyright Act (DMCA); the 
 RIAA obtained a permanent injunction against a site known as MP3Skull, which contained pirated content, and was distributed by Cloudflare.  The ruling 
 did not specify that Cloudflare was enjoined with MP3Skull under the DMCA, but rather that Cloudflare was helping MP3Skull in evading the injunction (under 
 Rule 65 of the Federal Rules of Civil Procedure) \cite{stack_copyright}.
 
-The role of a CDN as an intermediary has also come into question in the announcement of new legislation, including a new German hate speech law and 
+The role of a CDN as an intermediary has also come into question in new and currently
+pending legislation, including a new German hate speech law and
 a bill proposed by the U.S. Senate called Stop Enabling Sex Traffickers Act (SESTA).  In October 2017, Germany passed a new law that imposes large fines, upwards of five million euros,
 on social media companies that do not take down illegal, racist, or slanderous comments and posts within 24 hours \cite{nytimes_hatespeech}.  The law 
-targets companies like Facebook, Google, and Twitter, but could also apply to smaller companies, which could be serviced by CDNs.  In the latter case, it is 
-an open question whether this new law also applies to CDNs.  In the United States, a new bill, SESTA, would make Internet platforms liable for their user's illegal comments 
-and posts \cite{medium_sesta}.  SESTA would CDNs liable for the content that they distribute (despite the CDN not being a party in the content publishing); this could potentially lead to 
-censoring content too much (an intermediary may be more willing to err on the side of caution--censorship).  This type of law could set a dangerous precedent 
-for the censoring other types of content that are unpopular, but still legal. 
+targets companies such as Facebook, Google, and Twitter, but could also apply to
+smaller companies, which could be serviced by CDNs.  In the latter case, it is
+an open question whether this new law also applies to CDNs.  In the United States,
+the SESTA bill would make Internet platforms liable for their user's illegal comments
+and posts \cite{medium_sesta}.  SESTA would hold CDNs liable for the content that
+they distribute (despite the CDN not being a party in the content publishing); these
+types of laws can naturally lead to overblocking, where an intermediary errs on
+the side of caution and censors more content than it needs to.
+Such a law may also set a precedent 
+for the censoring other types of content that are unpopular but legal. 
