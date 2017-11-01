@@ -45,13 +45,13 @@ shared key, which is subsequently shared with a proxy that is responsible for
 routing requests for objects corresponding to that URL.  A client forwards a
 request for content through a set of peers (\ie, other OCDN clients) in a way
 that prevents both other clients  and the CDN from learning the client
-identity or requested content requested.  After traversing one or more client
+identity or requested content.  After traversing one or more client
 proxies, an exit proxy transforms the URL that it receives from a client to an
 obfuscated identifier using the key that is shared with the origin server
 corresponding to the identifier.  Upon receiving that request from the exit
 proxy, the CDN returns the object corresponding to the object identifier; that
 object is encrypted with a key that is shared between the origin and the
-proxy. This approach allows a user to retrieve content from a CDN without the
+proxy. This approach allows a user to retrieve content from a CDN without
 any node in the CDN ever seeing the URL or the corresponding content, or even knowing
 the identity of the client that made the original request. Using \system{} requires
 only minimal modification to existing clients; clients can also configure aspects
@@ -66,9 +66,9 @@ of objects of various sizes can yield information about the web page that was
 being retrieved~\cite{panchenko2016website, cai2012touching}. Similarly, URLs
 can often be inferred from relative popularity in a distribution of web
 requests, even when the requests themselves are encrypted. Additionally, the
-\system{} design (Section~\ref{sec:threat}) assumes a strong attack model,
+\system{} design assumes a strong attack model (Section~\ref{sec:threat}),
 whereby an adversary can request logs from the CDN, interact with \system{} as
-a client, a proxy, or a publisher, and mount coordinated attacks that depend
+a client, a proxy, or a publisher, and mount coordinated attacks that depend on
 multiple such capabilities. Our threat model does not include active attempts
 to disrupt the system (\eg, blocking access to parts of the system, mounting
 denial of service attacks), but it includes essentially any type of attack
@@ -90,7 +90,7 @@ that relies on a self-certifying identifier.
 Requesting and retrieving content, a process that we describe in detail in
 Section~\ref{sec:protocol}, is challenging since neither the CDN nor the proxy
 must know which client originated a request for a specific piece of content.
-The key exchange between an origina server and its respective proxy protects
+The key exchange between an origin server and its respective proxy protects
 the confidentiality of both the content and the identifier (\ie, the URL) from
 the CDN. To obfuscate the source of the original request, clients construct a
 source route to an {\em exit proxy}, but the route can be prepended with
@@ -103,7 +103,7 @@ the request pattern for a single object, as well as to balance load, the
 design also can also use consistent hashing to assign a set of proxes to a
 single object. 
 
-The design of \system{} against a strong passive adversary is a major
+The design of \system{} against a strong adversary is a major
 contribution of this work; additionally, we have also implemented \system{}
 (Section~\ref{sec:implementation}) and publicly released the source code.
 Section~\ref{sec:performance} studies the performance implications of the

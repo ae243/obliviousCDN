@@ -91,15 +91,27 @@ holds the publisher's keys (including the private key!), and the publisher's cer
 about the integrity of content because a CDN can impersonate the publisher from the client's point of view~\cite{levy2015stickler}.
 
 \subsection{Open Legal Questions}
+%  In the 
+%copyright realm, the European Commision is considering legislation that would remove safe harbor protection against copyright law for 
+%online service providers if they host infringing content, regardless of the provenance of that content. 
+
+Courts are currently battling over cases that pertain to user data requests and intermediary liability.  Large companies
+often have large numbers of users, which makes them a target of data requests, for example by a government entity.  Intermediary 
+liability would cause an Internet platform (or a CDN) to be liable for the content it provides on behalf of its customers or users. 
+In the following section we highlight some of these cases, which all point to a key problem that CDNs face: by knowing all the content 
+that they distribute, CDNs may be burden with the legal responsibility for the actions of their customers and clients.
+
+\subsection{User Data Requests}
 There are numerous open questions in the legal realm regarding which government can request data stored in different countries, which 
 has led to much uncertainty.  A series of recent events have illustrated this uncertainty.  In the struggle over government access to 
 user data, cases such as {\it Microsoft vs. United States} (often known as the ``Microsoft Ireland Case'') concerns whether the United 
-States Government should have access to data about U.S. citizens stored abroad, given that Microsoft is a U.S. corporation.  In the 
-copyright realm, the European Commision is considering legislation that would remove safe harbor protection against copyright law for 
-online service providers if they host infringing content, regardless of the provenance of that content.  The Cloudflare CDN has been required
+States Government should have access to data about U.S. citizens stored abroad, given that Microsoft is a U.S. corporation.  
+
+Additionally, there have been user data requests asked of CDNs.  The Cloudflare CDN has been required
 to share data with FBI \cite{cloudflare_nsl}; similarly, leaked NSA documents showed that the government agency ``collected information `by exploiting inherent 
 weaknesses in Facebook's security model' through its use of the popular Akamai content delivery network'' \cite{facebook_surv}.
 
+\subsection{Intermediary Liability}
 More recently, questions on intermediary liability have been in the spotlight.  For example, many groups, including the Recording Industry 
 Association of America (RIAA) and the Motion Picture Association of America (MPAA), have started targeting CDNs with takedown notices for 
 content that allegedly infringes on copyright, trademarks, and patent rights; CDNs are a more convenient target of these takedown notices than 
@@ -120,7 +132,3 @@ an open question whether this new law also applies to CDNs.  In the United State
 and posts \cite{medium_sesta}.  SESTA would CDNs liable for the content that they distribute (despite the CDN not being a party in the content publishing); this could potentially lead to 
 censoring content too much (an intermediary may be more willing to err on the side of caution--censorship).  This type of law could set a dangerous precedent 
 for the censoring other types of content that are unpopular, but still legal. 
-
-All these cases highlight a key problem that CDNs face by knowing all the content
-that they distribute: it may burden them with the legal responsibility for the actions of their customers 
-and clients.

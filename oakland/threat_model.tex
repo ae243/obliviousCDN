@@ -6,16 +6,17 @@ attacker, and introduce the design goals and protections provided by \system{}.
 \subsection{Threat Model}
 \label{sec:attacker}
 
-Our threat model is a passive, but powerful adversary.  We are concerned with an 
-adversary who has many different capabilities.  A potential adversary could gain 
+Our threat model is a powerful adversary who has many different capabilities, including 
+both surveilling activities and joining the system.  A potential adversary could gain 
 access to the CDNs logs, which can contain client IP addresses and URLs.  Additionally, 
 he could join \system{} as either a client or any number of clients; he is also capable 
 of joining the system as an arbitrary number of exit proxies.  The adversary could 
 also act as an origin server (a content publisher).  The potential attacker not only has the 
 power to perform any of these actions, but can do these simultaneously.  For example, the 
-adversary could join as a client, an exit proxy, and request access to the CDN's logs.  The 
-goal of this type of adversary is to learn about the content being stored at the CDN and/or 
-learn about which clients are accessing which content.  
+adversary could join as a client, an exit proxy, and request access to the CDN's logs.  Additionally, 
+the adversary can perform actions, such as generating requests as a client, or creating content 
+as a content publisher. The goal of this type of adversary is to learn about the content being stored 
+at the CDN and/or learn about which clients are accessing which content.  
 
 This adversary has many strong capabilities making him a powerful adversary.  There has been 
 precedent of this type of attacker; for example, governments have demanded access to CDNs' 
@@ -23,10 +24,11 @@ data~\cite{cloudflare_nsl}.  A possible adversary is a government requesting log
 the government could also be colluding with a CDN.  Additionally, the adversary could be a CDN operator, 
 himself.  
 
-As mentioned, \system{} addresses a {\it passive} adversary; active attackers are out of the 
-scope of this work.  Prior work on securing CDNs has introduced methods to handle an actively 
-malicious adversary by preserving the integrity of content stored on CDN cache nodes~\cite{levy2015stickler}.  
-We do not address an adversary that tampers, modifies, or deletes any data, content, or requests.  
+We do not address or handle an attacker who attempts to actively disrupt the system; this includes maliciously 
+modifying content, disrupting the system, or blocking access, content, or requests.  Prior work on securing 
+CDNs has introduced methods to handle an actively malicious adversary by preserving the integrity of content 
+stored on CDN cache nodes~\cite{levy2015stickler}.  We do not address an adversary that tampers, modifies, or 
+deletes any data, content, or requests.  
 
 \subsection{Security and Privacy Goals for \system{}}
 \label{sec:goals}

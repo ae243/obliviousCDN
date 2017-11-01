@@ -37,7 +37,7 @@ keys are distributed.
  Consistent Hashing & {Load balance requests across proxies; ensure no proxy can
  control a given URL.} \\
  Self-Certifying Identifiers & {Authenticates exit proxies to origin servers.} \\
- DNS for Key Sharing & {Allows origin server to share its public key with exit
+ DNS for Key Sharing & {Allows origin server to share shared keys with exit
  proxies.} \\ \hline
 \end{tabular}
 \caption{Design decisions associated with \system{} setup.}
@@ -123,7 +123,7 @@ are routed from exit proxies back to the original client.
 \hline \hline
 Spoofed Source Routes & {Hides origin of client request from other
  clients, exit proxies, and CDN.} \\
- Session Keys & {Hides URL and response from CDN.} \\
+ Session Keys & {Hides URL and response from other clients.} \\
  Multicast Response & {Allows CDN to return content directly to client without knowing
  the client that requested the content.} \\
  \hline
