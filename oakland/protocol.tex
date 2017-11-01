@@ -55,8 +55,9 @@ partial deployment.
 
 As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the origin server
 determines which exit proxy is correct (based on the consistent hashing circle).  The origin server then encrypts the 
-shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  The steps for retrieving a shared key are shown in 
-Figure \ref{fig:keys}.  First, the exit proxy sends a DNS request to the origin server's authoritative DNS server, including its self-certifying 
+shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
+Figure \ref{fig:keys} shows the steps for retrieveing a shared key.  First, the
+exit proxy sends a DNS request to the origin server's authoritative DNS server, including its self-certifying
 identifier and its public key (these are both included in the {\tt Additional Info} section of the DNS message).  The origin server hashes the exit 
 proxy's public key and verifies it against its self-certifying identifier; this acts as a proof of the 
 exit proxy's position in the consistent hashing circle.  If the origin is able to certify the exit proxy, then it will send the DNS response with 
@@ -80,19 +81,23 @@ Content to push the content to the CDN, and it publishes $k_{new}$ encrypted wit
 
 The corresponding exit proxy must also be able to fetch this new key $k_{new}$ and replace the expired key with it.  When the exit proxy 
 sees an incoming request for a URL that uses key $k$, it first checks $k$'s timestamp.  If valid, then it continues as normal.  Otherwise, 
-it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_{new}$\}$_{PK_{proxy}}$ from the DNS response.  Then the exit 
-proxy decrypts it to obtain $k_{new}$, updates its version of the key, and proceeds as normal.
+it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
+{new}$\}$_{PK_{proxy}}$ from the DNS response.  The exit 
+proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
+proceeds as normal.
 
 \subsection{Retrieving Content}
 \label{sec:retrieve}
-The steps taken for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
-forwards her request directly to an exit proxy; Figure \ref{fig:retrieving2} shows the steps to retrieve content when the client forwards her
+The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
+forwards a request directly to an exit proxy; Figure \ref{fig:retrieving2} shows
+the steps to retrieve content when the client forwards its
 request through two peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
 stage, the client has knowledge of a subset of its peers (other \system{} clients) and a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 
 route, which has better performance, or 2) a source route, which has better privacy.  If the client decides to use the privacy-preserving mode, 
-then she generates a source route, which includes some of her peers, and could potentially include a false originator (as described in Section \ref{sec:design}).
+then she generates a source route, which includes some of its peers, and could potentially
+include a false originator (as described in Section \ref{sec:design}).
 Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no other clients on the path can learn what the requested URL is.  The client then sends it onto the next proxy in the source route, which could be either another client proxy or the exit proxy.  The request is forwarded 
 through all subsequent hops in the source route until it reaches the exit proxy.  The exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
 the source route locally; it then decrypts the URL with $k_{session}$. 
@@ -127,8 +132,9 @@ information is propogated to its peers using a gossip protocol.
 
 \subsection{Partial Deployment}
 \label{sec:partial}
-\system{} should be partially deployable in the sense that if only some origin servers participate or only some CDNs participate, then 
-the system should still provide protections.  We have two different partial deployment plans, and both provide protections afforded by \system{}. 
+\system{} should be partially deployable, in the sense that if only some origin servers participate or only some CDNs participate, then 
+the system should still offer some protections.  We outline two different partial
+deployment possibilities below.
 
 \begin{figure}[t!]
 \centering
@@ -142,7 +148,7 @@ performance and goes directly to an exit proxy.}
 \centering
 \includegraphics[width=.5\textwidth]{request_diagram_complex}
 \caption{Steps for retrieving content in \system{} when a client is prioritizing 
-privacy and proxies her request through two other clients before reaching the 
+privacy and proxies a request through two other clients before reaching the 
 exit proxy.  This figure shows that the request is sent sequentially through peers, 
 and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
@@ -160,7 +166,7 @@ because the clients are behind proxies, the CDN cannot individually identify use
 not to clients.  
 
 \paragraph{Deployment Option 2} 
-It is reasonable to believe that some origin servers are skeptical of \system{} and prioritize performance 
+Some origin servers may prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
 both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 
 fully participating with only encrypted content, some other set of origin servers partially participating with both 
@@ -176,7 +182,8 @@ differing levels of participation in the system, while still preserving the prot
 \begin{figure}[t]
 \centering
 \includegraphics[width=.45\textwidth]{key_lookup}
-\caption{How an origin server certifies an exit proxy and distributes its shared key to an exit proxy.  In step (1), 
+\caption{How an origin server certifies an exit proxy and distributes its shared
+key to an exit proxy.  In step~(1), 
 the exit proxy sends his self-certifying ID in the {\it Additional} section of the DNS message.  }
 \label{fig:keys}
 \end{figure}

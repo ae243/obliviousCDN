@@ -54,7 +54,8 @@ correspondes to $\alpha$ in Figure \ref{fig:impl}.}
 \label{fig:latency}
 \end{figure}
 
-Lastly, we measure the performance overhead of the individual operations used in \system{}; figure \ref{fig:overhead2} shows 
+Finally, we measure the performance overhead of the individual operations used in
+\system{}; figure \ref{fig:overhead2} shows
 the overhead of different components of the system for three different file sizes.  We can see that some of the fixed cost/time 
 operations include the client locally looking up the correct exit proxy to use for a given URL and the exit proxy generating the 
 HMAC$_{k}$(URL).  The operations that have the most overhead and continue to grow with the size of the file are the exit proxy decrypting 
