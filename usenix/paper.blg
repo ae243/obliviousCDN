@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: acm.bst
+Database file #1: paper.bib
+Warning--empty author in eu-copyright
+Warning--empty journal in eu-copyright
+You've used 42 entries,
+            2253 wiz_defined-function locations,
+            739 strings with 12169 characters,
+and the built_in function-call counts, 13256 in all, are:
+= -- 1263
+> -- 558
+< -- 0
++ -- 238
+- -- 196
+* -- 867
+:= -- 1932
+add.period$ -- 110
+call.type$ -- 42
+change.case$ -- 239
+chr.to.int$ -- 0
+cite$ -- 44
+duplicate$ -- 572
+empty$ -- 1211
+format.name$ -- 196
+if$ -- 2930
+int.to.chr$ -- 0
+int.to.str$ -- 42
+missing$ -- 24
+newline$ -- 197
+num.names$ -- 52
+pop$ -- 335
+preamble$ -- 1
+purify$ -- 198
+quote$ -- 0
+skip$ -- 456
+stack$ -- 0
+substring$ -- 691
+swap$ -- 166
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 168
+warning$ -- 2
+while$ -- 97
+width$ -- 44
+write$ -- 385
+(There were 2 warnings)

@@ -1,0 +1,54 @@
+\section{Discussion}
+\label{sec:discussion}
+
+In this section, we discuss the various technical, political, and legal limitations
+of \system{}, as well as possible avenues for future work. 
+
+\paragraph{\system{} limitations} CDNs become slightly limited in terms of the 
+possible performance optimizations when following \system{}'s design.  For example, 
+many CDNs perform HTTPS re-writes on content that they cache, but this can only be 
+done if the CDN has access to the decrypted content.  Similarly, the CDN needs the 
+decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
+this likely increases performance in traditional CDNs, it does not provide the greatest 
+increase in performance; content caching around the world is the greatest benefit to 
+performance, which \system{} preserves.
+
+\paragraph{CDNs operated by content hosts} The design of \system{}
+assumes that the entities operating the proxies and delivering content are
+distinct from original content provider. In many cases, however---particularly
+for large content providers such as Netflix, Facebook, and Google---the
+content provider operates their own CDN cache nodes; in these cases, \system{} will
+not be able to obfuscate the content from the CDN operator, since the content host
+and the CDN are the same party.  Similarly, because the CDN operator is the same
+entity as the original server, it also knows the keys that are shared with the clients.
+As a result, the CDN cache nodes could also discover the keys and identify both
+the content, as well as which clients are requesting which content.
+
+\paragraph{Exit proxies run by volunteers} In the description of \system{} in Sections 
+\ref{sec:design} and \ref{sec:protocol}, we assume we are running the exit proxies, but 
+the design of the system also allows for clients to run exit proxies.  Exit proxies are not 
+trusted with client identities and information, which allows for volunteers to run exit proxies.  
+The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
+joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
+exit proxies will be updated.  This allows for the load to be split among more proxies and 
+increases the geographic diversity of the exit proxies.
+
+%\paragraph{Better mixing with proxy selection} In the current implementation of
+%\system{}, a client's requests are all directed through the same \system{} proxy.
+%Instead, a client could use a proxy autoconfiguration (PAC) file, which could direct
+%requests through different proxies depending on characteristics such as which URL
+%is being requested. The selection of proxies might even be randomized.  Randomizing
+%the proxy that serves a particular client request ensures that no single proxy knows
+%all of the requests that any particular client is making; additionally, it may make
+%it more difficult for a CDN to identify the group of requests coming from a single
+%client, since a client's requests would mixed among multiple proxies. 
+
+\paragraph{Legal questions and political pushback} Recent cases surrounding
+the Stored Communications Act in the United States raise some questions over
+whether a system like \system{} might face legal challenges from law
+enforcement agencies. To protect user data against these types of challenges,
+Microsoft has already taken steps such as moving user data to data centers in
+Germany that are operated by entities outside the United States, such as
+T-Systems. It remains to be seen, of course, whether \system{} would face similar
+hurdles, but similar systems in the past have faced scrutiny and pushback from law
+enforcement.

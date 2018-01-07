@@ -1,0 +1,242 @@
+\begin{thebibliography}{10}
+
+\bibitem{techdirt_copyright}
+{Court Says RIAA Can Just Tell Cloudflare Any Site Is A Grooveshark Clone...
+  And Cloudflare Has 48 Hours To Dump Them}.
+\newblock
+  \url{https://www.techdirt.com/articles/20151214/17392833079/court-says-riaa-can-just-tell-cloudflare-any-site-is-grooveshark-clone-cloudflare-has-48-hours-to-dump-them.shtml}.
+
+\bibitem{akamai_global_traffic}
+{Akamai Empowers Operators to Deploy Their Own Content Distribution Network}.
+\newblock
+  \url{https://www.akamai.com/us/en/resources/content-distribution-network.jsp}.
+
+\bibitem{akamai_facts}
+{Akamai: Facts \& Figures}.
+\newblock \url{https://www.akamai.com/us/en/about/facts-figures.jsp}.
+
+\bibitem{medium_sesta}
+{Balancing Child Protection and Digital Rights}.
+\newblock
+  \url{https://medium.com/@jmalcolm/balancing-child-protection-and-digital-rights-1b9c4ab0b93f}.
+
+\bibitem{barford1998generating}
+{\sc Barford, P., and Crovella, M.}
+\newblock Generating representative web workloads for network and server
+  performance evaluation.
+\newblock In {\em ACM SIGMETRICS Performance Evaluation Review\/} (1998),
+  vol.~26, ACM, pp.~151--160.
+
+\bibitem{berger2017adaptsize}
+{\sc Berger, D.~S., Sitaraman, R.~K., and Harchol-Balter, M.}
+\newblock Adaptsize: Orchestrating the hot object memory cache in a content
+  delivery network.
+\newblock In {\em 14th USENIX Symposium on Networked Systems Design and
+  Implementation (NSDI 17)\/} (2017), USENIX Association, pp.~483--498.
+
+\bibitem{cai2012touching}
+{\sc Cai, X., Zhang, X.~C., Joshi, B., and Johnson, R.}
+\newblock Touching from a distance: Website fingerprinting attacks and
+  defenses.
+\newblock In {\em Proceedings of the 2012 ACM conference on Computer and
+  communications security\/} (2012), ACM, pp.~605--616.
+
+\bibitem{calder2013mapping}
+{\sc Calder, M., Fan, X., Hu, Z., Katz-Bassett, E., Heidemann, J., and
+  Govindan, R.}
+\newblock Mapping the expansion of {Google's} serving infrastructure.
+\newblock In {\em Proceedings of the 2013 conference on Internet measurement
+  conference\/} (2013), ACM, pp.~313--326.
+
+\bibitem{cedexis}
+{Cedexis}.
+\newblock \url{https://www.cedexis.com/}.
+
+\bibitem{chen2016forwarding}
+{\sc Chen, J., Jiang, J., Zheng, X., Duan, H., Liang, J., Li, K., Wan, T., and
+  Paxson, V.}
+\newblock Forwarding-loop attacks in content delivery networks.
+\newblock In {\em Proceedings of the 23st Annual Network and Distributed System
+  Security Symposium (NDSS'16)\/} (2016).
+
+\bibitem{ars_tor}
+{Cloudflare: 94 Percent of the Tor Traffic We See is ``Per Se Malicious''}.
+\newblock
+  \url{https://arstechnica.com/tech-policy/2016/03/new-data-suggests-94-percent-of-tor-traffic-is-malicious/}.
+
+\bibitem{medium_copyright}
+{Content Delivery Networks Aren’t Notorious Markets}.
+\newblock
+  \url{https://medium.com/niskanen-center/content-delivery-networks-arent-notorious-markets-2a448a549cf7}.
+
+\bibitem{eff_copyright}
+{Content Delivery Networks (CDNs)}.
+\newblock \url{https://www.eff.org/free-speech-weak-link/cdn}.
+
+\bibitem{cloudflare_nsl}
+{CREDO and Cloudflare Argue Against National Security Letter Gag Orders}.
+\newblock
+  \url{https://techcrunch.com/2017/03/23/credo-and-cloudflare-argue-against-national-security-letter-gag-orders/}.
+
+\bibitem{nytimes_hatespeech}
+{Delete Hate Speech or Pay Up, Germany Tells Social Media Companies}.
+\newblock
+  \url{https://www.nytimes.com/2017/06/30/business/germany-facebook-google-twitter.html}.
+
+\bibitem{dingledine2004tor}
+{\sc Dingledine, R., Mathewson, N., and Syverson, P.}
+\newblock Tor: The second-generation onion router.
+\newblock Tech. rep., Naval Research Lab Washington DC, 2004.
+
+\bibitem{stack_copyright}
+{District court rules against Cloudflare in anti-piracy suit}.
+\newblock
+  \url{https://thestack.com/security/2017/03/29/district-court-rules-against-cloudflare-in-anti-piracy-suit/}.
+
+\bibitem{eu-copyright}
+{EU Proposal for a Directive of The European Parliament and of the Council on
+  Copyright in the Digital Single Market}.
+\newblock
+  \url{https://ec.europa.eu/transparency/regdoc/rep/1/2016/EN/1-2016-593-EN-F1-1.PDF}.
+
+\bibitem{gilad2016cdn}
+{\sc Gilad, Y., Herzberg, A., Sudkovitch, M., and Goberman, M.}
+\newblock {CDN}-on-demand: an affordable {DDoS} defense via untrusted clouds.
+\newblock In {\em Network and Distributed Security Symposium (NDSS)\/} (2016).
+
+\bibitem{facebook_surv}
+{How the NSA \& FBI made Facebook the perfect mass surveillance tool.}
+\newblock
+  \url{https://venturebeat.com/2014/05/15/how-the-nsa-fbi-made-facebook-the-perfect-mass-surveillance-tool/}.
+
+\bibitem{huang2008measuring}
+{\sc Huang, C., Wang, A., Li, J., and Ross, K.~W.}
+\newblock Measuring and evaluating large-scale cdns.
+\newblock In {\em ACM IMC\/} (2008), vol.~8.
+
+\bibitem{jia2016anonymity}
+{\sc Jia, Y., Bai, G., Saxena, P., and Liang, Z.}
+\newblock Anonymity in peer-assisted {CDNs}: Inference attacks and mitigation.
+\newblock {\em Proceedings on Privacy Enhancing Technologies 2016}, 4 (2016),
+  294--314.
+
+\bibitem{jung2002flash}
+{\sc Jung, J., Krishnamurthy, B., and Rabinovich, M.}
+\newblock Flash crowds and denial of service attacks: Characterization and
+  implications for {CDNs} and web sites.
+\newblock In {\em Proceedings of the 11th international conference on World
+  Wide Web\/} (2002), ACM, pp.~293--304.
+
+\bibitem{karger1997consistent}
+{\sc Karger, D., Lehman, E., Leighton, T., Panigrahy, R., Levine, M., and
+  Lewin, D.}
+\newblock Consistent hashing and random trees: Distributed caching protocols
+  for relieving hot spots on the world wide web.
+\newblock In {\em Proceedings of the twenty-ninth annual ACM symposium on
+  Theory of computing\/} (1997), ACM, pp.~654--663.
+
+\bibitem{khattak2016you}
+{\sc Khattak, S., Fifield, D., Afroz, S., Javed, M., Sundaresan, S., Paxson,
+  V., Murdoch, S.~J., and McCoy, D.}
+\newblock Do you see what i see? differential treatment of anonymous users.
+\newblock In {\em Network and Distributed System Security Symposium\/} (2016).
+
+\bibitem{lesniewski2005ssl}
+{\sc Lesniewski-Laas, C., and Kaashoek, M.~F.}
+\newblock {SSL} splitting: Securely serving data from untrusted caches.
+\newblock {\em Computer Networks 48}, 5 (2005), 763--779.
+
+\bibitem{levy2015stickler}
+{\sc Levy, A., Corrigan-Gibbs, H., and Boneh, D.}
+\newblock Stickler: Defending against malicious {CDNs} in an unmodified
+  browser.
+\newblock {\em arXiv preprint arXiv:1506.04110\/} (2015).
+
+\bibitem{lewin1998consistent}
+{\sc Lewin, D.~M.}
+\newblock {\em Consistent hashing and random trees: Algorithms for caching in
+  distributed networks}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 1998.
+
+\bibitem{liang2014https}
+{\sc Liang, J., Jiang, J., Duan, H., Li, K., Wan, T., and Wu, J.}
+\newblock When {HTTPS} meets {CDN}: A case of authentication in delegated
+  service.
+\newblock In {\em Security and Privacy (S\&P), 2014 IEEE Symposium on\/}
+  (2014), IEEE, pp.~67--82.
+
+\bibitem{mazieres2000self}
+{\sc Mazi{\`e}res, D. D.~F.}
+\newblock {\em Self-certifying file system}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 2000.
+
+\bibitem{michalakis2007ensuring}
+{\sc Michalakis, N., Soul{\'e}, R., and Grimm, R.}
+\newblock Ensuring content integrity for untrusted peer-to-peer content
+  distribution networks.
+\newblock In {\em Proceedings of the 4th USENIX Conference on Networked Systems
+  Design \& Implementation\/} (2007), USENIX Association, pp.~11--11.
+
+\bibitem{panchenko2016website}
+{\sc Panchenko, A., Lanze, F., Zinnen, A., Henze, M., Pennekamp, J., Wehrle,
+  K., and Engel, T.}
+\newblock Website fingerprinting at internet scale.
+\newblock In {\em Network \& Distributed System Security Symposium (NDSS). IEEE
+  Computer Society\/} (2016).
+
+\bibitem{scott2016satellite}
+{\sc Scott, W., Anderson, T., Kohno, T., and Krishnamurthy, A.}
+\newblock Satellite: Joint analysis of {CDNs} and network-level interference.
+\newblock In {\em 2016 USENIX Annual Technical Conference (USENIX ATC 16)\/}
+  (2016), USENIX Association, pp.~195--208.
+
+\bibitem{rfc2227}
+{Simple Hit-Metering and Usage-Limiting for HTTP}.
+\newblock \url{https://www.ietf.org/rfc/rfc2227.txt}.
+
+\bibitem{su2009drafting}
+{\sc Su, A.-J., Choffnes, D.~R., Kuzmanovic, A., and Bustamante, F.~E.}
+\newblock Drafting behind {Akamai}: Inferring network conditions based on {CDN}
+  redirections.
+\newblock {\em IEEE/ACM Transactions on Networking (TON) 17}, 6 (2009),
+  1752--1765.
+
+\bibitem{su2008thinning}
+{\sc Su, A.-J., and Kuzmanovic, A.}
+\newblock Thinning {Akamai}.
+\newblock In {\em Proceedings of the 8th ACM SIGCOMM Conference on Internet
+  Measurement\/} (2008), ACM, pp.~29--42.
+
+\bibitem{triukose2009content}
+{\sc Triukose, S., Al-Qudah, Z., and Rabinovich, M.}
+\newblock Content delivery networks: Protection or threat?
+\newblock In {\em European Symposium on Research in Computer Security\/}
+  (2009), Springer, pp.~371--389.
+
+\bibitem{cloudflare_tor}
+{The Trouble with Tor}.
+\newblock \url{https://blog.cloudflare.com/the-trouble-with-tor/}.
+
+\bibitem{wendell2011going}
+{\sc Wendell, P., and Freedman, M.~J.}
+\newblock Going viral: Flash crowds in an open {CDN}.
+\newblock In {\em Proceedings of the 2011 ACM SIGCOMM conference on Internet
+  measurement conference\/} (2011), ACM, pp.~549--558.
+
+\bibitem{xue2017cdns}
+{\sc Xue, J., Choffnes, D., and Wang, J.}
+\newblock {CDNs} meet {CN}: An empirical study of {CDN} deployments in china.
+\newblock {\em IEEE Access\/} (2017).
+
+\bibitem{predict}
+{The Zettabyte Era -- Trends and Analysis -- Cisco}.
+\newblock
+  \url{http://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html}.
+
+\bibitem{zolfaghari2016practical}
+{\sc Zolfaghari, H., and Houmansadr, A.}
+\newblock Practical censorship evasion leveraging content delivery networks.
+\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
+  Communications Security\/} (2016), ACM, pp.~1715--1726.
+
+\end{thebibliography}
