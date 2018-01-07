@@ -51,6 +51,19 @@ law enforcement perspective, receiving a subpoena for {\em existing} logs and
 data may present a lower legal barrier than compelling a CDN to attack a
 system.
 
+\paragraph{Traffic Analysis Attacks} If a CDN itself is malicious and is attempting 
+to learn information about the content and/or clients, the CDN may act as a client 
+in the system.  In this attack the (malicious) client sends a request for content 
+and the CDN can correlate the request with a content access at the CDN because they have 
+knowledge of both the CDN logs and the requests they are making as a client.  \system{} 
+defends against this by using the exit proxies as mixes; each exit proxy is receiving 
+different requests from different clients and then forwarding the requests on to the CDN.  
+These exit proxies should mix the requests enough that the CDN cannot conduct traffic analysis
+ and determine which request corresponds to which content on the CDN's cache nodes.  There has 
+also been numerous studies that have proposed and evaluated defenses against traffic 
+analysis attacks~\cite{xx}; \system{} could implement one of these solutions at the exit 
+proxy.
+
 \paragraph{Spoofed Content Updates} Because the CDN cache
 nodes do not know either the content that they are hosting or the URLs
 corresponding to the content, an attacker could masquerade as an origin server
@@ -63,6 +76,8 @@ defense is to make it difficult for to discover which obfuscated URLs correspond
 to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
+
+\paragraph{Timing Attacks} 
 
 \paragraph{Flashcrowds}  A flashcrowd is large spike in traffic to a specific web
 page. An attacker

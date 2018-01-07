@@ -3,11 +3,12 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: acm.bst
 Database file #1: paper.bib
+Warning--I didn't find a database entry for "xx"
 Warning--empty author in eu-copyright
 Warning--empty journal in eu-copyright
 You've used 42 entries,
             2253 wiz_defined-function locations,
-            739 strings with 12169 characters,
+            740 strings with 12171 characters,
 and the built_in function-call counts, 13256 in all, are:
 = -- 1263
 > -- 558
@@ -46,4 +47,4 @@ warning$ -- 2
 while$ -- 97
 width$ -- 44
 write$ -- 385
-(There were 2 warnings)
+(There were 3 warnings)

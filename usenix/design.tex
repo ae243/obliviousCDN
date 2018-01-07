@@ -33,7 +33,7 @@ keys are distributed.
 \begin{table}[t!]
 \footnotesize
 \centering
-\begin{tabular}{ l  p{2in} } 
+\begin{tabular}{ p{1.15in}  p{1.8in} } 
  \multicolumn{1}{c}{\bf Design Decision} & \multicolumn{1}{c}{\bf Function} \\
 \hline \hline
  Shared Keys & {Hides content on cache nodes from CDN.} \\
@@ -134,7 +134,7 @@ are routed from exit proxies back to the original client.
 \begin{table}[t!]
 \footnotesize
 \centering
-\begin{tabular}{ l  p{1.95in} } 
+\begin{tabular}{ l  p{1.8in} } 
  \multicolumn{1}{c}{\bf Design Decision} & \multicolumn{1}{c}{\bf Function} \\
 \hline \hline
 Spoofed Source Routes & {Hides origin of client request from other
@@ -217,6 +217,10 @@ the encrypted response from the exit proxy back to the client via the set of pee
 proxy can send it in a multicast manner to all clients that were on the source route.  The only client that knows $skey$ 
 is the true client that originated the request, therefore none of the other clients can interpret the response, and it reduces the 
 latency for sending the response to the client.  
+
+\subsection{Incentives for Running \system{}}
+
+\subsection{Design Alternatives}
 
 \subsection{Additional Options}
 Up to this point, we have discussed how \system{} is designed in the general case.  Here we describe some 
