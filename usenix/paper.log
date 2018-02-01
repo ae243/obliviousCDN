@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  7 JAN 2018 13:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  1 FEB 2018 12:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -729,62 +729,76 @@ Underfull \hbox (badness 1838) in paragraph at lines 43--51
 File: ./figures/ocdn_overview_new2.pdf Graphic file (type pdf)
 
 <use ./figures/ocdn_overview_new2.pdf>
-Package pdftex.def Info: ./figures/ocdn_overview_new2.pdf used on input line 19
+Package pdftex.def Info: ./figures/ocdn_overview_new2.pdf used on input line 17
 .
 (pdftex.def)             Requested size: 234.87749pt x 125.98346pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 19--21
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 17--19
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
 
-Underfull \hbox (badness 2452) in paragraph at lines 39--40
+Underfull \hbox (badness 2452) in paragraph at lines 38--39
 []|\OT1/ptm/m/n/8 Hides con-tent on cache nodes from
  []
 
 
-Underfull \hbox (badness 1048) in paragraph at lines 40--42
+Underfull \hbox (badness 1048) in paragraph at lines 39--41
 \OT1/ptm/m/n/8 en-sure no proxy can con-trol a given
  []
 
 
-Underfull \hbox (badness 4699) in paragraph at lines 42--43
+Underfull \hbox (badness 4699) in paragraph at lines 41--42
 []|\OT1/ptm/m/n/8 Authenticates exit prox-ies to ori-gin
  []
 
 
-Overfull \hbox (11.35251pt too wide) in paragraph at lines 36--46
+Overfull \hbox (11.35251pt too wide) in paragraph at lines 35--45
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
 [5 <./figures/ocdn_overview_new2.pdf>] [6]
-Underfull \hbox (badness 1237) in paragraph at lines 142--143
+Underfull \hbox (badness 1237) in paragraph at lines 144--145
 []|\OT1/ptm/m/n/8 Hides URL and re-sponse from other
  []
 
 
-Overfull \hbox (3.34592pt too wide) in paragraph at lines 137--148
+Overfull \hbox (3.34592pt too wide) in paragraph at lines 139--150
  [][] 
  []
 
-[7]) (./protocol.tex
-<./figures/publishing_content_new2.pdf, id=729, 671.76979pt x 244.78076pt>
+[7]
+Underfull \hbox (badness 1603) in paragraph at lines 269--274
+ \OT1/ptm/b/n/10 En-cod-ing URLs.[] \OT1/ptm/m/n/10 As de-scribed ear-lier, eac
+h URL
+ []
+
+
+Underfull \hbox (badness 1430) in paragraph at lines 269--274
+\OT1/ptm/m/n/10 vent this, OCDN al-lows ori-gin servers to gen-er-ate
+ []
+
+[8]) (./protocol.tex
+<./figures/publishing_content_new2.pdf, id=732, 671.76979pt x 244.78076pt>
 File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 
 <use ./figures/publishing_content_new2.pdf>
 Package pdftex.def Info: ./figures/publishing_content_new2.pdf used on input li
 ne 3.
 (pdftex.def)             Requested size: 211.3883pt x 77.02417pt.
- [8 <./figures/publishing_content_new2.pdf>] [9]
-<./figures/request_diagram_simple.pdf, id=826, 599.02542pt x 612.19377pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./figures/publishing_content_new2.pdf>] [10]
+<./figures/request_diagram_simple.pdf, id=829, 599.02542pt x 612.19377pt>
 File: ./figures/request_diagram_simple.pdf Graphic file (type pdf)
 
 <use ./figures/request_diagram_simple.pdf>
@@ -792,7 +806,7 @@ Package pdftex.def Info: ./figures/request_diagram_simple.pdf used on input lin
 e 141.
 (pdftex.def)             Requested size: 187.89912pt x 192.02936pt.
 
-<./figures/request_diagram_complex.pdf, id=827, 673.41388pt x 387.38942pt>
+<./figures/request_diagram_complex.pdf, id=830, 673.41388pt x 387.38942pt>
 File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
 
 <use ./figures/request_diagram_complex.pdf>
@@ -804,54 +818,43 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 149--153
  [][] 
  []
 
-[10 <./figures/request_diagram_simple.pdf>]
-<./figures/key_lookup.pdf, id=845, 730.47968pt x 449.16245pt>
+[11 <./figures/request_diagram_simple.pdf> <./figures/request_diagram_complex.p
+df
+
+pdfTeX warning: pdflatex (file ./figures/request_diagram_complex.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>] <./figures/key_lookup.pdf, id=892, 730.47968pt x 449.16245pt>
 File: ./figures/key_lookup.pdf Graphic file (type pdf)
 
 <use ./figures/key_lookup.pdf>
 Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 184.
 (pdftex.def)             Requested size: 211.3883pt x 129.97961pt.
 ) (./implementation.tex
-<./figures/implementation.pdf, id=846, 793.40213pt x 407.07007pt>
+<./figures/implementation.pdf, id=893, 793.40213pt x 407.07007pt>
 File: ./figures/implementation.pdf Graphic file (type pdf)
 
 <use ./figures/implementation.pdf>
 Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
 (pdftex.def)             Requested size: 211.3883pt x 108.45691pt.
- [11 <./figures/request_diagram_complex.pdf> <./figures/key_lookup.pdf
-
-pdfTeX warning: pdflatex (file ./figures/key_lookup.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
-> <./figures/implementation.pdf
+) (./security.tex [12 <./figures/key_lookup.pdf> <./figures/implementation.pdf
 
 pdfTeX warning: pdflatex (file ./figures/implementation.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-Underfull \hbox (badness 1067) in paragraph at lines 36--50
- \OT1/ptm/b/n/10 Exit Proxy[] \OT1/ptm/m/n/10 The exit proxy is the com-po-nent
- that
- []
-
-) (./security.tex
 Overfull \hbox (4.82379pt too wide) in paragraph at lines 9--22
  [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Citation `xx' on page 13 undefined on input line 64.
 
-
-
-LaTeX Warning: Citation `xx' on page 12 undefined on input line 64.
-
-[12]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-) (./performance.tex <./figures/TTFB.pdf, id=1178, 325.215pt x 216.81pt>
+) (./performance.tex [13] <./figures/TTFB.pdf, id=1182, 325.215pt x 216.81pt>
 File: ./figures/TTFB.pdf Graphic file (type pdf)
 
 <use ./figures/TTFB.pdf>
@@ -862,7 +865,7 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<./figures/completion.pdf, id=1179, 325.215pt x 216.81pt>
+<./figures/completion.pdf, id=1183, 325.215pt x 216.81pt>
 File: ./figures/completion.pdf Graphic file (type pdf)
 
 <use ./figures/completion.pdf>
@@ -873,8 +876,7 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 35--36
  [][] 
  []
 
-[13 <./figures/TTFB.pdf>]
-<./figures/Latency_withzero.pdf, id=1220, 433.62pt x 289.08pt>
+<./figures/Latency_withzero.pdf, id=1184, 433.62pt x 289.08pt>
 File: ./figures/Latency_withzero.pdf Graphic file (type pdf)
 
 <use ./figures/Latency_withzero.pdf>
@@ -885,7 +887,15 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 51--53
  [][] 
  []
 
-<./figures/loggrouped.pdf, id=1221, 398.00568pt x 361.05177pt>
+[14 <./figures/TTFB.pdf> <./figures/completion.pdf
+
+pdfTeX warning: pdflatex (file ./figures/completion.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+> <./figures/Latency_withzero.pdf
+
+pdfTeX warning: pdflatex (file ./figures/Latency_withzero.pdf): PDF inclusion: 
+multiple pdfs with page group included in a single page
+>] <./figures/loggrouped.pdf, id=1306, 398.00568pt x 361.05177pt>
 File: ./figures/loggrouped.pdf Graphic file (type pdf)
 
 <use ./figures/loggrouped.pdf>
@@ -896,36 +906,24 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 67--68
  [][] 
  []
 
-
-Underfull \vbox (badness 7344) has occurred while \output is active []
-
-)
-(./discussion.tex [14 <./figures/completion.pdf> <./figures/Latency_withzero.pd
-f
-
-pdfTeX warning: pdflatex (file ./figures/Latency_withzero.pdf): PDF inclusion: 
-multiple pdfs with page group included in a single page
-> <./figures/loggrouped.pdf
-
-pdfTeX warning: pdflatex (file ./figures/loggrouped.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
->]
-Underfull \hbox (badness 1810) in paragraph at lines 16--26
- \OT1/ptm/b/n/10 CDNs op-er-ated by con-tent hosts[] \OT1/ptm/m/n/10 The de-sig
-n of
+) (./discussion.tex
+Underfull \hbox (badness 1292) in paragraph at lines 16--26
+ \OT1/ptm/b/n/10 CDNs op-er-ated by con-tent hosts.[] \OT1/ptm/m/n/10 The de-si
+gn of
  []
 
 ) (./related_work.tex
-Underfull \hbox (badness 1342) in paragraph at lines 46--1
-\OT1/ptm/m/n/10 sur-round-ing the Stored Com-mu-ni-ca-tions Act in the
+Underfull \hbox (badness 3679) in paragraph at lines 46--1
+ \OT1/ptm/b/n/10 Le-gal ques-tions and po-lit-i-cal push-back.[] \OT1/ptm/m/n/1
+0 Re-cent
  []
 
-
+[15 <./figures/loggrouped.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 24--30
 
  []
 
-[15]
+
 Underfull \hbox (badness 10000) in paragraph at lines 49--52
 
  []
@@ -935,7 +933,7 @@ Underfull \hbox (badness 2443) in paragraph at lines 62--1
 \OT1/ptm/m/n/10 on char-ac-ter-iz-ing and quan-ti-fy-ing flash crowds on
  []
 
-) (./paper.bbl
+[16]) (./paper.bbl
 Underfull \hbox (badness 2932) in paragraph at lines 4--8
 []\OT1/ptm/m/n/8 Court Says RIAA Can Just Tell Cloud-flare Any Site Is
  []
@@ -974,7 +972,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--22
 ncing -[] child -[] protection -[]
  []
 
-[16]
+
 Underfull \hbox (badness 10000) in paragraph at lines 63--66
 \OT1/cmtt/m/n/8 03 / new -[] data -[] suggests -[] 94 -[] percent -[] of -[] to
 r -[] traffic -[]
@@ -1040,7 +1038,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 108--111
 erfect -[] mass -[]
  []
 
-
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 232--235
 \OT1/cmtt/m/n/8 / / www\OML/ztmcm/m/it/8 :\OT1/cmtt/m/n/8 cisco\OML/ztmcm/m/it/
 8 :\OT1/cmtt/m/n/8 com / c / en / us / solutions / collateral /
@@ -1052,7 +1050,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 232--235
 /
  []
 
-[17]) [18
+) [18
 
 ] (./paper.aux)
 
@@ -1060,10 +1058,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 14811 strings out of 493014
- 289578 string characters out of 6133351
- 328890 words of memory out of 5000000
- 17950 multiletter control sequences out of 15000+600000
+ 14813 strings out of 493014
+ 289618 string characters out of 6133351
+ 327911 words of memory out of 5000000
+ 17952 multiletter control sequences out of 15000+600000
  52866 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,54p,535b,538s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1077,7 +1075,7 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on paper.pdf (18 pages, 1572190 bytes).
+Output written on paper.pdf (18 pages, 1574567 bytes).
 PDF statistics:
  1413 PDF objects out of 1440 (max. 8388607)
  1016 compressed objects within 11 object streams

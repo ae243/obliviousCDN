@@ -63,7 +63,7 @@ proxy's public key and verifies it against its self-certifying identifier; this 
 exit proxy's position in the consistent hashing circle.  If the origin is able to certify the exit proxy, then it will send the DNS response with 
 \{$k$\}$_{PK_{proxy}}$ in the SRV record. The exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.
 
-\paragraph{Updating Content}
+\paragraph{Updating Content.}
 For an origin server to update content, she must follow similar steps as described in publishing content.  
 Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) pad the 
 original content length, 2) divide the content into fixed size blocks, and 3) encrypt the content blocks 
@@ -71,7 +71,7 @@ with the shared key $k$.  Because she is updating the content (as opposed to cre
 obfuscated identifier will remain the same.  The origin server signs the updated obfuscated content with 
 her private key, such that the CDN can verify it was true origin server that sent the update.
 
-\paragraph{Updating Keys}
+\paragraph{Updating Keys.}
 An origin server must be able to update keys in case of compromise.  To minimize the amount of time a key is compromised for, the 
 origin server specifies an expiration date and time for the key when it is originally generated.  The origin server 
 periodically checks if the key is valid or not based on the expiration timestamp.  If the key is still valid, the origin server 
@@ -154,7 +154,7 @@ and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
 \end{figure}
 
-\paragraph{Deployment with Origin Servers' Full Participation}
+\paragraph{Deployment with Origin Servers' Full Participation.}
 One option for deploying \system{} is to ensure there is some set $S$ of origin servers that participate fully in the 
 system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
 obfuscated data stored on the CDNs cache nodes.  $S$ must be greater than one, otherwise the CDN can infer 
@@ -165,7 +165,7 @@ still view cross site browsing patterns among the origin servers that are not pa
 because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to exit proxies, but 
 not to clients.  
 
-\paragraph{Deployment with Origin Servers' Partial Participation} 
+\paragraph{Deployment with Origin Servers' Partial Participation.} 
 Some origin servers may prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
 both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 

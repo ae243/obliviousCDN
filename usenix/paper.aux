@@ -15,9 +15,9 @@
 \newlabel{fig:basic_cdn}{{1}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}What CDNs Can See}{3}}
 \newlabel{sec:info}{{2.2}{3}}
-\@writefile{toc}{\contentsline {paragraph}{Content}{3}}
-\@writefile{toc}{\contentsline {paragraph}{Client information}{3}}
-\@writefile{toc}{\contentsline {paragraph}{Content publisher information}{3}}
+\@writefile{toc}{\contentsline {paragraph}{Content.}{3}}
+\@writefile{toc}{\contentsline {paragraph}{Client information.}{3}}
+\@writefile{toc}{\contentsline {paragraph}{Content publisher information.}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Open Legal Questions}{3}}
 \citation{cloudflare_nsl}
 \citation{facebook_surv}
@@ -29,8 +29,8 @@
 \citation{medium_sesta}
 \citation{cloudflare_nsl}
 \citation{levy2015stickler}
-\@writefile{toc}{\contentsline {paragraph}{User Data Requests}{4}}
-\@writefile{toc}{\contentsline {paragraph}{Intermediary Liability}{4}}
+\@writefile{toc}{\contentsline {paragraph}{User Data Requests.}{4}}
+\@writefile{toc}{\contentsline {paragraph}{Intermediary Liability.}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Threat Model and Security Goals}{4}}
 \newlabel{sec:threat}{{3}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Threat Model}{4}}
@@ -40,112 +40,109 @@
 \citation{cloudflare_tor}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Security and Privacy Goals for {OCDN}{}}{5}}
 \newlabel{sec:goals}{{3.2}{5}}
-\@writefile{toc}{\contentsline {paragraph}{Prevent the CDN from knowing the content it is caching}{5}}
-\@writefile{toc}{\contentsline {paragraph}{Prevent the CDN from knowing the identity of users accessing content}{5}}
+\@writefile{toc}{\contentsline {paragraph}{Prevent the CDN from knowing the content it is caching.}{5}}
+\@writefile{toc}{\contentsline {paragraph}{Prevent the CDN from knowing the identity of users accessing content.}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Performance Considerations}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The relationships between clients, exit proxies, CDNs, and origin servers in {OCDN}{}.}}{5}}
 \newlabel{fig:ocd_overview}{{2}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Design}{5}}
 \newlabel{sec:design}{{4}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}{OCDN}{} Setup}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Hiding Content}{5}}
+\newlabel{sec:hiding_content}{{4.1}{5}}
+\@writefile{toc}{\contentsline {paragraph}{Shared Keys.}{5}}
 \citation{karger1997consistent}
 \citation{lewin1998consistent}
 \citation{mazieres2000self}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Design decisions associated with {OCDN}{} setup.}}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Design decisions associated with hiding content from a CDN.}}{6}}
 \newlabel{tab:setup}{{1}{6}}
-\@writefile{toc}{\contentsline {paragraph}{Shared Keys}{6}}
-\@writefile{toc}{\contentsline {paragraph}{Consistent Hashing}{6}}
-\@writefile{toc}{\contentsline {paragraph}{Self-Certifying Identifiers}{6}}
-\@writefile{toc}{\contentsline {paragraph}{DNS for Key Sharing}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Consistent Hashing.}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Certifying Identifiers.}{6}}
+\@writefile{toc}{\contentsline {paragraph}{DNS for Key Sharing.}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The design decisions associated with content requests and responses, and what these decisions provide.}}{7}}
 \newlabel{tab:request_response}{{2}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Requests \& Responses}{7}}
-\@writefile{toc}{\contentsline {paragraph}{Potentially Spoofed Source Routes}{7}}
-\@writefile{toc}{\contentsline {paragraph}{Session Keys}{7}}
-\@writefile{toc}{\contentsline {paragraph}{Multicast Responses}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hiding Clients}{7}}
+\newlabel{sec:hiding_clients}{{4.2}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Potentially Spoofed Source Routes.}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Session Keys.}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Multicast Responses.}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Incentives for Running {OCDN}{}}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Design Alternatives}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Additional Options}{8}}
-\@writefile{toc}{\contentsline {paragraph}{Multiple CDNs}{8}}
-\@writefile{toc}{\contentsline {paragraph}{Encoding URLs}{8}}
-\@writefile{toc}{\contentsline {paragraph}{DHT Replicas}{8}}
-\@writefile{toc}{\contentsline {paragraph}{Partial Content}{8}}
-\@writefile{toc}{\contentsline {paragraph}{Pre-Fetch DNS Responses}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces How content is published in {OCDN}{}. $k$ is shared between the origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}}{8}}
-\newlabel{fig:publishing}{{3}{8}}
-\@writefile{toc}{\contentsline {paragraph}{Privacy vs. Performance Tradeoffs}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}{OCDN}{} Protocol}{8}}
-\newlabel{sec:protocol}{{5}{8}}
+\@writefile{toc}{\contentsline {paragraph}{Multiple CDNs.}{8}}
+\@writefile{toc}{\contentsline {paragraph}{Encoding URLs.}{8}}
+\@writefile{toc}{\contentsline {paragraph}{DHT Replicas.}{8}}
+\@writefile{toc}{\contentsline {paragraph}{Partial Content.}{8}}
+\@writefile{toc}{\contentsline {paragraph}{Pre-Fetch DNS Responses.}{8}}
 \citation{cedexis}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces How content is published in {OCDN}{}. $k$ is shared between the origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}}{9}}
+\newlabel{fig:publishing}{{3}{9}}
+\@writefile{toc}{\contentsline {paragraph}{Privacy vs. Performance Tradeoffs.}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}{OCDN}{} Protocol}{9}}
+\newlabel{sec:protocol}{{5}{9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Publishing Content}{9}}
 \newlabel{sec:publish_protocol}{{5.1}{9}}
-\@writefile{toc}{\contentsline {paragraph}{Updating Content}{9}}
-\@writefile{toc}{\contentsline {paragraph}{Updating Keys}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Retrieving Content}{9}}
-\newlabel{sec:retrieve}{{5.2}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Steps for retrieving content in {OCDN}{} when a client is prioritizing performance and goes directly to an exit proxy.}}{10}}
-\newlabel{fig:retrieving}{{4}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Clients Joining \& Leaving}{10}}
-\newlabel{sec:join}{{5.3}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Partial Deployment}{10}}
-\newlabel{sec:partial}{{5.4}{10}}
-\@writefile{toc}{\contentsline {paragraph}{Deployment with Origin Servers' Full Participation}{10}}
-\citation{barford1998generating}
+\@writefile{toc}{\contentsline {paragraph}{Updating Content.}{10}}
+\@writefile{toc}{\contentsline {paragraph}{Updating Keys.}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Retrieving Content}{10}}
+\newlabel{sec:retrieve}{{5.2}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Steps for retrieving content in {OCDN}{} when a client is prioritizing performance and goes directly to an exit proxy.}}{11}}
+\newlabel{fig:retrieving}{{4}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Clients Joining \& Leaving}{11}}
+\newlabel{sec:join}{{5.3}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Partial Deployment}{11}}
+\newlabel{sec:partial}{{5.4}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Steps for retrieving content in {OCDN}{} when a client is prioritizing privacy and proxies a request through two other clients before reaching the exit proxy. This figure shows that the request is sent sequentially through peers, and the response is sent in a multicast manner back to the clients.}}{11}}
 \newlabel{fig:retrieving2}{{5}{11}}
-\@writefile{toc}{\contentsline {paragraph}{Deployment with Origin Servers' Partial Participation}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces How an origin server certifies an exit proxy and distributes its shared key to an exit proxy. In step\nobreakspace  {}(1), the exit proxy sends his self-certifying ID in the {\it  Additional} section of the DNS message. }}{11}}
-\newlabel{fig:keys}{{6}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The implementation of our {OCDN}{} prototype. The solid line represents how {OCDN}{} communicates between the components; the dotted line represents how a traditional CDN would communicate. $\alpha $ represents the latency between the client and the exit proxy; we simulate additional clients on this path by increasing $\alpha $.}}{11}}
-\newlabel{fig:impl}{{7}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Implementation}{11}}
-\newlabel{sec:implementation}{{6}{11}}
+\@writefile{toc}{\contentsline {paragraph}{Deployment with Origin Servers' Full Participation.}{11}}
+\@writefile{toc}{\contentsline {paragraph}{Deployment with Origin Servers' Partial Participation.}{11}}
+\citation{barford1998generating}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces How an origin server certifies an exit proxy and distributes its shared key to an exit proxy. In step\nobreakspace  {}(1), the exit proxy sends his self-certifying ID in the {\it  Additional} section of the DNS message. }}{12}}
+\newlabel{fig:keys}{{6}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Implementation}{12}}
+\newlabel{sec:implementation}{{6}{12}}
+\@writefile{toc}{\contentsline {paragraph}{CDN.}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The implementation of our {OCDN}{} prototype. The solid line represents how {OCDN}{} communicates between the components; the dotted line represents how a traditional CDN would communicate. $\alpha $ represents the latency between the client and the exit proxy; we simulate additional clients on this path by increasing $\alpha $.}}{12}}
+\newlabel{fig:impl}{{7}{12}}
+\@writefile{toc}{\contentsline {paragraph}{Exit Proxy.}{12}}
+\@writefile{toc}{\contentsline {paragraph}{Client Proxy.}{12}}
 \citation{levy2015stickler}
 \citation{michalakis2007ensuring}
 \citation{dingledine2004tor}
 \citation{xx}
-\@writefile{toc}{\contentsline {paragraph}{CDN}{12}}
-\@writefile{toc}{\contentsline {paragraph}{Exit Proxy}{12}}
-\@writefile{toc}{\contentsline {paragraph}{Client Proxy}{12}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, {OCDN}{} is the first to address confidentiality at the CDN.}}{12}}
-\newlabel{tab:sec_table}{{3}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Security Analysis}{12}}
-\newlabel{sec:sec}{{7}{12}}
-\@writefile{toc}{\contentsline {paragraph}{Popularity Attacks}{12}}
-\@writefile{toc}{\contentsline {paragraph}{Chosen Plaintext Attacks}{12}}
 \citation{rfc2227}
-\@writefile{toc}{\contentsline {paragraph}{Traffic Analysis Attacks}{13}}
-\@writefile{toc}{\contentsline {paragraph}{Spoofed Content Updates}{13}}
-\@writefile{toc}{\contentsline {paragraph}{Timing Attacks}{13}}
-\@writefile{toc}{\contentsline {paragraph}{Flashcrowds}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time to First Byte measurements with and without {OCDN}{}.}}{13}}
-\newlabel{fig:ttfb}{{8}{13}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Performance Analysis}{13}}
-\newlabel{sec:performance}{{8}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}{OCDN}{} Overhead}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, {OCDN}{} is the first to address confidentiality at the CDN.}}{13}}
+\newlabel{tab:sec_table}{{3}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Security Analysis}{13}}
+\newlabel{sec:sec}{{7}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Popularity Attacks.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Chosen Plaintext Attacks.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Traffic Analysis Attacks.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Spoofed Content Updates.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Timing Attacks.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Flashcrowds.}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time to first byte measurements with and without {OCDN}{}.}}{14}}
+\newlabel{fig:ttfb}{{8}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Performance Analysis}{14}}
+\newlabel{sec:performance}{{8}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}{OCDN}{} Overhead}{14}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Time to complete a request with and without {OCDN}{}.}}{14}}
 \newlabel{fig:completion}{{9}{14}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Time to First Byte and time to complete a request with varying the file size and latency; this latency correspondes to $\alpha $ in Figure 7\hbox {}.}}{14}}
 \newlabel{fig:latency}{{10}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Overhead of different operations performed by {OCDN}{}.}}{14}}
-\newlabel{fig:overhead2}{{11}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Scalability}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Overhead of different operations performed by {OCDN}{}.}}{15}}
+\newlabel{fig:overhead2}{{11}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Scalability}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{15}}
+\newlabel{sec:discussion}{{9}{15}}
+\@writefile{toc}{\contentsline {paragraph}{{OCDN}{} limitations.}{15}}
+\@writefile{toc}{\contentsline {paragraph}{CDNs operated by content hosts.}{15}}
+\@writefile{toc}{\contentsline {paragraph}{Legal questions and political pushback.}{15}}
 \citation{lesniewski2005ssl}
 \citation{michalakis2007ensuring}
 \citation{levy2015stickler}
 \citation{gilad2016cdn}
 \citation{liang2014https}
 \citation{zolfaghari2016practical}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{15}}
-\newlabel{sec:discussion}{{9}{15}}
-\@writefile{toc}{\contentsline {paragraph}{{OCDN}{} limitations}{15}}
-\@writefile{toc}{\contentsline {paragraph}{CDNs operated by content hosts}{15}}
-\@writefile{toc}{\contentsline {paragraph}{Exit proxies run by volunteers}{15}}
-\@writefile{toc}{\contentsline {paragraph}{Legal questions and political pushback}{15}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Related Work}{15}}
-\newlabel{sec:related}{{10}{15}}
-\@writefile{toc}{\contentsline {paragraph}{Securing CDNs}{15}}
-\@writefile{toc}{\contentsline {paragraph}{Security Issues in CDNs}{15}}
 \citation{jung2002flash}
 \citation{su2008thinning}
 \citation{triukose2009content}
@@ -159,6 +156,11 @@
 \citation{wendell2011going}
 \citation{su2009drafting}
 \citation{berger2017adaptsize}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Related Work}{16}}
+\newlabel{sec:related}{{10}{16}}
+\@writefile{toc}{\contentsline {paragraph}{Securing CDNs.}{16}}
+\@writefile{toc}{\contentsline {paragraph}{Security Issues in CDNs.}{16}}
+\@writefile{toc}{\contentsline {paragraph}{Measuring and Mapping CDNs.}{16}}
 \bibstyle{acm}
 \bibdata{paper}
 \bibcite{techdirt_copyright}{1}
@@ -167,10 +169,6 @@
 \bibcite{medium_sesta}{4}
 \bibcite{barford1998generating}{5}
 \bibcite{berger2017adaptsize}{6}
-\@writefile{toc}{\contentsline {paragraph}{Measuring and Mapping CDNs}{16}}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{16}}
-\newlabel{sec:conclusion}{{11}{16}}
-\newlabel{lastpage}{{11}{16}}
 \bibcite{cai2012touching}{7}
 \bibcite{calder2013mapping}{8}
 \bibcite{cedexis}{9}
@@ -190,6 +188,9 @@
 \bibcite{jung2002flash}{23}
 \bibcite{karger1997consistent}{24}
 \bibcite{khattak2016you}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{17}}
+\newlabel{sec:conclusion}{{11}{17}}
+\newlabel{lastpage}{{11}{17}}
 \bibcite{lesniewski2005ssl}{26}
 \bibcite{levy2015stickler}{27}
 \bibcite{lewin1998consistent}{28}

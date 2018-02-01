@@ -11,7 +11,7 @@ described in Section \ref{sec:implementation}.  Figure \ref{fig:impl} shows
 how our measurements reflect \system{} (solid line) and a traditional CDN (dotted 
 line).  
 
-Figure \ref{fig:ttfb} shows the Time to First Byte (TTFB) for both \system{} and 
+Figure \ref{fig:ttfb} shows the time to first byte (TTFB) for both \system{} and 
 without \system{}.  We can see the the TTFB using \system{} grows linearly with 
 file size, whereas without \system{} TTFB remains fairly constant.  Interestingly, 
 we can see that there are some fixed time operations that \system{} performs, which 
@@ -20,7 +20,7 @@ is visible by looking at the smaller file sizes.
 \begin{figure}[t!]
 \centering
 \includegraphics[width=.5\textwidth]{TTFB}
-\caption{Time to First Byte measurements with and without \system{}.}
+\caption{Time to first byte measurements with and without \system{}.}
 \label{fig:ttfb}
 \end{figure}
 

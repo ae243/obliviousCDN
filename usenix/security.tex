@@ -23,7 +23,7 @@ systems.
 \label{tab:sec_table}
 \end{table}
 
-\paragraph{Popularity Attacks}  An attacker that has requested or otherwise 
+\paragraph{Popularity Attacks.}  An attacker that has requested or otherwise 
 gained access to CDN cache logs can learn information about how often 
 content was requested.  Because not all content is requested uniformly, the 
 attacker could potentially correlate the most commonly requested content with 
@@ -40,7 +40,7 @@ across multiple exit proxies (where each of these exit proxies are responsible f
 one of the encodings).}  Now, the popular content does not appear as popular, 
 and it makes it difficult for an attacker to infer the popularity of the content.
 
-\paragraph{Chosen Plaintext Attacks} An attacker could attempt to
+\paragraph{Chosen Plaintext Attacks.} An attacker could attempt to
 determine whether a particular URL was being accessed by sending requests
 through specific \system{} proxies and requesting access to the CDN cache logs, 
 which contain the corresponding obfuscated
@@ -51,7 +51,7 @@ law enforcement perspective, receiving a subpoena for {\em existing} logs and
 data may present a lower legal barrier than compelling a CDN to attack a
 system.
 
-\paragraph{Traffic Analysis Attacks} If a CDN itself is malicious and is attempting 
+\paragraph{Traffic Analysis Attacks.} If a CDN itself is malicious and is attempting 
 to learn information about the content and/or clients, the CDN may act as a client 
 in the system.  In this attack the (malicious) client sends a request for content 
 and the CDN can correlate the request with a content access at the CDN because they have 
@@ -64,7 +64,7 @@ also been numerous studies that have proposed and evaluated defenses against tra
 analysis attacks~\cite{xx}; \system{} could implement one of these solutions at the exit 
 proxy.
 
-\paragraph{Spoofed Content Updates} Because the CDN cache
+\paragraph{Spoofed Content Updates.} Because the CDN cache
 nodes do not know either the content that they are hosting or the URLs
 corresponding to the content, an attacker could masquerade as an origin server
 and could potentially push bogus content for a URL to a cache node. There are
@@ -77,9 +77,12 @@ to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
 
-\paragraph{Timing Attacks} 
+\paragraph{Timing Attacks.} An attacker who is passively observing traffic could potentially 
+correlate requests and responses based on timing information.  To address this type of attack, 
+\system{} could employ techniques used in previous research, such as implementing timing 
+delays, at different proxies (either client or exit proxies).
 
-\paragraph{Flashcrowds}  A flashcrowd is large spike in traffic to a specific web
+\paragraph{Flashcrowds.}  A flashcrowd is a large spike in traffic to a specific web
 page. An attacker
 could see that some content on the CDN has just seen a surge in traffic and correlate that with 
 other information (for example, major world events).  This leaks information about what content the 
