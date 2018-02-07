@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  1 FEB 2018 12:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  7 FEB 2018 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -793,10 +793,7 @@ File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 <use ./figures/publishing_content_new2.pdf>
 Package pdftex.def Info: ./figures/publishing_content_new2.pdf used on input li
 ne 3.
-(pdftex.def)             Requested size: 211.3883pt x 77.02417pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(pdftex.def)             Requested size: 164.4171pt x 59.91017pt.
  [9 <./figures/publishing_content_new2.pdf>] [10]
 <./figures/request_diagram_simple.pdf, id=829, 599.02542pt x 612.19377pt>
 File: ./figures/request_diagram_simple.pdf Graphic file (type pdf)
@@ -836,15 +833,19 @@ File: ./figures/implementation.pdf Graphic file (type pdf)
 <use ./figures/implementation.pdf>
 Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
 (pdftex.def)             Requested size: 211.3883pt x 108.45691pt.
-) (./security.tex [12 <./figures/key_lookup.pdf> <./figures/implementation.pdf
-
-pdfTeX warning: pdflatex (file ./figures/implementation.pdf): PDF inclusion: mu
-ltiple pdfs with page group included in a single page
->]
+) (./security.tex
 Overfull \hbox (4.82379pt too wide) in paragraph at lines 9--22
  [][] 
  []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12 <./figures/key_lookup.pdf> <./figures/implementation.pdf
+
+pdfTeX warning: pdflatex (file ./figures/implementation.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
+>]
 
 LaTeX Warning: Citation `xx' on page 13 undefined on input line 64.
 
@@ -928,12 +929,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--52
 
  []
 
-) (./conclusion.tex
-Underfull \hbox (badness 2443) in paragraph at lines 62--1
-\OT1/ptm/m/n/10 on char-ac-ter-iz-ing and quan-ti-fy-ing flash crowds on
- []
-
-[16]) (./paper.bbl
+) (./conclusion.tex) (./paper.bbl [16]
 Underfull \hbox (badness 2932) in paragraph at lines 4--8
 []\OT1/ptm/m/n/8 Court Says RIAA Can Just Tell Cloud-flare Any Site Is
  []
@@ -973,7 +969,7 @@ ncing -[] child -[] protection -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 49--52
 \OT1/cmtt/m/n/8 03 / new -[] data -[] suggests -[] 94 -[] percent -[] of -[] to
 r -[] traffic -[]
  []
@@ -982,75 +978,63 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--71
+Underfull \hbox (badness 10000) in paragraph at lines 54--57
 \OT1/cmtt/m/n/8 / / medium\OML/ztmcm/m/it/8 :\OT1/cmtt/m/n/8 com / niskanen -[]
  center / content -[] delivery -[]
  []
 
 
-Underfull \hbox (badness 3769) in paragraph at lines 77--80
+Underfull \hbox (badness 3769) in paragraph at lines 63--66
 []\OT1/ptm/m/n/8 CREDO and Cloud-flare Ar-gue Against Na-tional Se-cu-rity
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 77--80
+Underfull \hbox (badness 1308) in paragraph at lines 63--66
 \OT1/ptm/m/n/8 Let-ter Gag Or-ders.  $\OT1/cmtt/m/n/8 https : / / techcrunch\OM
 L/ztmcm/m/it/8 :\OT1/cmtt/m/n/8 com / 2017 / 03 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--80
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
 \OT1/cmtt/m/n/8 23 / credo -[] and -[] cloudflare -[] argue -[] against -[] nat
 ional -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 []\OT1/ptm/m/n/8 District court rules against Cloud-flare in anti-piracy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 \OT1/ptm/m/n/8 suit.  $\OT1/cmtt/m/n/8 https : / / thestack\OML/ztmcm/m/it/8 :\
 OT1/cmtt/m/n/8 com / security / 2017 / 03 / 29 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 \OT1/cmtt/m/n/8 district -[] court -[] rules -[] against -[] cloudflare -[] in 
 -[] anti -[]
  []
 
 
-Underfull \hbox (badness 2035) in paragraph at lines 97--101
+Underfull \hbox (badness 2035) in paragraph at lines 83--87
 []\OT1/ptm/m/n/8 EU Pro-posal for a Di-rec-tive of The Eu-ro-pean Par-lia-ment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--111
+Underfull \hbox (badness 10000) in paragraph at lines 94--97
 \OT1/ptm/m/n/8 lance tool.  $\OT1/cmtt/m/n/8 https : / / venturebeat\OML/ztmcm/
 m/it/8 :\OT1/cmtt/m/n/8 com / 2014 / 05 / 15 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--111
+Underfull \hbox (badness 10000) in paragraph at lines 94--97
 \OT1/cmtt/m/n/8 how -[] the -[] nsa -[] fbi -[] made -[] facebook -[] the -[] p
 erfect -[] mass -[]
  []
 
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 232--235
-\OT1/cmtt/m/n/8 / / www\OML/ztmcm/m/it/8 :\OT1/cmtt/m/n/8 cisco\OML/ztmcm/m/it/
-8 :\OT1/cmtt/m/n/8 com / c / en / us / solutions / collateral /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--235
-\OT1/cmtt/m/n/8 service -[] provider / visual -[] networking -[] index -[] vni 
-/
- []
-
-) [18
+[17]) [18
 
 ] (./paper.aux)
 
@@ -1058,10 +1042,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 14813 strings out of 493014
- 289618 string characters out of 6133351
- 327911 words of memory out of 5000000
- 17952 multiletter control sequences out of 15000+600000
+ 14805 strings out of 493014
+ 289482 string characters out of 6133351
+ 328879 words of memory out of 5000000
+ 17944 multiletter control sequences out of 15000+600000
  52866 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,54p,535b,538s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1075,7 +1059,7 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on paper.pdf (18 pages, 1574567 bytes).
+Output written on paper.pdf (18 pages, 1570993 bytes).
 PDF statistics:
  1413 PDF objects out of 1440 (max. 8388607)
  1016 compressed objects within 11 object streams

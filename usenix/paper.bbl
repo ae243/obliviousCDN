@@ -27,26 +27,12 @@
 \newblock In {\em ACM SIGMETRICS Performance Evaluation Review\/} (1998),
   vol.~26, ACM, pp.~151--160.
 
-\bibitem{berger2017adaptsize}
-{\sc Berger, D.~S., Sitaraman, R.~K., and Harchol-Balter, M.}
-\newblock Adaptsize: Orchestrating the hot object memory cache in a content
-  delivery network.
-\newblock In {\em 14th USENIX Symposium on Networked Systems Design and
-  Implementation (NSDI 17)\/} (2017), USENIX Association, pp.~483--498.
-
 \bibitem{cai2012touching}
 {\sc Cai, X., Zhang, X.~C., Joshi, B., and Johnson, R.}
 \newblock Touching from a distance: Website fingerprinting attacks and
   defenses.
 \newblock In {\em Proceedings of the 2012 ACM conference on Computer and
   communications security\/} (2012), ACM, pp.~605--616.
-
-\bibitem{calder2013mapping}
-{\sc Calder, M., Fan, X., Hu, Z., Katz-Bassett, E., Heidemann, J., and
-  Govindan, R.}
-\newblock Mapping the expansion of {Google's} serving infrastructure.
-\newblock In {\em Proceedings of the 2013 conference on Internet measurement
-  conference\/} (2013), ACM, pp.~313--326.
 
 \bibitem{cedexis}
 {Cedexis}.
@@ -108,11 +94,6 @@
 {How the NSA \& FBI made Facebook the perfect mass surveillance tool.}
 \newblock
   \url{https://venturebeat.com/2014/05/15/how-the-nsa-fbi-made-facebook-the-perfect-mass-surveillance-tool/}.
-
-\bibitem{huang2008measuring}
-{\sc Huang, C., Wang, A., Li, J., and Ross, K.~W.}
-\newblock Measuring and evaluating large-scale cdns.
-\newblock In {\em ACM IMC\/} (2008), vol.~8.
 
 \bibitem{jia2016anonymity}
 {\sc Jia, Y., Bai, G., Saxena, P., and Liang, Z.}
@@ -184,22 +165,9 @@
 \newblock In {\em Network \& Distributed System Security Symposium (NDSS). IEEE
   Computer Society\/} (2016).
 
-\bibitem{scott2016satellite}
-{\sc Scott, W., Anderson, T., Kohno, T., and Krishnamurthy, A.}
-\newblock Satellite: Joint analysis of {CDNs} and network-level interference.
-\newblock In {\em 2016 USENIX Annual Technical Conference (USENIX ATC 16)\/}
-  (2016), USENIX Association, pp.~195--208.
-
 \bibitem{rfc2227}
 {Simple Hit-Metering and Usage-Limiting for HTTP}.
 \newblock \url{https://www.ietf.org/rfc/rfc2227.txt}.
-
-\bibitem{su2009drafting}
-{\sc Su, A.-J., Choffnes, D.~R., Kuzmanovic, A., and Bustamante, F.~E.}
-\newblock Drafting behind {Akamai}: Inferring network conditions based on {CDN}
-  redirections.
-\newblock {\em IEEE/ACM Transactions on Networking (TON) 17}, 6 (2009),
-  1752--1765.
 
 \bibitem{su2008thinning}
 {\sc Su, A.-J., and Kuzmanovic, A.}
@@ -216,22 +184,6 @@
 \bibitem{cloudflare_tor}
 {The Trouble with Tor}.
 \newblock \url{https://blog.cloudflare.com/the-trouble-with-tor/}.
-
-\bibitem{wendell2011going}
-{\sc Wendell, P., and Freedman, M.~J.}
-\newblock Going viral: Flash crowds in an open {CDN}.
-\newblock In {\em Proceedings of the 2011 ACM SIGCOMM conference on Internet
-  measurement conference\/} (2011), ACM, pp.~549--558.
-
-\bibitem{xue2017cdns}
-{\sc Xue, J., Choffnes, D., and Wang, J.}
-\newblock {CDNs} meet {CN}: An empirical study of {CDN} deployments in china.
-\newblock {\em IEEE Access\/} (2017).
-
-\bibitem{predict}
-{The Zettabyte Era -- Trends and Analysis -- Cisco}.
-\newblock
-  \url{http://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html}.
 
 \bibitem{zolfaghari2016practical}
 {\sc Zolfaghari, H., and Houmansadr, A.}
