@@ -23,10 +23,8 @@ We separate design decisions into two parts: 1)~setup decisions and 2)~request/r
 \subsection{Hiding Content}
 \label{sec:hiding_content}
 We start by discussing how the system components communicate and authenticate 
-one another; Table~\ref{tab:setup} summarizes these decisions. 
-We introduce shared keys between origin servers and exit proxies, how these keys
-are 
-stored, how the exit proxies authenticate themselves to origin servers, and how these 
+one another. We introduce shared keys between origin servers and exit proxies, how these keys
+are stored, how the exit proxies authenticate themselves to origin servers, and how these 
 keys are distributed.
 
 %\begin{table}[t!]
@@ -145,9 +143,7 @@ extracts $k$ by decrypting with its private key, and stores it in its hash table
 \subsection{Hiding Clients}
 \label{sec:hiding_clients}
 We make additional design choices that concern the requests that clients initiate
-and
-the responses they receive.  Table~\ref{tab:request_response} highlights these decisions;
-we 
+and the responses they receive. We 
 introduce session keys, how requests are routed from clients to exit proxies, and how responses 
 are routed from exit proxies back to the original client.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 16:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -748,24 +748,16 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 17--19
  []
 
 [4]
-
-LaTeX Warning: Reference `tab:setup' on page 5 undefined on input line 26.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
-[5 <./figures/ocdn_overview_new2.pdf>]
-
-LaTeX Warning: Reference `tab:request_response' on page 6 undefined on input li
-ne 149.
-
-[6]
-Underfull \hbox (badness 1430) in paragraph at lines 269--275
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+ [5 <./figures/ocdn_overview_new2.pdf>] [6]
+Underfull \hbox (badness 1430) in paragraph at lines 265--271
 \OT1/ptm/m/n/10 vent this, OCDN al-lows ori-gin servers to gen-er-ate
  []
 
@@ -784,21 +776,16 @@ File: ./figures/key_lookup.pdf Graphic file (type pdf)
 <use ./figures/key_lookup.pdf>
 Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 49.
 (pdftex.def)             Requested size: 211.3883pt x 129.97961pt.
-
-
-LaTeX Warning: Reference `fig:retrieving' on page 8 undefined on input line 83.
-
-
-[8 <./figures/key_lookup.pdf>]
+ [8 <./figures/key_lookup.pdf>]
 <./figures/request_diagram_complex.pdf, id=966, 673.41388pt x 387.38942pt>
 File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
 
 <use ./figures/request_diagram_complex.pdf>
 Package pdftex.def Info: ./figures/request_diagram_complex.pdf used on input li
-ne 121.
+ne 118.
 (pdftex.def)             Requested size: 234.87749pt x 135.11543pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 121--126
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 118--123
  [][] 
  []
 
@@ -843,13 +830,9 @@ File: ./figures/loggrouped_2.pdf Graphic file (type pdf)
 <use ./figures/loggrouped_2.pdf>
 Package pdftex.def Info: ./figures/loggrouped_2.pdf used on input line 20.
 (pdftex.def)             Requested size: 164.4171pt x 126.02498pt.
- [11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-)
-(./discussion.tex) (./related_work.tex [12 <./figures/combined.pdf> <./figures/
-Latency_withoutzero_2.pdf> <./figures/loggrouped_2.pdf>]) (./conclusion.tex)
-[13] (./paper.bbl
+ [11]) (./discussion.tex) (./related_work.tex
+[12 <./figures/combined.pdf> <./figures/Latency_withoutzero_2.pdf> <./figures/l
+oggrouped_2.pdf>]) (./conclusion.tex) (./paper.bbl
 Underfull \hbox (badness 2932) in paragraph at lines 4--8
 []\OT1/ptm/m/n/8 Court Says RIAA Can Just Tell Cloud-flare Any Site Is
  []
@@ -877,7 +860,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--8
  clone -[]
  []
 
-
+[13]
 Underfull \hbox (badness 2343) in paragraph at lines 10--13
 []\OT1/ptm/m/n/8 Akamai Em-pow-ers Op-er-a-tors to De-ploy Their Own Con-
  []
@@ -960,10 +943,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15067 strings out of 493014
- 293825 string characters out of 6133351
+ 15064 strings out of 493014
+ 293776 string characters out of 6133351
  334983 words of memory out of 5000000
- 18204 multiletter control sequences out of 15000+600000
+ 18201 multiletter control sequences out of 15000+600000
  52866 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,54p,1354b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -977,7 +960,7 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on paper.pdf (14 pages, 1499795 bytes).
+Output written on paper.pdf (14 pages, 1499421 bytes).
 PDF statistics:
  1361 PDF objects out of 1440 (max. 8388607)
  999 compressed objects within 10 object streams

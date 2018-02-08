@@ -76,13 +76,10 @@ it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
 proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
 proceeds as normal.
 
-
-
 \subsection{Retrieving Content}
 \label{sec:retrieve}
-The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
-forwards a request directly to an exit proxy; Figure \ref{fig:retrieving2} shows
-the steps to retrieve content when the client forwards its
+The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving2}, where the client 
+can forward her request directly to an exit proxy or the client can forward her
 request through two peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
 stage, the client has knowledge of a subset of its peers (other \system{} clients) and a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 

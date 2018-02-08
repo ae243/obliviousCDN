@@ -2,14 +2,11 @@
 \label{sec:conclusion}
 
 As more content is distributed via CDNs, CDNs are increasingly becoming the
-targets of data requests and liability cases.  We discuss why CDNs are
-powerful in terms of the information they know  and can gather, such as a
-client's cross site browsing patterns.  In response to  traditional CDNs'
-capabilities, we design \system{}, which provides oblivious content
+targets of data requests and liability cases. In response, we design \system{}, which provides oblivious content
 distribution.  \system{} obfuscates data such that the CDN can operate without
-having knowledge of  what content they are caching.  This system not only
+having knowledge of what content they are caching.  This system not only
 provides protections to CDNs, but also preserves client privacy by ensuring
-that the CDN and the origin server never learn the identity of clients that
+that the CDN never learns the identity of clients that
 make requests for content. \system{} is robust against a strong adversary who
 has access to request logs at the CDN and can also join the system as a
 client, publisher, or CDN. Our evaluation shows that \system{} imposes some performance
