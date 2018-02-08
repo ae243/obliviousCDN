@@ -153,6 +153,12 @@
 \newblock In {\em Network \& Distributed System Security Symposium (NDSS). IEEE
   Computer Society\/} (2016).
 
+\bibitem{rackoff1993cryptographic}
+{\sc Rackoff, C., and Simon, D.~R.}
+\newblock Cryptographic defense against traffic analysis.
+\newblock In {\em Proceedings of the twenty-fifth annual ACM symposium on
+  Theory of computing\/} (1993), ACM, pp.~672--681.
+
 \bibitem{rfc2227}
 {Simple Hit-Metering and Usage-Limiting for HTTP}.
 \newblock \url{https://www.ietf.org/rfc/rfc2227.txt}.
@@ -166,6 +172,12 @@
 \bibitem{cloudflare_tor}
 {The Trouble with Tor}.
 \newblock \url{https://blog.cloudflare.com/the-trouble-with-tor/}.
+
+\bibitem{wright2009traffic}
+{\sc Wright, C.~V., Coull, S.~E., and Monrose, F.}
+\newblock Traffic morphing: An efficient defense against statistical traffic
+  analysis.
+\newblock In {\em NDSS\/} (2009), vol.~9.
 
 \bibitem{zolfaghari2016practical}
 {\sc Zolfaghari, H., and Houmansadr, A.}
