@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -819,7 +819,7 @@ File: ./figures/request_diagram_simple.pdf Graphic file (type pdf)
 <use ./figures/request_diagram_simple.pdf>
 Package pdftex.def Info: ./figures/request_diagram_simple.pdf used on input lin
 e 116.
-(pdftex.def)             Requested size: 187.89912pt x 192.02936pt.
+(pdftex.def)             Requested size: 139.19884pt x 142.26378pt.
 
 <./figures/request_diagram_complex.pdf, id=967, 673.41388pt x 387.38942pt>
 File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
@@ -827,14 +827,12 @@ File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
 <use ./figures/request_diagram_complex.pdf>
 Package pdftex.def Info: ./figures/request_diagram_complex.pdf used on input li
 ne 124.
-(pdftex.def)             Requested size: 234.87749pt x 135.11543pt.
+(pdftex.def)             Requested size: 187.89912pt x 108.08998pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 124--128
- [][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[9 <./figures/request_diagram_simple.pdf> <./figures/request_diagram_complex.pd
-f
+ [9 <./figures/request_diagram_simple.pdf> <./figures/request_diagram_complex.p
+df
 
 pdfTeX warning: pdflatex (file ./figures/request_diagram_complex.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
@@ -857,51 +855,38 @@ Missing character: There is no ™ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-) (./performance.tex <./figures/TTFB.pdf, id=1176, 325.215pt x 216.81pt>
-File: ./figures/TTFB.pdf Graphic file (type pdf)
+) (./performance.tex
+<./figures/combined.pdf, id=1176, 271.0125pt x 216.81pt>
+File: ./figures/combined.pdf Graphic file (type pdf)
 
-<use ./figures/TTFB.pdf>
-Package pdftex.def Info: ./figures/TTFB.pdf used on input line 5.
-(pdftex.def)             Requested size: 140.92792pt x 87.6202pt.
+<use ./figures/combined.pdf>
+Package pdftex.def Info: ./figures/combined.pdf used on input line 5.
+(pdftex.def)             Requested size: 145.6229pt x 110.09479pt.
 
-Underfull \hbox (badness 4752) in paragraph at lines 6--6
-[]\OT1/ptm/m/n/10 Figure 8: Time to first byte
- []
+<./figures/Latency_withoutzero_2.pdf, id=1178, 257.4625pt x 200.24675pt>
+File: ./figures/Latency_withoutzero_2.pdf Graphic file (type pdf)
+
+<use ./figures/Latency_withoutzero_2.pdf>
+Package pdftex.def Info: ./figures/Latency_withoutzero_2.pdf used on input line
+ 12.
+(pdftex.def)             Requested size: 136.22578pt x 110.63168pt.
+
+<./figures/loggrouped_2.pdf, id=1180, 328.90065pt x 256.38382pt>
+File: ./figures/loggrouped_2.pdf Graphic file (type pdf)
+
+<use ./figures/loggrouped_2.pdf>
+Package pdftex.def Info: ./figures/loggrouped_2.pdf used on input line 21.
+(pdftex.def)             Requested size: 164.4171pt x 126.02498pt.
 
 
-Underfull \hbox (badness 2662) in paragraph at lines 6--6
-\OT1/ptm/m/n/10 mea-sure-ments with and with-out
- []
+LaTeX Warning: Reference `fig:ttfb' on page 12 undefined on input line 41.
 
-<./figures/completion.pdf, id=1178, 325.215pt x 216.81pt>
-File: ./figures/completion.pdf Graphic file (type pdf)
+) (./discussion.tex [12]) (./related_work.tex [13 <./figures/combined.pdf> <./f
+igures/Latency_withoutzero_2.pdf> <./figures/loggrouped_2.pdf>]
+Underfull \vbox (badness 1082) has occurred while \output is active []
 
-<use ./figures/completion.pdf>
-Package pdftex.def Info: ./figures/completion.pdf used on input line 12.
-(pdftex.def)             Requested size: 140.92792pt x 87.6202pt.
-
-<./figures/Latency_withzero.pdf, id=1180, 433.62pt x 289.08pt>
-File: ./figures/Latency_withzero.pdf Graphic file (type pdf)
-
-<use ./figures/Latency_withzero.pdf>
-Package pdftex.def Info: ./figures/Latency_withzero.pdf used on input line 19.
-(pdftex.def)             Requested size: 159.71497pt x 107.1555pt.
-
-<./figures/loggrouped.pdf, id=1182, 398.00568pt x 361.05177pt>
-File: ./figures/loggrouped.pdf Graphic file (type pdf)
-
-<use ./figures/loggrouped.pdf>
-Package pdftex.def Info: ./figures/loggrouped.pdf used on input line 94.
-(pdftex.def)             Requested size: 159.71497pt x 144.88643pt.
-) (./discussion.tex [12]) (./related_work.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13 <./figures/TTFB.pdf> <./figures/completion.pdf> <./figures/Latency_withzer
-o.pdf> <./figures/loggrouped.pdf
-
-pdfTeX warning: pdflatex (file ./figures/loggrouped.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
->]) (./conclusion.tex) (./paper.bbl
+)
+(./conclusion.tex) (./paper.bbl
 Underfull \hbox (badness 2932) in paragraph at lines 4--8
 []\OT1/ptm/m/n/8 Court Says RIAA Can Just Tell Cloud-flare Any Site Is
  []
@@ -929,7 +914,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--8
  clone -[]
  []
 
-[14]
+
 Underfull \hbox (badness 2343) in paragraph at lines 10--13
 []\OT1/ptm/m/n/8 Akamai Em-pow-ers Op-er-a-tors to De-ploy Their Own Con-
  []
@@ -940,7 +925,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--22
 ncing -[] child -[] protection -[]
  []
 
-
+[14]
 Underfull \hbox (badness 10000) in paragraph at lines 49--52
 \OT1/cmtt/m/n/8 03 / new -[] data -[] suggests -[] 94 -[] percent -[] of -[] to
 r -[] traffic -[]
@@ -1012,10 +997,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15081 strings out of 493014
- 294153 string characters out of 6133351
- 335032 words of memory out of 5000000
- 18216 multiletter control sequences out of 15000+600000
+ 15076 strings out of 493014
+ 294079 string characters out of 6133351
+ 334022 words of memory out of 5000000
+ 18212 multiletter control sequences out of 15000+600000
  52866 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,54p,1354b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1029,10 +1014,10 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on paper.pdf (15 pages, 1565118 bytes).
+Output written on paper.pdf (15 pages, 1520982 bytes).
 PDF statistics:
- 1413 PDF objects out of 1440 (max. 8388607)
- 1015 compressed objects within 11 object streams
+ 1379 PDF objects out of 1440 (max. 8388607)
+ 1010 compressed objects within 11 object streams
  0 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
