@@ -3,9 +3,9 @@
 
 To our knowledge, there has been no prior work on preventing surveillance at CDNs, but there 
 has been relevant research on securing CDNs, finding security vulnerabilities in CDNs, and 
-conducting different types of measurements on CDNs.
-
-\paragraph{Securing CDNs.} Most prior work on securing CDNs has focused on providing content 
+conducting different types of measurements on CDNs.\\
+\vspace{0pt}
+\textbf{Securing CDNs.} Most prior work on securing CDNs has focused on providing content 
 integrity at the CDN as opposed to content confidentiality (and unlinkability).  In 2005, 
 Lesniewski-Laas and Kaashoek use SSL-splitting --- a technique 
 where the proxy simulates an SSL connection with the client by using authentication records from 
@@ -27,8 +27,8 @@ provide a complement to CDNs, as some smaller organizations cannot afford the us
 therefore do not receive the DDoS protections provided by them.  CDN-on-Demand is a software 
 defense that relies on managing flexible cloud resources as opposed to using a CDN provider's 
 service.\\
-
-\paragraph{Security Issues in CDNs.} More prevalent in the literature than defense are attacks on CDNs.  Recent work 
+\vspace{0pt}
+\textbf{Security Issues in CDNs.} More prevalent in the literature than defense are attacks on CDNs.  Recent work 
 has studied how HTTPS and CDNs work together (as both have been studied extensively separately).  Liang et al., studied 
 20 CDN providers and found that there are many problems with HTTPS practice in CDNs~\cite{liang2014https}.  Some of these 
 problems include: invalid certificates, private key sharing, neglected revocation of stale certificates, and 
@@ -48,8 +48,7 @@ subsequently consumes resources, decreases availability, and could potentially l
 
 Recently, researchers have studied the privacy implications of peer-assisted CDNs; peer-assisted CDNs allow clients to cache and distribute 
 content on behalf of a website.  It is starting to be supported by CDNs, such as Akamai, but the design of the paradigm
-makes clients susceptible to privacy attacks; one client can infur the cross site browsing patterns of another client~\cite{jia2016anonymity}.\\
-
+makes clients susceptible to privacy attacks; one client can infur the cross site browsing patterns of another client~\cite{jia2016anonymity}.
 %\paragraph{Measuring and Mapping CDNs.} As CDNs have increased in popularity, and are predicted to grow even more~\cite{predict}, much research has 
 %studied the deployment of CDNs.  Huang et al., have mapped the locations of servers, and evaluated the server availability for two CDNs: 
 %Akamai and Limelight~\cite{huang2008measuring}.  More recently, Calder et al., mapped Google's infrastructure; this included 
@@ -58,7 +57,6 @@ makes clients susceptible to privacy attacks; one client can infur the cross sit
 % also analyzes network-level interference to aid in the identification of CDN deployments~\cite{scott2016satellite}.  In 2017, researchers 
 %conducted an empirical study of CDN deployment in China; they found that it is significantly different than in other parts of the world 
 %due to their unique economic, technical, and regulatory factors~\cite{xue2017cdns}. 
-
 %Other measurement studies on CDNs have focused on characterizing and quantifying flash crowds on CDNs~\cite{wendell2011going}, inferring 
 %and using network measurements performed by a large CDN to identify quality Internet paths~\cite{su2009drafting}, and measuring object size distributions and 
 %request characteristics to optimize caching policies~\cite{berger2017adaptsize}.
