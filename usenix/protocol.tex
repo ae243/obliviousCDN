@@ -18,26 +18,23 @@ must first obfuscate her content, as described in Section \ref{sec:design}.
 Figure \ref{fig:publishing} shows the steps taken to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
 
 Once the key is established, the origin server must first pad the content to the same size for some 
-range of original content sizes (i.e., if content is between length x and y, then pad it to length 
+range of content sizes (i.e., if content is between length x and y, then pad it to length 
 z).  The range of content sizes should be small, such that this causes negligible padding overhead, but 
 reduces the probability of identifying the content based on the content length.  This content padding 
 is done to hide the original content's length, as it may be identifiable simply by its length.  After 
 content is padded, then the content is divided into fixed size blocks and padded to 
 some standard length.  Then each block is encrypted using the shared key $k$, 
 resulting in a set of encrypted blocks. Because the CDN does not have access to the shared key, 
-it cannot see what content it is caching.  
-
-Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
+it cannot see what content it is caching. Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
 she computes the HMAC of the URL using the shared key $k$.
 
-Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN, or optionally to multiple 
-CDNs.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
+Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN. Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
 origin server could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
 performance, and availability; an origin server can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
 CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
 partial deployment.
 
-As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the origin server
+As the exit proxies use consistent hashing to divide keys among proxies, the origin server
 determines which exit proxy is correct (based on the consistent hashing circle).  The origin server then encrypts the 
 shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
 Figure \ref{fig:keys} shows the steps for retrieveing a shared key.  First, the
