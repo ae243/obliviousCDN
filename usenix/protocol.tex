@@ -1,7 +1,7 @@
 \begin{figure}[t!]
 \centering
 \includegraphics[width=.3\textwidth]{publishing_content_new2}
-\caption{How content is published in \system{}.  $k$ is shared between the 
+\caption{Publishing content in \system{}.  $k$ is shared between the 
 origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}
 \label{fig:publishing}
 \end{figure}
@@ -13,13 +13,14 @@ steps taken to publish and retrieve content in \system{}.
 
 \subsection{Publishing Content}
 \label{sec:publish_protocol}
-In order to publish content such that the CDN never sees the content, the publisher 
+To publish content such that the CDN never sees it, the publisher 
 must first obfuscate her content, as described in Section \ref{sec:design}. 
 Figure \ref{fig:publishing} shows the steps taken to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
 
 Once the key is established, the origin server must first pad the content to the same size for some 
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
-z).  The range of content sizes should be small, such that this causes negligible padding overhead, but 
+z).  The range of content sizes should be small, introducing negligible padding
+overhead, but
 reduces the probability of identifying the content based on the content length.  This content padding 
 is done to hide the original content's length, as it may be identifiable simply by its length.  After 
 content is padded, then the content is divided into fixed size blocks and padded to 
@@ -28,8 +29,7 @@ resulting in a set of encrypted blocks. Because the CDN does not have access to 
 it cannot see what content it is caching.  
 
 Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
-she computes the HMAC of the URL using the shared key $k$.
-
+it computes the HMAC of the URL using the shared key $k$.
 Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN, or optionally to multiple 
 CDNs.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
 origin server could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
@@ -37,7 +37,8 @@ performance, and availability; an origin server can use a service, such as Cedex
 CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
 partial deployment.
 
-As the exit proxies use consistent hashing to divide keys among proxies while balancing load, the origin server
+Because the exit proxies use consistent hashing to divide keys among proxies while
+balancing load, the origin server
 determines which exit proxy is correct (based on the consistent hashing circle).  The origin server then encrypts the 
 shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
 Figure \ref{fig:keys} shows the steps for retrieveing a shared key.  First, the
@@ -57,12 +58,16 @@ the exit proxy sends his self-certifying ID in the {\it Additional} section of t
 \end{figure}
 
 \textbf{Updating Content.}
-For an origin server to update content, she must follow similar steps as described in publishing content.  
-Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) pad the 
+For an origin server to update content, it must follow similar steps as described
+in publishing content.  
+Once it has updated the content on the origin server, it must obfuscate it using
+the same steps: 1) pad the 
 original content length, 2) divide the content into fixed size blocks, and 3) encrypt the content blocks 
-with the shared key $k$.  Because she is updating the content (as opposed to creating new content), the 
+with the shared key $k$.  Because it is updating the content (as opposed to creating
+new content), the 
 obfuscated identifier will remain the same.  The origin server signs the updated obfuscated content with 
-her private key, such that the CDN can verify it was true origin server that sent the update.
+its private key, such that the CDN can verify it was true origin server that sent
+the update.
 
 \textbf{Updating Keys.}
 An origin server must be able to update keys in case of compromise.  To minimize the amount of time a key is compromised for, the 
@@ -91,7 +96,7 @@ stage, the client has knowledge of a subset of its peers (other \system{} client
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 
 route, which has better performance, or 2) a source route, which has better privacy.  If the client decides to use the privacy-preserving mode, 
-then she generates a source route, which includes some of its peers, and could potentially
+then it generates a source route, which includes some of its peers, and could potentially
 include a false originator (as described in Section \ref{sec:design}).
 Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no other clients on the path can learn what the requested URL is.  The client then sends it onto the next proxy in the source route, which could be either another client proxy or the exit proxy.  The request is forwarded 
 through all subsequent hops in the source route until it reaches the exit proxy.  The exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
@@ -102,7 +107,8 @@ generate the obfuscated identifier to query the cache node for the correct conte
 it must have the shared key $k$ that the origin server generated and obfuscated the content and identifier 
 with.  The steps an exit proxy takes to retrieve the shared key were outlined in Section \ref{sec:publish_protocol} and are shown in Figure \ref{fig:keys}.
 %Because the list of \system{} proxies is publicly available, it is simple for a 
-%content publisher to retrieve the list of proxies and ensure that she encrypts the shared key with the correct proxy's public key (based on consistent hashing).
+%content publisher to retrieve the list of proxies and ensure that it encrypts the
+% shared key with the correct proxy's public key (based on consistent hashing).
 
 Now that the proxy has obtained the shared key $k$ from the origin server, it can generate the obfuscated content identifier based 
 on the request the client sent.  It computes the HMAC of the URL with the shared key.  The proxy then 
@@ -129,7 +135,8 @@ and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
 \end{figure}
 
-Lastly, the exit proxy must send the response back to the correct client without knowing who the client is.  First, the exit proxy fetches the session key $k_{session}$ 
+Finally, the exit proxy must send the response back to the correct client without
+knowing who the client is.  First, the exit proxy fetches the session key $k_{session}$
 that it stored for the corresponding incoming request, and it uses this key to encrypt the response.  Then, it looks up the source route it stored for the corresponding request 
 and uses a multicast technique to send to the encrypted response to all clients on the source route.  At this point, the exit proxy can delete the source route and session key entries 
 for this request/response.  Only the original (true) client has $k_{session}$, so only the original (true) client can decrypt the response.  All other clients will discard 
@@ -138,7 +145,8 @@ the encrypted response because they cannot decrypt it.
 \subsection{Clients Joining \& Leaving}
 \label{sec:join}
 
-When a client joins \system{}, she will download \system{} client software.  This includes information about exit proxy mappings to URLs for which they hold a key, 
+When a client joins \system{}, it will download \system{} client software.  This
+includes information about exit proxy mappings to URLs for which they hold a key, 
 software for modifying requests with session keys and source routes, and software for running a proxy.  Clients will learn about other clients in the system via 
 a gossip protocol.  We do not detail this as gossip protocols have been studied extensively in the past.  Similarly, when a client leave the system, this 
 information is propogated to its peers using a gossip protocol.
