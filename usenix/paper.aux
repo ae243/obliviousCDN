@@ -43,14 +43,11 @@
 \citation{mazieres2000self}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The relationships between clients, exit proxies, CDNs, and origin servers in {OCDN}{}.}}{5}}
 \newlabel{fig:ocd_overview}{{2}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Design decisions associated with hiding content from a CDN.}}{5}}
-\newlabel{tab:setup}{{1}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Hiding Content}{5}}
 \newlabel{sec:hiding_content}{{4.1}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The design decisions associated with content requests and responses, and what these decisions provide.}}{6}}
-\newlabel{tab:request_response}{{2}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hiding Clients}{6}}
 \newlabel{sec:hiding_clients}{{4.2}{6}}
+\citation{cedexis}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Additional Options}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces How content is published in {OCDN}{}. $k$ is shared between the origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}}{7}}
 \newlabel{fig:publishing}{{3}{7}}
@@ -58,7 +55,6 @@
 \newlabel{sec:protocol}{{5}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Publishing Content}{7}}
 \newlabel{sec:publish_protocol}{{5.1}{7}}
-\citation{cedexis}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces How an origin server certifies an exit proxy and distributes its shared key to an exit proxy. In step\nobreakspace  {}(1), the exit proxy sends his self-certifying ID in the {\it  Additional} section of the DNS message. }}{8}}
 \newlabel{fig:keys}{{4}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Retrieving Content}{8}}
@@ -70,29 +66,31 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Partial Deployment}{9}}
 \newlabel{sec:partial}{{5.4}{9}}
 \citation{barford1998generating}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Implementation}{10}}
-\newlabel{sec:implementation}{{6}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The implementation of our {OCDN}{} prototype. The solid line represents how {OCDN}{} communicates between the components; the dotted line represents how a traditional CDN would communicate. $\alpha $ represents the latency between the client and the exit proxy; we simulate additional clients on this path by increasing $\alpha $.}}{10}}
-\newlabel{fig:impl}{{6}{10}}
 \citation{levy2015stickler}
 \citation{michalakis2007ensuring}
 \citation{dingledine2004tor}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The implementation of our {OCDN}{} prototype. The solid line represents how {OCDN}{} communicates between the components; the dotted line represents how a traditional CDN would communicate. $\alpha $ represents the latency between the client and the exit proxy; we simulate additional clients on this path by increasing $\alpha $.}}{10}}
+\newlabel{fig:impl}{{6}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Implementation}{10}}
+\newlabel{sec:implementation}{{6}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Security Analysis}{10}}
+\newlabel{sec:sec}{{7}{10}}
 \citation{xx}
 \citation{rfc2227}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, {OCDN}{} is the first to address confidentiality at the CDN.}}{11}}
-\newlabel{tab:sec_table}{{3}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Security Analysis}{11}}
-\newlabel{sec:sec}{{7}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, {OCDN}{} is the first to address confidentiality at the CDN.}}{11}}
+\newlabel{tab:sec_table}{{1}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Performance Analysis}{11}}
+\newlabel{sec:performance}{{8}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}{OCDN}{} Overhead}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Time to first byte and time to complete a request with and without {OCDN}{}.}}{12}}
 \newlabel{fig:completion}{{7}{12}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time to first byte and time to complete a request with varying the file size and latency.}}{12}}
 \newlabel{fig:latency}{{8}{12}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Overhead of different operations performed by {OCDN}{}.}}{12}}
 \newlabel{fig:overhead2}{{9}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Performance Analysis}{12}}
-\newlabel{sec:performance}{{8}{12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}{OCDN}{} Overhead}{12}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Scalability}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{12}}
+\newlabel{sec:discussion}{{9}{12}}
 \citation{lesniewski2005ssl}
 \citation{michalakis2007ensuring}
 \citation{levy2015stickler}
@@ -101,10 +99,10 @@
 \citation{jung2002flash}
 \citation{su2008thinning}
 \citation{jia2016anonymity}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{13}}
-\newlabel{sec:discussion}{{9}{13}}
 \@writefile{toc}{\contentsline {section}{\numberline {10}Related Work}{13}}
 \newlabel{sec:related}{{10}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{13}}
+\newlabel{sec:conclusion}{{11}{13}}
 \bibstyle{acm}
 \bibdata{paper}
 \bibcite{techdirt_copyright}{1}
@@ -133,11 +131,9 @@
 \bibcite{liang2014https}{24}
 \bibcite{mazieres2000self}{25}
 \bibcite{michalakis2007ensuring}{26}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{14}}
-\newlabel{sec:conclusion}{{11}{14}}
-\newlabel{lastpage}{{11}{14}}
 \bibcite{panchenko2016website}{27}
 \bibcite{rfc2227}{28}
 \bibcite{su2008thinning}{29}
 \bibcite{cloudflare_tor}{30}
 \bibcite{zolfaghari2016practical}{31}
+\newlabel{lastpage}{{11}{14}}
