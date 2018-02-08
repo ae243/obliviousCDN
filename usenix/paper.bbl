@@ -6,6 +6,11 @@
 \newblock
   \url{https://www.techdirt.com/articles/20151214/17392833079/court-says-riaa-can-just-tell-cloudflare-any-site-is-grooveshark-clone-cloudflare-has-48-hours-to-dump-them.shtml}.
 
+\bibitem{sec230}
+{47 U.S. Code § 230 - Protection for private blocking and screening of
+  offensive material}.
+\newblock \url{https://www.law.cornell.edu/uscode/text/47/230}.
+
 \bibitem{akamai_global_traffic}
 {Akamai Empowers Operators to Deploy Their Own Content Distribution Network}.
 \newblock
