@@ -18,27 +18,43 @@ must first obfuscate her content, as described in Section \ref{sec:design}.
 Figure \ref{fig:publishing} shows the steps taken to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
 
 Once the key is established, the origin server must first pad the content to the same size for some 
+<<<<<<< HEAD
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
 z).  The range of content sizes should be small, introducing negligible padding
 overhead, but
+=======
+range of content sizes (i.e., if content is between length x and y, then pad it to length 
+z).  The range of content sizes should be small, such that this causes negligible padding overhead, but 
+>>>>>>> ef1c4156c66c433d5ad5727f6b9f267ede39b3c9
 reduces the probability of identifying the content based on the content length.  This content padding 
 is done to hide the original content's length, as it may be identifiable simply by its length.  After 
 content is padded, then the content is divided into fixed size blocks and padded to 
 some standard length.  Then each block is encrypted using the shared key $k$, 
 resulting in a set of encrypted blocks. Because the CDN does not have access to the shared key, 
+<<<<<<< HEAD
 it cannot see what content it is caching.  
 
 Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
 it computes the HMAC of the URL using the shared key $k$.
 Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN, or optionally to multiple 
 CDNs.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
+=======
+it cannot see what content it is caching. Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
+she computes the HMAC of the URL using the shared key $k$.
+
+Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN. Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
+>>>>>>> ef1c4156c66c433d5ad5727f6b9f267ede39b3c9
 origin server could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
 performance, and availability; an origin server can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
 CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
 partial deployment.
 
+<<<<<<< HEAD
 Because the exit proxies use consistent hashing to divide keys among proxies while
 balancing load, the origin server
+=======
+As the exit proxies use consistent hashing to divide keys among proxies, the origin server
+>>>>>>> ef1c4156c66c433d5ad5727f6b9f267ede39b3c9
 determines which exit proxy is correct (based on the consistent hashing circle).  The origin server then encrypts the 
 shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
 Figure \ref{fig:keys} shows the steps for retrieveing a shared key.  First, the
@@ -84,13 +100,10 @@ it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
 proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
 proceeds as normal.
 
-
-
 \subsection{Retrieving Content}
 \label{sec:retrieve}
-The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
-forwards a request directly to an exit proxy; Figure \ref{fig:retrieving2} shows
-the steps to retrieve content when the client forwards its
+The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving2}, where the client 
+can forward her request directly to an exit proxy or the client can forward her
 request through two peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
 stage, the client has knowledge of a subset of its peers (other \system{} clients) and a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
@@ -117,20 +130,21 @@ the associated obfuscated content, which we recall is the fixed-size blocks encr
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
 added padding, to reconstruct the original content.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[height=5cm,keepaspectratio]{request_diagram_simple}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-performance and goes directly to an exit proxy.}
-\label{fig:retrieving}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[height=5cm,keepaspectratio]{request_diagram_simple}
+%\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+%performance and goes directly to an exit proxy.}
+%\label{fig:retrieving}
+%\end{figure}
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=.4\textwidth]{request_diagram_complex}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+\includegraphics[width=.5\textwidth]{request_diagram_complex}
+\caption{Steps for retrieving content in \system{}.  The dotted lines represent 
+optional steps for when a client is prioritizing 
 privacy and proxies a request through two other clients before reaching the 
-exit proxy.  This figure shows that the request is sent sequentially through peers, 
+exit proxy.  In this case, the request is sent sequentially through peers, 
 and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
 \end{figure}

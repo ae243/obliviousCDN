@@ -2,7 +2,7 @@
 \label{sec:background}
 
 We now outline how a CDN typically operates, including what information it
-has access to by virtue of running a CDN. We also discuss some of the ongoing legal
+has access to. We also discuss some of the ongoing legal
 questions that CDNs currently face.
 
 \subsection{Content Distribution Networks}
@@ -16,7 +16,7 @@ content publisher may wish to use a CDN provider for several reasons:
 \item CDNs' data centers have high bandwidth, which allows them to handle and mitigate DDoS attacks better than the content publisher's server.
 \end{itemize}
 
-CDN providers usually have a large number of edge servers on which content is cached; for example, Akamai has more than 216,000 servers in over 120 countries around the world~\cite{akamai_facts}.  Having more edge servers in more locations increases the probability that a cache is geographically close to a client, and could reduce the end-to-end latency, as well as the likelihood of some kinds of attacks, such as BGP (Border Gateway Protocol) hijacking.  This is evident when a client requests a web page; the closest edge server to the client that contains the content is identified and the content is served from that edge server.  Most often, this edge server is geographically closer to the client than the content publisher's server, thus increasing the speed in which the client receives the content. If the requested page's content is not in one of the CDN's caches, then the request is forwarded to the content publisher's server, the CDN caches the response, and returns the content to the client. 
+CDN providers usually have a large number of edge servers on which content is cached; for example, Akamai has more than 216,000 servers in over 120 countries around the world~\cite{akamai_facts}.  Having more edge servers in more locations increases the probability that a cache is geographically close to a client, and could reduce the end-to-end latency, as well as the likelihood of some kinds of attacks, such as BGP (Border Gateway Protocol) hijacking.  This is evident when a client requests a web page; the closest edge server to the client that contains the content is identified and the content is served from that edge server.  Most often, this edge server is geographically closer to the client than the content publisher's server, thus increasing the speed in which the client receives the content. If the requested page's content is not in one of the CDN's caches, then the request is forwarded to the content publisher's server; the CDN caches the response and returns the content to the client. 
 
 \begin{figure}[t]
 \centering
@@ -33,17 +33,17 @@ to learn an enormous amount of information.  CDN providers know information abou
 access data stored at the CDN, information about all content publishers that cache content at 
 CDN edge servers, and information about the content itself.
 
-\textbf{Content.}  CDNs, by nature, have access to all content that they distribute,
+\textbf{Content.}  CDNs typically have access to all content that they distribute,
 as well as 
 the corresponding URL.  First, the CDN must use the URL, which is not 
-encrypted or hidden, to locate and serve the content. Therefore, it is evident that
+encrypted or hidden, to locate and serve the content. Therefore, 
 the CDN already knows what content is
 stored in its caches.  Because CDNs provide analytics to content publishers, they
 keep track of cache hit 
 rates, and how often content is accessed.  The CDN not only knows
 about the content identifier; it also also 
 has access to the plaintext content in order to perform optimizations on the content
-to increase performance (e.g minimizing CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%).  They can also inspect content to conduct HTTPS re-writes; we discuss how \system{} handles these types of optimizations  
+to increase performance (\eg minimizing CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%).  They can also inspect content to conduct HTTPS re-writes; we discuss how \system{} handles these types of optimizations  
 in Section \ref{sec:discussion}. In addition, requesting content via HTTPS does not hide any information 
 from the CDN as the CDN terminates TLS connections on behalf of the 
 content publisher.  This means that not only does the CDN know the content, the
@@ -63,13 +63,12 @@ public and private keys, as well as certificates associated with the content it 
 %techniques for removing copyrighted content~\cite{eu-copyright}.
 
 \textbf{Client information.} Clients retrieve content directly from the
-CDN's edge servers, which reveals
+CDN's edge servers. These requests reveal
 information about the client's location and what the client is accessing.  
 CDNs can also see each client's cross-site browsing patterns: CDNs host content
 for
 many different publishers, which allows 
-them to see content requests for content published by different publishers.  This gives an enormous amount of 
-knowledge to CDNs; for example, Akamai caches enough content around the world to see up to 30\% of global Internet 
+them to see content requests for content published by different publishers.  Akamai caches enough content around the world to see up to 30\% of global Internet 
 traffic~\cite{akamai_global_traffic}.  The implications of a CDN having access to
 this much information was evident when Cloudflare
 went public with the National Security Letters they had received~\cite{cloudflare_nsl};
@@ -82,7 +81,7 @@ about their customers, the content
 publishers; the CDN keeps track of who the content publisher is and 
 what the publisher's content is.  The combination of the CDN seeing all content in plaintext and the content's 
 linkability with the publisher, gives the CDN even more power.  Additionally, as mentioned previously, the CDN often 
-holds the publisher's keys (including the private key!), and the publisher's certificates.  This has led to doubts 
+holds the publisher's keys (including the private key), and the publisher's certificates.  This has led to doubts 
 about the integrity of content because a CDN can impersonate the publisher from the client's point of view~\cite{levy2015stickler}.
 
 \subsection{Open Legal Questions}
