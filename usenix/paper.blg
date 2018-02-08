@@ -6,45 +6,45 @@ Database file #1: paper.bib
 Warning--I didn't find a database entry for "xx"
 Warning--empty author in eu-copyright
 Warning--empty journal in eu-copyright
-You've used 34 entries,
+You've used 31 entries,
             2253 wiz_defined-function locations,
-            696 strings with 10535 characters,
-and the built_in function-call counts, 10074 in all, are:
-= -- 955
-> -- 413
+            681 strings with 9845 characters,
+and the built_in function-call counts, 8802 in all, are:
+= -- 846
+> -- 332
 < -- 0
-+ -- 178
-- -- 144
-* -- 637
-:= -- 1463
-add.period$ -- 87
-call.type$ -- 34
-change.case$ -- 188
++ -- 145
+- -- 114
+* -- 539
+:= -- 1263
+add.period$ -- 78
+call.type$ -- 31
+change.case$ -- 164
 chr.to.int$ -- 0
-cite$ -- 36
-duplicate$ -- 436
-empty$ -- 943
-format.name$ -- 144
-if$ -- 2233
+cite$ -- 33
+duplicate$ -- 380
+empty$ -- 843
+format.name$ -- 114
+if$ -- 1967
 int.to.chr$ -- 0
-int.to.str$ -- 34
-missing$ -- 17
-newline$ -- 158
-num.names$ -- 38
-pop$ -- 268
+int.to.str$ -- 31
+missing$ -- 14
+newline$ -- 143
+num.names$ -- 32
+pop$ -- 231
 preamble$ -- 1
-purify$ -- 155
+purify$ -- 134
 quote$ -- 0
-skip$ -- 353
+skip$ -- 322
 stack$ -- 0
-substring$ -- 492
-swap$ -- 119
+substring$ -- 445
+swap$ -- 105
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 136
+type$ -- 124
 warning$ -- 2
-while$ -- 69
-width$ -- 36
-write$ -- 305
+while$ -- 60
+width$ -- 33
+write$ -- 276
 (There were 3 warnings)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 16:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -777,20 +777,17 @@ Overfull \hbox (11.35251pt too wide) in paragraph at lines 35--45
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
 [5 <./figures/ocdn_overview_new2.pdf>]
-Underfull \hbox (badness 1237) in paragraph at lines 144--145
+Underfull \hbox (badness 1237) in paragraph at lines 135--136
 []|\OT1/ptm/m/n/8 Hides URL and re-sponse from other
  []
 
 
-Overfull \hbox (3.34592pt too wide) in paragraph at lines 139--150
+Overfull \hbox (3.34592pt too wide) in paragraph at lines 130--141
  [][] 
  []
 
-
-Underfull \vbox (badness 8000) has occurred while \output is active []
-
- [6]
-Underfull \hbox (badness 1430) in paragraph at lines 266--272
+[6]
+Underfull \hbox (badness 1430) in paragraph at lines 269--275
 \OT1/ptm/m/n/10 vent this, OCDN al-lows ori-gin servers to gen-er-ate
  []
 
@@ -802,67 +799,56 @@ File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/publishing_content_new2.pdf used on input li
 ne 3.
 (pdftex.def)             Requested size: 140.92792pt x 51.34944pt.
-
-Underfull \vbox (badness 1028) has occurred while \output is active []
-
- [7 <./figures/publishing_content_new2.pdf>]
-<./figures/key_lookup.pdf, id=820, 730.47968pt x 449.16245pt>
+ [7 <./figures/publishing_content_new2.pdf>] <./figures/key_lookup.pdf, id=820,
+ 730.47968pt x 449.16245pt>
 File: ./figures/key_lookup.pdf Graphic file (type pdf)
 
 <use ./figures/key_lookup.pdf>
-Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 52.
+Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 49.
 (pdftex.def)             Requested size: 211.3883pt x 129.97961pt.
- [8 <./figures/key_lookup.pdf>]
-
-LaTeX Warning: Reference `fig:retrieving' on page 9 undefined on input line 86.
 
 
+LaTeX Warning: Reference `fig:retrieving' on page 8 undefined on input line 83.
+
+
+[8 <./figures/key_lookup.pdf>]
 <./figures/request_diagram_complex.pdf, id=966, 673.41388pt x 387.38942pt>
 File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
 
 <use ./figures/request_diagram_complex.pdf>
 Package pdftex.def Info: ./figures/request_diagram_complex.pdf used on input li
-ne 124.
+ne 121.
 (pdftex.def)             Requested size: 234.87749pt x 135.11543pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 124--129
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 121--126
  [][] 
  []
 
-
-Underfull \vbox (badness 7468) has occurred while \output is active []
-
- [9 <./figures/request_diagram_complex.pdf>]) (./implementation.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+[9 <./figures/request_diagram_complex.pdf>]) (./implementation.tex
 <./figures/implementation.pdf, id=1015, 793.40213pt x 407.07007pt>
 File: ./figures/implementation.pdf Graphic file (type pdf)
 
 <use ./figures/implementation.pdf>
 Package pdftex.def Info: ./figures/implementation.pdf used on input line 14.
 (pdftex.def)             Requested size: 211.3883pt x 108.45691pt.
- [10 <./figures/implementation.pdf>])
-(./security.tex
+) (./security.tex [10 <./figures/implementation.pdf>]
 
 LaTeX Warning: Citation `xx' on page 11 undefined on input line 65.
 
-[11]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-) (./performance.tex
-<./figures/combined.pdf, id=1162, 271.0125pt x 216.81pt>
+) (./performance.tex <./figures/combined.pdf, id=1159, 271.0125pt x 216.81pt>
 File: ./figures/combined.pdf Graphic file (type pdf)
 
 <use ./figures/combined.pdf>
 Package pdftex.def Info: ./figures/combined.pdf used on input line 5.
 (pdftex.def)             Requested size: 145.6229pt x 110.09479pt.
 
-<./figures/Latency_withoutzero_2.pdf, id=1164, 257.4625pt x 200.24675pt>
+<./figures/Latency_withoutzero_2.pdf, id=1161, 257.4625pt x 200.24675pt>
 File: ./figures/Latency_withoutzero_2.pdf Graphic file (type pdf)
 
 <use ./figures/Latency_withoutzero_2.pdf>
@@ -870,20 +856,19 @@ Package pdftex.def Info: ./figures/Latency_withoutzero_2.pdf used on input line
  12.
 (pdftex.def)             Requested size: 136.22578pt x 110.63168pt.
 
-<./figures/loggrouped_2.pdf, id=1166, 328.90065pt x 256.38382pt>
+<./figures/loggrouped_2.pdf, id=1163, 328.90065pt x 256.38382pt>
 File: ./figures/loggrouped_2.pdf Graphic file (type pdf)
 
 <use ./figures/loggrouped_2.pdf>
 Package pdftex.def Info: ./figures/loggrouped_2.pdf used on input line 20.
 (pdftex.def)             Requested size: 164.4171pt x 126.02498pt.
-) (./discussion.tex) (./related_work.tex
+ [11]) (./discussion.tex [12 <./figures/combined.pdf> <./figures/Latency_withou
+tzero_2.pdf> <./figures/loggrouped_2.pdf>])
+(./related_work.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13 <./figures/combined.pdf> <./figures/Latency_withoutzero_2.pdf> <./figures/
-loggrouped_2.pdf>]) (./conclusion.tex) (./paper.bbl
+)
+(./conclusion.tex [13]) (./paper.bbl
 Underfull \hbox (badness 2932) in paragraph at lines 4--8
 []\OT1/ptm/m/n/8 Court Says RIAA Can Just Tell Cloud-flare Any Site Is
  []
@@ -923,7 +908,7 @@ ncing -[] child -[] protection -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--52
+Underfull \hbox (badness 10000) in paragraph at lines 42--45
 \OT1/cmtt/m/n/8 03 / new -[] data -[] suggests -[] 94 -[] percent -[] of -[] to
 r -[] traffic -[]
  []
@@ -932,72 +917,74 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--57
+Underfull \hbox (badness 10000) in paragraph at lines 47--50
 \OT1/cmtt/m/n/8 / / medium\OML/ztmcm/m/it/8 :\OT1/cmtt/m/n/8 com / niskanen -[]
  center / content -[] delivery -[]
  []
 
 
-Underfull \hbox (badness 3769) in paragraph at lines 63--66
+Underfull \hbox (badness 3769) in paragraph at lines 56--59
 []\OT1/ptm/m/n/8 CREDO and Cloud-flare Ar-gue Against Na-tional Se-cu-rity
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 63--66
+Underfull \hbox (badness 1308) in paragraph at lines 56--59
 \OT1/ptm/m/n/8 Let-ter Gag Or-ders.  $\OT1/cmtt/m/n/8 https : / / techcrunch\OM
 L/ztmcm/m/it/8 :\OT1/cmtt/m/n/8 com / 2017 / 03 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 56--59
 \OT1/cmtt/m/n/8 23 / credo -[] and -[] cloudflare -[] argue -[] against -[] nat
 ional -[]
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 78--81
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--74
 []\OT1/ptm/m/n/8 District court rules against Cloud-flare in anti-piracy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--81
+Underfull \hbox (badness 10000) in paragraph at lines 71--74
 \OT1/ptm/m/n/8 suit.  $\OT1/cmtt/m/n/8 https : / / thestack\OML/ztmcm/m/it/8 :\
 OT1/cmtt/m/n/8 com / security / 2017 / 03 / 29 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--81
+Underfull \hbox (badness 10000) in paragraph at lines 71--74
 \OT1/cmtt/m/n/8 district -[] court -[] rules -[] against -[] cloudflare -[] in 
 -[] anti -[]
  []
 
 
-Underfull \hbox (badness 2035) in paragraph at lines 83--87
+Underfull \hbox (badness 2035) in paragraph at lines 76--80
 []\OT1/ptm/m/n/8 EU Pro-posal for a Di-rec-tive of The Eu-ro-pean Par-lia-ment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
 \OT1/ptm/m/n/8 lance tool.  $\OT1/cmtt/m/n/8 https : / / venturebeat\OML/ztmcm/
 m/it/8 :\OT1/cmtt/m/n/8 com / 2014 / 05 / 15 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
 \OT1/cmtt/m/n/8 how -[] the -[] nsa -[] fbi -[] made -[] facebook -[] the -[] p
 erfect -[] mass -[]
  []
 
-) [15] (./paper.aux)
+[14]) [15
+
+] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15070 strings out of 493014
- 293880 string characters out of 6133351
- 333012 words of memory out of 5000000
- 18207 multiletter control sequences out of 15000+600000
+ 15067 strings out of 493014
+ 293825 string characters out of 6133351
+ 332999 words of memory out of 5000000
+ 18204 multiletter control sequences out of 15000+600000
  52866 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,54p,1354b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1011,7 +998,7 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on paper.pdf (15 pages, 1503805 bytes).
+Output written on paper.pdf (15 pages, 1501258 bytes).
 PDF statistics:
  1365 PDF objects out of 1440 (max. 8388607)
  1001 compressed objects within 11 object streams

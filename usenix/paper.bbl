@@ -38,13 +38,6 @@
 {Cedexis}.
 \newblock \url{https://www.cedexis.com/}.
 
-\bibitem{chen2016forwarding}
-{\sc Chen, J., Jiang, J., Zheng, X., Duan, H., Liang, J., Li, K., Wan, T., and
-  Paxson, V.}
-\newblock Forwarding-loop attacks in content delivery networks.
-\newblock In {\em Proceedings of the 23st Annual Network and Distributed System
-  Security Symposium (NDSS'16)\/} (2016).
-
 \bibitem{ars_tor}
 {Cloudflare: 94 Percent of the Tor Traffic We See is ``Per Se Malicious''}.
 \newblock
@@ -84,11 +77,6 @@
   Copyright in the Digital Single Market}.
 \newblock
   \url{https://ec.europa.eu/transparency/regdoc/rep/1/2016/EN/1-2016-593-EN-F1-1.PDF}.
-
-\bibitem{gilad2016cdn}
-{\sc Gilad, Y., Herzberg, A., Sudkovitch, M., and Goberman, M.}
-\newblock {CDN}-on-demand: an affordable {DDoS} defense via untrusted clouds.
-\newblock In {\em Network and Distributed Security Symposium (NDSS)\/} (2016).
 
 \bibitem{facebook_surv}
 {How the NSA \& FBI made Facebook the perfect mass surveillance tool.}
@@ -174,12 +162,6 @@
 \newblock Thinning {Akamai}.
 \newblock In {\em Proceedings of the 8th ACM SIGCOMM Conference on Internet
   Measurement\/} (2008), ACM, pp.~29--42.
-
-\bibitem{triukose2009content}
-{\sc Triukose, S., Al-Qudah, Z., and Rabinovich, M.}
-\newblock Content delivery networks: Protection or threat?
-\newblock In {\em European Symposium on Research in Computer Security\/}
-  (2009), Springer, pp.~371--389.
 
 \bibitem{cloudflare_tor}
 {The Trouble with Tor}.

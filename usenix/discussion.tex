@@ -5,7 +5,7 @@ of \system{}, as well as possible avenues for future work. \\
 \vspace{0pt}
 \textbf{\system{} limitations.} CDNs become slightly limited in terms of the 
 possible performance optimizations when following \system{}'s design.  For example, 
-many CDNs perform HTTPS re-writes on content that they cache, but this can only be 
+many CDNs perform HTTPS re-writes on cached content, but this can only be 
 done if the CDN has access to the decrypted content.  Similarly, the CDN needs the 
 decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
 this likely increases performance in traditional CDNs, it does not provide the greatest 
@@ -46,6 +46,6 @@ whether a system like \system{} might face legal challenges from law
 enforcement agencies. To protect user data against these types of challenges,
 Microsoft has already taken steps such as moving user data to data centers in
 Germany that are operated by entities outside the United States, such as
-T-Systems. It remains to be seen, of course, whether \system{} would face similar
+T-Systems. It remains to be seen whether \system{} would face similar
 hurdles, but similar systems in the past have faced scrutiny and pushback from law
 enforcement.
