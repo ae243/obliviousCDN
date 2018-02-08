@@ -1,26 +1,26 @@
 \begin{figure*}[t!]
 \vspace{-2mm}
-  \begin{minipage}[t]{.3\linewidth}
+  \begin{minipage}[t]{.31\linewidth}
     \centering
-    \includegraphics[trim={10 15 10 12},clip,width=\textwidth]{TTFB}
-    \caption{Time to first byte measurements with and without \system{}.}
-    \label{fig:ttfb}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{.3\linewidth}
-    \centering
-     \includegraphics[trim={10 15 10 12},clip,width=\textwidth]{completion}
-    \caption{Time to complete a request with and without \system{}.}
+     \includegraphics[trim={10 15 10 12},clip,width=\textwidth]{combined}
+    \caption{Time to first byte and time to complete a request with and without \system{}.}
     \label{fig:completion}
   \end{minipage}
   \hfill
-  \begin{minipage}[t]{.34\linewidth}
+  \begin{minipage}[t]{.29\linewidth}
     \centering
-    \includegraphics[trim={10 0 30 25},clip,width=\textwidth]{Latency_withzero}
+    \includegraphics[trim={7 0 10 5},clip,width=\textwidth]{Latency_withoutzero_2}
     %\vspace{-10mm}
     \caption{Time to first byte and time to complete a request with varying the file size and latency; this latency 
 corresponds to $\alpha$ in Figure \ref{fig:impl}.}
     \label{fig:latency}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.35\linewidth}
+    \centering
+    \includegraphics[trim={7 8 7 7},clip,width=\textwidth]{loggrouped_2}
+\caption{Overhead of different operations performed by \system{}.}
+\label{fig:overhead2}
   \end{minipage}
 \end{figure*}
 
@@ -89,12 +89,12 @@ HMAC$_{k}$(URL).  The operations that have the most overhead and continue to gro
 the response with the shared key $k$, the exit proxy encrypting the response with the session key $k_{session}$, and the client 
 decrypting the response with the session key $k_{session}$.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.34\textwidth]{loggrouped}
-\caption{Overhead of different operations performed by \system{}.}
-\label{fig:overhead2}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=.34\textwidth]{loggrouped}
+%\caption{Overhead of different operations performed by \system{}.}
+%\label{fig:overhead2}
+%\end{figure}
 
 \subsection{Scalability}
 For evaluating performance, we are also concerned with how well \system{} will scale with more users 
