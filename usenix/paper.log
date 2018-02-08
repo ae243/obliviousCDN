@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  8 FEB 2018 18:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -756,6 +756,9 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+
+Underfull \vbox (badness 1082) has occurred while \output is active []
+
  [5 <./figures/ocdn_overview_new2.pdf>] [6]
 Underfull \hbox (badness 1430) in paragraph at lines 265--271
 \OT1/ptm/m/n/10 vent this, OCDN al-lows ori-gin servers to gen-er-ate
@@ -769,13 +772,19 @@ File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/publishing_content_new2.pdf used on input li
 ne 3.
 (pdftex.def)             Requested size: 140.92792pt x 51.34944pt.
- [7 <./figures/publishing_content_new2.pdf>] <./figures/key_lookup.pdf, id=820,
- 730.47968pt x 449.16245pt>
+
+Underfull \vbox (badness 1648) has occurred while \output is active []
+
+ [7 <./figures/publishing_content_new2.pdf>]
+<./figures/key_lookup.pdf, id=820, 730.47968pt x 449.16245pt>
 File: ./figures/key_lookup.pdf Graphic file (type pdf)
 
 <use ./figures/key_lookup.pdf>
 Package pdftex.def Info: ./figures/key_lookup.pdf used on input line 49.
 (pdftex.def)             Requested size: 211.3883pt x 129.97961pt.
+
+Underfull \vbox (badness 1694) has occurred while \output is active []
+
  [8 <./figures/key_lookup.pdf>]
 <./figures/request_diagram_complex.pdf, id=966, 673.41388pt x 387.38942pt>
 File: ./figures/request_diagram_complex.pdf Graphic file (type pdf)
@@ -957,7 +966,7 @@ b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
 /texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (14 pages, 1499658 bytes).
+Output written on paper.pdf (14 pages, 1499429 bytes).
 PDF statistics:
  1361 PDF objects out of 1440 (max. 8388607)
  999 compressed objects within 10 object streams
