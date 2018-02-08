@@ -1,3 +1,30 @@
+\begin{figure*}[t!]
+\vspace{-2mm}
+  \begin{minipage}[t]{.3\linewidth}
+    \centering
+    \includegraphics[trim={10 15 10 12},clip,width=\textwidth]{TTFB}
+    \caption{Time to first byte measurements with and without \system{}.}
+    \label{fig:ttfb}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.3\linewidth}
+    \centering
+     \includegraphics[trim={10 15 10 12},clip,width=\textwidth]{completion}
+    \caption{Time to complete a request with and without \system{}.}
+    \label{fig:completion}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.34\linewidth}
+    \centering
+    \includegraphics[trim={10 0 30 25},clip,width=\textwidth]{Latency_withzero}
+    %\vspace{-10mm}
+    \caption{Time to first byte and time to complete a request with varying the file size and latency; this latency 
+corresponds to $\alpha$ in Figure \ref{fig:impl}.}
+    \label{fig:latency}
+  \end{minipage}
+\end{figure*}
+
+
 \section{Performance Analysis}
 \label{sec:performance}
 To evaluate how much overhead is caused by \system{} we measure the performance 
@@ -17,12 +44,12 @@ file size, whereas without \system{} TTFB remains fairly constant.  Interestingl
 we can see that there are some fixed time operations that \system{} performs, which 
 is visible by looking at the smaller file sizes.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.5\textwidth]{TTFB}
-\caption{Time to first byte measurements with and without \system{}.}
-\label{fig:ttfb}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=.4\textwidth]{TTFB}
+%\caption{Time to first byte measurements with and without \system{}.}
+%\label{fig:ttfb}
+%\end{figure}
 
 In addition to measuring TTFB, we measured the time it took to complete a request (with and 
 without \system{}); the results are shown in Figure \ref{fig:completion}.  Again, completion time 
@@ -30,12 +57,12 @@ grows linearly with file size, but for both \system{} and without \system{}; whi
 same pattern, the time to complete requests is, as expected, longer using \system{} as it performs 
 many cryptographic operations and proxies traffic between the client and the CDN.  
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.5\textwidth]{completion}
-\caption{Time to complete a request with and without \system{}.}
-\label{fig:completion}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=.4\textwidth]{completion}
+%\caption{Time to complete a request with and without \system{}.}
+%\label{fig:completion}
+%\end{figure}
 
 As described in Section \ref{sec:implementation}, our prototype included only a single client, but 
 our design allows for a client to proxy her request through additional clients.  To simulate this, we 
@@ -46,13 +73,13 @@ bottom portion of each bar in the graph shows the TTFB, and the top portion show
 to complete the request.  As expected, the TTFB grows much slower as file size and latency increase; completion time 
 grows more quickly than TTFB as the file size and latency increase.   
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.5\textwidth]{Latency_withzero}
-\caption{Time to first byte and time to complete a request with varying the file size and latency; this latency 
-correspondes to $\alpha$ in Figure \ref{fig:impl}.}
-\label{fig:latency}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=.4\textwidth]{Latency_withzero}
+%\caption{Time to first byte and time to complete a request with varying the file size and latency; this latency 
+%correspondes to $\alpha$ in Figure \ref{fig:impl}.}
+%\label{fig:latency}
+%\end{figure}
 
 Finally, we measure the performance overhead of the individual operations used in
 \system{}; figure \ref{fig:overhead2} shows
@@ -64,7 +91,7 @@ decrypting the response with the session key $k_{session}$.
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=.5\textwidth]{loggrouped}
+\includegraphics[width=.34\textwidth]{loggrouped}
 \caption{Overhead of different operations performed by \system{}.}
 \label{fig:overhead2}
 \end{figure}
