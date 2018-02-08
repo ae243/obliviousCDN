@@ -111,20 +111,21 @@ the associated obfuscated content, which we recall is the fixed-size blocks encr
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
 added padding, to reconstruct the original content.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[height=5cm,keepaspectratio]{request_diagram_simple}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-performance and goes directly to an exit proxy.}
-\label{fig:retrieving}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[height=5cm,keepaspectratio]{request_diagram_simple}
+%\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+%performance and goes directly to an exit proxy.}
+%\label{fig:retrieving}
+%\end{figure}
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=.4\textwidth]{request_diagram_complex}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+\includegraphics[width=.5\textwidth]{request_diagram_complex}
+\caption{Steps for retrieving content in \system{}.  The dotted lines represent 
+optional steps for when a client is prioritizing 
 privacy and proxies a request through two other clients before reaching the 
-exit proxy.  This figure shows that the request is sent sequentially through peers, 
+exit proxy.  In this case, the request is sent sequentially through peers, 
 and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
 \end{figure}
