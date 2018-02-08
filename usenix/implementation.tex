@@ -19,7 +19,7 @@ and the exit proxy; we simulate additional clients on this path by increasing $\
 \label{fig:impl}
 \end{figure}
 
-\paragraph{CDN.} As the design for \system{} requires encrypted content and identifiers
+\textbf{CDN.} As the design for \system{} requires encrypted content and identifiers
 to be stored in the CDN, we cannot request content from real-world CDNs.  Additionally, 
 we must evaluate the performance of \system{} in comparison to the same content, cache locations, etc., so 
 we set up a data storage server.  This server is run on a Virtual Private Server
@@ -33,7 +33,7 @@ for the
 hash function.  Both the plaintext files and encrypted files are stored on this web server, and 
 for the purposes of evaluating our prototype, act as a CDN in \system{}.
 
-\paragraph{Exit Proxy.} The exit proxy is the component that queries the CDN for
+\textbf{Exit Proxy.} The exit proxy is the component that queries the CDN for
 encrypted
 content on behalf of a client.  We have implemented a web proxy in Go; this proxy
 runs on
@@ -48,7 +48,7 @@ it receives a response from the CDN, it decrypts the content with the shared key
 subsequently encrypts it with the session key (both using AES 256-bit encryption).  The 
 exit then forwards the response onto the client proxy.
 
-\paragraph{Client Proxy.} The client proxy acts on behalf of the client that is
+\textbf{Client Proxy.} The client proxy acts on behalf of the client that is
 requesting
 content.  This proxy uses the same implementation as the exit proxy, but provides 
 different cryptographic functions on the requests and responses.  When a client makes 
