@@ -46,7 +46,7 @@ keys are distributed.
 \label{tab:setup}
 \end{table}
 
-\paragraph{Shared Keys.} 
+\textbf{Shared Keys.} 
 To prevent an adversary from learning information, the CDN must not know anything
 about the
 content that it is caching.  Therefore, the content {\it and} the associated URL
@@ -76,7 +76,7 @@ its caches.  The content publisher then shares the key $k$ with an exit proxy.
 This key allows the 
 exit proxy to request encrypted content on behalf of clients by computing the HMAC on the URL.  
 
-\paragraph{Consistent Hashing.}
+\textbf{Consistent Hashing.}
 Each exit proxy stores a mapping of URLs to their associated shared key $k$; for example, if 
 an origin server has shared key $k$ and publishes a web page {\tt www.foo.com}, then an exit 
 proxy will store the mapping of {\tt www.foo.com} to $k$.  This results in the set of exit proxies 
@@ -93,7 +93,7 @@ is equal to or follows $H(URL)$ on the circle.  This hashing method is used in \
 proxy from choosing which URL it wishes to be responsible for, and 3) a relatively small amount 
 of (key,values) to be moved when a new exit proxy is established (or removed).  
 
-\paragraph{Self-Certifying Identifiers.}
+\textbf{Self-Certifying Identifiers.}
 As mentioned in the previous paragraph, consistent hashing makes use of identifiers for both the URLs and 
 the exit proxies.  While the identifiers for URLs are straightforward ($H(URL)$), the identifiers for exit 
 proxies must provide more information; an exit proxy identifier must be able to prove to an origin server that 
@@ -113,7 +113,7 @@ URL's shared key it is responsible for).  Note that this $exit\_ID$ is used on t
 $exit\_ID$ must be the same length as $H(URL)$, so the $exit\_ID$ consists of the first half of the bits of $H(IP)$ concatenated 
 with the first half of the bits of $H(hostID)$.
 
-\paragraph{DNS for Key Sharing.}
+\textbf{DNS for Key Distribution.}
 We have discussed how shared keys are generated, used, and stored, and here we describe how they are shared.  As previously 
 stated, the origin servers generate shared keys and must share them with the (correct) exit proxies.  \system{} uses DNS
 to do so.  To retrieve a shared key $k$, an exit proxy sends a DNS query to the origin server's authoritative DNS, and 
@@ -151,7 +151,7 @@ decisions provide.}
 \label{tab:request_response}
 \end{table}
 
-\paragraph{Potentially Spoofed Source Routes.}
+\textbf{Potentially Spoofed Source Routes.}
 As previosuly described, exit proxies query the CDN on behalf of clients, but the
 exit proxy
 should not be able to learn which client sent which request.  This obfuscation is
@@ -179,16 +179,14 @@ with identity {\it C} could generate a route to exit proxy {\it E} that looks
 like $C \rightarrow G \rightarrow F \rightarrow E$ and can further obfuscate
 the source of the route by prepending additional clients to the beginning of
 the route as follows: $D \rightarrow A \rightarrow C \rightarrow G \rightarrow
-F \rightarrow E$.
-
-\noindent Neither {\it G}, {\it F}, nor {\it E} know who the original requestor was; from {\it E}'s point of 
+F \rightarrow E$. Neither {\it G}, {\it F}, nor {\it E} know who the original requestor was; from {\it E}'s point of 
 view, the original requestor could have been {\it D}, {\it A}, {\it C}, {\it G},
 or {\it F}.  Using a sequence of 
 peers, or even just knowing that a client {\it can} use a series of peers, hides
 the identity of the client 
 from other clients, exit proxies, and the CDN. 
 
-\paragraph{Session Keys.}
+\textbf{Session Keys.}
 In addition to shared keys between origin servers and exit proxies, \system{} uses session keys shared 
 between clients and exit proxies.  Session keys provide confidentiality of the requested URL and the 
 response.  When the client generates a request, it generates a session key $skey$.
@@ -213,66 +211,66 @@ encrypts the content with the session key $skey$ before sending it to the client
 When it receives the encrypted response, 
 the client can then decrypt it using $skey$.
 
-\paragraph{Multicast Responses.}
+\textbf{Multicast Responses.}
 Using session keys allows for a performance optimization in sending responses back to clients.  Instead of sending 
 the encrypted response from the exit proxy back to the client via the set of peers used in the source route, the exit 
 proxy can send it in a multicast manner to all clients that were on the source route.  The only client that knows $skey$ 
 is the true client that originated the request, therefore none of the other clients can interpret the response, and it reduces the 
 latency for sending the response to the client.  
 
-\subsection{Incentives for Running \system{}}
-As described in Sections \ref{sec:hiding_content} and \ref{sec:hiding_clients}, \system{} relies 
-on the use of a system of proxies.  These include: 1) client proxies, and 2) exit proxies.  For a client 
-to join the system, they must also run client proxy on his/her machine.  On the other hand, there is no 
-requirement for a client, organization, or company to run an exit proxy; despite this lack of requirement, we 
-believe that both clients and companies have enough incentives to run an exit proxy (or multiple exit proxies).  
-Clients benefit from running an exit proxy because it allows \system{} to perform better in terms of both 
-performance and privacy; when there are more exit proxies, then there is less load put on each exit proxy, and there is a smaller
-chance that an attacker has access to most exit proxies.  Companies benefit from running an exit proxy for similar 
-reasons --- performance and privacy ---, but it could help Internet users access their content quicker (assuming they have 
-content cached by the CDN).    
+%\subsection{Incentives for Running \system{}}
+%As described in Sections \ref{sec:hiding_content} and \ref{sec:hiding_clients}, \system{} relies 
+%on the use of a system of proxies.  These include: 1) client proxies, and 2) exit proxies.  For a client 
+%to join the system, they must also run client proxy on his/her machine.  On the other hand, there is no 
+%requirement for a client, organization, or company to run an exit proxy; despite this lack of requirement, we 
+%believe that both clients and companies have enough incentives to run an exit proxy (or multiple exit proxies).  
+%Clients benefit from running an exit proxy because it allows \system{} to perform better in terms of both 
+%performance and privacy; when there are more exit proxies, then there is less load put on each exit proxy, and there is a smaller
+%chance that an attacker has access to most exit proxies.  Companies benefit from running an exit proxy for similar 
+%reasons --- performance and privacy ---, but it could help Internet users access their content quicker (assuming they have 
+%content cached by the CDN).    
 
-\subsection{Design Alternatives}
-While our explanation of the design of \system{} describes a series of proxies that are run by us, but are not 
-trusted; here we describe alternative designs regarding the system of proxies.  The system will work with both a closed, 
-trusted system of proxies, as well as with an open (untrusted) system of proxies.
-
-{\bf Closed System of Proxies.} While the proxies in \system{} are not trusted, \system{} could 
-use a system of closed and trusted proxies.  There are potential groups or organizations that would 
-support this type of system, and would be willing (and trusted) to run the exit proxies.  If the exit
-proxies were trusted, then parts of the design of \system{} could be simplified; for example, if proxies 
-were trusted, then \system{} would not need to hide the identity of clients from the exit proxies, and could 
-remove spoofed source routes from the design.  The primary drawback of this approach is finding an organization 
-that everyone could trust to run the exit proxies.  
-
-{\bf Open System of Proxies.} In \system{}, exit proxies are not 
-trusted with client identities and information, which removes the need to find a universally trustworthy 
-organization.  In an alternative approach, \system{} could use a completely open system of proxies that are 
-untrusted, which would allow anyone (clients, companies, etc.) to run an exit proxy.  
-The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
-joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
-exit proxies will be updated.  This allows for the load to be split among more proxies and 
-increases the geographic diversity of the exit proxies.  
+%\subsection{Design Alternatives}
+%While our explanation of the design of \system{} describes a series of proxies that are run by us, but are not 
+%trusted; here we describe alternative designs regarding the system of proxies.  The system will work with both a closed, 
+%trusted system of proxies, as well as with an open (untrusted) system of proxies.
+%
+%{\bf Closed System of Proxies.} While the proxies in \system{} are not trusted, \system{} could 
+%use a system of closed and trusted proxies.  There are potential groups or organizations that would 
+%support this type of system, and would be willing (and trusted) to run the exit proxies.  If the exit
+%proxies were trusted, then parts of the design of \system{} could be simplified; for example, if proxies 
+%were trusted, then \system{} would not need to hide the identity of clients from the exit proxies, and could 
+%remove spoofed source routes from the design.  The primary drawback of this approach is finding an organization 
+%that everyone could trust to run the exit proxies.  
+%
+%{\bf Open System of Proxies.} In \system{}, exit proxies are not 
+%trusted with client identities and information, which removes the need to find a universally trustworthy 
+%organization.  In an alternative approach, \system{} could use a completely open system of proxies that are 
+%untrusted, which would allow anyone (clients, companies, etc.) to run an exit proxy.  
+%The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
+%joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
+%exit proxies will be updated.  This allows for the load to be split among more proxies and 
+%increases the geographic diversity of the exit proxies.  
 
 \subsection{Additional Options}
 Up to this point, we have discussed how \system{} is designed in the general case.  Here we describe some 
 additional options that \system{}'s design can include.
 
-\paragraph{Multiple CDNs.}
-While describing the design decisions that went into \system{}, we referred to a single CDN for 
-simplicity.  In reality, \system{} allows for many CDNs to participate;
-distributing content across
-multiple CDNs could provide additional privacy. Origin servers can also take advantage
-of multiple CDNs.
+%\textbf{Multiple CDNs.}
+%While describing the design decisions that went into \system{}, we referred to a single CDN for 
+%simplicity.  In reality, \system{} allows for many CDNs to participate;
+%distributing content across
+%multiple CDNs could provide additional privacy. Origin servers can also take advantage
+%of multiple CDNs.
 
-\paragraph{Encoding URLs.}
+\textbf{Encoding URLs.}
 As described earlier, each URL is obfuscated by using a HMAC and then stored on the CDN.  An adversary 
 could potentially correlate a URL's popularity with its access patterns.  To prevent this, \system{} allows 
 origin servers to generate multiple different encodings of its URLs, such that HMAC$_k$(enc$_1$(URL)) $\neq$ 
 HMAC$_k$(enc$_2$(URL)).  Each origin server could produce $n$ different encodings of popular URLs, such that 
 the popularity distribution seen by an adversary is a uniform distribution of URL requests across all URLs.  
 
-\paragraph{DHT Replicas.}
+\textbf{DHT Replicas.}
 Each exit proxy's hash table can be replicated by another (or many other) exit proxies.  This 
 would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
 the CDN can cache the content associated with a given URL at more than one cache
@@ -281,14 +279,14 @@ if only one exit proxy is responsible for a given URL's content, then it would l
 cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
 helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
 
-\paragraph{Partial Content.}
-Different origin servers have different needs, and each origin server might 
-have different needs for different content.  The design of \system{} allows origin servers
- to publish some of their content on \system{} and some on other CDNs.  
-This is useful in a case where some content is more sensitive, while other content needs 
-better performance.
+%\textbf{Partial Content.}
+%Different origin servers have different needs, and each origin server might 
+%have different needs for different content.  The design of \system{} allows origin servers
+% to publish some of their content on \system{} and some on other CDNs.  
+%This is useful in a case where some content is more sensitive, while other content needs 
+%better performance.
 
-\paragraph{Pre-Fetch DNS Responses.} 
+\textbf{Pre-Fetch DNS Responses.} 
 One way to increase the performance of \system{} is to pre-fetch DNS responses at 
 the exit proxies.  This would allow the exit proxy to serve each client request faster 
 because it would not have to send as many DNS requests.  Pre-fetching DNS responses would 
@@ -297,7 +295,7 @@ responses.  Additionally, if the content is moved between cache nodes at the CDN
 response must also change; therefore, the pre-fetched DNS responses should have a lifetime 
 that is shorter than the lifetime of the content on a cache node.
 
-\paragraph{Privacy vs. Performance Tradeoffs.}
+\textbf{Privacy vs. Performance Tradeoffs.}
 There are two different modes that \system{} can operate in, where one provides better 
 performance, and the other provides better privacy.  In the first mode, the client can 
 choose to send a request directly to the exit proxy.  

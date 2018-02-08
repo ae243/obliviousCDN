@@ -1,6 +1,6 @@
 \begin{figure}[t!]
 \centering
-\includegraphics[width=.35\textwidth]{publishing_content_new2}
+\includegraphics[width=.3\textwidth]{publishing_content_new2}
 \caption{How content is published in \system{}.  $k$ is shared between the 
 origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}
 \label{fig:publishing}
@@ -15,23 +15,7 @@ steps taken to publish and retrieve content in \system{}.
 \label{sec:publish_protocol}
 In order to publish content such that the CDN never sees the content, the publisher 
 must first obfuscate her content, as described in Section \ref{sec:design}. 
-Figure \ref{fig:publishing} shows the steps taken to publish content.
-
-%\begin{figure*}[t]
-%    \centering
-%    \begin{subfigure}[h]{0.5\textwidth}
-%        \includegraphics[width=\textwidth]{publishing_content}
-%    \end{subfigure}%
-%    \begin{subfigure}[h]{0.5\textwidth}
-%        \includegraphics[width=\textwidth]{Publishing_steps}
-%    \end{subfigure}
-%    \caption{Step-by-step instructions on how content is published in \system{}.}
-%    \label{fig:publishing}
-%\end{figure*}
-
-The most important step in content publishing is obfuscating the data.  We assume that the origin 
-server already has a public and private key pair, as well as a certificate.  To obfuscate the data 
-the origin server will need to generate a shared key $k$. 
+Figure \ref{fig:publishing} shows the steps taken to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
 
 Once the key is established, the origin server must first pad the content to the same size for some 
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
@@ -43,7 +27,7 @@ some standard length.  Then each block is encrypted using the shared key $k$,
 resulting in a set of encrypted blocks. Because the CDN does not have access to the shared key, 
 it cannot see what content it is caching.  
 
-Now that the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
+Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
 she computes the HMAC of the URL using the shared key $k$.
 
 Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN, or optionally to multiple 
@@ -63,7 +47,16 @@ proxy's public key and verifies it against its self-certifying identifier; this 
 exit proxy's position in the consistent hashing circle.  If the origin is able to certify the exit proxy, then it will send the DNS response with 
 \{$k$\}$_{PK_{proxy}}$ in the SRV record. The exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.
 
-\paragraph{Updating Content.}
+\begin{figure}[t]
+\centering
+\includegraphics[width=.45\textwidth]{key_lookup}
+\caption{How an origin server certifies an exit proxy and distributes its shared
+key to an exit proxy.  In step~(1), 
+the exit proxy sends his self-certifying ID in the {\it Additional} section of the DNS message.  }
+\label{fig:keys}
+\end{figure}
+
+\textbf{Updating Content.}
 For an origin server to update content, she must follow similar steps as described in publishing content.  
 Once she has updated the content on her origin server, she must obfuscate it using the same steps: 1) pad the 
 original content length, 2) divide the content into fixed size blocks, and 3) encrypt the content blocks 
@@ -71,7 +64,7 @@ with the shared key $k$.  Because she is updating the content (as opposed to cre
 obfuscated identifier will remain the same.  The origin server signs the updated obfuscated content with 
 her private key, such that the CDN can verify it was true origin server that sent the update.
 
-\paragraph{Updating Keys.}
+\textbf{Updating Keys.}
 An origin server must be able to update keys in case of compromise.  To minimize the amount of time a key is compromised for, the 
 origin server specifies an expiration date and time for the key when it is originally generated.  The origin server 
 periodically checks if the key is valid or not based on the expiration timestamp.  If the key is still valid, the origin server 
@@ -85,6 +78,8 @@ it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
 {new}$\}$_{PK_{proxy}}$ from the DNS response.  The exit 
 proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
 proceeds as normal.
+
+
 
 \subsection{Retrieving Content}
 \label{sec:retrieve}
@@ -116,6 +111,24 @@ the associated obfuscated content, which we recall is the fixed-size blocks encr
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
 added padding, to reconstruct the original content.
 
+\begin{figure}[t!]
+\centering
+\includegraphics[width=.4\textwidth]{request_diagram_simple}
+\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+performance and goes directly to an exit proxy.}
+\label{fig:retrieving}
+\end{figure}
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=.5\textwidth]{request_diagram_complex}
+\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+privacy and proxies a request through two other clients before reaching the 
+exit proxy.  This figure shows that the request is sent sequentially through peers, 
+and the response is sent in a multicast manner back to the clients.}
+\label{fig:retrieving2}
+\end{figure}
+
 Lastly, the exit proxy must send the response back to the correct client without knowing who the client is.  First, the exit proxy fetches the session key $k_{session}$ 
 that it stored for the corresponding incoming request, and it uses this key to encrypt the response.  Then, it looks up the source route it stored for the corresponding request 
 and uses a multicast technique to send to the encrypted response to all clients on the source route.  At this point, the exit proxy can delete the source route and session key entries 
@@ -136,25 +149,7 @@ information is propogated to its peers using a gossip protocol.
 the system should still offer some protections.  We outline two different partial
 deployment possibilities below.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.4\textwidth]{request_diagram_simple}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-performance and goes directly to an exit proxy.}
-\label{fig:retrieving}
-\end{figure}
-
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.5\textwidth]{request_diagram_complex}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-privacy and proxies a request through two other clients before reaching the 
-exit proxy.  This figure shows that the request is sent sequentially through peers, 
-and the response is sent in a multicast manner back to the clients.}
-\label{fig:retrieving2}
-\end{figure}
-
-\paragraph{Deployment with Origin Servers' Full Participation.}
+\textbf{Deployment with Origin Servers' Full Participation.}
 One option for deploying \system{} is to ensure there is some set $S$ of origin servers that participate fully in the 
 system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
 obfuscated data stored on the CDNs cache nodes.  $S$ must be greater than one, otherwise the CDN can infer 
@@ -165,7 +160,7 @@ still view cross site browsing patterns among the origin servers that are not pa
 because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to exit proxies, but 
 not to clients.  
 
-\paragraph{Deployment with Origin Servers' Partial Participation.} 
+\textbf{Deployment with Origin Servers' Partial Participation.} 
 Some origin servers may prioritize performance 
 and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
 both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 
@@ -179,14 +174,7 @@ a given piece of content; this holds true if an origin server chooses to distrib
 prevent correlating access patterns between the encrypted and plaintext content.  Therefore, this deployment option allows for 
 differing levels of participation in the system, while still preserving the protections provided by \system{}.  
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=.45\textwidth]{key_lookup}
-\caption{How an origin server certifies an exit proxy and distributes its shared
-key to an exit proxy.  In step~(1), 
-the exit proxy sends his self-certifying ID in the {\it Additional} section of the DNS message.  }
-\label{fig:keys}
-\end{figure}
+
 
 %\subsection{Optimizations}
 %\label{sec:optimizations}
