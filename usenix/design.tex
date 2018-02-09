@@ -7,8 +7,7 @@ servers.  {\em Clients} are the Internet users who use the system to access cont
 stored on CDN cache nodes; {\em exit proxies} are proxies that obfuscate the requests
 and responses retrieved from the CDNs; and the {\em origin servers} are the content
 publishers who are customers of the CDNs.  Figure \ref{fig:ocd_overview} shows how
-these components interact in the system.  This section describes the decisions 
-made in the design of \system{}, and what functionality each decision provides.  
+these components interact.  This section discusses the design decisions of \system{}, and what functionality each decision provides.  
 We separate design decisions into two parts: 1)~setup decisions and 2)~request/response decisions.  We also highlight some additional options that the design of 
 \system{} allows.
 
@@ -45,7 +44,7 @@ keys are distributed.
 %\end{table}
 
 \textbf{Shared Keys.} 
-To prevent an adversary from learning information, the CDN must not know anything
+To prevent an adversary from learning information about content and clients, the CDN must not know anything
 about the
 content that it is caching.  Therefore, the content {\it and} the associated URL
 must be obfuscated
@@ -55,13 +54,13 @@ known to the CDN.  Because this must be done prior to any caching, the content p
 generate a shared key $k$ to encrypt the content with. Encrypting the content alone does not 
 hide much from the CDN; the content identifier, or URL, must also be obfuscated, otherwise the 
 CDN can still reveal information about which clients accessed which URLs (which is indicative 
-of the content).  In obfuscating the URL, the result should be fixed and relatively
+of the content).  The obfuscated URL should be fixed and relatively
 small; 
 these requirements reduce storage requirements and prevent the adversary from guessing
 the
 URL based on the length of the obfuscated URL.  Unfortunately, using a simple hash allows an 
 attacker to guess the content identifier by hashing guesses and comparing with 
-the hashes stored in the CDNs caches.  Therefore, the content publisher incorporates the use 
+the hashes stored in the CDNs caches.  To prevent this attack, the content publisher incorporates the use 
 of the shared key $k$ into the hash of the URL by using a hash-based message authentication code 
 (HMAC).  Additionally, if the domain supports HTTPS requests, then the content publisher must 
 also encrypt the associated certificate with the same key $k$.
@@ -77,8 +76,7 @@ exit proxy to request encrypted content on behalf of clients by computing the HM
 \textbf{Consistent Hashing.}
 Each exit proxy stores a mapping of URLs to their associated shared key $k$; for example, if 
 an origin server has shared key $k$ and publishes a web page {\tt www.foo.com}, then an exit 
-proxy will store the mapping of {\tt www.foo.com} to $k$.  This results in the set of exit proxies 
-forming a distributed hash table where the key is the URL ({\tt www.foo.com}) and the value is the 
+proxy will store the mapping of {\tt www.foo.com} to $k$.  The set of exit proxies jointly compute a distributed hash table where the key is the URL ({\tt www.foo.com}) and the value is the 
 shared key ($k$).  To assign (key,value) pairs to exit proxies, \system{} uses consistent 
 hashing~\cite{karger1997consistent,lewin1998consistent}.  Consistent hashing uses a hash function $H(.)$
 to generate identifiers for both exit proxies and for URLs; the identifiers are $H(exit\_ID)$ and $H(URL)$. 
@@ -91,13 +89,12 @@ is equal to or follows $H(URL)$ on the circle.  This hashing method is used in \
 proxy from choosing which URL it wishes to be responsible for, and 3) a relatively small amount 
 of (key,values) to be moved when a new exit proxy is established (or removed).  
 
-\textbf{Self-Certifying Identifiers.}
-As mentioned in the previous paragraph, consistent hashing makes use of identifiers for both the URLs and 
+\textbf{Self-Certifying Identifiers.} Consistent hashing uses identifiers for both the URLs and 
 the exit proxies.  While the identifiers for URLs are straightforward ($H(URL)$), the identifiers for exit 
 proxies must provide more information; an exit proxy identifier must be able to prove to an origin server that 
 it is the exit proxy that is responsible for the associated URL.  If this validation was not part of \system{}, 
 then any (potentially malicious) exit proxy could request the shared key $k$ from any or all origin servers.  To 
-prevent a malicious exit proxy from learning any shared key $k$, it must be identified by a self-certifying 
+prevent a malicious exit proxy from learning any shared key $k$, the proxy must be identified by a self-certifying 
 identifer.  This technique was first introduced in a self-certifying file system~\cite{mazieres2000self}; it allows
 for other entities (such as origin servers) to certify the exit proxy solely based on its identifier.  The format 
 of this identifier ($exit\_ID$) is {\tt IP:hostID}, where {\tt IP} is the exit proxy's IP address and {\tt hostID} 
@@ -152,7 +149,7 @@ As previosuly described, exit proxies query the CDN on behalf of clients, but th
 exit proxy
 should not be able to learn which client sent which request.  This obfuscation is
 accomplished by routing requests through
-a series of other clients.  In \system{}, each client is running a proxy and is
+a series of other clients.  Each client runs a proxy and is
 also a peer in this system; this 
 peer-to-peer system of clients borrows the 
 protocols used for clients joining, leaving, and learning about other clients from
@@ -160,15 +157,13 @@ the vast literature on peer-to-peer systems. A client routes a request through
 her peers by using source routing; when the client generates a request, it also
 generates a source route, which includes
 the addresses of a set of her peers.  The last hop in the source route is the exit proxy that is responsible for the 
-shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking this 
-up in a local mapping (which is retrieved from a central system that keeps the mapping of URLs to exit proxies).  
+shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking up a locally-held URL-proxy map (which is retrieved from a central system that keeps the mapping of URLs to exit proxies).  
 It appends this source route to its request and forwards it to the next peer
 in the route.  When a peer receives
 a request, she simply forwards it on to the next peer; this continues until the last hop in the source route, which 
 is an exit proxy. 
 
-Although it might initially appear as if it is easy to identify the client
-that initiated a request as the first hop in the source route, \system{}
+To obscure the client that initiated the request, \system{}
 allows each client to spoof source routes; specifically, a client can prepend
 other peers in the route before it initiates a request.  For example, a client
 with identity {\it C} could generate a route to exit proxy {\it E} that looks
@@ -182,10 +177,10 @@ peers, or even just knowing that a client {\it can} use a series of peers, hides
 the identity of the client 
 from other clients, exit proxies, and the CDN. 
 
-Spoofed source routes allow for an interesting privacy and performance tradeoff. Clients interested in prioritizing performance can choose to send requests directly to the exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For maximum privacy, the client can forward a request through a set of peers between it and the exit proxy. Lastly, the client could {\it only} prepend other clients' identifiers but simply forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but still offers some additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it cannot be the only option because the exit proxy would always know that the true client is the previous hop in the source route. % These modes of operation provide clients with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
+Spoofed source routes offer a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of clients between it and the exit proxy. Lastly, the client could {\it only} prepend other clients' identifiers but simply forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but still offers some additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it cannot be the only option because the exit proxy would always know that the true client is the previous hop in the source route. % These modes of operation provide clients with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
 
 
-\textbf{Session Keys.}
+\textbf{Session Keys for Request and Response Confidentiality.}
 In addition to shared keys between origin servers and exit proxies, \system{} uses session keys shared 
 between clients and exit proxies.  Session keys provide confidentiality of the requested URL and the 
 response.  When the client generates a request, it generates a session key $skey$.
@@ -270,8 +265,7 @@ HMAC$_k$(enc$_2$(URL)).  Each origin server could produce $n$ different encoding
 the popularity distribution seen by an adversary is a uniform distribution of URL requests across all URLs.  
 
 \textbf{DHT Replicas.}
-Each exit proxy's hash table can be replicated by another (or many other) exit proxies.  This 
-would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
+Each exit proxy's hash table can be replicated by another (or many other) exit proxies, spreading the burden across multiple proxies. This behavior would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
 the CDN can cache the content associated with a given URL at more than one cache
 node;
 if only one exit proxy is responsible for a given URL's content, then it would likely only be cached at 
@@ -290,7 +284,7 @@ One way to increase the performance of \system{} is to pre-fetch DNS responses a
 the exit proxies.  This would allow the exit proxy to serve each client request faster 
 because it would not have to send as many DNS requests.  Pre-fetching DNS responses would 
 not take up a large amount of space, but it also would not be a complete set of all DNS 
-responses.  Additionally, if the content is moved between cache nodes at the CDN, then DNS 
+responses.  Additionally, if the CDN moves content between cache nodes, then DNS 
 response must also change; therefore, the pre-fetched DNS responses should have a lifetime 
 that is shorter than the lifetime of the content on a cache node.
 
