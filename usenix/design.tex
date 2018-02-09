@@ -8,7 +8,7 @@ stored on CDN cache nodes; {\em exit proxies} are proxies that obfuscate the req
 and responses retrieved from the CDNs; and the {\em origin servers} are the content
 publishers who are customers of the CDNs.  Figure \ref{fig:ocd_overview} shows how
 these components interact.  This section discusses the design decisions of \system{}, and what functionality each decision provides.  
-We separate design decisions into two parts: 1)~setup decisions and 2)~request/response decisions.  We also highlight some additional options that the design of 
+We separate design decisions into two parts: 1)~hiding content and 2)~hiding clients.  We also highlight some additional options that the design of 
 \system{} allows.
 
 \begin{figure}[t!]
@@ -52,7 +52,7 @@ before the CDN sees them.  The content can be obfuscated by encrypting it with a
 key that is not
 known to the CDN.  Because this must be done prior to any caching, the content publisher must 
 generate a shared key $k$ to encrypt the content with. Encrypting the content alone does not 
-hide much from the CDN; the content identifier, or URL, must also be obfuscated, otherwise the 
+hide all information about content from the CDN; the content identifier, or URL, must also be obfuscated, otherwise the 
 CDN can still reveal information about which clients accessed which URLs (which is indicative 
 of the content).  The obfuscated URL should be fixed and relatively
 small; 
@@ -144,8 +144,8 @@ and the responses they receive. We
 introduce session keys, how requests are routed from clients to exit proxies, and how responses 
 are routed from exit proxies back to the original client.
 
-\textbf{Potentially Spoofed Source Routes.}
-As previosuly described, exit proxies query the CDN on behalf of clients, but the
+\textbf{Request Routing with Potentially Spoofed Source Routes.}
+As previously described, exit proxies query the CDN on behalf of clients, but the
 exit proxy
 should not be able to learn which client sent which request.  This obfuscation is
 accomplished by routing requests through
