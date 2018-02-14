@@ -2,9 +2,28 @@
 
 \subsection{DNS}
 
+DNS queries may reveal information that an Internet user may want to keep private, including
+the websites that user is visiting and the IP address or IP subnet of the device that issued 
+the initial query.  A third party who can observe communication between a client and a 
+recursive resolver, a recursive resolver, or an authoritative server may be privy to various 
+pieces of this information, depending on which part of the DNS query resolution they may see. 
+Operators of recursive DNS resolvers may see individual IP addresses (which may correspond to 
+an ISP subscriber, or perhaps an individual end-device) coupled with the fully qualified domain 
+name that accompanies the query. Even in the case of authoritative resolvers, extensions to DNS 
+such as EDNS0 Client Subnet may reveal information about the user’s IP address or subnet to 
+authoritative DNS servers higher in the DNS hierarchy.
+
 \subsection{Existing Approaches}
-\paragraph{DNS Query Name Minimization}
 
-\paragraph{DNS-Over-TLS}
+Efforts such as DNS Query Name Minimization~\cite{dns_qname} and DNS over TLS~\cite{dns_tls} protect 
+certain, orthogonal aspects of privacy for users. For example, neither of these approaches prevent 
+the operator of a DNS server from learning which IP addresses are issuing queries for particular domain 
+names. 
 
-\paragraph{DNS-Over-HTTPS}
+Efforts such as Quad9~\cite{quad9}, which aim to purge any information connecting 
+queries to IP addresses, are aligned with our goals. Unfortunately, even 
+though a DNS operator who aims to protect user privacy may purge this 
+information periodically, a user has no guarantee that information that an 
+operator learns might be retained, for operational or other purposes. Once 
+such information is retained, of course, it may become vulnerable to other 
+threats to user privacy, including data requests from law enforcement. 

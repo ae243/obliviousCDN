@@ -1,2 +1,19 @@
 \section{Design}
 \label{sec:design}
+
+We have designed Oblivious DNS (ODNS), which decouples any DNS query from the IP address 
+that initiated the query, while allowing the existing DNS infrastructure to remain 
+unchanged.  We first introduce an authoritative subdomain for ODNS queries. This might 
+be a top-level DNS name (e.g., .odns), though for an initial prototype any authoritative 
+domain will do. Our initial prototype will use .odns.princeton.edu.  The basic design 
+sketch is as follows.
+
+\begin{enumerate}
+\item When the client generates a request for \url{www.foo.com}, its stub resolver generates a session key $k$, encrypts the requested domain, and appends the TLD domain \url{.odns}, resulting in $\{$\url{www.foo.com}$\}_k$\url{.odns}. 
+\item The client forwards this request, with the session key encrypted under the \url{.odns} authoritative server’s public key ($\{k\}_{PK}$) in the “Additional Information” record of the DNS query to the recursive resolver, which then forwards it to the authoritative name server for \url{.odns}.  
+\item The authoritative server for ODNS queries decrypts the session key with its private key and subsequently decrypts the requested domain with the session key.  
+\item The authoritative server forwards a recursive DNS request to the appropriate name server for the original domain, which then returns the answer to the ODNS server.
+\item The ODNS server can thus return the answer to the client’s stub resolver directly, possibly over a confidential channel such as D-TLS.
+\end{enumerate}
+
+Other name servers see incoming DNS requests, but these only see the IP address of the ODNS recursive resolver, which effectively proxies the DNS request for the original client.

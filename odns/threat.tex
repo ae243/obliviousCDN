@@ -1,2 +1,17 @@
 \section{Threat Model \& Goals}
 \label{sec:threat}
+
+{\bf Goals.} We aim to achieve similar privacy goals as systems such as Quad9, by stricter 
+means: Our goal is to prevent a DNS server from ever learning the IP address 
+(or subnet) that is associated with a particular DNS query in the first place. 
+Such a goal might seem intractable at first, given that any recursive resolver 
+that issues a fully qualified DNS query would naturally have an associated source 
+IP address (and, further, EDNS0 client subnet extensions may further reveal a 
+client’s specific subnet).  
+
+
+{\bf Threat Model.} We assume that the adversary can (1) eavesdrop 
+on communications between clients and recursive resolvers, and between recursive 
+resolvers and authoritative name servers; 2) request data (via subpoena/warrant) 
+from any number of DNS operators; or (3) access data and logs (e.g., query logs) 
+at any DNS server.  
