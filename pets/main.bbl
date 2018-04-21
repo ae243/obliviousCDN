@@ -1,0 +1,254 @@
+\begin{thebibliography}{10}
+
+\bibitem{techdirt_copyright}
+{Court Says RIAA Can Just Tell Cloudflare Any Site Is A Grooveshark Clone...
+  And Cloudflare Has 48 Hours To Dump Them}.
+\newblock
+  \url{https://www.techdirt.com/articles/20151214/17392833079/court-says-riaa-can-just-tell-cloudflare-any-site-is-grooveshark-clone-cloudflare-has-48-hours-to-dump-them.shtml}.
+
+\bibitem{sec230}
+{47 U.S. Code § 230 - Protection for private blocking and screening of
+  offensive material}.
+\newblock \url{https://www.law.cornell.edu/uscode/text/47/230}.
+
+\bibitem{akamai_global_traffic}
+{Akamai Empowers Operators to Deploy Their Own Content Distribution Network}.
+\newblock
+  \url{https://www.akamai.com/us/en/resources/content-distribution-network.jsp}.
+
+\bibitem{akamai_facts}
+{Akamai: Facts \& Figures}.
+\newblock \url{https://www.akamai.com/us/en/about/facts-figures.jsp}.
+
+\bibitem{medium_sesta}
+{Balancing Child Protection and Digital Rights}.
+\newblock
+  \url{https://medium.com/@jmalcolm/balancing-child-protection-and-digital-rights-1b9c4ab0b93f}.
+
+\bibitem{barford1998generating}
+{\sc Barford, P., and Crovella, M.}
+\newblock Generating representative web workloads for network and server
+  performance evaluation.
+\newblock In {\em ACM SIGMETRICS Performance Evaluation Review\/} (1998),
+  vol.~26, ACM, pp.~151--160.
+
+\bibitem{cai2012touching}
+{\sc Cai, X., Zhang, X.~C., Joshi, B., and Johnson, R.}
+\newblock Touching from a distance: Website fingerprinting attacks and
+  defenses.
+\newblock In {\em Proceedings of the 2012 ACM conference on Computer and
+  communications security\/} (2012), ACM, pp.~605--616.
+
+\bibitem{cedexis}
+{Cedexis}.
+\newblock \url{https://www.cedexis.com/}.
+
+\bibitem{chaum1981untraceable}
+{\sc Chaum, D.~L.}
+\newblock Untraceable electronic mail, return addresses, and digital
+  pseudonyms.
+\newblock {\em Communications of the ACM 24}, 2 (1981), 84--90.
+
+\bibitem{ars_tor}
+{Cloudflare: 94 Percent of the Tor Traffic We See is ``Per Se Malicious''}.
+\newblock
+  \url{https://arstechnica.com/tech-policy/2016/03/new-data-suggests-94-percent-of-tor-traffic-is-malicious/}.
+
+\bibitem{medium_copyright}
+{Content Delivery Networks Aren’t Notorious Markets}.
+\newblock
+  \url{https://medium.com/niskanen-center/content-delivery-networks-arent-notorious-markets-2a448a549cf7}.
+
+\bibitem{eff_copyright}
+{Content Delivery Networks (CDNs)}.
+\newblock \url{https://www.eff.org/free-speech-weak-link/cdn}.
+
+\bibitem{cloudflare_nsl}
+{CREDO and Cloudflare Argue Against National Security Letter Gag Orders}.
+\newblock
+  \url{https://techcrunch.com/2017/03/23/credo-and-cloudflare-argue-against-national-security-letter-gag-orders/}.
+
+\bibitem{nytimes_hatespeech}
+{Delete Hate Speech or Pay Up, Germany Tells Social Media Companies}.
+\newblock
+  \url{https://www.nytimes.com/2017/06/30/business/germany-facebook-google-twitter.html}.
+
+\bibitem{dingledine2004tor}
+{\sc Dingledine, R., Mathewson, N., and Syverson, P.}
+\newblock Tor: The second-generation onion router.
+\newblock Tech. rep., Naval Research Lab Washington DC, 2004.
+
+\bibitem{stack_copyright}
+{District court rules against Cloudflare in anti-piracy suit}.
+\newblock
+  \url{https://thestack.com/security/2017/03/29/district-court-rules-against-cloudflare-in-anti-piracy-suit/}.
+
+\bibitem{eu-copyright}
+{EU Proposal for a Directive of The European Parliament and of the Council on
+  Copyright in the Digital Single Market}.
+\newblock
+  \url{https://ec.europa.eu/transparency/regdoc/rep/1/2016/EN/1-2016-593-EN-F1-1.PDF}.
+
+\bibitem{eugster2004epidemic}
+{\sc Eugster, P.~T., Guerraoui, R., Kermarrec, A.-M., and Massouli{\'e}, L.}
+\newblock Epidemic information dissemination in distributed systems.
+\newblock {\em Computer 37}, 5 (2004), 60--67.
+
+\bibitem{gupta2003kelips}
+{\sc Gupta, I., Birman, K., Linga, P., Demers, A., and Van~Renesse, R.}
+\newblock Kelips: Building an efficient and stable p2p dht through increased
+  memory and background overhead.
+\newblock In {\em International Workshop on Peer-to-Peer Systems\/} (2003),
+  Springer, pp.~160--169.
+
+\bibitem{facebook_surv}
+{How the NSA \& FBI made Facebook the perfect mass surveillance tool.}
+\newblock
+  \url{https://venturebeat.com/2014/05/15/how-the-nsa-fbi-made-facebook-the-perfect-mass-surveillance-tool/}.
+
+\bibitem{jia2016anonymity}
+{\sc Jia, Y., Bai, G., Saxena, P., and Liang, Z.}
+\newblock Anonymity in peer-assisted {CDNs}: Inference attacks and mitigation.
+\newblock {\em Proceedings on Privacy Enhancing Technologies 2016}, 4 (2016),
+  294--314.
+
+\bibitem{jung2002flash}
+{\sc Jung, J., Krishnamurthy, B., and Rabinovich, M.}
+\newblock Flash crowds and denial of service attacks: Characterization and
+  implications for {CDNs} and web sites.
+\newblock In {\em Proceedings of the 11th international conference on World
+  Wide Web\/} (2002), ACM, pp.~293--304.
+
+\bibitem{karger1997consistent}
+{\sc Karger, D., Lehman, E., Leighton, T., Panigrahy, R., Levine, M., and
+  Lewin, D.}
+\newblock Consistent hashing and random trees: Distributed caching protocols
+  for relieving hot spots on the world wide web.
+\newblock In {\em Proceedings of the twenty-ninth annual ACM symposium on
+  Theory of computing\/} (1997), ACM, pp.~654--663.
+
+\bibitem{kermarrec2007gossiping}
+{\sc Kermarrec, A.-M., and Van~Steen, M.}
+\newblock Gossiping in distributed systems.
+\newblock {\em ACM SIGOPS Operating Systems Review 41}, 5 (2007), 2--7.
+
+\bibitem{khattak2016you}
+{\sc Khattak, S., Fifield, D., Afroz, S., Javed, M., Sundaresan, S., Paxson,
+  V., Murdoch, S.~J., and McCoy, D.}
+\newblock Do you see what i see? differential treatment of anonymous users.
+\newblock In {\em Network and Distributed System Security Symposium\/} (2016).
+
+\bibitem{leong2004achieving}
+{\sc Leong, B., and Li, J.}
+\newblock Achieving one-hop dht lookup and strong stabilization by passing
+  tokens.
+\newblock In {\em Networks, 2004.(ICON 2004). Proceedings. 12th IEEE
+  International Conference on\/} (2004), vol.~1, IEEE, pp.~344--350.
+
+\bibitem{lesniewski2008sybil}
+{\sc Lesniewski-Laas, C.}
+\newblock A sybil-proof one-hop dht.
+\newblock In {\em Proceedings of the 1st workshop on Social network systems\/}
+  (2008), ACM, pp.~19--24.
+
+\bibitem{lesniewski2005ssl}
+{\sc Lesniewski-Laas, C., and Kaashoek, M.~F.}
+\newblock {SSL} splitting: Securely serving data from untrusted caches.
+\newblock {\em Computer Networks 48}, 5 (2005), 763--779.
+
+\bibitem{levy2015stickler}
+{\sc Levy, A., Corrigan-Gibbs, H., and Boneh, D.}
+\newblock Stickler: Defending against malicious {CDNs} in an unmodified
+  browser.
+\newblock {\em arXiv preprint arXiv:1506.04110\/} (2015).
+
+\bibitem{lewin1998consistent}
+{\sc Lewin, D.~M.}
+\newblock {\em Consistent hashing and random trees: Algorithms for caching in
+  distributed networks}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 1998.
+
+\bibitem{liang2014https}
+{\sc Liang, J., Jiang, J., Duan, H., Li, K., Wan, T., and Wu, J.}
+\newblock When {HTTPS} meets {CDN}: A case of authentication in delegated
+  service.
+\newblock In {\em Security and Privacy (S\&P), 2014 IEEE Symposium on\/}
+  (2014), IEEE, pp.~67--82.
+
+\bibitem{mazieres2000self}
+{\sc Mazi{\`e}res, D. D.~F.}
+\newblock {\em Self-certifying file system}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 2000.
+
+\bibitem{michalakis2007ensuring}
+{\sc Michalakis, N., Soul{\'e}, R., and Grimm, R.}
+\newblock Ensuring content integrity for untrusted peer-to-peer content
+  distribution networks.
+\newblock In {\em Proceedings of the 4th USENIX Conference on Networked Systems
+  Design \& Implementation\/} (2007), USENIX Association, pp.~11--11.
+
+\bibitem{monnerat2006d1ht}
+{\sc Monnerat, L.~R., and Amorim, C.~L.}
+\newblock D1ht: a distributed one hop hash table.
+\newblock In {\em Parallel and Distributed Processing Symposium, 2006. IPDPS
+  2006. 20th International\/} (2006), IEEE, pp.~10--pp.
+
+\bibitem{panchenko2016website}
+{\sc Panchenko, A., Lanze, F., Zinnen, A., Henze, M., Pennekamp, J., Wehrle,
+  K., and Engel, T.}
+\newblock Website fingerprinting at internet scale.
+\newblock In {\em Network \& Distributed System Security Symposium (NDSS). IEEE
+  Computer Society\/} (2016).
+
+\bibitem{rackoff1993cryptographic}
+{\sc Rackoff, C., and Simon, D.~R.}
+\newblock Cryptographic defense against traffic analysis.
+\newblock In {\em Proceedings of the twenty-fifth annual ACM symposium on
+  Theory of computing\/} (1993), ACM, pp.~672--681.
+
+\bibitem{risson2006stable}
+{\sc Risson, J., Harwood, A., and Moors, T.}
+\newblock Stable high-capacity one-hop distributed hash tables.
+\newblock In {\em Computers and Communications, 2006. ISCC'06. Proceedings.
+  11th IEEE Symposium on\/} (2006), IEEE, pp.~687--694.
+
+\bibitem{rfc2227}
+{Simple Hit-Metering and Usage-Limiting for HTTP}.
+\newblock \url{https://www.ietf.org/rfc/rfc2227.txt}.
+
+\bibitem{su2008thinning}
+{\sc Su, A.-J., and Kuzmanovic, A.}
+\newblock Thinning {Akamai}.
+\newblock In {\em Proceedings of the 8th ACM SIGCOMM Conference on Internet
+  Measurement\/} (2008), ACM, pp.~29--42.
+
+\bibitem{cloudflare_tor}
+{The Trouble with Tor}.
+\newblock \url{https://blog.cloudflare.com/the-trouble-with-tor/}.
+
+\bibitem{vogels2003power}
+{\sc Vogels, W., Van~Renesse, R., and Birman, K.}
+\newblock The power of epidemics: robust communication for large-scale
+  distributed systems.
+\newblock {\em ACM SIGCOMM Computer Communication Review 33}, 1 (2003),
+  131--135.
+
+\bibitem{wright2009traffic}
+{\sc Wright, C.~V., Coull, S.~E., and Monrose, F.}
+\newblock Traffic morphing: An efficient defense against statistical traffic
+  analysis.
+\newblock In {\em NDSS\/} (2009), vol.~9.
+
+\bibitem{zhu2005efficient}
+{\sc Zhu, Y., and Hu, Y.}
+\newblock Efficient, proximity-aware load balancing for dht-based p2p systems.
+\newblock {\em IEEE Transactions on parallel and distributed systems 16}, 4
+  (2005), 349--361.
+
+\bibitem{zolfaghari2016practical}
+{\sc Zolfaghari, H., and Houmansadr, A.}
+\newblock Practical censorship evasion leveraging content delivery networks.
+\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
+  Communications Security\/} (2016), ACM, pp.~1715--1726.
+
+\end{thebibliography}
