@@ -32,14 +32,18 @@ problems include: invalid certificates, private key sharing, neglected revocatio
 insecure back-end communications; the authors point out that some of these problems are fundamental issues due to 
 the man-in-the-middle characteristic of CDNs.  Similarly, Zolfaghari and Houmansadr found problems with HTTPS usage by 
 CDNBrowsing, a system that relies on CDNs for censorship circumvention~\cite{zolfaghari2016practical}.  They found that HTTPS 
-leaks the identity of the content being accessed, which defeats the purpose of a censorship circumvention tool. 
-
-Research has also covered other attacks on CDNs; Jung et al., show 
-that some CDNs might not actually provide much defense against flash events~\cite{jung2002flash}. Su and Kuzmanovic show that some CDNs are more susceptible to intential service 
-degradation, despite being known for being resilient to network outages and denial of service attacks~\cite{su2008thinning}. 
-Recently, researchers have studied the privacy implications of peer-assisted CDNs; peer-assisted CDNs allow clients to cache and distribute 
+leaks the identity of the content being accessed, which defeats the purpose of a censorship circumvention tool. Jung et al., show 
+that some CDNs might not actually provide much defense against flash events~\cite{jung2002flash}.  Recently, researchers have studied the privacy implications of peer-assisted CDNs; peer-assisted CDNs allow clients to cache and distribute 
 content on behalf of a website.  It is starting to be supported by CDNs, such as Akamai, but the design of the paradigm
 makes clients susceptible to privacy attacks; one client can infur the cross site browsing patterns of another client~\cite{jia2016anonymity}.
+
+%Research has also covered other attacks on CDNs; Jung et al., show 
+%that some CDNs might not actually provide much defense against flash events~\cite{jung2002flash}. Su and Kuzmanovic show that some CDNs are more susceptible to intential service 
+%degradation, despite being known for being resilient to network outages and denial of service attacks~\cite{su2008thinning}. 
+%Recently, researchers have studied the privacy implications of peer-assisted CDNs; peer-assisted CDNs allow clients to cache and distribute 
+%content on behalf of a website.  It is starting to be supported by CDNs, such as Akamai, but the design of the paradigm
+%makes clients susceptible to privacy attacks; one client can infur the cross site browsing patterns of another client~\cite{jia2016anonymity}.
+
 %Additionally, researchers implemented an attack that can affect popular CDNs, such as Akamai and Limelight; this attack 
 %defeats CDNs' denial of service protection and actually utilizes the CDN to amplify the attack~\cite{triukose2009content}.  %In the 
 %past year, researchers have found forwarding loop attacks that are possible in CDNs, which cause requests to be served repeatedly, which 

@@ -85,19 +85,18 @@
 \newlabel{sec:hiding_clients}{{4.2}{6}{Hiding Clients}{subsection.4.2}{}}
 \@LN@col{1}
 \@LN@col{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Incentives for Running {OCDN}{}}{7}{subsection.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Design Alternatives}{7}{subsection.4.3}}
 \@LN@col{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Design Alternatives}{8}{subsection.4.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Design Enhancements}{8}{subsection.4.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Design Enhancements}{8}{subsection.4.4}}
 \@LN@col{2}
 \@writefile{lof}{\contentsline {figure}{\numberline {Fig. 3}{\ignorespaces Publishing content in {OCDN}{}. $k$ is shared between the origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.\relax }}{8}{figure.caption.4}}
 \newlabel{fig:publishing}{{3}{8}{Publishing content in \system {}. $k$ is shared between the origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}{OCDN}{} Protocol}{8}{section.5}}
 \newlabel{sec:protocol}{{5}{8}{\system {} Protocol}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Publishing Content}{8}{subsection.5.1}}
+\newlabel{sec:publish_protocol}{{5.1}{8}{Publishing Content}{subsection.5.1}{}}
 \citation{cedexis}
 \@LN@col{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Publishing Content}{9}{subsection.5.1}}
-\newlabel{sec:publish_protocol}{{5.1}{9}{Publishing Content}{subsection.5.1}{}}
 \@LN@col{2}
 \@writefile{lof}{\contentsline {figure}{\numberline {Fig. 4}{\ignorespaces How an origin server certifies an exit proxy and distributes its shared key to an exit proxy. In step~(1), the exit proxy sends his self-certifying ID in the {\it  Additional} section of the DNS message. \relax }}{9}{figure.caption.5}}
 \newlabel{fig:keys}{{4}{9}{How an origin server certifies an exit proxy and distributes its shared key to an exit proxy. In step~(1), the exit proxy sends his self-certifying ID in the {\it Additional} section of the DNS message. \relax }{figure.caption.5}{}}
@@ -130,6 +129,7 @@
 \@LN@col{2}
 \@writefile{lot}{\contentsline {table}{\numberline {Table 1}{\ignorespaces The security and privacy features offered by related systems. To our knowledge, {OCDN}{} is the first to address confidentiality at the CDN.\relax }}{12}{table.caption.8}}
 \newlabel{tab:sec_table}{{1}{12}{The security and privacy features offered by related systems. To our knowledge, \system {} is the first to address confidentiality at the CDN.\relax }{table.caption.8}{}}
+\citation{geambasu2009experiences,wolchok2010defeating}
 \citation{rfc2227}
 \@LN@col{1}
 \@LN@col{2}
@@ -154,7 +154,6 @@
 \citation{liang2014https}
 \citation{zolfaghari2016practical}
 \citation{jung2002flash}
-\citation{su2008thinning}
 \citation{jia2016anonymity}
 \bibstyle{acm}
 \bibdata{paper}
@@ -182,34 +181,35 @@
 \bibcite{stack_copyright}{{16}{}{{}}{{}}}
 \bibcite{eu-copyright}{{17}{}{{}}{{}}}
 \bibcite{eugster2004epidemic}{{18}{}{{}}{{}}}
-\bibcite{gupta2003kelips}{{19}{}{{}}{{}}}
-\bibcite{facebook_surv}{{20}{}{{}}{{}}}
-\bibcite{jia2016anonymity}{{21}{}{{}}{{}}}
-\bibcite{jung2002flash}{{22}{}{{}}{{}}}
-\bibcite{karger1997consistent}{{23}{}{{}}{{}}}
-\bibcite{kermarrec2007gossiping}{{24}{}{{}}{{}}}
-\bibcite{khattak2016you}{{25}{}{{}}{{}}}
-\bibcite{leong2004achieving}{{26}{}{{}}{{}}}
-\bibcite{lesniewski2008sybil}{{27}{}{{}}{{}}}
-\bibcite{lesniewski2005ssl}{{28}{}{{}}{{}}}
-\bibcite{levy2015stickler}{{29}{}{{}}{{}}}
-\bibcite{lewin1998consistent}{{30}{}{{}}{{}}}
-\bibcite{liang2014https}{{31}{}{{}}{{}}}
-\bibcite{mazieres2000self}{{32}{}{{}}{{}}}
-\bibcite{michalakis2007ensuring}{{33}{}{{}}{{}}}
-\bibcite{monnerat2006d1ht}{{34}{}{{}}{{}}}
+\bibcite{geambasu2009experiences}{{19}{}{{}}{{}}}
+\bibcite{gupta2003kelips}{{20}{}{{}}{{}}}
+\bibcite{facebook_surv}{{21}{}{{}}{{}}}
+\bibcite{jia2016anonymity}{{22}{}{{}}{{}}}
+\bibcite{jung2002flash}{{23}{}{{}}{{}}}
+\bibcite{karger1997consistent}{{24}{}{{}}{{}}}
+\bibcite{kermarrec2007gossiping}{{25}{}{{}}{{}}}
+\bibcite{khattak2016you}{{26}{}{{}}{{}}}
+\bibcite{leong2004achieving}{{27}{}{{}}{{}}}
+\bibcite{lesniewski2008sybil}{{28}{}{{}}{{}}}
+\bibcite{lesniewski2005ssl}{{29}{}{{}}{{}}}
+\bibcite{levy2015stickler}{{30}{}{{}}{{}}}
+\bibcite{lewin1998consistent}{{31}{}{{}}{{}}}
+\bibcite{liang2014https}{{32}{}{{}}{{}}}
+\bibcite{mazieres2000self}{{33}{}{{}}{{}}}
+\bibcite{michalakis2007ensuring}{{34}{}{{}}{{}}}
 \@LN@col{1}
 \@LN@col{2}
-\bibcite{panchenko2016website}{{35}{}{{}}{{}}}
-\bibcite{rackoff1993cryptographic}{{36}{}{{}}{{}}}
-\bibcite{risson2006stable}{{37}{}{{}}{{}}}
-\bibcite{rfc2227}{{38}{}{{}}{{}}}
-\bibcite{su2008thinning}{{39}{}{{}}{{}}}
+\bibcite{monnerat2006d1ht}{{35}{}{{}}{{}}}
+\bibcite{panchenko2016website}{{36}{}{{}}{{}}}
+\bibcite{rackoff1993cryptographic}{{37}{}{{}}{{}}}
+\bibcite{risson2006stable}{{38}{}{{}}{{}}}
+\bibcite{rfc2227}{{39}{}{{}}{{}}}
 \bibcite{cloudflare_tor}{{40}{}{{}}{{}}}
 \bibcite{vogels2003power}{{41}{}{{}}{{}}}
-\bibcite{wright2009traffic}{{42}{}{{}}{{}}}
-\bibcite{zhu2005efficient}{{43}{}{{}}{{}}}
-\bibcite{zolfaghari2016practical}{{44}{}{{}}{{}}}
+\bibcite{wolchok2010defeating}{{42}{}{{}}{{}}}
+\bibcite{wright2009traffic}{{43}{}{{}}{{}}}
+\bibcite{zhu2005efficient}{{44}{}{{}}{{}}}
+\bibcite{zolfaghari2016practical}{{45}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
 \@LN@col{1}
 \@LN@col{2}

@@ -99,9 +99,15 @@ prevent a malicious exit proxy from learning any shared key $k$, the proxy must 
 identifer.  This technique was first introduced in a self-certifying file system~\cite{mazieres2000self}; it allows
 for other entities (such as origin servers) to certify the exit proxy solely based on its identifier.  The format 
 of this identifier ($exit\_ID$) is {\tt IP:hostID}, where {\tt IP} is the exit proxy's IP address and {\tt hostID} 
-is a hash of the exit proxy's public key.  \annie{A malicious exit proxy cannot \it{choose} where on the consistent 
+is a hash of the exit proxy's public key.  A malicious exit proxy cannot \textit{choose} where on the consistent 
 hashing ring it sits because it cannot frequently change and re-hash its own IP address (whereas it could re-generate 
-a new public key).} When an exit proxy is requesting the shared key $k$ from an origin server, 
+a new public key).\footnote{While a malicious exit proxy cannot specifically choose its location on the hashing ring, it 
+could recompute a public key until it finds a certain location on the hashing ring.  This is limited by the fact that 
+the exit proxy's IP address is part of its identifier, and we assume that the adversary running the exit proxy cannot 
+change IP addresses to a value of his choice or in a frequent manner.  A potential attack that an adversary can execute 
+on a DHT using a consistent hashing scheme is a Sybil attack, where the adversary runs {\it many} exit proxies to hopefully 
+place himself in his desired location on the hashing ring.  We describe countermeasures to a Sybil attack in Section 
+\ref{sec:sec}.} When an exit proxy is requesting the shared key $k$ from an origin server, 
 it sends its identifier and its public key to the origin server.  The origin server
 can then hash the exit proxy's 
 public key and verify it against the {\tt hostID}; this action serves as a proof
@@ -175,10 +181,10 @@ the source of the route by prepending additional clients to the beginning of
 the route as follows: $D \rightarrow A \rightarrow C \rightarrow G \rightarrow
 F \rightarrow E$. Neither {\it G}, {\it F}, nor {\it E} know who the original requestor was; from {\it E}'s point of 
 view, the original requestor could have been {\it D}, {\it A}, {\it C}, {\it G},
-or {\it F}.  \annie{Recall from Section \ref{sec:attacker} that our threat model does not 
+or {\it F}.  Recall from Section \ref{sec:attacker} that our threat model does not 
 include a global passive adversary, and therefore do not prevent an adversary with those capabilities 
 from learning which client issued the request; \system{} does prevent an adversary that is running a 
-client and/or exit proxy from identifying which client issued the request.} Using a sequence of 
+client and/or exit proxy from identifying which client issued the request. Using a sequence of 
 peers, or even just knowing that a client {\it can} use a series of peers, hides
 the identity of the client 
 from other clients, exit proxies, and the CDN. 
@@ -218,17 +224,17 @@ proxy can send it in a multicast manner to all clients that were on the source r
 is the true client that originated the request, therefore none of the other clients can interpret the response, and it reduces the 
 latency for sending the response to the client.  
 
-\subsection{Incentives for Running \system{}}
-As described in Sections \ref{sec:hiding_content} and \ref{sec:hiding_clients}, \system{} relies 
-on the use of a system of proxies.  These include: 1) client proxies, and 2) exit proxies.  For a client 
-to join the system, they must also run client proxy on his/her machine.  On the other hand, there is no 
-requirement for a client, organization, or company to run an exit proxy; despite this lack of requirement, we 
-believe that both clients and companies have enough incentives to run an exit proxy (or multiple exit proxies).  
-Clients benefit from running an exit proxy because it allows \system{} to perform better in terms of both 
-performance and privacy; when there are more exit proxies, then there is less load put on each exit proxy, and there is a smaller
-chance that an attacker has access to most exit proxies.  Companies benefit from running an exit proxy for similar 
-reasons --- performance and privacy ---, but it could help Internet users access their content quicker (assuming they have 
-content cached by the CDN).    
+%\subsection{Incentives for Running \system{}}
+%As described in Sections \ref{sec:hiding_content} and \ref{sec:hiding_clients}, \system{} relies 
+%on the use of a system of proxies.  These include: 1) client proxies, and 2) exit proxies.  For a client 
+%to join the system, they must also run client proxy on his/her machine.  On the other hand, there is no 
+%requirement for a client, organization, or company to run an exit proxy; despite this lack of requirement, we 
+%believe that both clients and companies have enough incentives to run an exit proxy (or multiple exit proxies).  
+%Clients benefit from running an exit proxy because it allows \system{} to perform better in terms of both 
+%performance and privacy; when there are more exit proxies, then there is less load put on each exit proxy, and there is a smaller
+%chance that an attacker has access to most exit proxies.  Companies benefit from running an exit proxy for similar 
+%reasons --- performance and privacy ---, but it could help Internet users access their content quicker (assuming they have 
+%content cached by the CDN).    
 
 \subsection{Design Alternatives}
 While our explanation of the design of \system{} describes a series of proxies that are run by us, but are not 

@@ -94,6 +94,12 @@
 \newblock Epidemic information dissemination in distributed systems.
 \newblock {\em Computer 37}, 5 (2004), 60--67.
 
+\bibitem{geambasu2009experiences}
+{\sc Geambasu, R., Falkner, J., Gardner, P., Kohno, T., Krishnamurthy, A., and
+  Levy, H.~M.}
+\newblock {Experiences building security applications on DHTs}.
+\newblock {\em Technical Report, UW-CSE-09--09--01\/} (2009).
+
 \bibitem{gupta2003kelips}
 {\sc Gupta, I., Birman, K., Linga, P., Demers, A., and Van~Renesse, R.}
 \newblock Kelips: Building an efficient and stable p2p dht through increased
@@ -216,12 +222,6 @@
 {Simple Hit-Metering and Usage-Limiting for HTTP}.
 \newblock \url{https://www.ietf.org/rfc/rfc2227.txt}.
 
-\bibitem{su2008thinning}
-{\sc Su, A.-J., and Kuzmanovic, A.}
-\newblock Thinning {Akamai}.
-\newblock In {\em Proceedings of the 8th ACM SIGCOMM Conference on Internet
-  Measurement\/} (2008), ACM, pp.~29--42.
-
 \bibitem{cloudflare_tor}
 {The Trouble with Tor}.
 \newblock \url{https://blog.cloudflare.com/the-trouble-with-tor/}.
@@ -232,6 +232,12 @@
   distributed systems.
 \newblock {\em ACM SIGCOMM Computer Communication Review 33}, 1 (2003),
   131--135.
+
+\bibitem{wolchok2010defeating}
+{\sc Wolchok, S., Hofmann, O.~S., Heninger, N., Felten, E.~W., Halderman,
+  J.~A., Rossbach, C.~J., Waters, B., and Witchel, E.}
+\newblock {Defeating Vanish with Low-Cost Sybil Attacks Against Large DHTs}.
+\newblock In {\em NDSS\/} (2010).
 
 \bibitem{wright2009traffic}
 {\sc Wright, C.~V., Coull, S.~E., and Monrose, F.}

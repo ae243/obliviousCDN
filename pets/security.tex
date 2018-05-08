@@ -57,14 +57,14 @@ to learn information about the content and/or clients, the CDN may act as a clie
 in the system.  In this attack the (malicious) client sends a request for content 
 and the CDN can correlate the request with a content access at the CDN because they have 
 knowledge of both the CDN logs and the requests they are making as a client.  \system{} 
-defends against this by using the exit proxies as \annie{{\it natural}} mixes; each exit proxy is receiving 
+defends against this by using the exit proxies as {\it natural} mixes; each exit proxy is receiving 
 different requests from different clients and then forwarding the requests on to the CDN.  
 These exit proxies naturally mix the requests enough that the CDN cannot conduct traffic analysis
- and determine which request corresponds to which content on the CDN's cache nodes.\annie{\footnote{\annie{For clarification, the exit proxies 
+ and determine which request corresponds to which content on the CDN's cache nodes.\footnote{For clarification, the exit proxies 
 are not a type of mixnet~\cite{chaum1981untraceable}, they are simply receiving requests and then forwarding them, and due to the variety of 
-requests, they provide natural mixing characteristics.}}}  There has 
+requests, they provide natural mixing characteristics.}  There has 
 also been numerous studies that have proposed and evaluated defenses against traffic 
-analysis attacks~\cite{wright2009traffic,rackoff1993cryptographic}; \system{} could implement one of these solutions \annie{(such as slight timing delays)} at the exit 
+analysis attacks~\cite{wright2009traffic,rackoff1993cryptographic}; \system{} could implement one of these solutions (such as slight timing delays) at the exit 
 proxy.
 
 \textbf{Spoofed Content Updates.} Because the CDN cache
@@ -84,6 +84,21 @@ server that populated the cache with the original content.
 correlate requests and responses based on timing information.  To address this type of attack, 
 \system{} could employ techniques used in previous research, such as implementing timing 
 delays, at different proxies (either client or exit proxies).
+
+\textbf{Sybil Attacks.} An adversary who runs {\it many} exit proxies can learn information 
+about many clients and many content requests as they are responsible for encrypting/decrypting 
+{\it many} requests and responses.  Previous work has analyzed the security of DHTs in this 
+context~\cite{geambasu2009experiences,wolchok2010defeating}.  \system{} can employ a few different defenses to limit the probability and size 
+of a Sybil attack.  To limit the number of exit proxies running on a single machine, \system{} can 
+limit the number of exit proxies with the same IP address (which is a part of the exit proxy's self-certifying 
+identifier) to one; therefore, the attack becomes more 
+expensive as the number of machines the adversary must control increases.\footnote{Note also that this 
+countermeasure prevents two or more exit proxies from being behind the same NAT.}  This defense can be 
+expanded to entire network prefixes; for example, if a large (malicious) organization owns an entire prefix, 
+they could launch a Sybil attack using various IP addresses within their network.  \system{} could 
+limit the number of IP addresses in a given prefix to either one (which may result in a smaller set of 
+exit proxies) or some small number (in which case the size of the Sybil is extremely small and cannot achieve 
+its goal of being in a certain location on the hashing ring).  
 
 \textbf{Flashcrowds.}  A flashcrowd is a large spike in traffic to a specific web
 page. An attacker
