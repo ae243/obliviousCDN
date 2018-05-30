@@ -5,45 +5,45 @@ The style file: acm.bst
 Database file #1: paper.bib
 Warning--empty author in eu-copyright
 Warning--empty journal in eu-copyright
-You've used 44 entries,
+You've used 45 entries,
             2253 wiz_defined-function locations,
-            757 strings with 12170 characters,
-and the built_in function-call counts, 13594 in all, are:
-= -- 1329
-> -- 507
+            760 strings with 12508 characters,
+and the built_in function-call counts, 14002 in all, are:
+= -- 1351
+> -- 569
 < -- 0
-+ -- 220
-- -- 174
-* -- 889
-:= -- 1967
-add.period$ -- 116
-call.type$ -- 44
-change.case$ -- 234
++ -- 245
+- -- 198
+* -- 936
+:= -- 2055
+add.period$ -- 119
+call.type$ -- 45
+change.case$ -- 249
 chr.to.int$ -- 0
-cite$ -- 46
-duplicate$ -- 586
-empty$ -- 1268
-format.name$ -- 174
-if$ -- 3019
+cite$ -- 47
+duplicate$ -- 589
+empty$ -- 1277
+format.name$ -- 198
+if$ -- 3080
 int.to.chr$ -- 0
-int.to.str$ -- 44
-missing$ -- 26
-newline$ -- 207
-num.names$ -- 56
-pop$ -- 315
+int.to.str$ -- 45
+missing$ -- 27
+newline$ -- 212
+num.names$ -- 58
+pop$ -- 331
 preamble$ -- 1
-purify$ -- 191
+purify$ -- 205
 quote$ -- 0
-skip$ -- 472
+skip$ -- 468
 stack$ -- 0
-substring$ -- 789
-swap$ -- 174
+substring$ -- 770
+swap$ -- 170
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 176
+type$ -- 180
 warning$ -- 2
-while$ -- 112
-width$ -- 46
-write$ -- 410
+while$ -- 111
+width$ -- 47
+write$ -- 417
 (There were 2 warnings)

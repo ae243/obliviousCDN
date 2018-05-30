@@ -9,8 +9,8 @@ origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.
 \section{\system{} Protocol}
 \label{sec:protocol}
 Based on the design decisions discussed in the previous section, we specify the 
-steps taken to publish and retrieve content in \system{}. \annie{The \system{} protocol works 
-on both plaintext and encrypted requests (HTTP and HTTPS requests).}
+steps taken to publish and retrieve content in \system{}. The \system{} protocol works 
+on both plaintext and encrypted requests (HTTP and HTTPS requests).
 
 \subsection{Publishing Content}
 \label{sec:publish_protocol}
@@ -151,8 +151,8 @@ for running a proxy.  Clients will learn about other clients in the system via
 a gossip protocol.  We do not detail this as gossip protocols have been studied 
 extensively in the past~\cite{kermarrec2007gossiping,vogels2003power,eugster2004epidemic}.  
 Similarly, when a client leaves the system, this information is propogated to its 
-peers using a gossip protocol.  \annie{\system{} scales with increasing numbers of clients and 
-exit proxies, which is described in more detail in Section \ref{sec:scalability}.}
+peers using a gossip protocol.  \system{} scales with increasing numbers of clients and 
+exit proxies, which is described in more detail in Section \ref{sec:scalability}.
 
 \subsection{Partial Deployment}
 \label{sec:partial}
