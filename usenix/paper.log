@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 FEB 2018 17:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  24 APR 2018 11:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -745,28 +745,28 @@ Underfull \hbox (badness 1097) in paragraph at lines 82--95
 File: ./figures/ocdn_overview_new2.pdf Graphic file (type pdf)
 
 <use ./figures/ocdn_overview_new2.pdf>
-Package pdftex.def Info: ./figures/ocdn_overview_new2.pdf used on input line 17
+Package pdftex.def Info: ./figures/ocdn_overview_new2.pdf used on input line 16
 .
 (pdftex.def)             Requested size: 234.87749pt x 125.98346pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 17--19
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 16--18
  [][] 
  []
 
 [4]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 70.
 
 Underfull \vbox (badness 1082) has occurred while \output is active []
 
  [5 <./figures/ocdn_overview_new2.pdf>] [6]
-Underfull \hbox (badness 1430) in paragraph at lines 265--271
+Underfull \hbox (badness 1430) in paragraph at lines 260--266
 \OT1/ptm/m/n/10 vent this, OCDN al-lows ori-gin servers to gen-er-ate
  []
 
@@ -778,11 +778,8 @@ File: ./figures/publishing_content_new2.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/publishing_content_new2.pdf used on input li
 ne 3.
 (pdftex.def)             Requested size: 140.92792pt x 51.34944pt.
-
-Underfull \vbox (badness 4660) has occurred while \output is active []
-
- [7 <./figures/publishing_content_new2.pdf>]
-<./figures/key_lookup.pdf, id=820, 730.47968pt x 449.16245pt>
+ [7 <./figures/publishing_content_new2.pdf>] <./figures/key_lookup.pdf, id=820,
+ 730.47968pt x 449.16245pt>
 File: ./figures/key_lookup.pdf Graphic file (type pdf)
 
 <use ./figures/key_lookup.pdf>
@@ -972,7 +969,7 @@ b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
 /texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2
 017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (14 pages, 1499319 bytes).
+Output written on paper.pdf (14 pages, 1499310 bytes).
 PDF statistics:
  1361 PDF objects out of 1440 (max. 8388607)
  999 compressed objects within 10 object streams
