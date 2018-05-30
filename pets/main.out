@@ -19,7 +19,7 @@
 \BOOKMARK [2][-]{subsection.5.3}{5.3 Clients Joining \046 Leaving}{section.5}% 19
 \BOOKMARK [2][-]{subsection.5.4}{5.4 Partial Deployment}{section.5}% 20
 \BOOKMARK [1][-]{section.6}{6 Implementation}{section*.1}% 21
-\BOOKMARK [1][-]{section.7}{7 Security Analysis}{section*.1}% 22
+\BOOKMARK [1][-]{section.7}{7 Attacks Against OCDN}{section*.1}% 22
 \BOOKMARK [1][-]{section.8}{8 Performance Evaluation}{section*.1}% 23
 \BOOKMARK [2][-]{subsection.8.1}{8.1 Throughput and Latency Overhead}{section.8}% 24
 \BOOKMARK [2][-]{subsection.8.2}{8.2 Scaling with Users and Content}{section.8}% 25
