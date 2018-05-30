@@ -4,9 +4,9 @@
 \BOOKMARK [2][-]{subsection.2.1}{2.1 Content Distribution Networks}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.2}{2.2 What CDNs Can See}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.3}{2.3 Open Legal Questions}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{3 Threat Model and Security Goals}{section*.1}% 7
+\BOOKMARK [1][-]{section.3}{3 Threat Model and Goals}{section*.1}% 7
 \BOOKMARK [2][-]{subsection.3.1}{3.1 Threat Model}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{3.2 Security and Privacy Goals for OCDN}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{3.2 Security and Privacy Goals}{section.3}% 9
 \BOOKMARK [2][-]{subsection.3.3}{3.3 Performance Considerations}{section.3}% 10
 \BOOKMARK [1][-]{section.4}{4 OCDN Design}{section*.1}% 11
 \BOOKMARK [2][-]{subsection.4.1}{4.1 Hiding Content}{section.4}% 12
@@ -20,9 +20,9 @@
 \BOOKMARK [2][-]{subsection.5.4}{5.4 Partial Deployment}{section.5}% 20
 \BOOKMARK [1][-]{section.6}{6 Implementation}{section*.1}% 21
 \BOOKMARK [1][-]{section.7}{7 Security Analysis}{section*.1}% 22
-\BOOKMARK [1][-]{section.8}{8 Performance Analysis}{section*.1}% 23
-\BOOKMARK [2][-]{subsection.8.1}{8.1 OCDN Overhead}{section.8}% 24
-\BOOKMARK [2][-]{subsection.8.2}{8.2 Scalability}{section.8}% 25
+\BOOKMARK [1][-]{section.8}{8 Performance Evaluation}{section*.1}% 23
+\BOOKMARK [2][-]{subsection.8.1}{8.1 Throughput and Latency Overhead}{section.8}% 24
+\BOOKMARK [2][-]{subsection.8.2}{8.2 Scaling with Users and Content}{section.8}% 25
 \BOOKMARK [1][-]{section.9}{9 Discussion}{section*.1}% 26
 \BOOKMARK [1][-]{section.10}{10 Related Work}{section*.1}% 27
 \BOOKMARK [1][-]{section.11}{11 Conclusion}{section*.1}% 28
