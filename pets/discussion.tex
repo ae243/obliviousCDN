@@ -6,21 +6,21 @@ of \system{}, as well as possible avenues for future work. \\
 \textbf{\system{} limitations.} CDNs become slightly limited in terms of the 
 possible performance optimizations when following \system{}'s design.  For example, 
 many CDNs perform HTTPS re-writes on cached content, but this can only be 
-done if the CDN has access to the decrypted content.  Similarly, the CDN needs the 
+done if the CDN has access to plaintext content.  Similarly, the CDN needs the 
 decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
-this likely increases performance in traditional CDNs, it does not provide the greatest 
+this increases performance in traditional CDNs, it does not provide the greatest 
 increase in performance; content caching around the world is the greatest benefit to 
 performance, which \system{} preserves.\\
 \vspace{0pt}
 \textbf{CDNs operated by content hosts.} The design of \system{}
 assumes that the entities operating the proxies and delivering content are
-distinct from original content provider. In many cases, however---particularly
+distinct from the original content provider. In many cases, however---particularly
 for large content providers such as Netflix, Facebook, and Google---the
-content provider operates their own CDN cache nodes; in these cases, \system{} will
+content provider operates their own CDN; in these cases, \system{} will
 not be able to obfuscate the content from the CDN operator, since the content host
 and the CDN are the same party.  Similarly, because the CDN operator is the same
 entity as the original server, it also knows the keys that are shared with the clients.
-As a result, the CDN cache nodes could also discover the keys and identify both
+As a result, the CDN could also discover the keys and identify both
 the content, as well as which clients are requesting which content.\\
 \vspace{0pt}
 %\paragraph{Exit proxies run by volunteers.} In the description of \system{} in Sections 

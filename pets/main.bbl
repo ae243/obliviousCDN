@@ -1,7 +1,7 @@
 \begin{thebibliography}{10}
 
 \bibitem{techdirt_copyright}
-{Court Says RIAA Can Just Tell Cloudflare Any Site Is A Grooveshark Clone...
+{Court Says RIAA Can Just Tell Cloudflare Any Site Is a Grooveshark Clone...
   And Cloudflare Has 48 Hours To Dump Them}.
 \newblock
   \url{https://www.techdirt.com/articles/20151214/17392833079/court-says-riaa-can-just-tell-cloudflare-any-site-is-grooveshark-clone-cloudflare-has-48-hours-to-dump-them.shtml}.
@@ -36,8 +36,8 @@
 {\sc Cai, X., Zhang, X.~C., Joshi, B., and Johnson, R.}
 \newblock Touching from a distance: Website fingerprinting attacks and
   defenses.
-\newblock In {\em Proceedings of the 2012 ACM conference on Computer and
-  communications security\/} (2012), ACM, pp.~605--616.
+\newblock In {\em ACM Conference on Computer and Communications Security\/}
+  (2012), ACM, pp.~605--616.
 
 \bibitem{cedexis}
 {Cedexis}.
@@ -122,16 +122,16 @@
 {\sc Jung, J., Krishnamurthy, B., and Rabinovich, M.}
 \newblock Flash crowds and denial of service attacks: Characterization and
   implications for {CDNs} and web sites.
-\newblock In {\em Proceedings of the 11th international conference on World
-  Wide Web\/} (2002), ACM, pp.~293--304.
+\newblock In {\em International Conference on World Wide Web\/} (2002), ACM,
+  pp.~293--304.
 
 \bibitem{karger1997consistent}
 {\sc Karger, D., Lehman, E., Leighton, T., Panigrahy, R., Levine, M., and
   Lewin, D.}
 \newblock Consistent hashing and random trees: Distributed caching protocols
   for relieving hot spots on the world wide web.
-\newblock In {\em Proceedings of the twenty-ninth annual ACM symposium on
-  Theory of computing\/} (1997), ACM, pp.~654--663.
+\newblock In {\em ACM Symposium on Theory of Computing\/} (1997), ACM,
+  pp.~654--663.
 
 \bibitem{kermarrec2007gossiping}
 {\sc Kermarrec, A.-M., and Van~Steen, M.}
@@ -141,21 +141,21 @@
 \bibitem{khattak2016you}
 {\sc Khattak, S., Fifield, D., Afroz, S., Javed, M., Sundaresan, S., Paxson,
   V., Murdoch, S.~J., and McCoy, D.}
-\newblock Do you see what i see? differential treatment of anonymous users.
+\newblock {Do You See What I See? Differential Treatment of Anonymous Users}.
 \newblock In {\em Network and Distributed System Security Symposium\/} (2016).
 
 \bibitem{leong2004achieving}
 {\sc Leong, B., and Li, J.}
-\newblock Achieving one-hop dht lookup and strong stabilization by passing
-  tokens.
-\newblock In {\em Networks, 2004.(ICON 2004). Proceedings. 12th IEEE
-  International Conference on\/} (2004), vol.~1, IEEE, pp.~344--350.
+\newblock {Achieving one-hop DHT lookup and strong stabilization by passing
+  tokens}.
+\newblock In {\em IEEE International Conference on Networks\/} (2004), vol.~1,
+  IEEE, pp.~344--350.
 
 \bibitem{lesniewski2008sybil}
 {\sc Lesniewski-Laas, C.}
-\newblock A sybil-proof one-hop dht.
-\newblock In {\em Proceedings of the 1st workshop on Social network systems\/}
-  (2008), ACM, pp.~19--24.
+\newblock {A Sybil-proof one-hop DHT}.
+\newblock In {\em Workshop on Social Network Systems\/} (2008), ACM,
+  pp.~19--24.
 
 \bibitem{lesniewski2005ssl}
 {\sc Lesniewski-Laas, C., and Kaashoek, M.~F.}
@@ -178,8 +178,8 @@
 {\sc Liang, J., Jiang, J., Duan, H., Li, K., Wan, T., and Wu, J.}
 \newblock When {HTTPS} meets {CDN}: A case of authentication in delegated
   service.
-\newblock In {\em Security and Privacy (S\&P), 2014 IEEE Symposium on\/}
-  (2014), IEEE, pp.~67--82.
+\newblock In {\em IEEE Symposium on Security and Privacy (S\&P)\/} (2014),
+  IEEE, pp.~67--82.
 
 \bibitem{mazieres2000self}
 {\sc Mazi{\`e}res, D. D.~F.}
@@ -190,14 +190,19 @@
 {\sc Michalakis, N., Soul{\'e}, R., and Grimm, R.}
 \newblock Ensuring content integrity for untrusted peer-to-peer content
   distribution networks.
-\newblock In {\em Proceedings of the 4th USENIX Conference on Networked Systems
-  Design \& Implementation\/} (2007), USENIX Association, pp.~11--11.
+\newblock In {\em USENIX Conference on Networked Systems Design \&
+  Implementation\/} (2007), USENIX Association, pp.~11--11.
+
+\bibitem{rfc2227}
+{\sc Mogul, J., and Leach, P.}
+\newblock {Simple Hit-Metering and Usage-Limiting for HTTP}.
+\newblock \url{https://www.ietf.org/rfc/rfc2227.txt}, 1997.
 
 \bibitem{monnerat2006d1ht}
 {\sc Monnerat, L.~R., and Amorim, C.~L.}
-\newblock D1ht: a distributed one hop hash table.
-\newblock In {\em Parallel and Distributed Processing Symposium, 2006. IPDPS
-  2006. 20th International\/} (2006), IEEE, pp.~10--pp.
+\newblock {D1HT: a distributed one hop hash table}.
+\newblock In {\em International Parallel and Distributed Processing
+  Symposium\/} (2006), IEEE, pp.~10--pp.
 
 \bibitem{panchenko2016website}
 {\sc Panchenko, A., Lanze, F., Zinnen, A., Henze, M., Pennekamp, J., Wehrle,
@@ -209,18 +214,14 @@
 \bibitem{rackoff1993cryptographic}
 {\sc Rackoff, C., and Simon, D.~R.}
 \newblock Cryptographic defense against traffic analysis.
-\newblock In {\em Proceedings of the twenty-fifth annual ACM symposium on
-  Theory of computing\/} (1993), ACM, pp.~672--681.
+\newblock In {\em ACM symposium on Theory of Computing\/} (1993), ACM,
+  pp.~672--681.
 
 \bibitem{risson2006stable}
 {\sc Risson, J., Harwood, A., and Moors, T.}
 \newblock Stable high-capacity one-hop distributed hash tables.
-\newblock In {\em Computers and Communications, 2006. ISCC'06. Proceedings.
-  11th IEEE Symposium on\/} (2006), IEEE, pp.~687--694.
-
-\bibitem{rfc2227}
-{Simple Hit-Metering and Usage-Limiting for HTTP}.
-\newblock \url{https://www.ietf.org/rfc/rfc2227.txt}.
+\newblock In {\em IEEE Symposium on Computers and Communications\/} (2006),
+  IEEE, pp.~687--694.
 
 \bibitem{cloudflare_tor}
 {The Trouble with Tor}.
@@ -247,14 +248,15 @@
 
 \bibitem{zhu2005efficient}
 {\sc Zhu, Y., and Hu, Y.}
-\newblock Efficient, proximity-aware load balancing for dht-based p2p systems.
-\newblock {\em IEEE Transactions on parallel and distributed systems 16}, 4
+\newblock {Efficient, proximity-aware load balancing for DHT-based P2P
+  systems}.
+\newblock {\em IEEE Transactions on Parallel and Distributed Systems 16}, 4
   (2005), 349--361.
 
 \bibitem{zolfaghari2016practical}
 {\sc Zolfaghari, H., and Houmansadr, A.}
 \newblock Practical censorship evasion leveraging content delivery networks.
-\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
-  Communications Security\/} (2016), ACM, pp.~1715--1726.
+\newblock In {\em ACM SIGSAC Conference on Computer and Communications
+  Security\/} (2016), ACM, pp.~1715--1726.
 
 \end{thebibliography}

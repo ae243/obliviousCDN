@@ -1,5 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2017)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: paper.bib
@@ -7,43 +7,43 @@ Warning--empty author in eu-copyright
 Warning--empty journal in eu-copyright
 You've used 45 entries,
             2253 wiz_defined-function locations,
-            760 strings with 12508 characters,
-and the built_in function-call counts, 14002 in all, are:
-= -- 1351
-> -- 569
+            760 strings with 12236 characters,
+and the built_in function-call counts, 14089 in all, are:
+= -- 1359
+> -- 580
 < -- 0
-+ -- 245
-- -- 198
-* -- 936
-:= -- 2055
-add.period$ -- 119
++ -- 248
+- -- 202
+* -- 944
+:= -- 2079
+add.period$ -- 120
 call.type$ -- 45
-change.case$ -- 249
+change.case$ -- 250
 chr.to.int$ -- 0
 cite$ -- 47
-duplicate$ -- 589
+duplicate$ -- 590
 empty$ -- 1277
-format.name$ -- 198
-if$ -- 3080
+format.name$ -- 202
+if$ -- 3093
 int.to.chr$ -- 0
 int.to.str$ -- 45
 missing$ -- 27
-newline$ -- 212
-num.names$ -- 58
-pop$ -- 331
+newline$ -- 213
+num.names$ -- 60
+pop$ -- 333
 preamble$ -- 1
-purify$ -- 205
+purify$ -- 206
 quote$ -- 0
-skip$ -- 468
+skip$ -- 466
 stack$ -- 0
-substring$ -- 770
-swap$ -- 170
+substring$ -- 769
+swap$ -- 171
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 180
 warning$ -- 2
-while$ -- 111
+while$ -- 113
 width$ -- 47
-write$ -- 417
+write$ -- 420
 (There were 2 warnings)
