@@ -16,7 +16,7 @@
 \BOOKMARK [1][-]{section.5}{5 OCDN Protocol}{section*.1}% 16
 \BOOKMARK [2][-]{subsection.5.1}{5.1 Publishing Content}{section.5}% 17
 \BOOKMARK [2][-]{subsection.5.2}{5.2 Retrieving Content}{section.5}% 18
-\BOOKMARK [2][-]{subsection.5.3}{5.3 Clients Joining \046 Leaving}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.3}{5.3 Clients Joining and Leaving}{section.5}% 19
 \BOOKMARK [2][-]{subsection.5.4}{5.4 Partial Deployment}{section.5}% 20
 \BOOKMARK [1][-]{section.6}{6 Implementation}{section*.1}% 21
 \BOOKMARK [1][-]{section.7}{7 Attacks Against OCDN}{section*.1}% 22

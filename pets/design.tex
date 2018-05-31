@@ -68,7 +68,7 @@ also encrypt the associated certificate with the same key $k$.
 
 The encrypted content and corresponding HMAC are sent to the CDN\footnote{Most CDNs
 allow the publisher to
-decide on a push or pull model, but tje \system{} is compatible with either approach.}
+decide on a push or pull model, but \system{} is compatible with either approach.}
 and stored in
 its caches.  The content publisher then shares the key $k$ with an exit proxy. 
 This key allows the 
@@ -284,7 +284,7 @@ if only one exit proxy is responsible for a given URL's content, then it would l
 cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
 helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
 
-\textbf{Partial Content.}
+\textbf{Hybrid OCDN/CDN Designs.}
 Different origin servers have different needs, and each origin server might 
 have different needs for different content.  The design of \system{} allows origin servers
  to publish some of their content on \system{} and some on other CDNs.  

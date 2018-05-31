@@ -39,10 +39,13 @@ line).
 
 Figure~\ref{fig:completion} shows the time to first byte (TTFB) and the time for
 both \system{} and 
-without \system{}.  We can see the the TTFB using \system{} grows linearly with 
+without \system{}.  We can see the the TTFB using \system{} increases linearly with
+
 file size, whereas without \system{} TTFB remains fairly constant.  Interestingly, 
-we can see that there are some fixed time operations that \system{} performs, which 
-is visible by looking at the smaller file sizes. Completion time grows linearly with file size, but for both \system{} and without \system{}; while both follow the 
+we can see that there are some fixed-time operations that \system{} performs, which
+
+is visible by looking at the smaller file sizes. Completion time increases linearly
+with file size, but for both \system{} and without \system{}; while both follow the
 same pattern, the time to complete requests is, as expected, longer using \system{} as it performs many cryptographic operations and proxies traffic between the client and the CDN.
 
 %\begin{figure}[t!]
@@ -65,8 +68,9 @@ add latency between the client and the exit proxy, and measure both the TTFB and
 when there are different values of latency, which represent different numbers of clients on the path between the 
 original client and the exit proxy.  Figure \ref{fig:latency} shows the results for three different file sizes. The 
 bottom portion of each bar in the graph shows the TTFB, and the top portion shows the additional time needed 
-to complete the request.  As expected, the TTFB grows much slower as file size and latency increase; completion time 
-grows more quickly than TTFB as the file size and latency increase.   
+to complete the request.  As expected, the TTFB increases more slowly as file size
+and latency increase; completion time
+increases more quickly than TTFB as the file size and latency increase.   
 
 %\begin{figure}[t!]
 %\centering
@@ -96,7 +100,8 @@ decrypting the response with the session key $k_{session}$.
 
 For evaluating performance, we are also concerned with how well \system{} will scale with more users 
 and more URLs.  In particular, we need to reason about how much load is put on the exit proxies as the 
-system grows; clients do not bare much load in the system as they simply proxy requests and the CDN is designed 
+system increases; clients do not bare much load in the system as they simply proxy
+requests and the CDN is designed
 to handle high numbers of requests, therefore, we limit our scalability analysis to the exit proxies.  
 
 As previously mentioned, we balance load among the proxies by using consistent hashing to assign URLs to 

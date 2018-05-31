@@ -15,7 +15,9 @@ As Content Distribution Networks (CDNs) host an increasing amount of content, th
 
 Towards this end, we design and implement a system that allows clients to
 retrieve web objects from one or more CDNs, while preventing the CDNs from
-learning either (1)~the content that is stored on the cache nodes; or (2)~the content that clients request. We call this system an {\em oblivious
+learning either (1)~the content that is stored on the cache nodes; or (2)~the content
+that clients request, and the clients that request it. We call this system an {\em
+oblivious
 CDN}~(\system{}), because the CDN is oblivious to both the content it is
 storing and the content that clients request.
 
@@ -23,7 +25,8 @@ storing and the content that clients request.
 are encrypted with a key that is shared by an open proxy and the origin server
 that publishes content to cache nodes, but is not known to any of the CDN
 cache nodes.  To do so, the origin server publishes encrypted content, 
-which is subsequently shared with a proxy that is responsible for
+which the CDN cache nodes subsequently share with one or more proxies that are responsible
+for
 routing requests for objects corresponding to that URL.  A client forwards a
 request for content through other OCDN clients in a way
 that prevents both other clients and the CDN from learning the client
@@ -45,7 +48,7 @@ multiple such capabilities. Our threat model does not include active attempts
 to disrupt the system (\eg, blocking access to parts of the system, mounting
 denial of service attacks), but it includes any type of attack
 that involves observing traffic and even directly interacting with the system
-as a client or a publisher.
+as a client, proxy, or publisher.
 
 %The design of \system{} (Section~\ref{sec:design}) under such a strong attack
 %model entails many unique aspects and features. Because the system allows any

@@ -13,10 +13,10 @@ access to the CDNs logs, which typically contains client IP addresses and URLs f
 each request. Additionally,
 the adversary could join \system{} as either a client or any number of clients,
 or 
-as an arbitrary number of exit proxies.  The adversary could 
+as an arbitrary number of proxies.  The adversary could 
 also act as an origin server (a content publisher).  We also assume that the adversary
 can coordiante several of these actions to learn more information.  For example, the 
-adversary could join as a client and an exit proxy, and request access to the CDN's
+adversary could join as a client and proxy, and request access to the CDN's
 logs to observe how its own requests are obfuscated.  Additionally, 
 the adversary can perform actions, such as generating requests as a client, or creating content 
 as a content publisher. The goal of this type of adversary is to learn about the content being stored 
@@ -37,7 +37,7 @@ CDNs has introduced methods to handle an actively malicious adversary by preserv
 stored on CDN cache nodes~\cite{levy2015stickler}.  We do not address an adversary that tampers, modifies, or 
 deletes any data, content, or requests.  In addition, it is out of the scope of this work to prevent an attacker 
 that has global monitoring knowledge; for example, \system{} will not prevent an attacker who can see all incoming and 
-outgoing messages from all clients and exit proxies.
+outgoing messages from all clients and proxies.
 
 \subsection{Security and Privacy Goals}
 \label{sec:goals}
@@ -51,25 +51,6 @@ maintaining the performance benefits of a CDN while reducing the probability of 
 One strength of \system{} is that it protects the origin server, the CDN itself,
 and the client, whereas existing systems, such as Tor, only protect the client.
 
-%Section~\ref{sec:design} describes our design decisions in detail.
-
-%\begin{table*}[t!]
-%\centering
-%\begin{tabular}{| l | l |} 
-% \hline
-% {\bf Design Goal} & {\bf Design Decision} \\ 
-% \hline\hline
-% Prevent CDN from knowing information & (1) encrypt content   \\ 
-%  (Section \ref{sec:obfuscate_content})                          & (2) obfuscate URL \\ \hline
-% System of proxies & (1) decouple content distribution from decision of trust via proxies  \\ 
-%  (Section \ref{sec:proxies})  & (2) hiding client identities \\ \hline
-% Key use and management & (1) key churn \\ 
-%   (Section \ref{sec:keys})                     & (2) secrecy in URL obfuscation \\ 
-% \hline
-%\end{tabular}
-%\caption{Design goals and the corresponding design choices made in \system{}.}
-%\label{tab:design_goals}
-%\end{table*}
 
 \textbf{Prevent the CDN from knowing the content it is caching.} First and foremost, the CDN 
 should not have access to the information outlined 
@@ -94,6 +75,18 @@ privacy-conscious Tor users from being blocked by CDNs.  Finally, some CDNs, due
 to their ability
 to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
 prevent a CDN from compromising the anonymity of clients.
+
+
+\subsection{Performance Considerations}
+As one of the primary functions of a CDN is to make accessing content faster and more 
+reliable, \system{} should consider performance in design decisions.  The performance of \system{} will 
+be worse than that of traditional CDNs because it is performing more operations on content, but \system{} 
+is offering confidentiality, whereas traditional CDNs are not.  \system{} should scale linearly in terms of load 
+and storage requirements on proxies; additionally, it should be able to 
+scale with the number of clients using the system, as well as with the growing number of web pages on the internet.
+
+
+
 
 %\paragraph{Prevent an adversary from ...} \annie{I'm trying to get at protecting against an adversary that 
 %joins the system as a client/exit/publisher, and requests access from the CDN}
@@ -144,11 +137,22 @@ prevent a CDN from compromising the anonymity of clients.
 %to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
 %%%%%prevent a CDN from compromising the anonymity of Tor users.
 
+%Section~\ref{sec:design} describes our design decisions in detail.
 
-\subsection{Performance Considerations}
-As one of the primary functions of a CDN is to make accessing content faster and more 
-reliable, \system{} should consider performance in design decisions.  The performance of \system{} will 
-be worse than that of traditional CDNs because it is performing more operations on content, but \system{} 
-is offering confidentiality, whereas traditional CDNs are not.  \system{} should scale linearly in terms of load 
-and storage requirements on exit proxies; additionally, it should be able to 
-scale with the number of clients using the system, as well as with the growing number of web pages on the internet.
+%\begin{table*}[t!]
+%\centering
+%\begin{tabular}{| l | l |} 
+% \hline
+% {\bf Design Goal} & {\bf Design Decision} \\ 
+% \hline\hline
+% Prevent CDN from knowing information & (1) encrypt content   \\ 
+%  (Section \ref{sec:obfuscate_content})                          & (2) obfuscate URL \\ \hline
+% System of proxies & (1) decouple content distribution from decision of trust via proxies  \\ 
+%  (Section \ref{sec:proxies})  & (2) hiding client identities \\ \hline
+% Key use and management & (1) key churn \\ 
+%   (Section \ref{sec:keys})                     & (2) secrecy in URL obfuscation \\ 
+% \hline
+%\end{tabular}
+%\caption{Design goals and the corresponding design choices made in \system{}.}
+%\label{tab:design_goals}
+%\end{table*}

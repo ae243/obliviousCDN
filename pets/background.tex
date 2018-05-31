@@ -43,7 +43,9 @@ keep track of cache hit
 rates, and how often content is accessed.  The CDN not only knows
 about the content identifier; it also also 
 has access to the plaintext content in order to perform optimizations on the content
-to increase performance (\eg minimizing CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%).  They can also inspect content to conduct HTTPS re-writes; we discuss how \system{} handles these types of optimizations  
+to increase performance (\eg, minimizing CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%).  
+They can also inspect content to upgrade a connection to HTTPS; we discuss how 
+\system{} handles these types of optimizations
 in Section \ref{sec:discussion}. In addition, requesting content via HTTPS does not hide any information 
 from the CDN as the CDN terminates TLS connections on behalf of the 
 content publisher.  This means that not only does the CDN know the content, the

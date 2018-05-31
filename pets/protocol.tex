@@ -40,13 +40,15 @@ partial deployment.
 
 Because the exit proxies use consistent hashing to divide keys among proxies while
 balancing load, the origin server
-determines which exit proxy is correct (based on the consistent hashing circle).  The origin server then encrypts the 
+determines which exit proxy is correct (based on the consistent hashing ring). 
+The origin server then encrypts the
 shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
 Figure \ref{fig:keys} shows the steps for retrieveing a shared key.  First, the
 exit proxy sends a DNS request to the origin server's authoritative DNS server, including its self-certifying
 identifier and its public key (these are both included in the {\tt Additional Info} section of the DNS message).  The origin server hashes the exit 
 proxy's public key and verifies it against its self-certifying identifier; this acts as a proof of the 
-exit proxy's position in the consistent hashing circle.  If the origin is able to certify the exit proxy, then it will send the DNS response with 
+exit proxy's position in the consistent hashing ring.  If the origin is able to
+certify the exit proxy, then it will send the DNS response with
 \{$k$\}$_{PK_{proxy}}$ in the SRV record. The exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.
 
 \begin{figure}[t]
@@ -76,7 +78,7 @@ origin server specifies an expiration date and time for the key when it is origi
 periodically checks if the key is valid or not based on the expiration timestamp.  If the key is still valid, the origin server 
 continues to use it.  Otherwise, the origin server generates a new key $k_{new}$, computes HMAC$_{k_{new}}$(URL), and 
 encrypts the content (and possibly certificate) with $k_{new}$.  The content publisher then follows the same steps as in Updating 
-Content to push the content to the CDN, and it publishes $k_{new}$ encrypted with the exit proxy's public key in it's DNS SRV record.
+Content to push the content to the CDN, and it publishes $k_{new}$ encrypted with the exit proxy's public key in its DNS SRV record.
 
 The corresponding exit proxy must also be able to fetch this new key $k_{new}$ and replace the expired key with it.  When the exit proxy 
 sees an incoming request for a URL that uses key $k$, it first checks $k$'s timestamp.  If valid, then it continues as normal.  Otherwise, 
@@ -100,7 +102,7 @@ Before sending the request, the client generates a session key $k_{session}$ and
 through all subsequent hops in the source route until it reaches the exit proxy.  The exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
 the source route locally; it then decrypts the URL with $k_{session}$. 
 
-The exit proxy then resolves the domain using it's local resolver, which will redirect it to the CDN's DNS resolver. In order for the exit proxy to 
+The exit proxy then resolves the domain using its local resolver, which will redirect it to the CDN's DNS resolver. In order for the exit proxy to 
 generate the obfuscated identifier to query the cache node for the correct content, 
 it must have the shared key $k$ that the origin server generated and obfuscated the content and identifier 
 with.  The steps an exit proxy takes to retrieve the shared key were outlined in Section \ref{sec:publish_protocol} and are shown in Figure \ref{fig:keys}.
@@ -141,7 +143,7 @@ and uses a multicast technique to send to the encrypted response to all clients 
 for this request/response.  Only the original (true) client has $k_{session}$, so only the original (true) client can decrypt the response.  All other clients will discard 
 the encrypted response because they cannot decrypt it.  
 
-\subsection{Clients Joining \& Leaving}
+\subsection{Clients Joining and Leaving}
 \label{sec:join}
 
 When a client joins \system{}, it will download \system{} client software.  This
