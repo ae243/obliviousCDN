@@ -6,38 +6,42 @@ attacker, and introduce the design goals and protections that \system{} provides
 \subsection{Threat Model}
 \label{sec:attacker}
 
-Our threat model is a powerful adversary who has a variety of capabilities,
-including both surveilling activities and joining the system in various capacities.
+Our threat model concerns a powerful adversary who has a variety of capabilities,
+including both surveilling network traffic, inferring user activities, and joining
+the system in various capacities.
 We assume that an adversary can gain
 access to the CDNs logs, which typically contains client IP addresses and URLs for
-each request. Additionally,
-the adversary could join \system{} as either a client or any number of clients,
-or 
-as an arbitrary number of proxies.  The adversary could 
-also act as an origin server (a content publisher).  We also assume that the adversary
+each request, both indirectly through traffic observation or directly with a data
+request. Additionally,
+the adversary could join \system{} as either a single client or multiple clients,
+or by running an arbitrary number of \system{} proxies.  The adversary could 
+also act as an origin server (a content publisher), or multiple indpendent content
+publishers. We also assume that the adversary
 can coordiante several of these actions to learn more information.  For example, the 
 adversary could join as a client and proxy, and request access to the CDN's
 logs to observe how its own requests are obfuscated.  Additionally, 
 the adversary can perform actions, such as generating requests as a client, or creating content 
-as a content publisher. The goal of this type of adversary is to learn about the content being stored 
-at the CDN and/or learn about which clients are accessing which content.  
+as a content publisher. We assume that an adversary could perform any combination
+of the above attacks in an attempt to learn about either (1)~the content being stored
+at the CDN or (2)~which clients are accessing which content.  
 
-The strong adversary that we consider has seen some precedent in practice:
-for example, governments have demanded access to CDNs' 
-data~\cite{cloudflare_nsl}.  Although one possible adversary is a government requesting
-logs from the CDN, 
-the government could also be colluding with a CDN; the CDN operator might even be
-an adversary.
+The strong adversary that is a real adversary that has emerged in practice:
+for example, governments have demanded access to CDNs'
+data~\cite{cloudflare_nsl}.  Although one possible adversary is a government
+requesting logs from the CDN,  the government could also be colluding with a
+CDN; we also consdier that the CDN operator itself might even be an adversary.
 
-Our design does not defend against an attacker who attempts to actively disrupt
-or block access to the system, such as by actively
-modifying content, disrupting communications (\eg, through denial of service), or
-blocking access, content, or requests. Prior work on securing
-CDNs has introduced methods to handle an actively malicious adversary by preserving the integrity of content 
-stored on CDN cache nodes~\cite{levy2015stickler}.  We do not address an adversary that tampers, modifies, or 
-deletes any data, content, or requests.  In addition, it is out of the scope of this work to prevent an attacker 
-that has global monitoring knowledge; for example, \system{} will not prevent an attacker who can see all incoming and 
-outgoing messages from all clients and proxies.
+Our design does not defend against an attacker who attempts to actively
+disrupt or block access to the system, such as by actively modifying content,
+disrupting communications (\eg, through denial of service), or blocking
+access, content, or requests. Previous work on securing CDNs has introduced
+methods to handle an actively malicious adversary by preserving the integrity
+of content  stored on CDN cache nodes~\cite{levy2015stickler} and could be
+deployed in conjunction with \system{}. We do not address an adversary that
+tampers, modifies, or deletes any data, content, or requests.  In addition, we
+do not consider an omniscient adversarity that can globally, passively monitor
+all Internet traffic; for example, \system{} cannot defend against an attacker
+who can see all incoming and outgoing messages from all clients and proxies.
 
 \subsection{Security and Privacy Goals}
 \label{sec:goals}
