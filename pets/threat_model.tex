@@ -46,14 +46,15 @@ who can see all incoming and outgoing messages from all clients and proxies.
 \subsection{Security and Privacy Goals}
 \label{sec:goals}
 
-To defend against the adversary described in Section~\ref{sec:attacker}, we highlight
-the design goals for \system{}. 
-Each stakeholder---in this case the content publisher, the CDN, and the client---has
-different risks, and therefore should have different protections.  All three stakeholders 
-can be protected by preventing CDNs from learning information, decoupling content distribution from trust, and 
-maintaining the performance benefits of a CDN while reducing the probability of attacks.  
-One strength of \system{} is that it protects the origin server, the CDN itself,
-and the client, whereas existing systems, such as Tor, only protect the client.
+To defend against the adversary described in Section~\ref{sec:attacker}, we
+highlight the design goals for \system{}.  Each stakeholder---in this case,
+the content publisher, the CDN, and the client---has different risks, and
+therefore should have different protections.  All three stakeholders  can be
+protected by preventing CDNs from learning information, decoupling content
+distribution from trust, and  maintaining the performance benefits of a CDN
+while reducing the probability of attacks.   One strength of \system{} is that
+it protects the origin server, the CDN itself, and the client, whereas
+existing systems, such as Tor, only protect the client.
 
 
 \textbf{Prevent the CDN from knowing the content it is caching.} First and foremost, the CDN 
