@@ -6,7 +6,7 @@ has access to. We also discuss some of the ongoing legal
 questions that CDNs currently face.
 
 \subsection{Content Distribution Networks}
-CDNs provide content caching as a service to content publishers.  A 
+CDNs cache content as a service to content publishers.  A 
 content publisher may wish to use a CDN provider for several reasons:
 
 \begin{itemize}
@@ -16,7 +16,19 @@ content publisher may wish to use a CDN provider for several reasons:
 \item CDNs' data centers have high bandwidth, which allows them to handle and mitigate DDoS attacks better than the content publisher's server.
 \end{itemize}
 
-CDN providers usually have a large number of edge servers on which content is cached; for example, Akamai has more than 216,000 servers in over 120 countries around the world~\cite{akamai_facts}.  Having more edge servers in more locations increases the probability that a cache is geographically close to a client, and could reduce the end-to-end latency, as well as the likelihood of some kinds of attacks, such as BGP (Border Gateway Protocol) hijacking.  This is evident when a client requests a web page; the closest edge server to the client that contains the content is identified and the content is served from that edge server.  Most often, this edge server is geographically closer to the client than the content publisher's server, thus increasing the speed in which the client receives the content. If the requested page's content is not in one of the CDN's caches, then the request is forwarded to the content publisher's server; the CDN caches the response and returns the content to the client. 
+CDN providers usually have a large number of edge servers that cache content;
+for example, Akamai has more than 216,000 servers in over 120 countries around
+the world~ \cite{akamai_facts}.  Having more edge servers in more locations
+increases the probability that a cache is geographically close to a client,
+which helps reduce the end-to-end latency, as well as the likelihood of
+certain kinds of attacks, such as BGP (Border Gateway Protocol) hijacking.
+When a client requests a web page, the closest edge server to the client that
+contains the content is identified, and the content is served from that edge
+server.  Most often, this edge server is geographically closer to the client
+than the content publisher's server, thus allowing the client to retrieve the
+content faster. If the requested page's content is not in one of the CDN's
+caches, then the request is forwarded to the content publisher's server; the
+CDN caches the response and returns the content to the client.
 
 \begin{figure}[t]
 \centering
@@ -28,10 +40,13 @@ CDNs today.}
 
 \subsection{What CDNs Can See}
 \label{sec:info}
-Because the CDN interacts with both content publishers and clients, as shown in Figure \ref{fig:basic_cdn}, it is in a unique position 
-to learn an enormous amount of information.  CDN providers know information about all clients who
-access data stored at the CDN, information about all content publishers that cache content at 
-CDN edge servers, and information about the content itself.
+
+Because the CDN interacts with both content publishers and clients, as shown
+in Figure~\ref{fig:basic_cdn}, it is in a unique position to learn an
+enormous amount of information.  CDN providers know information about all
+clients who access data stored at the CDN, information about all content
+publishers that cache content at  CDN edge servers, and information about the
+content itself.
 
 \textbf{Content.}  CDNs typically have access to all content that they distribute,
 as well as 
@@ -91,7 +106,13 @@ about the integrity of content because a CDN can impersonate the publisher from 
 %copyright realm, the European Commision is considering legislation that would remove safe harbor protection against copyright law for 
 %online service providers if they host infringing content, regardless of the provenance of that content. 
 
-Various parties are battling in the courts over cases that pertain to user data requests and intermediary liability.  Intermediary liability would impose criminal liability on an Internet platform (or a CDN) for the content it provides on behalf of its customers or users. In this section, we highlight some of these cases, which point to a key problem that CDNs face: by knowing all the content that they distribute, CDNs may be burdened with the legal responsibility for the actions of their customers and clients.
+Various parties are battling in the courts over cases that pertain to user
+data requests and intermediary liability.  Intermediary liability would impose
+criminal liability on an Internet platform (or a CDN) for the content it
+provides on behalf of its customers or users. In this section, we highlight
+some of these cases, which point to a key problem that CDNs face: by knowing
+all the content that they distribute, CDNs may be burdened with the legal
+responsibility for the actions of their customers and clients.
 
 \textbf{User Data Requests.}
 There are numerous open questions in the legal realm regarding which government can request data stored in different countries, which 
@@ -99,7 +120,8 @@ has led to much uncertainty.  A series of recent events have illustrated this un
 user data, cases such as {\it Microsoft vs. United States} (often known as the ``Microsoft Ireland Case'') concerns whether the United 
 States Government should have access to data about U.S. citizens stored abroad, given that Microsoft is a U.S. corporation.  
 
-Additionally, there have been user data requests asked of CDNs.  The Cloudflare CDN has been required
+Additionally, third parties have asked CDNs for user data.  The Cloudflare CDN has
+been required
 to share data with FBI~\cite{cloudflare_nsl}; similarly, leaked NSA documents showed
 that the government agency ``collected information `by exploiting inherent 
 weaknesses in Facebook's security model' through its use of the popular Akamai content
