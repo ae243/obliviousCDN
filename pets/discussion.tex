@@ -1,18 +1,19 @@
 \section{Discussion}
 \label{sec:discussion}
-In this section, we discuss the various technical, political, and legal limitations
-of \system{}, as well as possible avenues for future work. \\
-\vspace{0pt}
-\textbf{\system{} limitations.} CDNs become slightly limited in terms of the 
-possible performance optimizations when following \system{}'s design.  For example, 
+
+We discuss the limitations
+of \system{} and possible avenues for future work. 
+
+\textbf{Limitations.} \system{} inhibits some CDN performance optimizations.  For
+example,
 many CDNs perform HTTPS re-writes on cached content, but this can only be 
 done if the CDN has access to plaintext content.  Similarly, the CDN needs the 
 decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
 this increases performance in traditional CDNs, it does not provide the greatest 
 increase in performance; content caching around the world is the greatest benefit to 
-performance, which \system{} preserves.\\
-\vspace{0pt}
-\textbf{CDNs operated by content hosts.} The design of \system{}
+performance, which \system{} preserves.
+
+\textbf{CDNs operated by content hosts.} \system{}
 assumes that the entities operating the proxies and delivering content are
 distinct from the original content provider. In many cases, however---particularly
 for large content providers such as Netflix, Facebook, and Google---the
@@ -21,8 +22,8 @@ not be able to obfuscate the content from the CDN operator, since the content ho
 and the CDN are the same party.  Similarly, because the CDN operator is the same
 entity as the original server, it also knows the keys that are shared with the clients.
 As a result, the CDN could also discover the keys and identify both
-the content, as well as which clients are requesting which content.\\
-\vspace{0pt}
+the content, as well as which clients are requesting which content.
+
 %\paragraph{Exit proxies run by volunteers.} In the description of \system{} in Sections 
 %\ref{sec:design} and \ref{sec:protocol}, we assume we are running the exit proxies, but 
 %the design of the system also allows for clients to run exit proxies.  Exit proxies are not 

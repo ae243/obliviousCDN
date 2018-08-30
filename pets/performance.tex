@@ -26,7 +26,7 @@
 
 \section{Performance Evaluation}
 \label{sec:performance}
-To evaluate how much overhead is caused by \system{} we measure the performance 
+We evaluate the performance 
 of \system{}.  In addition to understanding the latency and overhead produced by the 
 system, we also discuss the scalability of the design and show how \system{} scales 
 well with an increasing number of clients.
@@ -40,10 +40,8 @@ line).
 Figure~\ref{fig:completion} shows the time to first byte (TTFB) and the time for
 both \system{} and 
 without \system{}.  We can see the the TTFB using \system{} increases linearly with
-
 file size, whereas without \system{} TTFB remains fairly constant.  Interestingly, 
 we can see that there are some fixed-time operations that \system{} performs, which
-
 is visible by looking at the smaller file sizes. Completion time increases linearly
 with file size, but for both \system{} and without \system{}; while both follow the
 same pattern, the time to complete requests is, as expected, longer using \system{} as it performs many cryptographic operations and proxies traffic between the client and the CDN.
