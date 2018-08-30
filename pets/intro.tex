@@ -11,7 +11,24 @@
 %for example, highlights the possibility that governments may move data across
 %borders to facilitate surveillance~\cite{arnbak2015loopholes}.  
 
-As Content Distribution Networks (CDNs) host an increasing amount of content, they are fast becoming targets of requests for information about their content and who is requesting it, as well as requests for takedown of material ranging from alleged copyright violations to offensive content. The shifting legal and political landscape suggests that CDNs may soon face liability for the content that they host. For example, the European Union has been considering laws that would remove safe harbor protection on copyright infringement for online service providers if they do not deploy tools that can automatically inspect and remove infringing content~\cite{eu-copyright}. In the United States, various laws under consideration threaten aspects of Section 230 of the Communications Decency Act~\cite{sec230}, which protects CDNs from federal criminal liability for the content that they host. Tussles surrounding speech, from copyright violations to hate speech, are currently being addressed in the courts, yet the legal outcomes remain ambiguous and uncertain, sometimes with courts issuing opposing rulings in different cases. Regardless of these outcomes, however, CDNs are increasingly in need of {\em technical} protections against the liability they might face as a result of content that they (perhaps unwittingly) serve.
+As Content Distribution Networks (CDNs) host more content,
+they are fast becoming targets of requests for information about their content
+and who is requesting it, as well as requests for takedown of material ranging
+from alleged copyright violations to offensive content. The shifting legal and
+political landscape suggests that CDNs may soon face liability for the content
+that they host. For example, the European Union has been considering laws that
+would remove safe harbor protection on copyright infringement for online
+service providers if they do not deploy tools that can automatically inspect
+and remove infringing content~\cite{eu-copyright}. In the United States,
+various laws under consideration threaten aspects of Section 230 of the
+Communications Decency Act~\cite{sec230}, which protects CDNs from federal
+criminal liability for the content that they host. Tussles surrounding speech,
+from copyright violations to hate speech, are currently being addressed in the
+courts, yet the legal outcomes remain ambiguous and uncertain, sometimes with
+courts issuing opposing rulings in different cases. Regardless of these
+outcomes, however, CDNs are increasingly in need of {\em technical}
+protections against the liability they might face as a result of content that
+they (perhaps unwittingly) serve.
 
 Towards this end, we design and implement a system that allows clients to
 retrieve web objects from one or more CDNs, while preventing the CDNs from
@@ -78,8 +95,20 @@ as a client, proxy, or publisher.
 %design also can also use consistent hashing to assign a set of proxes to a
 %single object. 
 
-The rest of this paper is structured as follows. We provide a brief background of CDNs, privacy implications, and legal questions in Section~\ref{sec:background}. We discuss the threat model in Section~\ref{sec:threat}. In Section~\ref{sec:design}, we detail the design of \system{}. We describe our process for obfuscating requests and content in Section~\ref{sec:protocol}.  Our prototype implementation is described in Section~\ref{sec:implementation}. Section~\ref{sec:sec} analyzes how \system{}
-defends against threats from our adversary. Section~\ref{sec:performance} studies the performance implications of the tradeoffs between performance and privacy, as well as how \system{} performs relative to a conventional CDN. Section~\ref{sec:discussion} describes various limitations and possible avenues for future work, Section~\ref{sec:related} discusses related work, and Section~\ref{sec:conclusion} concludes.
+The rest of this paper is structured as follows. We provide a brief background
+of CDNs, privacy implications, and legal questions in
+Section~\ref{sec:background}. We discuss the threat model in
+Section~\ref{sec:threat}. In Section~\ref{sec:design}, we detail the design of
+\system{}. We describe our process for obfuscating requests and content in
+Section~\ref{sec:protocol}.  
+Section~\ref{sec:implementation} describes our prototype implementation. Section~
+\ref{sec:sec} analyzes how \system{}
+defends against threats from our adversary. Section~\ref{sec:performance}
+studies the performance implications of the tradeoffs between performance and
+privacy, as well as how \system{} performs relative to a conventional CDN.
+Section~\ref{sec:discussion} describes various limitations and possible
+avenues for future work, Section~\ref{sec:related} discusses related work, and
+Section~\ref{sec:conclusion} concludes.
 
 
 %\system{} allows clients to request individual objects with identifiers that
