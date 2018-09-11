@@ -1,0 +1,107 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage[utf8]{inputenc}%(only for the pdftex engine)
+%\RequirePackage[no-math]{fontspec}%(only for the luatex or the xetex engine)
+
+\usepackage{xspace}
+\usepackage{balance}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows}
+
+\setcopyright{none}
+
+
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+
+\clubpenalty=10000  % Don't allow orphans
+\widowpenalty=10000 % Don't allow widows
+
+\newcommand{\ie}{{\em i.e.\xspace}}
+\newcommand{\eg}{{\em e.g.\xspace}}
+\newcommand{\ea}{{\em et al.\xspace}}
+\newcommand{\etc}{{\em etc.}\xspace}
+\def\UrlBreaks{\do\/\do-}
+\newcommand{\system}{{OCDN}}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\graphicspath{ {./figures/} }
+\newcommand{\annie}[1]{\emph{\color{blue}#1}}
+\newcommand{\paul}[1]{\emph{\color{red}#1}}
+
+ 
+%\DOI{foobar}
+
+  
+\begin{document}
+ 
+
+  %\author[1]{Anne Edmundson}
+
+  %\author[2]{Paul Schmitt}
+
+  %\author[3]{Nick Feamster}
+
+  %\author[4]{Jennifer Rexford}
+
+  %\affil[1]{Princeton University, E-mail: annee@cs.princeton.edu}
+
+  %\affil[2]{Princeton University, E-mail: pschmitt@cs.princeton.edu}
+
+  %\affil[3]{Princeton University, E-mail: feamster@cs.princeton.edu}
+
+  %\affil[4]{Princeton University, E-mail: jrex@cs.princeton.edu}
+
+  \title{ OCDN: Oblivious Content Distribution Networks}
+
+
+  %\subtitle{...}
+
+  \input{abstract}
+
+  \keywords{privacy, content distribution networks}
+
+ 
+
+\maketitle
+\input{intro}
+\input{background}
+\input{threat_model}
+\input{design}
+\input{protocol}
+\input{implementation}
+\input{security}
+\input{performance}
+\input{discussion}
+\input{related_work}
+\input{conclusion}
+
+
+%% ###################################################################
+\clearpage
+{\footnotesize \bibliographystyle{acm}
+\bibliography{paper}}
+
+%\begin{thebibliography}{99}
+%\bibitem{journal-1} A.~P.~Raposo, H.~J.~Weber, D.~E.~Alvarez--Castillo, M.~Kirchbach, Cent. Eur. J. Phys. 5, 253 (2007)
+%\bibitem{journal-2} J.~Barth et al. (SAPHIR Collaboration), Phys. Lett. B 572, 127 (2003)
+%\bibitem{journal-3} S.~Chekanov et al., Eur. Phys. J. C 51, 289 (2007)
+%\bibitem{journal-4} K.~Malarz, Postepy Fizyki 57, 235 (2006) (in Polish)
+%\bibitem{journal-5} G.~Meng, Cent. Eur. J. Phys., DOI:10.2478/s11534-007-0038-1
+%\bibitem{journal-6} R.~Hegselmann, U.~Krause, Journal of Artificial Societies and Social Simulation (2006), http://jasss.soc.surrey.ac.uk/9/3/10.html
+%\bibitem{journal-7} A.~Dybala, Cent. Eur. J. Chem. (in press)
+%\bibitem{journal-8} A.~Dybala, Przeglad chemiczny (in Polish, in press)
+%\bibitem{book} M.~Lister, Fundamentals of Operating Systems, 3rd edition (Springer-Verlag, New York, 1984)
+%\bibitem{chapter} C.~K.~Clenshaw, K.~Lord, In: B.~K.~P.~Scaife (Ed.), Studies in Numerical Analysis (Academic Press, London and New York, 1974) 95
+%\bibitem{arxiv-1} M.~Majewski, K.~Malarz, arXiv:cond-mat/0609635v2 [cond-mat.stat-mech]
+%\bibitem{arxiv-2} J.~A.~C.~E.~Solano, arXiv:0707.1343v1 [astro-ph]
+%\bibitem{proceedings} A.~Kaczanowski, K.~Malarz, K.~Kulakowski, In: T.~E.~Simos (Ed.), International Conference of Computational Methods in Science and Engineering, Sep. 12-16, 2003, Kastoria, Greece (World Scientific, Singapore 2003) 258
+%\bibitem{thesis} A.~J.~Agutter, Ph.D. thesis, Edinburgh University (Edinburgh, UK, 1995)
+%\bibitem{newspaper-1} A.~Sherwin, The Times, Jul. 13, 2007, 1
+%\bibitem{newspaper-2} M.~Dzierzanowski, Wprost, Jul. 8, 2007, 18 (in Polish)
+%\bibitem{patent} Philip Morris Inc., European patent application 0021165 A1, Jan. 7, 1981
+%\bibitem{standard-1} ISO 2108:1992, Information and documentation --- International standard book numbering (ISBN)
+%\bibitem{standard-2} ISO/TR 9544:1988, Information processing --- Computer-assisted publishing --- Vocabulary
+%\end{thebibliography}
+
+\end{document}

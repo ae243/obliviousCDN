@@ -1,0 +1,212 @@
+\section{Introduction}
+\label{sec:intro}
+
+%Governments are increasingly using their authority to access data from
+%their citizens and foreigners, even when this data may be stored overseas.  For
+%example, in a
+%recent case, the United States government tried to compel Microsoft to
+%surrender data about U.S. citizens, even when the data itself was stored
+%abroad~\cite{microsoft_ireland}. Users may also face the converse problem, where access to their data
+%may depend on the laws of the country where their data is stored. Recent work,
+%for example, highlights the possibility that governments may move data across
+%borders to facilitate surveillance~\cite{arnbak2015loopholes}.  
+
+As Content Distribution Networks (CDNs) host more content,
+they are fast becoming targets of requests for information about their content
+and who is requesting it, as well as requests for takedown of material ranging
+from alleged copyright violations to offensive content. The shifting legal and
+political landscape suggests that CDNs may soon face liability for the content
+that they host. For example, the European Union has been considering laws that
+would remove safe harbor protection on copyright infringement for online
+service providers if they do not deploy tools that can automatically inspect
+and remove infringing content~\cite{eu-copyright}\paul{ do these examples still hold? Updates?}. In the United States,
+various laws under consideration threaten aspects of Section 230 of the
+Communications Decency Act~\cite{sec230}, which protects CDNs from federal
+criminal liability for the content that they host. Tussles surrounding speech,
+from copyright violations to hate speech, are currently being addressed in the
+courts, yet the legal outcomes remain ambiguous and uncertain, sometimes with
+courts issuing opposing rulings in different cases. Regardless of these
+outcomes, however, CDNs are increasingly in need of {\em technical}
+protections against the liability they might face as a result of content that
+they (perhaps unwittingly) serve.
+
+Towards this end, we design and implement a system that allows clients to
+retrieve web objects from one or more CDNs, while preventing the CDNs from
+learning (1)~the content that is stored on the cache nodes; (2)~the content
+that clients request; and (3)~the identity of clients that request it. We call this system an {\em oblivious CDN}~(\system{}).%, because the CDN is oblivious to both the content it is storing and the content that clients request.
+
+\system{} allows clients to request objects with identifiers that
+are encrypted with a key that is shared by an OCDN exit proxy and the origin server
+that publishes content to cache nodes, but is not known to any of the CDN
+cache nodes. To do so, the origin server publishes encrypted content, 
+which the CDN cache nodes subsequently serve through one or more proxies that are responsible for routing requests for objects corresponding to that URL.  A client forwards a request for content through multiple OCDN proxies such that the CDN is unable to know the client identity or the requested content. Using \system{} requires only minimal modification to existing clients; clients can also configure aspects of the system to trade off performance for privacy.
+
+Ensuring that the CDN operator never learns information about either (1)~what
+content is being stored on its cache nodes or (2)~which objects individual
+clients are requesting is challenging, due to the many possible inference
+attacks that a CDN might be able to mount. For example, previous work has
+shown that even when web content is encrypted, the retrieval of a collection
+of objects of various sizes can yield information about the web page that was
+being retrieved~\cite{panchenko2016website, cai2012touching}. Similarly, URLs
+can often be inferred from relative popularity in a distribution of web
+requests, even when the requests themselves are encrypted. Additionally, the
+\system{} design assumes a strong attack model (Section~\ref{sec:threat}),
+whereby an adversary can request logs from the CDN, interact with \system{} as
+a client, a proxy\paul{drop this?}, or a publisher, and mount coordinated attacks that depend on
+multiple such capabilities. Our threat model does not include active attempts
+to disrupt the system (\eg, blocking access to parts of the system, mounting
+denial of service attacks), but it includes any type of attack
+that involves observing traffic and even directly interacting with the system
+as a client, proxy, or publisher.
+
+%The design of \system{} (Section~\ref{sec:design}) under such a strong attack
+%model entails many unique aspects and features. Because the system allows any
+%client to join as a proxy, even setting up the infrastructure is challenging.
+%For example, an attacker could try to join the system as a proxy with the
+%intent of proxying for specific web content, in an attempt to either disrupt
+%or surveil those requests. To counter this threat, \system{} uses consistent
+%hashing to map object identifiers (\ie, URLs) to the proxy responsible for
+%ultimately routing traffic to the CDN that hosts the object; to ensure that
+%publishers only communicate keys to the proxies responsible for their content,
+%each proxy must prove its identity to the respective publisher using a proof
+%that relies on a self-certifying identifier. 
+%
+%Requesting and retrieving content, a process that we describe in detail in
+%Section~\ref{sec:protocol}, is challenging since neither the CDN nor the proxy
+%must know which client originated a request for a specific piece of content.
+%The key exchange between an origin server and its respective proxy protects
+%the confidentiality of both the content and the identifier (\ie, the URL) from
+%the CDN. To obfuscate the source of the original request, clients construct a
+%source route to an {\em exit proxy}, but the route can be prepended with
+%proxies that precede the client who originated the request. To defend against
+%various inference attacks, as well as to balance load, the \system{} design
+%allows publishers to use multiple CDNs to distribute the same content,
+%ensuring that no single CDN has access to information such as the relative
+%popularity distribution of all objects. To ensure that no single proxy learns
+%the request pattern for a single object, as well as to balance load, the
+%design also can also use consistent hashing to assign a set of proxes to a
+%single object. 
+
+The rest of this paper is structured as follows. We provide a brief background
+of CDNs, privacy implications, and legal questions in
+Section~\ref{sec:background}. We discuss the threat model in
+Section~\ref{sec:threat}. In Section~\ref{sec:design}, we detail the design of
+\system{}. We describe our process for obfuscating requests and content in
+Section~\ref{sec:protocol}.  
+Section~\ref{sec:implementation} describes our prototype implementation. Section~
+\ref{sec:sec} analyzes how \system{}
+defends against threats from our adversary. Section~\ref{sec:performance}
+studies the performance implications of the tradeoffs between performance and
+privacy, as well as how \system{} performs relative to a conventional CDN.
+Section~\ref{sec:discussion} describes various limitations and possible
+avenues for future work, Section~\ref{sec:related} discusses related work, and
+Section~\ref{sec:conclusion} concludes.
+
+
+%\system{} allows clients to request individual objects with identifiers that
+%are encrypted with a key that is shared by an open proxy and the origin server
+%that is pushing content to cache nodes, but is not known to any of the CDN
+%cache nodes.  To do so, the origin server publishes content obfuscated with a
+%shared key, which is subsequently shared with a proxy that is responsible for
+%routing requests for objects corresponding to that URL.  A client forwards a
+%request for content through a set of peers (\ie, other OCDN clients) in a way
+%that prevents both other clients  and the CDN from learning the client
+%identity or requested content.  After traversing one or more client
+%proxies, an exit proxy transforms the URL that it receives from a client to an
+%obfuscated identifier using the key that is shared with the origin server
+%corresponding to the identifier.  Upon receiving that request from the exit
+%proxy, the CDN returns the object corresponding to the object identifier; that
+%object is encrypted with a key that is shared between the origin and the
+%proxy. This approach allows a user to retrieve content from a CDN without
+%any node in the CDN ever seeing the URL or the corresponding content, or even knowing
+%the identity of the client that made the original request. Using \system{} requires
+%only minimal modification to existing clients; clients can also configure aspects
+%of the system to trade off performance for privacy.
+%
+%Ensuring that the CDN operator never learns information about either (1)~what
+%content is being stored on its cache nodes or (2)~which objects individual
+%clients are requesting is challenging, due to the many possible inference
+%attacks that a CDN might be able to mount. For example, previous work has
+%shown that even when web content is encrypted, the retrieval of a collection
+%of objects of various sizes can yield information about the web page that was
+%being retrieved~\cite{panchenko2016website, cai2012touching}. Similarly, URLs
+%can often be inferred from relative popularity in a distribution of web
+%requests, even when the requests themselves are encrypted. Additionally, the
+%\system{} design assumes a strong attack model (Section~\ref{sec:threat}),
+%whereby an adversary can request logs from the CDN, interact with \system{} as
+%a client, a proxy, or a publisher, and mount coordinated attacks that depend on
+%multiple such capabilities. Our threat model does not include active attempts
+%to disrupt the system (\eg, blocking access to parts of the system, mounting
+%denial of service attacks), but it includes essentially any type of attack
+%that involves observing traffic and even directly interacting with the system
+%as a client or a publisher.
+%
+%The design of \system{} (Section~\ref{sec:design}) under such a strong attack
+%model entails many unique aspects and features. Because the system allows any
+%client to join as a proxy, even setting up the infrastructure is challenging.
+%For example, an attacker could try to join the system as a proxy with the
+%intent of proxying for specific web content, in an attempt to either disrupt
+%or surveil those requests. To counter this threat, \system{} uses consistent
+%hashing to map object identifiers (\ie, URLs) to the proxy responsible for
+%ultimately routing traffic to the CDN that hosts the object; to ensure that
+%publishers only communicate keys to the proxies responsible for their content,
+%each proxy must prove its identity to the respective publisher using a proof
+%that relies on a self-certifying identifier. 
+%
+%Requesting and retrieving content, a process that we describe in detail in
+%Section~\ref{sec:protocol}, is challenging since neither the CDN nor the proxy
+%must know which client originated a request for a specific piece of content.
+%The key exchange between an origin server and its respective proxy protects
+%the confidentiality of both the content and the identifier (\ie, the URL) from
+%the CDN. To obfuscate the source of the original request, clients construct a
+%source route to an {\em exit proxy}, but the route can be prepended with
+%proxies that precede the client who originated the request. To defend against
+%various inference attacks, as well as to balance load, the \system{} design
+%allows publishers to use multiple CDNs to distribute the same content,
+%ensuring that no single CDN has access to information such as the relative
+%popularity distribution of all objects. To ensure that no single proxy learns
+%the request pattern for a single object, as well as to balance load, the
+%design also can also use consistent hashing to assign a set of proxes to a
+%single object. 
+%
+%The design of \system{} against a strong adversary is a major
+%contribution of this work; additionally, we have also implemented \system{}
+%(Section~\ref{sec:implementation}) and publicly released the source code.
+%Section~\ref{sec:performance} studies the performance implications of the
+%tradeoffs between performance and privacy, as well as how \system{} performs
+%relative to a conventional CDN; Section~\ref{sec:sec} analyzes how \system{}
+%defends against threats from our adversary.
+%\ref{sec:discussion} describes various
+%limitations and possible avenues for future work, Section~\ref{sec:related}
+%discusses related work, and Section~\ref{sec:conclusion} concludes.
+
+
+\if 0
+While government access of data at a CDN could compromise a client's privacy,
+it becomes a more complex issue when the data being cached is geographically
+distributed. This is clearly illustrated in the following example.  There is a
+content publisher in  country X, and she's a customer of a CDN, so her content
+is replicated at cache nodes in many  different countries.  The CDN is
+headquartered  in country Y and operates cache nodes around the world.  In
+this scenario it is not clear which government can ask the CDN for
+information; for  example, a government adversary may wish to learn the
+identity of the owner of the content, or which clients are accessing  this
+content.  Country X could demand the information of the CDN by arguing that
+the content is originating  from their country; Country Y could argue for the
+access to the data by stating that the CDN falls under their  law.  Lastly,
+another country may request the information because the content is replicated
+and stored within  their country.  The fact that CDNs distribute content and
+store it around the world opens the possibility of  many governments demanding
+access to publisher and client information.
+
+The stakeholders in this example are the content publisher, the CDN, and the
+Internet users --- and each of these entities differ in what  they have at
+stake.  Alice may be punished for publishing controversial content (such as
+content that  goes against the current regime); the CDN  may be held liable
+for controversial information (or copyright infringing content); the Internet
+users'  privacy could be leaked.  Each stakeholder should be interested (and
+possibly worried) about the  consequences of overreaching government access.
+\system{} is a novel design that allows technologists to play  a role in the
+way data is governed, and to protect users, operators, and publishers from an
+overreaching government (or  conflicting jurisdictional policies).
+\fi 
