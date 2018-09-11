@@ -43,10 +43,7 @@ CDNs today.}
 
 Because the CDN interacts with both content publishers and clients, as shown
 in Figure~\ref{fig:basic_cdn}, it is in a unique position to learn an
-enormous amount of information.  CDN providers know information about all
-clients who access data stored at the CDN, information about all content
-publishers that cache content at  CDN edge servers, and information about the
-content itself.
+enormous amount of information.  CDN providers know information about the content they serve, information about the clients who access data stored at the CDN, and information about all content publishers that cache content at CDN edge servers.
 
 \textbf{Content.}  CDNs typically have access to all content that they distribute,
 as well as 
@@ -66,18 +63,6 @@ from the CDN as the CDN terminates TLS connections on behalf of the
 content publisher.  This means that not only does the CDN know the content, the
 content identifier, but also it knows 
 public and private keys, as well as certificates associated with the content it caches.  
-
-%Recently, the fact that CDNs 
-%know the content they are distributing has made its way into the legal system.  A court order was given to Cloudflare 
-%that required the CDN to search out and block publishers who use a variation of a trademark held by a group of 
-%music labels~\cite{eff_cloudflare_trademark}.  Originally, the music labels went after the trademark infringing 
-%website, but later the order was extended to Cloudflare; the order ``required CloudFlare to block all of its customers 
-%from using domain names that contained `grooveshark,' regardless of whether those domains contained First 
-%Amendment-protected speech, or had any connection with the `New Grooveshark' defendants who were the 
-%targets of the actual lawsuit.'' CDNs may also run the risk of running afoul of
-%copyright law: for example, recent developments in the European Union propose to
-%remove safe harbor protections for some CDNs if they do not employ automated detection
-%techniques for removing copyrighted content~\cite{eu-copyright}.
 
 \textbf{Client information.} Clients retrieve content directly from the
 CDN's edge servers. These requests reveal
@@ -101,6 +86,8 @@ linkability with the publisher, gives the CDN even more power.  Additionally, as
 holds the publisher's keys (including the private key), and the publisher's certificates.  This has led to doubts 
 about the integrity of content because a CDN can impersonate the publisher from the client's point of view~\cite{levy2015stickler}.
 
+
+
 \subsection{Open Legal Questions}
 %  In the 
 %copyright realm, the European Commision is considering legislation that would remove safe harbor protection against copyright law for 
@@ -112,7 +99,7 @@ criminal liability on an Internet platform (or a CDN) for the content it
 provides on behalf of its customers or users. In this section, we highlight
 some of these cases, which point to a key problem that CDNs face: by knowing
 all the content that they distribute, CDNs may be burdened with the legal
-responsibility for the actions of their customers and clients.
+responsibility for the actions of their customers and clients.\paul{does this section need updating?}
 
 \textbf{User Data Requests.}
 There are numerous open questions in the legal realm regarding which government can request data stored in different countries, which 
@@ -139,6 +126,6 @@ liable for the content they distribute, there have been cases where CDNs are for
 to remove content.  This happened in 2015 involving the RIAA, Cloudflare, and Grooveshark \cite{techdirt_copyright}. In 2017, a district court ruled that Cloudflare is not protected from anti-piracy injunctions by the Digital Millennium Copyright Act (DMCA)~\cite{stack_copyright}.
 
 The role of a CDN as an intermediary has also come into question in new and currently
-pending legislation, including a 2017 German hate speech law~\cite{nytimes_hatespeech} and a bill proposed by the U.S. Senate called Stop Enabling Sex Traffickers Act (SESTA)~\cite{medium_sesta}. Both laws raise the spectre of potentially holding CDNs liable for the content that they distribute, despite the CDN not being a party in the content publishing.
+pending legislation, including a 2017 German hate speech law~\cite{nytimes_hatespeech} and a bill proposed by the U.S. Senate called Stop Enabling Sex Traffickers Act (SESTA)~\cite{medium_sesta}\paul{FOSTA-SESTA is now law???}. Both laws raise the spectre of potentially holding CDNs liable for the content that they distribute, despite the CDN not being a party in the content publishing.
 
 %In October 2017, Germany passed a new law that imposes large fines, upwards of five million euros, on social media companies that do not take down illegal, racist, or slanderous comments and posts within 24 hours.  The law targets companies such as Facebook, Google, and Twitter, but could also apply to smaller companies, which could be serviced by CDNs.  In the latter case, it is an open question whether this new law also applies to CDNs.  In the United States, the SESTA bill would make Internet platforms liable for their user's illegal comments and posts.  SESTA would hold CDNs liable for the content that they distribute (despite the CDN not being a party in the content publishing); these types of laws can naturally lead to overblocking, where an intermediary errs on the side of caution and censors more content than it needs to. Such a law may also set a precedent for the censoring other types of content that are unpopular but legal. 
