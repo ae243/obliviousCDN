@@ -153,43 +153,43 @@ and the responses they receive. We
 introduce session keys, how requests are routed from clients to exit proxies, and how responses 
 are routed from exit proxies back to the original client.
 
-\textbf{Request Routing with Potentially Spoofed Source Routes.}
-As previously described, exit proxies query the CDN on behalf of clients, but the
-exit proxy
-should not be able to learn which client sent which request.  This obfuscation is
-accomplished by routing requests through
-a series of other clients.  Each client runs a proxy and is
-also a peer in this system; this 
-peer-to-peer system of clients borrows the 
-protocols used for clients joining, leaving, and learning about other clients from
-the vast literature on peer-to-peer systems~\cite{monnerat2006d1ht,risson2006stable,zhu2005efficient,gupta2003kelips,lesniewski2008sybil,leong2004achieving}. A client routes a request through
-her peers by using source routing; when the client generates a request, it also
-generates a source route, which includes
-the addresses of a set of her peers.  The last hop in the source route is the exit proxy that is responsible for the 
-shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking up a locally-held URL-proxy map (which is retrieved from a central system that keeps the mapping of URLs to exit proxies).  
-It appends this source route to its request and forwards it to the next peer
-in the route.  When a peer receives
-a request, she simply forwards it on to the next peer; this continues until the last hop in the source route, which 
-is an exit proxy. 
+%\textbf{Request Routing with Potentially Spoofed Source Routes.}
+%As previously described, exit proxies query the CDN on behalf of clients, but the
+%exit proxy
+%should not be able to learn which client sent which request.  This obfuscation is
+%accomplished by routing requests through
+%a series of other clients.  Each client runs a proxy and is
+%also a peer in this system; this 
+%peer-to-peer system of clients borrows the 
+%protocols used for clients joining, leaving, and learning about other clients from
+%the vast literature on peer-to-peer %systems~\cite{monnerat2006d1ht,risson2006stable,zhu2005efficient,gupta2003kelips,lesniewski2008sybil,leong2004achieving}. A client routes a request %through
+%her peers by using source routing; when the client generates a request, it also
+%generates a source route, which includes
+%the addresses of a set of her peers.  The last hop in the source route is the exit proxy that is responsible for the 
+%shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking up a locally-held URL-proxy map (which is %retrieved from a central system that keeps the mapping of URLs to exit proxies).  
+%It appends this source route to its request and forwards it to the next peer
+%in the route.  When a peer receives
+%a request, she simply forwards it on to the next peer; this continues until the last hop in the source route, which 
+%is an exit proxy. 
 
-To obscure the client that initiated the request, \system{}
-allows each client to spoof source routes; specifically, a client can prepend
-other peers in the route before it initiates a request.  For example, a client
-with identity {\it C} could generate a route to exit proxy {\it E} that looks
-like $C \rightarrow G \rightarrow F \rightarrow E$ and can further obfuscate
-the source of the route by prepending additional clients to the beginning of
-the route as follows: $D \rightarrow A \rightarrow C \rightarrow G \rightarrow
-F \rightarrow E$. Neither {\it G}, {\it F}, nor {\it E} know who the original requestor was; from {\it E}'s point of 
-view, the original requestor could have been {\it D}, {\it A}, {\it C}, {\it G},
-or {\it F}.  Recall from Section \ref{sec:attacker} that our threat model does not 
-include a global passive adversary, and therefore do not prevent an adversary with those capabilities 
-from learning which client issued the request; \system{} does prevent an adversary that is running a 
-client and/or exit proxy from identifying which client issued the request. Using a sequence of 
-peers, or even just knowing that a client {\it can} use a series of peers, hides
-the identity of the client 
-from other clients, exit proxies, and the CDN. 
+%To obscure the client that initiated the request, \system{}
+%allows each client to spoof source routes; specifically, a client can prepend
+%other peers in the route before it initiates a request.  For example, a client
+%with identity {\it C} could generate a route to exit proxy {\it E} that looks
+%like $C \rightarrow G \rightarrow F \rightarrow E$ and can further obfuscate
+%the source of the route by prepending additional clients to the beginning of
+%the route as follows: $D \rightarrow A \rightarrow C \rightarrow G \rightarrow
+%F \rightarrow E$. Neither {\it G}, {\it F}, nor {\it E} know who the original requestor was; from {\it E}'s point of 
+%view, the original requestor could have been {\it D}, {\it A}, {\it C}, {\it G},
+%or {\it F}.  Recall from Section \ref{sec:attacker} that our threat model does not 
+%include a global passive adversary, and therefore do not prevent an adversary with those capabilities 
+%from learning which client issued the request; \system{} does prevent an adversary that is running a 
+%client and/or exit proxy from identifying which client issued the request. Using a sequence of 
+%peers, or even just knowing that a client {\it can} use a series of peers, hides
+%the identity of the client 
+%from other clients, exit proxies, and the CDN. 
 
-Spoofed source routes offer a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of clients between it and the exit proxy. Lastly, the client could {\it only} prepend other clients' identifiers but simply forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but still offers some additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it cannot be the only option because the exit proxy would always know that the true client is the previous hop in the source route. % These modes of operation provide clients with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
+%Spoofed source routes offer a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests %directly to the exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward %a request through a set of clients between it and the exit proxy. Lastly, the client could {\it only} prepend other clients' identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % These modes of operation provide clients %with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
 
 
 \textbf{Session Keys for Request and Response Confidentiality.}
@@ -217,12 +217,12 @@ encrypts the content with the session key $skey$ before sending it to the client
 When it receives the encrypted response, 
 the client can then decrypt it using $skey$.
 
-\textbf{Multicast Responses.}
-Using session keys allows for a performance optimization in sending responses back to clients.  Instead of sending 
-the encrypted response from the exit proxy back to the client via the set of peers used in the source route, the exit 
-proxy can send it in a multicast manner to all clients that were on the source route.  The only client that knows $skey$ 
-is the true client that originated the request, therefore none of the other clients can interpret the response, and it reduces the 
-latency for sending the response to the client.  
+%\textbf{Multicast Responses.}
+%Using session keys allows for a performance optimization in sending responses back to clients.  Instead of sending 
+%the encrypted response from the exit proxy back to the client via the set of peers used in the source route, the exit 
+%proxy can send it in a multicast manner to all clients that were on the source route.  The only client that knows $skey$ 
+%is the true client that originated the request, therefore none of the other clients can interpret the response, and it reduces the 
+%latency for sending the response to the client.  
 
 %\subsection{Incentives for Running \system{}}
 %As described in Sections \ref{sec:hiding_content} and \ref{sec:hiding_clients}, \system{} relies 

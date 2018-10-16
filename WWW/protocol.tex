@@ -143,18 +143,18 @@ and uses a multicast technique to send to the encrypted response to all clients 
 for this request/response.  Only the original (true) client has $k_{session}$, so only the original (true) client can decrypt the response.  All other clients will discard 
 the encrypted response because they cannot decrypt it.  
 
-\subsection{Clients Joining and Leaving}
-\label{sec:join}
+%\subsection{Clients Joining and Leaving}
+%\label{sec:join}
 
-When a client joins \system{}, it will download \system{} client software.  This
-includes information about exit proxy mappings to URLs for which they hold a key, 
-software for modifying requests with session keys and source routes, and software 
-for running a proxy.  Clients will learn about other clients in the system via 
-a gossip protocol.  We do not detail this as gossip protocols have been studied 
-extensively in the past~\cite{kermarrec2007gossiping,vogels2003power,eugster2004epidemic}.  
-Similarly, when a client leaves the system, this information is propogated to its 
-peers using a gossip protocol.  \system{} scales with increasing numbers of clients and 
-exit proxies, which is described in more detail in Section \ref{sec:scalability}.
+%When a client joins \system{}, it will download \system{} client software.  This
+%includes information about exit proxy mappings to URLs for which they hold a key, 
+%software for modifying requests with session keys and source routes, and software 
+%for running a proxy.  Clients will learn about other clients in the system via 
+%a gossip protocol.  We do not detail this as gossip protocols have been studied 
+%extensively in the past~\cite{kermarrec2007gossiping,vogels2003power,eugster2004epidemic}.  
+%Similarly, when a client leaves the system, this information is propogated to its 
+%peers using a gossip protocol.  \system{} scales with increasing numbers of clients and 
+%exit proxies, which is described in more detail in Section \ref{sec:scalability}.
 
 \subsection{Partial Deployment}
 \label{sec:partial}
