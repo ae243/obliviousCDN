@@ -73,11 +73,11 @@ proxy.
 nodes do not know either the content that they are hosting or the URLs
 corresponding to the content, an attacker could masquerade as an origin server
 and could potentially push bogus content for a URL to a cache node. There are
-a number of defenses against this possible attack. This simplest solution is
+a number of defenses against this possible attack. The simplest solution is
 for CDN cache nodes to authenticate origin servers and only accept updates
 from trusted origins; this approach is plausible, since many origin servers already
 have a corresponding public key certificate through the web PKI hierarchy.  An additional
-defense is to make it difficult for to discover which obfuscated URLs correspond
+defense is to make it difficult for an attacker to discover which obfuscated URLs correspond
 to which content that an attacker wishes to spoof; this is achievable by design.
 A third defense would be to only accept updates for content from the same origin
 server that populated the cache with the original content.
@@ -85,22 +85,22 @@ server that populated the cache with the original content.
 \textbf{Timing Attacks.} An attacker who is passively observing traffic could potentially 
 correlate requests and responses based on timing information.  To address this type of attack, 
 \system{} could employ techniques used in previous research, such as implementing timing 
-delays, at different proxies (either client or exit proxies).
+delays, at different exit proxies.
 
-%\textbf{Sybil Attacks.} An adversary who runs {\it many} exit proxies can learn information 
-%about many clients and many content requests as they are responsible for encrypting/decrypting 
-%{\it many} requests and responses.  Previous work has analyzed the security of DHTs in this 
-%context~\cite{geambasu2009experiences,wolchok2010defeating}.  \system{} can employ a few different defenses to limit the probability and size 
-%of a Sybil attack.  To limit the number of exit proxies running on a single machine, \system{} can 
-%limit the number of exit proxies with the same IP address (which is a part of the exit proxy's self-certifying 
-%identifier) to one; therefore, the attack becomes more 
-%expensive as the number of machines the adversary must control increases.\footnote{Note also that this 
-%countermeasure prevents two or more exit proxies from being behind the same NAT.}  This defense can be 
-%expanded to entire network prefixes; for example, if a large (malicious) organization owns an entire prefix, 
-%they could launch a Sybil attack using various IP addresses within their network.  \system{} could 
-%limit the number of IP addresses in a given prefix to either one (which may result in a smaller set of 
-%exit proxies) or some small number (in which case the size of the Sybil is extremely small and cannot achieve 
-%its goal of being in a certain location on the hashing ring).  
+\textbf{Sybil Attacks.} An adversary who runs {\it many} exit proxies can learn information 
+about many clients and many content requests as they are responsible for encrypting/decrypting 
+{\it many} requests and responses.  Previous work has analyzed the security of DHTs in this 
+context~\cite{geambasu2009experiences,wolchok2010defeating}.  \system{} can employ a few different defenses to limit the probability and size 
+of a Sybil attack.  To limit the number of exit proxies running on a single machine, \system{} can 
+limit the number of exit proxies with the same IP address (which is a part of the exit proxy's self-certifying 
+identifier) to one; therefore, the attack becomes more 
+expensive as the number of machines the adversary must control increases.\footnote{Note also that this 
+countermeasure prevents two or more exit proxies from being behind the same NAT.}  This defense can be 
+expanded to entire network prefixes; for example, if a large (malicious) organization owns an entire prefix, 
+they could launch a Sybil attack using various IP addresses within their network.  \system{} could 
+limit the number of IP addresses in a given prefix to either one (which may result in a smaller set of 
+exit proxies) or some small number (in which case the size of the Sybil is extremely small and cannot achieve 
+its goal of being in a certain location on the hashing ring).  
 
 \textbf{Flashcrowds.}  A flashcrowd is a large spike in traffic to a specific web
 page. An attacker
