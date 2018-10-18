@@ -1,7 +1,7 @@
 \section{\system{} Design}
 \label{sec:design}
 
-\system{} that provides oblivious content distribution and  
+\system{} provides oblivious content distribution and  
 comprises the following components: clients, exit proxies, CDNs, and origin 
 servers.  {\em Clients} are the Internet users who use the system to access content
 stored on CDN cache nodes; {\em exit proxies} are proxies that obfuscate the requests
@@ -82,7 +82,7 @@ shared key ($k$).  To assign (key,value) pairs to exit proxies, \system{} uses c
 hashing~\cite{karger1997consistent,lewin1998consistent}.  Consistent hashing uses a hash function $H(.)$
 to generate identifiers for both exit proxies and for URLs; the identifiers are $H(exit\_ID)$ and $H(URL)$. 
 We discuss what $exit\_ID$ is in the next section on Self-Certifying Identifiers.  After the hashes are 
-computed, then they are mapped to a point on an identifier circle (modulo 2$^{m}$, where $m$ is the length of 
+computed, they are mapped to a point on an identifier circle (modulo 2$^{m}$, where $m$ is the length of 
 identifier in bits); each URL ($H(URL)$) on the circle is assigned to the first exit proxy ($H(exit\_ID)$) that 
 is equal to or follows $H(URL)$ on the circle.  This hashing method is used in \system{} because it provides: 
 1)~an evenly distributed mapping of URLs to shared keys among the exit proxies,
@@ -150,8 +150,7 @@ extracts $k$ by decrypting with its private key, and stores it in its hash table
 \label{sec:hiding_clients}
 We make additional design choices that concern the requests that clients initiate
 and the responses they receive. We 
-introduce session keys, how requests are routed from clients to exit proxies, and how responses 
-are routed from exit proxies back to the original client.
+introduce session keys for this purpose.
 
 %\textbf{Request Routing with Potentially Spoofed Source Routes.}
 %As previously described, exit proxies query the CDN on behalf of clients, but the
@@ -200,12 +199,10 @@ and encrypts
 the URL in her request with this key, which provides \{URL\}$_{skey}$.  The client
 must also share this session key
 with the exit proxy, so that the exit proxy can learn the plaintext URL and subsequently compute the HMAC to 
-query the CDN.  The client encrypts the session key with the exit proxy's public key, result in \{skey\}$_{PK_{exit}}$, 
-and appends this value as an additional header on the request.  Because her request
-could be forwarded through 
-a set of client peers, this hides the URL of the request from other clients.
+query the CDN.  The client encrypts the session key with the exit proxy's public key, resulting in \{skey\}$_{PK_{exit}}$, 
+and appends this value as an additional header on the request.  Because her request is forwarded through a different exit proxy first, this hides the URL of the request from the other exit proxy.
 
-When an exit proxy receives a request from a client, it first extracts the session
+When the last exit proxy receives a request, it first extracts the session
 key $skey$ by decrypting it with 
 his private key, and then he decrypts the URL with the session key.  This operation
 yields the original plaintext
@@ -213,9 +210,9 @@ URL. Using the shared key $k$ from the origin server, it can then compute
 HMAC$_k$(URL) and forward the request 
 to the CDN.  Upon receiving a response from the CDN, the exit proxy then decrypts
 the content with the shared key $k$, and
-encrypts the content with the session key $skey$ before sending it to the client.
-When it receives the encrypted response, 
-the client can then decrypt it using $skey$.
+encrypts the content with the session key $skey$ before sending it to the client via the exit proxy that originally forwarded the initial request.
+When the client receives the encrypted response, 
+she can then decrypt it using $skey$.
 
 %\textbf{Multicast Responses.}
 %Using session keys allows for a performance optimization in sending responses back to clients.  Instead of sending 
@@ -236,27 +233,27 @@ the client can then decrypt it using $skey$.
 %reasons --- performance and privacy ---, but it could help Internet users access their content quicker (assuming they have 
 %content cached by the CDN).    
 
-\subsection{Design Alternatives}
-While our explanation of the design of \system{} describes a series of proxies that are run by us, but are not 
-trusted; here we describe alternative designs regarding the system of proxies.  The system will work with both a closed, 
-trusted system of proxies, as well as with an open (untrusted) system of proxies.
+%\subsection{Incentives}
+%While our explanation of the design of \system{} describes a set of proxies that are run by us, but are not 
+%trusted; here we describe alternative designs regarding the system of proxies.  The system will work with both a closed, 
+%trusted system of proxies, as well as with an open (untrusted) system of proxies.
 
-{\bf Closed System of Proxies.} While the proxies in \system{} are not trusted, \system{} could 
-use a system of closed and trusted proxies.  There are potential groups or organizations that would 
-support this type of system, and would be willing (and trusted) to run the exit proxies.  If the exit
-proxies were trusted, then parts of the design of \system{} could be simplified; for example, if proxies 
-were trusted, then \system{} would not need to hide the identity of clients from the exit proxies, and could 
-remove spoofed source routes from the design.  The primary drawback of this approach is finding an organization 
-that everyone could trust to run the exit proxies.  
+%{\bf Closed System of Proxies.} While the proxies in \system{} are not trusted, \system{} could 
+%use a system of closed and trusted proxies.  There are potential groups or organizations that would 
+%support this trusted set of exit proxies, and would be willing (and trusted) to run the exit proxies.  If the exit
+%proxies were trusted, then parts of the design of \system{} could be simplified; for example, if proxies 
+%were trusted, then \system{} would not need to hide the identity of clients from the exit proxies, and could 
+%remove spoofed source routes from the design.  The primary drawback of this approach is finding an organization 
+%that everyone could trust to run the exit proxies.  
 
-{\bf Open System of Proxies.} In \system{}, exit proxies are not 
-trusted with client identities and information, which removes the need to find a universally trustworthy 
-organization.  In an alternative approach, \system{} could use a completely open system of proxies that are 
-untrusted, which would allow anyone (clients, companies, etc.) to run an exit proxy.  
-The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
-joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
-exit proxies will be updated.  This allows for the load to be split among more proxies and 
-increases the geographic diversity of the exit proxies.  
+%{\bf Open System of Proxies.} In \system{}, exit proxies are not 
+%trusted with client identities and information, which removes the need to find a universally trustworthy 
+%organization.  In an alternative approach, \system{} could use a completely open system of proxies that are 
+%untrusted, which would allow anyone (clients, companies, etc.) to run an exit proxy.  
+%The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
+%joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
+%exit proxies will be updated.  This allows for the load to be split among more proxies and 
+%increases the geographic diversity of the exit proxies.  
 
 \subsection{Design Enhancements}
 
