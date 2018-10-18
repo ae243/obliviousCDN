@@ -6,7 +6,7 @@ evaluate its performance.  Our implementation allows a client to send a request
 for content through an exit proxy, which will fetch the corresponding 
 encrypted content.  Figure \ref{fig:impl} shows our prototype; the solid line represents
 how \system{} communicates between the components, and the dotted line represents how 
-a traditional CDN would communicate in our prototype.  Here we will discuss each component---client proxy, exit proxy, 
+a traditional CDN would communicate in our prototype.  Here we will discuss each component---client, exit proxy, 
 and CDN---separately, and how they fit together.
 
 \begin{figure}[t]
@@ -49,7 +49,7 @@ it receives a response from the CDN, it decrypts the content with the shared key
 subsequently encrypts it with the session key (both using AES 256-bit encryption).  The 
 exit then forwards the response onto the client proxy.
 
-\textbf{Client Proxy.} The client proxy acts on behalf of the client that is
+\textbf{Client Proxy.} The client runs a local proxy, which performs cryptographic computations on behalf of the client that is
 requesting
 content.  This proxy uses the same implementation as the exit proxy, but provides 
 different cryptographic functions on the requests and responses.  When a client makes 
