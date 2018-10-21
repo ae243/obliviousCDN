@@ -43,7 +43,7 @@ balancing load, the origin server
 determines which exit proxy is correct (based on the consistent hashing ring). 
 The origin server then encrypts the
 shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
-Figure \ref{fig:keys} shows the steps for retrieveing a shared key.  First, the
+Figure \ref{fig:keys} shows the steps for retrieving a shared key.  First, the
 exit proxy sends a DNS request to the origin server's authoritative DNS server, including its self-certifying
 identifier and its public key (these are both included in the {\tt Additional Info} section of the DNS message).  The origin server hashes the exit 
 proxy's public key and verifies it against its self-certifying identifier; this acts as a proof of the 
@@ -91,15 +91,14 @@ proceeds as normal.
 \label{sec:retrieve}
 The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving2}, where the client 
 can forward her request directly to an exit proxy or the client can forward her
-request through two peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
-stage, the client has knowledge of a subset of its peers (other \system{} clients) and a mapping of exit proxies and which URLs they hold 
+request through additional exit proxies. At this 
+stage, the client has knowledge of a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 
 route, which has better performance, or 2) a source route, which has better privacy.  If the client decides to use the privacy-preserving mode, 
-then it generates a source route, which includes some of its peers, and could potentially
-include a false originator (as described in Section \ref{sec:design}).
-Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no other clients on the path can learn what the requested URL is.  The client then sends it onto the next proxy in the source route, which could be either another client proxy or the exit proxy.  The request is forwarded 
-through all subsequent hops in the source route until it reaches the exit proxy.  The exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
+then it generates a source route, which includes additional exit proxies.
+Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the final exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no intermediate exit proxies on the path can learn what the requested URL is.  The client then sends it onto the first exit proxy in the source route, which could be either an intermediate exit proxy or the final exit proxy.  The request is forwarded 
+through all subsequent hops in the source route until it reaches the final exit proxy.  This exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
 the source route locally; it then decrypts the URL with $k_{session}$. 
 
 The exit proxy then resolves the domain using its local resolver, which will redirect it to the CDN's DNS resolver. In order for the exit proxy to 
@@ -136,12 +135,11 @@ and the response is sent in a multicast manner back to the clients.}
 \label{fig:retrieving2}
 \end{figure}
 
-Finally, the exit proxy must send the response back to the correct client without
+Finally, the exit proxy must send the response back to the client without
 knowing who the client is.  First, the exit proxy fetches the session key $k_{session}$
 that it stored for the corresponding incoming request, and it uses this key to encrypt the response.  Then, it looks up the source route it stored for the corresponding request 
-and uses a multicast technique to send to the encrypted response to all clients on the source route.  At this point, the exit proxy can delete the source route and session key entries 
-for this request/response.  Only the original (true) client has $k_{session}$, so only the original (true) client can decrypt the response.  All other clients will discard 
-the encrypted response because they cannot decrypt it.  
+and sends the encrypted response to the entity that it received the request from (either the client or an intermediate exit proxy).  At this point, the exit proxy can delete the source route and session key entries 
+for this request/response.  Only the client has $k_{session}$, so only the client can decrypt the response, whereas any intermediate exit proxy cannot.  
 
 %\subsection{Clients Joining and Leaving}
 %\label{sec:join}
@@ -152,7 +150,7 @@ the encrypted response because they cannot decrypt it.
 %for running a proxy.  Clients will learn about other clients in the system via 
 %a gossip protocol.  We do not detail this as gossip protocols have been studied 
 %extensively in the past~\cite{kermarrec2007gossiping,vogels2003power,eugster2004epidemic}.  
-%Similarly, when a client leaves the system, this information is propogated to its 
+%Similarly, when a client leaves the system, this information is propagated to its 
 %peers using a gossip protocol.  \system{} scales with increasing numbers of clients and 
 %exit proxies, which is described in more detail in Section \ref{sec:scalability}.
 

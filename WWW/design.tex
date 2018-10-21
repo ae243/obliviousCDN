@@ -19,6 +19,8 @@ We separate design decisions into two parts: 1)~hiding content and 2)~hiding cli
 \label{fig:ocd_overview}
 \end{figure}
 
+\system{} introduces a closed set of proxies (a set of exit proxies).  Using this set of proxies separates the issues of trust and content distribution.  A client no longer needs to trust the CDN, which all other clients would need to trust as well.  Now the client can simply rely on the exit proxies to decouple content distribution from the decision of trust.  
+
 \subsection{Hiding Content}
 \label{sec:hiding_content}
 
@@ -152,24 +154,25 @@ We make additional design choices that concern the requests that clients initiat
 and the responses they receive. We 
 introduce session keys for this purpose.
 
-%\textbf{Request Routing with Potentially Spoofed Source Routes.}
-%As previously described, exit proxies query the CDN on behalf of clients, but the
-%exit proxy
-%should not be able to learn which client sent which request.  This obfuscation is
-%accomplished by routing requests through
-%a series of other clients.  Each client runs a proxy and is
+\textbf{Request Routing through Additional Exit Proxies.}
+As previously described, exit proxies query the CDN on behalf of clients, but the
+exit proxy
+should not be able to learn which client sent which request.  This obfuscation is
+accomplished by routing requests through
+a series of other exit proxies.  %Each client runs a proxy and is
 %also a peer in this system; this 
 %peer-to-peer system of clients borrows the 
 %protocols used for clients joining, leaving, and learning about other clients from
-%the vast literature on peer-to-peer %systems~\cite{monnerat2006d1ht,risson2006stable,zhu2005efficient,gupta2003kelips,lesniewski2008sybil,leong2004achieving}. A client routes a request %through
-%her peers by using source routing; when the client generates a request, it also
-%generates a source route, which includes
-%the addresses of a set of her peers.  The last hop in the source route is the exit proxy that is responsible for the 
-%shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking up a locally-held URL-proxy map (which is %retrieved from a central system that keeps the mapping of URLs to exit proxies).  
-%It appends this source route to its request and forwards it to the next peer
-%in the route.  When a peer receives
-%a request, she simply forwards it on to the next peer; this continues until the last hop in the source route, which 
-%is an exit proxy. 
+%the vast literature on peer-to-peer %systems~\cite{monnerat2006d1ht,risson2006stable,zhu2005efficient,gupta2003kelips,lesniewski2008sybil,leong2004achieving}. 
+A client routes a request through
+intermediate exit proxies by using source routing; when the client generates a request, it also
+generates a source route, which includes
+the addresses of a set of exit proxies.  The last hop in the source route is the exit proxy that is responsible for the 
+shared key $k$ associated with the URL in her request.  The client determines the correct exit proxy by looking up a locally-held URL-proxy map (which is retrieved from a central system that keeps the mapping of URLs to exit proxies).  
+It appends this source route to its request and forwards it to the first exit proxy
+in the route.  When an intermediate exit proxy receives
+a request, she simply forwards it on to the next exit proxy; this continues until the last hop in the source route, which 
+is the final exit proxy. 
 
 %To obscure the client that initiated the request, \system{}
 %allows each client to spoof source routes; specifically, a client can prepend
@@ -188,7 +191,8 @@ introduce session keys for this purpose.
 %the identity of the client 
 %from other clients, exit proxies, and the CDN. 
 
-%Spoofed source routes offer a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests %directly to the exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward %a request through a set of clients between it and the exit proxy. Lastly, the client could {\it only} prepend other clients' identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % These modes of operation provide clients %with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
+The option or source routing offers a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the correct exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of additional exit proxies between it and the final exit proxy. %Lastly, the client could {\it only} prepend other clients' %identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but %still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it %cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % 
+These modes of operation provide clients with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
 
 
 \textbf{Session Keys for Request and Response Confidentiality.}

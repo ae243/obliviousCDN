@@ -60,11 +60,11 @@ same pattern, the time to complete requests is, as expected, longer using \syste
 %\label{fig:completion}
 %\end{figure}
 
-As described in Section \ref{sec:implementation}, our prototype included only a single client, but 
-our design allows for a client to proxy her request through additional clients.  To simulate this, we 
+As described in Section \ref{sec:implementation}, our prototype included only a single exit proxy, but 
+our design allows for a client to proxy her request through additional exit proxies.  To simulate this, we 
 add latency between the client and the exit proxy, and measure both the TTFB and time to complete a request 
-when there are different values of latency, which represent different numbers of clients on the path between the 
-original client and the exit proxy.  Figure \ref{fig:latency} shows the results for three different file sizes. The 
+when there are different values of latency, which represent different numbers of exit proxies on the path between the 
+client and the final exit proxy.  Figure \ref{fig:latency} shows the results for three different file sizes. The 
 bottom portion of each bar in the graph shows the TTFB, and the top portion shows the additional time needed 
 to complete the request.  As expected, the TTFB increases more slowly as file size
 and latency increase; completion time
@@ -105,9 +105,9 @@ to handle high numbers of requests, therefore, we limit our scalability analysis
 As previously mentioned, we balance load among the proxies by using consistent hashing to assign URLs to 
 exit proxies.  \system{} can additionally distribute load by replicating exit proxies, meaning that two exit proxies can 
 have the same distributed hash table of shared keys.  This way, both exit proxies can accept requests from clients for 
-the URLs they are responsible for.  Also worth noting is that the exit proxy is only recieving requests for the content 
+the URLs they are responsible for.  Also worth noting is that the exit proxy is only receiving requests for the content 
 corresponding to the shared keys it contains.  Therefore, as the number of clients grow, the exit proxy is still only responsible 
 for its set of shared keys and subsequent URLs.  And as the number of URLs increase, the additional load per proxy is 
-still low because of the load balancing properties of consistent hashing.  We also discuss in Section \ref{sec:discussion} how 
-clients can set up exit proxies; this will further decrease the load per exit proxy because each exit proxy will be responsible 
-for a smaller number of shared keys/URLs.
+still low because of the load balancing properties of consistent hashing.  %We also discuss in Section \ref{sec:discussion} how 
+%clients can set up exit proxies; this will further decrease the load per exit proxy because each exit proxy will be responsible 
+%for a smaller number of shared keys/URLs.
