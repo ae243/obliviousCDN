@@ -259,9 +259,9 @@ she can then decrypt it using $skey$.
 %exit proxies will be updated.  This allows for the load to be split among more proxies and 
 %increases the geographic diversity of the exit proxies.  
 
-\subsection{Design Enhancements}
+%\subsection{Design Enhancements}
 
-We discuss possible enhancements to \system{}'s basic design.
+%We discuss possible enhancements to \system{}'s basic design.
 
 %\textbf{Multiple CDNs.}
 %While describing the design decisions that went into \system{}, we referred to a single CDN for 
@@ -270,36 +270,36 @@ We discuss possible enhancements to \system{}'s basic design.
 %multiple CDNs could provide additional privacy. Origin servers can also take advantage
 %of multiple CDNs.
 
-\textbf{Encoding URLs.}
-As described earlier, each URL is obfuscated by using a HMAC and then stored on the CDN.  An adversary 
-could potentially correlate a URL's popularity with its access patterns.  To prevent this, \system{} allows 
-origin servers to generate multiple different encodings of its URLs, such that HMAC$_k$(enc$_1$(URL)) $\neq$ 
-HMAC$_k$(enc$_2$(URL)).  Each origin server could produce $n$ different encodings of popular URLs, such that 
-the popularity distribution seen by an adversary is a uniform distribution of URL requests across all URLs.  
+%\textbf{Encoding URLs.}
+%As described earlier, each URL is obfuscated by using a HMAC and then stored on the CDN.  An adversary 
+%could potentially correlate a URL's popularity with its access patterns.  To prevent this, \system{} allows 
+%origin servers to generate multiple different encodings of its URLs, such that HMAC$_k$(enc$_1$(URL)) $\neq$ 
+%HMAC$_k$(enc$_2$(URL)).  Each origin server could produce $n$ different encodings of popular URLs, such that 
+%the popularity distribution seen by an adversary is a uniform distribution of URL requests across all URLs.  
 
-\textbf{DHT Replicas.}
-Each exit proxy's hash table can be replicated by another (or many other) exit proxies, spreading the burden across multiple proxies. This behavior would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
-the CDN can cache the content associated with a given URL at more than one cache
-node;
-if only one exit proxy is responsible for a given URL's content, then it would likely only be cached at 
-cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
-helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
+%\textbf{DHT Replicas.}
+%Each exit proxy's hash table can be replicated by another (or many other) exit proxies, spreading the burden across multiple proxies. This behavior would %provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
+%the CDN can cache the content associated with a given URL at more than one cache
+%node;
+%if only one exit proxy is responsible for a given URL's content, then it would likely only be cached at 
+%cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
+%helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
 
-\textbf{Hybrid OCDN/CDN Designs.}
-Different origin servers have different needs, and each origin server might 
-have different needs for different content.  The design of \system{} allows origin servers
- to publish some of their content on \system{} and some on other CDNs.  
-This is useful in a case where some content is more sensitive, while other content needs 
-better performance.
+%\textbf{Hybrid OCDN/CDN Designs.}
+%Different origin servers have different needs, and each origin server might 
+%have different needs for different content.  The design of \system{} allows origin servers
+% to publish some of their content on \system{} and some on other CDNs.  
+%This is useful in a case where some content is more sensitive, while other content needs 
+%better performance.
 
-\textbf{Pre-Fetch DNS Responses.} 
-One way to increase the performance of \system{} is to pre-fetch DNS responses at 
-the exit proxies.  This would allow the exit proxy to serve each client request faster 
-because it would not have to send as many DNS requests.  Pre-fetching DNS responses would 
-not take up a large amount of space, but it also would not be a complete set of all DNS 
-responses.  Additionally, if the CDN moves content between cache nodes, then DNS 
-response must also change; therefore, the pre-fetched DNS responses should have a lifetime 
-that is shorter than the lifetime of the content on a cache node.
+%\textbf{Pre-Fetch DNS Responses.} 
+%One way to increase the performance of \system{} is to pre-fetch DNS responses at 
+%the exit proxies.  This would allow the exit proxy to serve each client request faster 
+%because it would not have to send as many DNS requests.  Pre-fetching DNS responses would 
+%not take up a large amount of space, but it also would not be a complete set of all DNS 
+%responses.  Additionally, if the CDN moves content between cache nodes, then DNS 
+%response must also change; therefore, the pre-fetched DNS responses should have a lifetime 
+%that is shorter than the lifetime of the content on a cache node.
 
 %\textbf{Privacy vs. Performance Tradeoffs.}
 %There are two different modes that \system{} can operate in, where one provides better 
