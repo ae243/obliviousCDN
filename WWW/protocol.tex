@@ -89,8 +89,8 @@ proceeds as normal.
 
 \subsection{Retrieving Content}
 \label{sec:retrieve}
-The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving2}, where the client 
-can forward her request directly to an exit proxy or the client can forward her
+The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
+can forward her request directly to an exit proxy (shown in figure) or the client can forward her
 request through additional exit proxies. At this 
 stage, the client has knowledge of a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
@@ -116,24 +116,24 @@ the associated obfuscated content, which we recall is the fixed-size blocks encr
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
 added padding, to reconstruct the original content.
 
-%\begin{figure}[t!]
-%\centering
-%\includegraphics[height=5cm,keepaspectratio]{request_diagram_simple}
-%\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-%performance and goes directly to an exit proxy.}
-%\label{fig:retrieving}
-%\end{figure}
-
 \begin{figure}[t!]
 \centering
-\includegraphics[width=.45\textwidth]{request_diagram_complex}
-\caption{Steps for retrieving content in \system{}.  The dotted lines represent 
-optional steps for when a client is prioritizing 
-privacy and proxies a request through two other clients before reaching the 
-exit proxy.  In this case, the request is sent sequentially through peers, 
-and the response is sent in a multicast manner back to the clients.}
-\label{fig:retrieving2}
+\includegraphics[height=5cm,keepaspectratio]{request_diagram_simple}
+\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+performance and goes directly to an exit proxy.}
+\label{fig:retrieving}
 \end{figure}
+
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=.45\textwidth]{request_diagram_complex}
+%\caption{Steps for retrieving content in \system{}.  The dotted lines represent 
+%optional steps for when a client is prioritizing 
+%privacy and proxies a request through two other clients before reaching the 
+%exit proxy.  In this case, the request is sent sequentially through peers, 
+%and the response is sent in a multicast manner back to the clients.}
+%\label{fig:retrieving2}
+%\end{figure}
 
 Finally, the exit proxy must send the response back to the client without
 knowing who the client is.  First, the exit proxy fetches the session key $k_{session}$

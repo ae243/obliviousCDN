@@ -1,8 +1,8 @@
 \section{Discussion}
 \label{sec:discussion}
 
-We discuss the limitations
-of \system{} and possible avenues for future work. 
+%We discuss the limitations
+%of \system{} and possible avenues for future work. 
 
 \textbf{Limitations.} \system{} inhibits some CDN performance optimizations.  For
 example,
@@ -19,10 +19,10 @@ distinct from the original content provider. In many cases, however---particular
 for large content providers such as Netflix, Facebook, and Google---the
 content provider operates their own CDN; in these cases, \system{} will
 not be able to obfuscate the content from the CDN operator, since the content host
-and the CDN are the same party.  Similarly, because the CDN operator is the same
-entity as the original server, it also knows the keys that are shared with the clients.
-As a result, the CDN could also discover the keys and identify both
-the content, as well as which clients are requesting which content.
+and the CDN are the same party.  %Similarly, because the CDN operator is the same
+%entity as the original server, it also knows the keys that are shared with the clients.
+%As a result, the CDN could also discover the keys and identify both
+%the content, as well as which clients are requesting which content.
 
 %\paragraph{Exit proxies run by volunteers.} In the description of \system{} in Sections 
 %\ref{sec:design} and \ref{sec:protocol}, we assume we are running the exit proxies, but 
