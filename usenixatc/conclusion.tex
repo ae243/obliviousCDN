@@ -1,0 +1,16 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We design \system{}, which provides oblivious content
+distribution.  \system{} obfuscates data such that the CDN can operate without
+having knowledge of what content they are caching.  This system not only
+provides protections to CDNs, but also preserves client privacy by ensuring
+that the CDN never learns the identity of clients that
+make requests for content. %\system{} is robust against a strong adversary who
+%has access to request logs at the CDN and can also join the system as a
+%client, publisher, or CDN. 
+Our evaluation shows that \system{} imposes some performance
+overhead, %due to the cryptographic operations that allow it to obliviously cache
+%content, 
+but that this overhead is acceptable, particularly for the sizes of files
+that make up common web workloads.
