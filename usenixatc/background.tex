@@ -9,7 +9,7 @@ questions that CDNs currently face.
 CDNs cache content as a service to content publishers.  A 
 content publisher may wish to use a CDN provider for several reasons:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item CDNs cache content in geographically distributed locations, which allows for localized data centers, faster download speeds, and reduces the load on the content publisher's server.
 \item CDNs typically provide usage analytics, which can help a content publisher get a better understanding of usage as compared to the publisher's understanding without a CDN.
 \item CDNs provide a high capacity infrastructure, and therefore provide higher availability, lower network latency, and lower packet loss.  
@@ -30,19 +30,19 @@ content faster. If the requested page's content is not in one of the CDN's
 caches, then the request is forwarded to the content publisher's server; the
 CDN caches the response and returns the content to the client.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=.375\textwidth]{plain_cdn_new2}
-\caption{The relationships between clients, the CDN, and content publishers in 
-CDNs today.}
-\label{fig:basic_cdn}
-\end{figure}
+%\begin{figure}[t]
+%\centering
+%\includegraphics[width=.375\textwidth]{plain_cdn_new2}
+%\caption{The relationships between clients, the CDN, and content publishers in 
+%CDNs today.}
+%\label{fig:basic_cdn}
+%\end{figure}
 
 \subsection{What CDNs Can See}
 \label{sec:info}
 
-Because the CDN interacts with both content publishers and clients, as shown
-in Figure~\ref{fig:basic_cdn}, it is in a unique position to learn an
+Because the CDN interacts with both content publishers and clients%, as shown in Figure~\ref{fig:basic_cdn}
+, it is in a unique position to learn an
 enormous amount of information.  CDN providers know information about the content they serve, information about the clients who access data stored at the CDN, and information about all content publishers that cache content at CDN edge servers.
 
 \textbf{Content.}  CDNs typically have access to all content that they distribute,
@@ -55,7 +55,7 @@ keep track of cache hit
 rates, and how often content is accessed.  The CDN not only knows
 about the content identifier; it also also 
 has access to the plaintext content in order to perform optimizations on the content
-to increase performance (\eg, minimizing CSS, HTML, and JavaScript files, which reduces file sizes by about 20\%).  
+to increase performance (\eg, minimizing CSS, HTML, and JavaScript).  
 They can also inspect content to upgrade a connection to HTTPS; we discuss how 
 \system{} handles these types of optimizations
 in Section \ref{sec:discussion}. In addition, requesting content via HTTPS does not hide any information 
