@@ -1,21 +1,23 @@
-\section{Discussion}
+\section{Limitations}
 \label{sec:discussion}
 
 %We discuss the limitations
 %of \system{} and possible avenues for future work. 
 
-\textbf{Limitations.} \system{} inhibits some CDN performance optimizations.  For
+%\textbf{Limitations.} 
+\system{} inhibits some CDN performance optimizations.  For
 example,
-many CDNs perform HTTPS re-writes on cached content, but this can only be 
-done if the CDN has access to plaintext content.  Similarly, the CDN needs the 
+%many CDNs perform HTTPS re-writes on cached content, but this can only be 
+%done if the CDN has access to plaintext content.  Similarly, 
+the CDN needs the 
 decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
-this increases performance in traditional CDNs, it does not provide the greatest 
-increase in performance; content caching around the world is the greatest benefit to 
+this increases performance in traditional CDNs, content caching around the world is the greatest benefit to 
 performance, which \system{} preserves.
 
-\textbf{CDNs operated by content hosts.} \system{}
+%\textbf{CDNs operated by content hosts.} 
+\system{}
 assumes that the entities operating the proxies and delivering content are
-distinct from the original content provider. In many cases, however---particularly
+distinct from the publisher. In many cases, however---particularly
 for large content providers such as Netflix, Facebook, and Google---the
 content provider operates their own CDN; in these cases, \system{} will
 not be able to obfuscate the content from the CDN operator, since the content host

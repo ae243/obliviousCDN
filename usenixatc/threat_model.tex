@@ -7,10 +7,10 @@ attacker, and introduce the design goals and protections that \system{} provides
 \label{sec:attacker}
 
 Our threat model concerns a powerful adversary who has a variety of capabilities,
-including both surveilling network traffic, inferring user activities, and joining
+including both surveilling traffic, inferring user activities, and joining
 the system in various capacities.
 We assume that an adversary can gain
-access to the CDNs logs, which typically contains client IP addresses and URLs for
+access to the CDNs logs, which typically contain client IP addresses and URLs for
 each request, both indirectly through traffic observation or directly with a data
 request. Additionally,
 the adversary could join \system{} as either a single client or multiple clients,
@@ -21,15 +21,15 @@ can coordinate several of these actions to learn more information.  For example,
 adversary could join as a client and proxy, and request access to the CDN's
 logs to observe how its own requests are obfuscated.  Additionally, 
 the adversary can perform actions, such as generating requests as a client, or creating content 
-as a content publisher. We assume that an adversary could perform any combination
+as a publisher. We assume that an adversary could perform any combination
 of the above attacks in an attempt to learn about either (1)~the content being stored
 at the CDN or (2)~which clients are accessing which content.  
 
-The strong adversary that is a real adversary that has emerged in practice:
+This adversary has emerged in practice:
 for example, governments have demanded access to CDNs'
 data~\cite{cloudflare_nsl}. Although one possible adversary is a government
 requesting logs from the CDN, the government could also be colluding with a
-CDN; we also consider that the CDN operator itself might even be an adversary.
+CDN; we also consider that the CDN operator itself might be an adversary.
 
 Our design does not defend against an attacker who attempts to actively
 disrupt or block access to the system, such as by actively modifying content,

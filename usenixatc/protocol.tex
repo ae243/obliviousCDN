@@ -15,15 +15,16 @@ on both plaintext and encrypted requests (HTTP and HTTPS requests).
 \subsection{Publishing Content}
 \label{sec:publish_protocol}
 To publish content such that the CDN never sees it, the publisher 
-must first obfuscate her content, as described in Section \ref{sec:design}. 
-Figure \ref{fig:publishing} shows the steps taken to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
+first obfuscates her content, as described in Section \ref{sec:design}. 
+Figure \ref{fig:publishing} shows the steps to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
 
-Once the key is established, the origin server must first pad the content to the same size for some 
+Once the key is established, the origin server first pads the content to the same size for some 
 range of original content sizes (i.e., if content is between length x and y, then pad it to length 
 z).  The range of content sizes should be small, introducing negligible padding
 overhead, but
-reduces the probability of identifying the content based on the content length.  This content padding 
-is done to hide the original content's length, as it may be identifiable simply by its length.  After 
+reduces the probability of identifying the content based on the content length.  %This content padding 
+%is done to hide the original content's length, as it may be identifiable simply by its length.  
+After 
 content is padded, then the content is divided into fixed size blocks and padded to 
 some standard length.  Then each block is encrypted using the shared key $k$, 
 resulting in a set of encrypted blocks. Because the CDN does not have access to the shared key, 
@@ -156,8 +157,8 @@ for this request/response.  Only the client has $k_{session}$, so only the clien
 
 \subsection{Partial Deployment}
 \label{sec:partial}
-\system{} should be partially deployable, in the sense that if only some origin servers participate or only some CDNs participate, then 
-the system should still offer some protections.  We outline two different partial
+\system{} is partially deployable, in the sense that if only some origin servers participate or only some CDNs participate, then 
+the system should still offer some protections.  We outline two partial
 deployment possibilities below.
 
 \textbf{Deployment with Origin Servers' Full Participation.}
