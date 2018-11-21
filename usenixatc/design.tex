@@ -154,7 +154,7 @@ We make additional design choices that concern the requests that clients initiat
 and the responses they receive. We 
 introduce session keys for this purpose.
 
-\textbf{Request Routing through Additional Exit Proxies.}
+\textbf{Source Routing through Multiple Exit Proxies.}
 As previously described, exit proxies query the CDN on behalf of clients, but the
 exit proxy
 should not be able to learn which client sent which request.  This obfuscation is
@@ -191,7 +191,7 @@ is the final exit proxy.
 %the identity of the client 
 %from other clients, exit proxies, and the CDN. 
 
-The option or source routing offers a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the correct exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of additional exit proxies between it and the final exit proxy. %Lastly, the client could {\it only} prepend other clients' %identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but %still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it %cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % 
+The option for source routing offers a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the correct exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of additional exit proxies between it and the final exit proxy. %Lastly, the client could {\it only} prepend other clients' %identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but %still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it %cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % 
 These modes of operation provide clients with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
 
 
@@ -204,7 +204,7 @@ the URL in her request with this key, which provides \{URL\}$_{skey}$.  The clie
 must also share this session key
 with the exit proxy, so that the exit proxy can learn the plaintext URL and subsequently compute the HMAC to 
 query the CDN.  The client encrypts the session key with the exit proxy's public key, resulting in \{skey\}$_{PK_{exit}}$, 
-and appends this value as an additional header on the request.  Because her request is forwarded through a different exit proxy first, this hides the URL of the request from the other exit proxy.
+and appends this value as an additional header on the request.  Because her request may be forwarded through a different exit proxy first, this hides the URL of the request from any intermediate exit proxy.
 
 When the last exit proxy receives a request, it first extracts the session
 key $skey$ by decrypting it with 

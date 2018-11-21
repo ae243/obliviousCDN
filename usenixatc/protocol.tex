@@ -88,6 +88,14 @@ it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
 proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
 proceeds as normal.
 
+\begin{figure}[t!]
+\centering
+\includegraphics[height=4.4cm,keepaspectratio]{request_diagram_simple2}
+\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+performance and goes directly to an exit proxy.}
+\label{fig:retrieving}
+\end{figure}
+
 \subsection{Retrieving Content}
 \label{sec:retrieve}
 The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving}, where the client 
@@ -96,9 +104,7 @@ request through additional exit proxies. At this
 stage, the client has knowledge of a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 
-route, which has better performance, or 2) a source route, which has better privacy.  If the client decides to use the privacy-preserving mode, 
-then it generates a source route, which includes additional exit proxies.
-Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the final exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no intermediate exit proxies on the path can learn what the requested URL is.  The client then sends it onto the first exit proxy in the source route, which could be either an intermediate exit proxy or the final exit proxy.  The request is forwarded 
+route, which has better performance, or 2) a source route including intermediate exit proxies, which has better privacy. Before sending the request, the client generates a session key $k_{session}$ and encrypts it with the final exit proxy's public key.  The client appends both the source route and \{$k_{session}$\}$_{PK_{proxy}}$ to the request and encrypts the URL with $k_{session}$ such that no intermediate exit proxies on the path can learn what the requested URL is.  The client then sends it onto the first exit proxy in the source route, which could be either an intermediate exit proxy or the final exit proxy.  The request is forwarded 
 through all subsequent hops in the source route until it reaches the final exit proxy.  This exit proxy decrypts \{$k_{session}$\}$_{PK_{proxy}}$ with its private key and stores 
 the source route locally; it then decrypts the URL with $k_{session}$. 
 
@@ -117,13 +123,7 @@ the associated obfuscated content, which we recall is the fixed-size blocks encr
 obfuscated with.  The proxy can decrypt the content blocks with the shared key from the origin server, assemble the blocks, and strip any 
 added padding, to reconstruct the original content.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[height=4.4cm,keepaspectratio]{request_diagram_simple2}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-performance and goes directly to an exit proxy.}
-\label{fig:retrieving}
-\end{figure}
+
 
 %\begin{figure}[t!]
 %\centering

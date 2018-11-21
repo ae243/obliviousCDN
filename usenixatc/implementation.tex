@@ -18,6 +18,31 @@ a traditional CDN would communicate. $\alpha$ represents the latency between the
 and the exit proxy; we simulate additional clients on this path by increasing $\alpha$.}
 \label{fig:impl}
 \end{figure}
+\begin{figure*}[t!]
+\vspace{-2mm}
+  \begin{minipage}[t]{.31\linewidth}
+    \centering
+     \includegraphics[trim={10 15 10 12},clip,width=\textwidth]{combined}
+    \caption{Time to first byte and time to complete a request with and without \system{}.}
+    \label{fig:completion}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.29\linewidth}
+    \centering
+    \includegraphics[trim={7 0 10 5},clip,width=\textwidth]{Latency_withoutzero_2}
+    %\vspace{-10mm}
+    \caption{Time to first byte and time to complete a request with varying the file size and latency.}%; this latency corresponds to $\alpha$ in Figure \ref{fig:impl}.}
+    \label{fig:latency}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.35\linewidth}
+    \centering
+    \includegraphics[trim={7 8 7 7},clip,width=\textwidth]{loggrouped_2}
+\caption{Overhead of different operations performed by \system{}.}
+\label{fig:overhead2}
+  \end{minipage}
+\end{figure*}
+
 
 \textbf{CDN.} As the design for \system{} requires encrypted content and identifiers
 to be stored in the CDN, we cannot request content from real-world CDNs without
@@ -25,7 +50,7 @@ establishing a business relationship with an existing CDN ourselves. Additionall
 we must evaluate the performance of \system{} in comparison to the same content, cache locations, etc., so 
 we set up a data storage server.  This server is run on a Virtual Private Server
 (VPS) located in
-Chicago, USA.  To access content, we set up a web server on this VPS machine.  To generate 
+Chicago, USA.  To serve content, we set up a web server on this VPS machine.  To generate 
 plaintext web content, we used Surge~\cite{barford1998generating}, which allows us 
 to generate a set of files that are representative of real-world web server file distributions.  
 In \system{}, the files are encrypted with a shared key $k$ and the obfuscated file name is the 
