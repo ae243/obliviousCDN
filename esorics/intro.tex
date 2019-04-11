@@ -13,33 +13,21 @@
 
 As Content Delivery Networks (CDNs) host more content,
 they are fast becoming targets of requests for information about their content
-and who is requesting it, as well as requests for takedown of material ranging
-from alleged copyright violations to offensive content. The shifting legal and
-political landscape suggests that CDNs may soon face liability for the content
-that they host. For example, the European Union has been considering laws that
+and who is requesting it, as well as requests for takedown of material. The shifting legal and political landscape suggests that CDNs may soon face liability for the content that they host. For example, the European Union has been considering laws that
 would remove safe harbor protection on copyright infringement for online
 service providers if they do not deploy tools that can automatically inspect
 and remove infringing content~\cite{eu-copyright}. In the United States,
 various laws under consideration threaten aspects of Section 230 of the
 Communications Decency Act~\cite{sec230}, which protects CDNs from federal
-criminal liability for the content that they host. Tussles surrounding speech,
-from copyright violations to hate speech, are currently being addressed in the
-courts, yet the legal outcomes remain ambiguous and uncertain, sometimes with
-courts issuing opposing rulings in different cases. Regardless of these
-outcomes, however, CDNs are increasingly in need of {\em technical}
-protections against the liability they might face as a result of content that
-they (perhaps unwittingly) serve.
+criminal liability for the content that they host. Tussles surrounding speech are currently being addressed in the courts, yet the legal outcomes remain ambiguous and uncertain. Regardless of these outcomes, however, CDNs are increasingly in need of {\em technical} protections against the liability they might face as a result of content that they (perhaps unwittingly) serve.
 
 Towards this end, we design and implement a system that allows clients to
 retrieve web objects from one or more CDNs, while preventing the CDNs from
 learning (1)~the content that is stored on the cache nodes; (2)~the content
-that clients request; and (3)~the identity of clients that request it. We call this system an {\em oblivious CDN}~(\system{}).%, because the CDN is oblivious to both the content it is storing and the content that clients request.
+that clients request; and (3)~the identity of clients that request it. We call this design an {\em oblivious CDN}~(\system{}).%, because the CDN is oblivious to both the content it is storing and the content that clients request.
 
-\system{} allows clients to request objects with identifiers that
-are encrypted with a key that is shared by an OCDN exit proxy and the origin server
-that publishes content to cache nodes, but is not known to any of the CDN
-cache nodes. To do so, the origin server publishes encrypted content, 
-which the CDN cache nodes subsequently serve through one or more exit proxies that are responsible for routing requests for objects corresponding to that URL.  A client forwards a request for content through OCDN exit proxies such that the CDN is unable to know the client identity or the requested content. Using \system{} requires only minimal modification to existing clients; clients can also configure aspects of the system to trade off performance for privacy.
+\system{} allows clients to request objects with identifiers that is not known to any of the CDN cache nodes. To do so, the origin server publishes encrypted content, 
+which the CDN cache nodes subsequently serve through one or more exit proxies that are responsible for routing requests for objects corresponding to that URL. A client forwards a request for content through OCDN exit proxies such that the CDN is unable to know either the client identity or the requested content. Using \system{} requires only minimal modification to existing clients; clients can also configure aspects of the system to trade off performance for privacy.
 
 Ensuring that the CDN operator never learns information about either (1)~what
 content is being stored on its cache nodes or (2)~which objects individual
@@ -100,7 +88,7 @@ studies the performance implications of the tradeoffs between performance and
 privacy, as well as how \system{} performs relative to a conventional CDN.
 Section~\ref{sec:discussion} describes various limitations and possible
 avenues for future work, Section~\ref{sec:related} discusses related work, and
-Section~\ref{sec:conclusion} concludes.
+Section~\ref{sec:conclusion} concludes. \paul{Perhaps cut this paragraph for space.}
 
 
 %\system{} allows clients to request individual objects with identifiers that

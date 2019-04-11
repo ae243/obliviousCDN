@@ -1,11 +1,3 @@
-\begin{figure}[t!]
-\centering
-\includegraphics[width=.3\textwidth]{publishing_content_new3}
-\caption{Publishing content in \system{}.  $k$ is shared between the 
-origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}
-\label{fig:publishing}
-\end{figure}
-
 \section{\system{} Protocol}
 \label{sec:protocol}
 Based on the design decisions discussed in the previous section, we specify the 
@@ -52,14 +44,27 @@ exit proxy's position in the consistent hashing ring.  If the origin is able to
 certify the exit proxy, then it will send the DNS response with
 \{$k$\}$_{PK_{proxy}}$ in the SRV record. The exit proxy will receive the encrypted shared key, which it can decrypt with it's private key.
 
-\begin{figure}[t]
+\begin{figure}[t!]
+\begin{minipage}[t]{.4\linewidth}
 \centering
-\includegraphics[width=.46\textwidth]{key_lookup_2}
+\includegraphics[width=\textwidth]{publishing_content_new3}
+\caption{Publishing content in \system{}.  $k$ is shared between the 
+origin server and the corresponding exit proxy; the CDN has no knowledge of $k$.}
+\label{fig:publishing}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.55\linewidth}
+\centering
+\includegraphics[width=\textwidth]{key_lookup_2}
 \caption{How an origin server certifies an exit proxy and distributes its shared
 key to an exit proxy.  In step~(1), 
 the exit proxy sends his self-certifying ID in the {\it Additional} section of the DNS message.  }
 \label{fig:keys}
+\end{minipage}
 \end{figure}
+
+
+
 
 \textbf{Updating Content.}
 For an origin server to update content, it must follow similar steps as described
@@ -88,13 +93,8 @@ it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
 proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
 proceeds as normal.
 
-\begin{figure}[t!]
-\centering
-\includegraphics[height=4.4cm,keepaspectratio]{request_diagram_simple2}
-\caption{Steps for retrieving content in \system{} when a client is prioritizing 
-performance and goes directly to an exit proxy.}
-\label{fig:retrieving}
-\end{figure}
+
+
 
 \subsection{Retrieving Content}
 \label{sec:retrieve}
@@ -124,7 +124,26 @@ obfuscated with.  The proxy can decrypt the content blocks with the shared key f
 added padding, to reconstruct the original content.
 
 
+\begin{figure}[t]
 
+\begin{minipage}[c]{.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{request_diagram_simple2}
+\caption{Steps for retrieving content in \system{} when a client is prioritizing 
+performance and goes directly to an exit proxy.}
+\label{fig:retrieving}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{implementation2}
+\caption{The implementation of our \system{} prototype.  The solid line represents
+how \system{} communicates between the components; the dotted line represents how 
+a traditional CDN would communicate. $\alpha$ represents the latency between the client 
+and the exit proxy; we simulate additional clients on this path by increasing $\alpha$.}
+\label{fig:impl}
+\end{minipage}
+\end{figure}
 %\begin{figure}[t!]
 %\centering
 %\includegraphics[width=.45\textwidth]{request_diagram_complex}
@@ -155,36 +174,36 @@ for this request/response.  Only the client has $k_{session}$, so only the clien
 %peers using a gossip protocol.  \system{} scales with increasing numbers of clients and 
 %exit proxies, which is described in more detail in Section \ref{sec:scalability}.
 
-\subsection{Partial Deployment}
-\label{sec:partial}
-\system{} is partially deployable, in the sense that if only some origin servers participate or only some CDNs participate, then 
-the system should still offer some protections.  We outline two partial
-deployment possibilities below.
-
-\textbf{Deployment with Origin Servers' Full Participation.}
-One option for deploying \system{} is to ensure there is some set $S$ of origin servers that participate fully in the 
-system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
-obfuscated data stored on the CDNs cache nodes.  $S$ must be greater than one, otherwise the CDN can infer 
-that a client accessing this obfuscated content is actually accessing content that can be identified.  This partial deployment plan 
- protects the privacy of the clients accessing the content created by the set of origin servers $S$.  It does not 
-protect the clients' privacy as completely as full participation of all origin servers in \system{} because the CDN can 
-still view cross site browsing patterns among the origin servers that are not participating. It is important to note though, that 
-because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to exit proxies, but 
-not to clients.  
-
-\textbf{Deployment with Origin Servers' Partial Participation.} 
-Some origin servers may prioritize performance 
-and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
-both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 
-fully participating with only encrypted content, some other set of origin servers partially participating with both 
-encrypted and plaintext content, and some last set of publishers that are not participating.  Unfortunately, if 
-a publisher has the same content that is both encrypted and plaintext content at a cache node, then an adversary can correlate the access 
-patterns on encrypted and plaintext content for the origin server.  In order to prevent this identification of the 
-content, \system{} can use encoded URLs (described in Section \ref{sec:design}), which obfuscates the access patterns for 
-a given piece of content; this holds true if an origin server chooses to distribute its content in an encrypted manner using \system{}
- and in plaintext form on a different CDN.  In this case, the origin server can still encode its URLs in multiple ways to 
-prevent correlating access patterns between the encrypted and plaintext content.  Therefore, this deployment option allows for 
-differing levels of participation in the system, while still preserving the protections provided by \system{}.  
+%\subsection{Partial Deployment}
+%\label{sec:partial}
+%\system{} is partially deployable, in the sense that if only some origin servers participate or only some CDNs participate, then 
+%the system should still offer some protections.  We outline two partial
+%deployment possibilities below.
+%
+%\textbf{Deployment with Origin Servers' Full Participation.}
+%One option for deploying \system{} is to ensure there is some set $S$ of origin servers that participate fully in the 
+%system.  These publishers obfuscate their content, identifiers, and certificates, and most importantly, only have 
+%obfuscated data stored on the CDNs cache nodes.  $S$ must be greater than one, otherwise the CDN can infer 
+%that a client accessing this obfuscated content is actually accessing content that can be identified.  This partial deployment plan 
+% protects the privacy of the clients accessing the content created by the set of origin servers $S$.  It does not 
+%protect the clients' privacy as completely as full participation of all origin servers in \system{} because the CDN can 
+%still view cross site browsing patterns among the origin servers that are not participating. It is important to note though, that 
+%because the clients are behind proxies, the CDN cannot individually identify users.  The CDN can attribute requests to exit proxies, but 
+%not to clients.  
+%
+%\textbf{Deployment with Origin Servers' Partial Participation.} 
+%Some origin servers may prioritize performance 
+%and availability.  Therefore, they should have the option to gradually move towards full participation by pushing 
+%both encrypted and plaintext content to the CDN.  In this partial deployment plan, we see some set of origin servers 
+%fully participating with only encrypted content, some other set of origin servers partially participating with both 
+%encrypted and plaintext content, and some last set of publishers that are not participating.  Unfortunately, if 
+%a publisher has the same content that is both encrypted and plaintext content at a cache node, then an adversary can correlate the access 
+%patterns on encrypted and plaintext content for the origin server.  In order to prevent this identification of the 
+%content, \system{} can use encoded URLs (described in Section \ref{sec:design}), which obfuscates the access patterns for 
+%a given piece of content; this holds true if an origin server chooses to distribute its content in an encrypted manner using \system{}
+% and in plaintext form on a different CDN.  In this case, the origin server can still encode its URLs in multiple ways to 
+%prevent correlating access patterns between the encrypted and plaintext content.  Therefore, this deployment option allows for 
+%differing levels of participation in the system, while still preserving the protections provided by \system{}.  
 
 
 

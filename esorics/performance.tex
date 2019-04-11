@@ -3,11 +3,7 @@
 \section{Performance Evaluation}
 \label{sec:performance}
 We evaluate the performance 
-of \system{} for latency and overhead, as well as scalability.  %In addition to %understanding the latency and overhead produced by the 
-%system, we also discuss the scalability of the design and show how \system{} scales with %an increasing number of clients.
-
-\subsection{Throughput and Latency Overhead}
-For measuring performance characteristics of \system{}, we use the implementation 
+of \system{} for latency and overhead. For measuring performance characteristics of \system{}, we use the implementation 
 described in Section \ref{sec:implementation}.  Figure \ref{fig:impl} shows 
 how our measurements reflect \system{} (solid line) and a traditional CDN (dotted 
 line).  
@@ -66,20 +62,20 @@ decrypting the response with the session key $k_{session}$.
 %\label{fig:overhead2}
 %\end{figure}
 
-\subsection{Scaling with Users and Content}
-\label{sec:scalability}
-
-%For evaluating performance, we are also concerned with how \system{} will scale with more users 
-%and more URLs.  In particular, w
-We need to reason about how much load is put on the exit proxies as the 
-system increases; clients do not bare much load in the system and the CDN is designed
-to handle high numbers of requests, therefore, we limit our scalability analysis to the exit proxies.  
-
-As previously mentioned, we balance load among the proxies by using consistent hashing to assign URLs to 
-exit proxies.  \system{} can additionally distribute load by replicating exit proxies, meaning that two exit proxies can 
-have the same distributed hash table of shared keys.  This way, both exit proxies can accept requests from clients for 
-the URLs they are responsible for.  Also worth noting is that the exit proxy is only receiving requests for the content 
-corresponding to the shared keys it contains.  Therefore, as the number of clients grow, the exit proxy is still only responsible 
-for its set of shared keys/subsequent URLs.  And as the number of URLs increase, the additional load per proxy is low because of the load balancing properties of consistent hashing.  %We also discuss in Section \ref{sec:discussion} how 
-%clients can set up exit proxies; this will further decrease the load per exit proxy because each exit proxy will be responsible 
-%for a smaller number of shared keys/URLs.
+%\subsection{Scaling with Users and Content}
+%\label{sec:scalability}
+%
+%%For evaluating performance, we are also concerned with how \system{} will scale with more users 
+%%and more URLs.  In particular, w
+%We need to reason about how much load is put on the exit proxies as the 
+%system increases; clients do not bare much load in the system and the CDN is designed
+%to handle high numbers of requests, therefore, we limit our scalability analysis to the exit proxies.  
+%
+%As previously mentioned, we balance load among the proxies by using consistent hashing to assign URLs to 
+%exit proxies.  \system{} can additionally distribute load by replicating exit proxies, meaning that two exit proxies can 
+%have the same distributed hash table of shared keys.  This way, both exit proxies can accept requests from clients for 
+%the URLs they are responsible for.  Also worth noting is that the exit proxy is only receiving requests for the content 
+%corresponding to the shared keys it contains.  Therefore, as the number of clients grow, the exit proxy is still only responsible 
+%for its set of shared keys/subsequent URLs.  And as the number of URLs increase, the additional load per proxy is low because of the load balancing properties of consistent hashing.  %We also discuss in Section \ref{sec:discussion} how 
+%%clients can set up exit proxies; this will further decrease the load per exit proxy because each exit proxy will be responsible 
+%%for a smaller number of shared keys/URLs.
