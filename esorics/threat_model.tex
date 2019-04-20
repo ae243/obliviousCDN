@@ -6,24 +6,17 @@ attacker, and introduce the design goals and protections that \system{} provides
 \subsection{Threat Model}
 \label{sec:attacker}
 
-Our threat model concerns a powerful adversary who has a variety of capabilities,
+Our threat model concerns an adversary who has a variety of capabilities,
 including both surveilling traffic, inferring user activities, and joining
 the system in various capacities.
-We assume that an adversary can gain
-access to the CDNs logs, which typically contain client IP addresses and URLs for
-each request, both indirectly through traffic observation or directly with a data
-request. Additionally,
-the adversary could join \system{} as either a single client or multiple clients,
+We assume that an adversary can access CDNs logs, which typically contain client IP addresses and URLs for each request, both indirectly through traffic observation or directly with a data request. Additionally,
+the adversary could join \system{} as either a single or multiple clients,
 or by running an arbitrary number of \system{} proxies.  The adversary could 
-also act as an origin server (a content publisher), or multiple independent content
+also act as a content publisher, or multiple independent content
 publishers. We also assume that the adversary
-can coordinate several of these actions to learn more information.  For example, the 
+can coordinate several of these actions.  For example, the 
 adversary could join as a client and proxy, and request access to the CDN's
-logs to observe how its own requests are obfuscated.  Additionally, 
-the adversary can perform actions, such as generating requests as a client, or creating content 
-as a publisher. We assume that an adversary could perform any combination
-of the above attacks in an attempt to learn about either (1)~the content being stored
-at the CDN or (2)~which clients are accessing which content.  
+logs to observe how its own requests are obfuscated.  We assume that an adversary could perform any combination of the above attacks in an attempt to learn about either (1)~the content stored at the CDN or (2)~which clients are accessing which content.  
 
 This adversary has emerged in practice:
 for example, governments have demanded access to CDNs'
@@ -43,16 +36,14 @@ do not consider an omniscient adversary that can globally, passively monitor
 all Internet traffic; for example, \system{} cannot defend against an attacker
 who can see all incoming and outgoing messages from all clients and proxies.
 
+\vspace{-3mm}
 \subsection{Security and Privacy Goals}
 \label{sec:goals}
 
 To defend against the adversary described in Section~\ref{sec:attacker}, we
 highlight the design goals for \system{}.  Each stakeholder---in this case,
 the content publisher, the CDN, and the client---has different risks, and
-therefore should have different protections.  All three stakeholders  can be
-protected by preventing CDNs from learning information, decoupling content
-distribution from trust, and  maintaining the performance benefits of a CDN
-while reducing the probability of attacks.   One strength of \system{} is that
+therefore needs different protections. One strength of \system{} is that
 it protects the origin server, the CDN itself, and the client, whereas
 existing systems, such as Tor, only protect the client.
 
@@ -67,7 +58,7 @@ does not know what content it is caching, then the CDN will not be able to suppl
 with the requested data and it will have a strong argument as to why it cannot be held 
 liable for its customers' content.
 
-\textbf{Prevent the CDN from knowing the identity of users accessing content.} CDNs can currently see clients' 
+\textbf{Prevent the CDN from knowing client identities.} CDNs can currently see clients' 
 browsing patterns. \system{} should provide privacy protections by hiding which client is accessing 
 which content at the CDN.  In addition, it should hide cross-site browsing patterns,
 which a CDN 
@@ -81,14 +72,14 @@ to their ability
 to view cross site browsing patterns, could de-anonymize Tor users~\cite{cloudflare_tor}, but \system{} would 
 prevent a CDN from compromising the anonymity of clients.
 
-
+\vspace{-3mm}
 \subsection{Performance Considerations}
 As one of the primary functions of a CDN is to make accessing content faster and more 
 reliable, \system{} should consider performance in design decisions.  The performance of \system{} will 
 be worse than that of traditional CDNs because it is performing more operations on content, but \system{} 
 is offering confidentiality, whereas traditional CDNs are not.  \system{} should scale linearly in terms of load 
 and storage requirements on proxies; additionally, it should be able to 
-scale with the number of clients using the system, as well as with the growing number of web pages on the Internet.
+scale with the number of clients using the system.
 
 
 

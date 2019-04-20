@@ -1,13 +1,13 @@
 \section{\system{} Protocol}
 \label{sec:protocol}
-Based on the design decisions discussed in the previous section, we specify the 
+We specify the 
 steps taken to publish and retrieve content in \system{}. The \system{} protocol works 
-on both plaintext and encrypted requests (HTTP and HTTPS requests).
+on both plaintext and encrypted requests (HTTP and HTTPS).
 
 \subsection{Publishing Content}
 \label{sec:publish_protocol}
-To publish content such that the CDN never sees it, the publisher 
-first obfuscates her content, as described in Section \ref{sec:design}. 
+%To publish content such that the CDN never sees it, the publisher 
+%first obfuscates her content, as described in Section \ref{sec:design}. 
 Figure \ref{fig:publishing} shows the steps to publish content. The most important step in content publishing is obfuscating the data.  We assume that the origin server already has a public and private key pair, as well as a certificate.  To obfuscate the data the origin server will need to generate a shared key $k$. 
 
 Once the key is established, the origin server first pads the content to the same size for some 
@@ -22,23 +22,22 @@ some standard length.  Then each block is encrypted using the shared key $k$,
 resulting in a set of encrypted blocks. Because the CDN does not have access to the shared key, 
 it cannot see what content it is caching.  
 
-Once the content is obfuscated, the origin server must also obfuscate the content's identifier.  To do so, 
+Once the content is obfuscated, the origin server also obfuscates the content's identifier.  To do so, 
 it computes the HMAC of the URL using the shared key $k$.
 Once the identifier and the content are obfuscated with $k$, they can be pushed to the CDN, or optionally to multiple 
 CDNs.  Recently, services have cropped up to allow and help facilitate the use of multiple CDNs for the same content; an 
 origin server could use multiple CDNs' services.  This mechanism could be used in \system{} to increase reliability, 
 performance, and availability; an origin server can use a service, such as Cedexis~\cite{cedexis}, to load balance between 
-CDNs.  We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in 
-partial deployment.
+CDNs.  %We discuss the use of multiple CDNs more in Section \ref{sec:partial} on \system{} in partial deployment.
 
 Because the exit proxies use consistent hashing to divide keys among proxies while
 balancing load, the origin server
 determines which exit proxy is correct (based on the consistent hashing ring). 
-The origin server then encrypts the
+The origin server encrypts the
 shared key $k$ with the correct exit proxy's public key $PK_{exit}$.  
 Figure \ref{fig:keys} shows the steps for retrieving a shared key.  First, the
 exit proxy sends a DNS request to the origin server's authoritative DNS server, including its self-certifying
-identifier and its public key (these are both included in the {\tt Additional Info} section of the DNS message).  The origin server hashes the exit 
+identifier and its public key (in the {\tt Additional Info} section of the DNS message).  The origin server hashes the exit 
 proxy's public key and verifies it against its self-certifying identifier; this acts as a proof of the 
 exit proxy's position in the consistent hashing ring.  If the origin is able to
 certify the exit proxy, then it will send the DNS response with
@@ -86,12 +85,11 @@ continues to use it.  Otherwise, the origin server generates a new key $k_{new}$
 encrypts the content (and possibly certificate) with $k_{new}$.  The content publisher then follows the same steps as in Updating 
 Content to push the content to the CDN, and it publishes $k_{new}$ encrypted with the exit proxy's public key in its DNS SRV record.
 
-The corresponding exit proxy must also be able to fetch this new key $k_{new}$ and replace the expired key with it.  When the exit proxy 
+The corresponding exit proxy must also be able to fetch this new key $k_{new}$ and replace the expired key.  When the exit proxy 
 sees an incoming request for a URL that uses key $k$, it first checks $k$'s timestamp.  If valid, then it continues as normal.  Otherwise, 
 it sends a DNS request to the publisher's authoritative DNS, and extracts \{$k_
 {new}$\}$_{PK_{proxy}}$ from the DNS response.  The exit 
-proxy then decrypts it to obtain $k_{new}$, updates its version of the key, and
-proceeds as normal.
+proxy then decrypts it to obtain $k_{new}$ and updates its version of the key.
 
 
 

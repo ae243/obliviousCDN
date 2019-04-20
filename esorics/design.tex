@@ -7,9 +7,7 @@ servers.  {\em Clients} are the Internet users who use the system to access cont
 stored on CDN cache nodes; {\em exit proxies} are proxies that obfuscate the requests
 and responses retrieved from the CDNs; and the {\em origin servers} are the content
 publishers who are customers of the CDNs.  Figure \ref{fig:ocd_overview} shows how
-these components interact.  This section discusses the design decisions of \system{}, and what functionality each decision provides.  
-We separate design decisions into two parts: 1)~hiding content and 2)~hiding clients.  We also highlight some additional options that the design of 
-\system{} allows.
+these components interact.  This section discusses the design decisions and functionality of \system{}. We separate design decisions into two parts: 1)~hiding content and 2)~hiding clients. % We also highlight some additional options that the design of \system{} allows.
 
 \begin{figure}[t!]
 \centering
@@ -19,7 +17,7 @@ We separate design decisions into two parts: 1)~hiding content and 2)~hiding cli
 \label{fig:ocd_overview}
 \end{figure}
 
-\system{} introduces a closed set of proxies (a set of exit proxies).  Using this set of proxies separates the issues of trust and content distribution.  A client no longer needs to trust the CDN, which all other clients would need to trust as well.  Now the client can simply rely on the exit proxies to decouple content distribution from the decision of trust.  
+%\system{} introduces a closed set of proxies (a set of exit proxies).  Using this set of proxies separates the issues of trust and content distribution.  A client no longer needs to trust the CDN, which all other clients would need to trust as well.  Now the client can simply rely on the exit proxies to decouple content distribution from the decision of trust.  
 
 \subsection{Hiding Content}
 \label{sec:hiding_content}
@@ -47,69 +45,39 @@ keys are distributed.
 %\end{table}
 
 \textbf{Shared Keys.} 
-To prevent an adversary from learning information about content and clients, the CDN must not know anything
-about the
-content that it is caching.  Therefore, the content {\it and} the associated URL
-must be obfuscated
-before the CDN sees them.  The content can be obfuscated by encrypting it with a
-key that is not
-known to the CDN.  Because this must be done prior to caching, the content publisher must 
-generate a shared key $k$ to encrypt the content with. Encrypting the content alone does not 
-hide all information about content from the CDN; the content identifier, or URL, must also be obfuscated, otherwise the 
-CDN can reveal information about which clients accessed which URLs (which is indicative 
-of the content).  The obfuscated URL should be fixed and relatively
-small; 
-these requirements reduce storage requirements and prevent the adversary from guessing
-the
-URL based on the length of the obfuscated URL.  Unfortunately, using a simple hash allows an 
-attacker to guess the content identifier by hashing guesses and comparing with 
-the hashes stored in the CDNs caches.  To prevent this attack, the content publisher incorporates the use 
-of the shared key $k$ into the hash of the URL by using a hash-based message authentication code 
-(HMAC).  Additionally, if the domain supports HTTPS requests, then the content publisher must 
-also encrypt the associated certificate with the same key $k$.
+To prevent an adversary from learning information about content and clients, the CDN must not know the content that it is caching.  Therefore, the content {\it and} the associated URL must be obfuscated with a key that is not known to the CDN.  Accordingly, the content publisher must generate a shared key $k$ to encrypt the content with. Encryption alone does not hide all information about content from the CDN; the content identifier, or URL, must also be obfuscated, otherwise the CDN can reveal information about which clients accessed which URLs.  The obfuscated URL should be fixed and relatively small; these requirements reduce storage requirements and prevent the adversary from guessing the URL based on the length of the obfuscated URL. Unfortunately, using a simple hash allows an attacker to guess the content identifier by hashing guesses and comparing with the hashes stored in the CDNs caches.  To prevent this attack, the content publisher incorporates the use of the shared key $k$ into the hash of the URL by using a hash-based message authentication code (HMAC).  If the domain supports HTTPS requests, the content publisher must also encrypt the associated certificate with the same key $k$.
 
-The encrypted content and corresponding HMAC are sent to the CDN\footnote{Most CDNs
-allow the publisher to
-decide on a push or pull model, but \system{} is compatible with either approach.}
-and stored in
-its caches.  The content publisher then shares the key $k$ with an exit proxy. 
-This key allows the 
-exit proxy to request encrypted content on behalf of clients by computing the HMAC on the URL.  
+The encrypted content and corresponding HMAC are sent to the CDN %\footnote{Most CDNs allow the publisher to decide on a push or pull model, but \system{} is compatible with either approach.}
+and stored in its caches.  The content publisher then shares the key $k$ with an exit proxy, which allows the exit proxy to request encrypted content on behalf of clients by computing the HMAC on the URL.  
 
 \textbf{Consistent Hashing.}
 Each exit proxy stores a mapping of URLs to their associated shared key $k$; for example, if 
 an origin server has shared key $k$ and publishes a web page {\tt www.foo.com}, then an exit 
 proxy will store the mapping of {\tt www.foo.com} to $k$.  The set of exit proxies jointly compute a distributed hash table where the key is the URL ({\tt www.foo.com}) and the value is the 
-shared key ($k$).  To assign (key,value) pairs to exit proxies, \system{} uses consistent 
+shared key ($k$). To assign (key,value) pairs to exit proxies, \system{} uses consistent 
 hashing~\cite{karger1997consistent,lewin1998consistent}.  Consistent hashing uses a hash function $H(.)$
 to generate identifiers for both exit proxies and for URLs; the identifiers are $H(exit\_ID)$ and $H(URL)$. 
 We discuss what $exit\_ID$ is in the next section on Self-Certifying Identifiers.  After the hashes are 
 computed, they are mapped to a point on an identifier circle (modulo 2$^{m}$, where $m$ is the length of 
 identifier in bits); each URL ($H(URL)$) on the circle is assigned to the first exit proxy ($H(exit\_ID)$) that 
-is equal to or follows $H(URL)$ on the circle.  This hashing method is used in \system{} because it provides: 
+is equal to or follows $H(URL)$ on the circle.  This hashing method provides: 
 1)~an evenly distributed mapping of URLs to shared keys among the exit proxies,
 2)~a way to prevent an exit 
-proxy from choosing which URL it wishes to be responsible for, and 3) a relatively small amount 
-of (key,values) to be moved when a new exit proxy is established (or removed).  
+proxy from choosing which URL it is responsible for, and 3) a relatively small amount 
+of (key,values) to be moved due to exit proxy churn.  
 
 \textbf{Self-Certifying Identifiers.} Consistent hashing uses identifiers for both the URLs and 
-the exit proxies.  While the identifiers for URLs are straightforward ($H(URL)$), the identifiers for exit 
-proxies must provide more information; an exit proxy identifier must be able to prove to an origin server that 
+the exit proxies.  While the identifiers for URLs are straightforward ($H(URL)$), the exit proxy identifier must also be able to prove to an origin server that 
 it is the exit proxy that is responsible for the associated URL.  If this validation was not part of \system{}, 
-then any (potentially malicious) exit proxy could request the shared key $k$ from any or all origin servers.  To 
-prevent a malicious exit proxy from learning any shared key $k$, the proxy must be identified by a self-certifying 
-identifer.  This technique was first introduced in a self-certifying file system~\cite{mazieres2000self}; it allows
+then any exit proxy could request the shared key $k$ from any or all origin servers.  \system{} prevents this using self-certifying 
+identifers.  This technique was first introduced in a self-certifying file system~\cite{mazieres2000self}; it allows
 for other entities (such as origin servers) to certify the exit proxy solely based on its identifier.  The format 
 of this identifier ($exit\_ID$) is {\tt IP:hostID}, where {\tt IP} is the exit proxy's IP address and {\tt hostID} 
 is a hash of the exit proxy's public key.  A malicious exit proxy cannot \textit{choose} where on the consistent 
 hashing ring it sits because it cannot frequently change and re-hash its own IP address (whereas it could re-generate 
-a new public key).\footnote{While a malicious exit proxy cannot specifically choose its location on the hashing ring, it 
-could recompute a public key until it finds a certain location on the hashing ring.  This is limited by the fact that 
-the exit proxy's IP address is part of its identifier, and we assume that the adversary running the exit proxy cannot 
-change IP addresses to a value of his choice or in a frequent manner.  A potential attack that an adversary can execute 
-on a DHT using a consistent hashing scheme is a Sybil attack, where the adversary runs {\it many} exit proxies to hopefully 
-place himself in his desired location on the hashing ring.  We describe countermeasures to a Sybil attack in Section 
-\ref{sec:sec}.} When an exit proxy is requesting the shared key $k$ from an origin server, 
+a new public key).\footnote{While an exit proxy cannot specifically choose its location on the ring, it 
+could recompute a public key until it finds a certain location on the ring.  This is limited by the fact that 
+the exit proxy's IP address is part of its identifier.  An attack that an adversary can execute on a DHT using a consistent hashing scheme is a Sybil attack, where the adversary runs {\it many} exit proxies to place himself in his desired location on the ring.  We describe countermeasures to this attack in Section \ref{sec:sec}.} When an exit proxy is requesting the shared key $k$ from an origin server, 
 it sends its identifier and its public key to the origin server.  The origin server
 can then hash the exit proxy's 
 public key and verify it against the {\tt hostID}; this action serves as a proof
@@ -121,12 +89,12 @@ with the first half of the bits of $H(hostID)$.
 
 \textbf{DNS for Key Distribution.}
 We have discussed how shared keys are generated, used, and stored, and here we describe how they are shared.  As previously 
-stated, the origin servers generate shared keys and must share them with the (correct) exit proxies.  \system{} uses DNS
+stated, the origin servers generate shared keys and must share them with the exit proxies.  \system{} uses DNS
 to do so.  To retrieve a shared key $k$, an exit proxy sends a DNS query to the origin server's authoritative DNS, and 
 it includes its identifier, $exit\_ID$, and its public key in the {\tt Additional Info} section of the query.  The 
 authoritative DNS for the origin server validates the exit proxy by hashing the public key and comparing it to the 
 second part of $exit\_ID$, and verifying that the exit proxy is responsible for its URL based on the consistent 
-hashing circle.  If the verification is successful, then the authoritative DNS sends the shared key $k$ encrypted 
+hashing circle.  If successful, then the authoritative DNS sends the shared key $k$ encrypted 
 under the exit proxy's public key, \{$k$\}$_{PK_{exit}}$ in the SRV record of the DNS response.  The exit proxy 
 extracts $k$ by decrypting with its private key, and stores it in its hash table.
 
@@ -150,9 +118,9 @@ extracts $k$ by decrypting with its private key, and stores it in its hash table
 
 \subsection{Hiding Clients}
 \label{sec:hiding_clients}
-We make additional design choices that concern the requests that clients initiate
-and the responses they receive. We 
-introduce session keys for this purpose.
+%We make design choices that concern the requests that clients initiate
+%and the responses they receive. We 
+%introduce session keys for this purpose.
 
 \textbf{Source Routing through Multiple Exit Proxies.}
 As previously described, exit proxies query the CDN on behalf of clients, but the
@@ -191,7 +159,7 @@ is the final exit proxy.
 %the identity of the client 
 %from other clients, exit proxies, and the CDN. 
 
-The option for source routing offers a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the correct exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of additional exit proxies between it and the final exit proxy. %Lastly, the client could {\it only} prepend other clients' %identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but %still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it %cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % 
+Source routing offers a tradeoff between privacy and performance. Clients interested in prioritizing performance can choose to send requests directly to the correct exit proxy. In such a case, the exit proxy will know the client's identity, but the CDN will not. For more privacy, the client can forward a request through a set of additional exit proxies between it and the final exit proxy. %Lastly, the client could {\it only} prepend other clients' %identifiers but simply %forward the request {\em directly} to the exit proxy; this action provides the same performance benefit as the first mode, but %still offers some %additional privacy benefits. Although the last option would appear to strike the optimal balance between privacy and performance, it %cannot be the only %option because the exit proxy would always know that the true client is the previous hop in the source route. % 
 These modes of operation provide clients with different ways to use the system both based on their privacy preferences and the type of content they are requesting.
 
 
@@ -204,7 +172,7 @@ the URL in her request with this key, which provides \{URL\}$_{skey}$.  The clie
 must also share this session key
 with the exit proxy, so that the exit proxy can learn the plaintext URL and subsequently compute the HMAC to 
 query the CDN.  The client encrypts the session key with the exit proxy's public key, resulting in \{skey\}$_{PK_{exit}}$, 
-and appends this value as an additional header on the request.  Because her request may be forwarded through a different exit proxy first, this hides the URL of the request from any intermediate exit proxy.
+and appends this value as an additional header on the request. This hides the URL of the request from any intermediate exit proxy.
 
 When the last exit proxy receives a request, it first extracts the session
 key $skey$ by decrypting it with 

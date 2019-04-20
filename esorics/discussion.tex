@@ -11,14 +11,14 @@ example,
 %done if the CDN has access to plaintext content.  Similarly, 
 the CDN needs the 
 decrypted content to perform minimizations on HTML, CSS, and Javascript files.  While 
-this increases performance in traditional CDNs, content caching around the world is the greatest benefit to 
+this increases performance in CDNs, content caching around the world is the greatest benefit to 
 performance, which \system{} preserves.
 
 %\textbf{CDNs operated by content hosts.} 
 \system{}
 assumes that the entities operating the proxies and delivering content are
 distinct from the publisher. In many cases, however---particularly
-for large content providers such as Netflix, Facebook, and Google---the
+for large content providers such as Facebook and Google---the
 content provider operates their own CDN; in these cases, \system{} will
 not be able to obfuscate the content from the CDN operator, since the content host
 and the CDN are the same party.  %Similarly, because the CDN operator is the same
