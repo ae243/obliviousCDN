@@ -1,7 +1,7 @@
 \section{\system{} Design}
 \label{sec:design}
 
-\system{} that provides oblivious content distribution and  
+\system{} provides oblivious content distribution and  
 comprises the following components: clients, exit proxies, CDNs, and origin 
 servers.  {\em Clients} are the Internet users who use the system to access content
 stored on CDN cache nodes; {\em exit proxies} are proxies that obfuscate the requests
@@ -11,13 +11,25 @@ these components interact.  This section discusses the design decisions of \syst
 We separate design decisions into two parts: 1)~hiding content and 2)~hiding clients.  We also highlight some additional options that the design of 
 \system{} allows.
 
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=\linewidth]{ocdn_overview_updated}
+%\caption{The relationships between clients, exit proxies, CDNs, and origin servers in 
+%\system{}.}
+%\label{fig:ocd_overview}
+%\end{figure}
 \begin{figure}[t!]
 \centering
-\includegraphics[width=.44\textwidth]{ocdn_overview_new2}
+\includegraphics[width=\linewidth]{ocdn_overview_new2}
 \caption{The relationships between clients, exit proxies, CDNs, and origin servers in 
 \system{}.}
 \label{fig:ocd_overview}
 \end{figure}
+
+
+%\system{} introduces a closed set of proxies (a set of exit proxies).  Using this set of proxies separates the issues of trust and content distribution.  A client no longer needs to trust the CDN, which all other clients would need to trust as well.  Now the client can simply rely on the exit proxies to decouple content distribution from the decision of trust.  
+
+
 
 \subsection{Hiding Content}
 \label{sec:hiding_content}
