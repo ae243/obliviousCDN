@@ -13,7 +13,7 @@ described in Section \ref{sec:implementation}.  Figure \ref{fig:impl} shows
 how our measurements reflect \system{} (solid line) and a traditional CDN (dotted 
 line).  
 
-Figure~\ref{fig:completion} shows the time to first byte (TTFB) and the time for
+Figure~\ref{fig:completion} shows the time to first byte (TTFB) and the completion time (i.e., total download time) for
 both \system{} and 
 without \system{}.  We can see the the TTFB using \system{} increases linearly with
 file size, whereas without \system{} TTFB remains fairly constant.  Interestingly, 
@@ -55,7 +55,7 @@ increases more quickly than TTFB as the file size and latency increase.
 %\end{figure}
 
 Finally, we measure the performance overhead of the individual operations used in
-\system{}; figure \ref{fig:overhead2} shows
+\system{}; Figure \ref{fig:overhead2} shows
 the overhead of different components of the system for three different file sizes.  We can see that some of the fixed cost/time 
 operations include the client locally looking up the correct exit proxy to use for a given URL and the exit proxy generating the 
 HMAC$_{k}$(URL).  The operations that have the most overhead and continue to grow with the size of the file are the exit proxy decrypting 

@@ -143,8 +143,8 @@ scale with the number of clients using the system, as well as with the growing n
 %%%%%prevent a CDN from compromising the anonymity of Tor users.
 
 %Section~\ref{sec:design} describes our design decisions in detail.
-
-%\begin{table*}[t!]
+%
+%%\begin{table*}[t!]
 %\centering
 %\begin{tabular}{| l | l |} 
 % \hline
@@ -161,3 +161,17 @@ scale with the number of clients using the system, as well as with the growing n
 %\caption{Design goals and the corresponding design choices made in \system{}.}
 %\label{tab:design_goals}
 %\end{table*}
+
+
+\begin{table*}[]
+\begin{tabular}{|l|l|l|l|}
+\hline
+                          & \textbf{CDN}                                                               & \textbf{Exit Proxy}                                                                          & \textbf{Transit Proxy}                                                                  \\ \hline
+\textbf{User IP}          & Exit proxy (\cref{sec:hiding_clients})                                                           & Source routing (\cref{sec:hiding_clients})                                                                         & Source routing (\cref{sec:hiding_clients})                                                                    \\ \hline
+\textbf{URL}              & Shared keys (\cref{sec:hiding_content})                                                          & n/a                                                                                          & Session keys (\cref{sec:hiding_clients})                                                                      \\ \hline
+\textbf{Content}          & Shared keys (\cref{sec:hiding_content})                                                          & n/a                                                                                          & Session keys (\cref{sec:hiding_clients})                                                                      \\ \hline
+\textbf{Traffic patterns} & \begin{tabular}[c]{@{}l@{}}Exit proxies\\ Encoding URLs (\cref{sec:enhancements})\end{tabular} & \begin{tabular}[c]{@{}l@{}}Consistent hashing (\cref{sec:hiding_content})\\ Self-certifying IDs (\cref{sec:hiding_content})\end{tabular} & \begin{tabular}[c]{@{}l@{}}Consistent Hashing (\cref{sec:hiding_content})\\ Source routing (\cref{sec:hiding_clients})\end{tabular} \\ \hline
+\end{tabular}
+\caption{OCDN mechanisms for providing privacy goals (row headers) at the various stakeholders (column headers).}
+\label{tab:threats}
+\end{table*}

@@ -249,11 +249,11 @@ latency for sending the response to the client.
 %content cached by the CDN).    
 
 \subsection{Design Alternatives}
-While our explanation of the design of \system{} describes a series of proxies that are run by us, but are not 
+While our explanation of the design of \system{} describes a series of peer proxies, but are not 
 trusted; here we describe alternative designs regarding the system of proxies.  The system will work with both a closed, 
-trusted system of proxies, as well as with an open (untrusted) system of proxies.
+trusted system of proxies.%, as well as with an open (untrusted) system of proxies.
 
-{\bf Closed System of Proxies.} While the proxies in \system{} are not trusted, \system{} could 
+While the proxies in \system{} are not trusted, \system{} could 
 use a system of closed and trusted proxies.  There are potential groups or organizations that would 
 support this type of system, and would be willing (and trusted) to run the exit proxies.  If the exit
 proxies were trusted, then parts of the design of \system{} could be simplified; for example, if proxies 
@@ -261,16 +261,16 @@ were trusted, then \system{} would not need to hide the identity of clients from
 remove spoofed source routes from the design.  The primary drawback of this approach is finding an organization 
 that everyone could trust to run the exit proxies.  
 
-{\bf Open System of Proxies.} In \system{}, exit proxies are not 
-trusted with client identities and information, which removes the need to find a universally trustworthy 
-organization.  In an alternative approach, \system{} could use a completely open system of proxies that are 
-untrusted, which would allow anyone (clients, companies, etc.) to run an exit proxy.  
-The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
-joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
-exit proxies will be updated.  This allows for the load to be split among more proxies and 
-increases the geographic diversity of the exit proxies.  
+%{\bf Open System of Proxies.} In \system{}, exit proxies are not 
+%trusted with client identities and information, which removes the need to find a universally trustworthy 
+%organization.  In an alternative approach, \system{} could use a completely open system of proxies that are 
+%untrusted, which would allow anyone (clients, companies, etc.) to run an exit proxy.  
+%The addition of an exit proxy follows the protocol in consistent hashing for when a new node 
+%joins; some keys would be transferred to the new exit proxy, and clients' mapping of 
+%exit proxies will be updated.  This allows for the load to be split among more proxies and 
+%increases the geographic diversity of the exit proxies.  
 
-\subsection{Design Enhancements}
+\subsection{Design Enhancements}\label{sec:enhancements}
 
 We discuss possible enhancements to \system{}'s basic design.
 

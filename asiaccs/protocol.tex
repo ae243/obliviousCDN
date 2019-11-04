@@ -91,7 +91,7 @@ proceeds as normal.
 \label{sec:retrieve}
 The steps for a client to retrieve a web page that has been cached by \system{} are shown in Figure \ref{fig:retrieving2}, where the client 
 can forward her request directly to an exit proxy or the client can forward her
-request through two peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
+request through multiple peers. We assume the client has already joined the system, which is described in more detail in Section \ref{sec:join}; at this 
 stage, the client has knowledge of a subset of its peers (other \system{} clients) and a mapping of exit proxies and which URLs they hold 
 keys for.  The client generates a request for a specific URL, and looks up which exit proxy holds the key for that URL in its local mapping.  Next, 
 the client selects a source route; this source route allows the client to specify which mode of \system{} they would like to use: 1) no additional source 

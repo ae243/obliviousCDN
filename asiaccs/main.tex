@@ -13,8 +13,11 @@
 \usepackage{balance}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
+\usepackage{cleveref}
 
-
+\crefformat{section}{\S#2#1#3} 
+\crefformat{subsection}{\S#2#1#3}
+\crefformat{subsubsection}{\S#2#1#3}
 
 \newcommand{\ie}{{\em i.e.\xspace}}
 \newcommand{\eg}{{\em e.g.\xspace}}
