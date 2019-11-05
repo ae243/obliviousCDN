@@ -4,6 +4,7 @@
 To our knowledge, there has been no prior work on preventing surveillance at CDNs, but there 
 has been relevant research on securing CDNs and finding security vulnerabilities in CDNs.
 
+ 
 \textbf{Securing CDNs.} Most prior work on securing CDNs has focused on providing content 
 integrity at the CDN as opposed to content confidentiality (and unlinkability).  In 2005, 
 Lesniewski-Laas and Kaashoek use SSL-splitting --- a technique 
@@ -19,7 +20,10 @@ authenticity of their content~\cite{levy2015stickler}.  Stickler includes conten
 signing their content, and users verifying the signature without having to modify the browser.  Unfortunately, 
 Stickler does not protect against an adversary that wishes to learn information
 about content, clients, 
-or publishers; \system{} is complementary to Stickler.
+or publishers; \system{} is complementary to Stickler. \system{} is reminiscent of Crowds~\cite{Reiter:1999:AWT:293411.293778} 
+as we rely on a set of peers to provide user anonymity at the web server. We differ in that we 
+also provide content privacy while traversing the peer-to-peer network as well as on the CDN server itself. 
+
 %There has been prior work in securing CDNs against DDoS attacks; Gilad 
 %et al. introduce a DDoS defense called CDN-on-Demand~\cite{gilad2016cdn}.  In this work they 
 %provide a complement to CDNs, as some smaller organizations cannot afford the use of CDNs and 

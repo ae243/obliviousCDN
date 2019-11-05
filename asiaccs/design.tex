@@ -60,7 +60,7 @@ of the shared key $k$ into the hash of the URL by using a hash-based message aut
 also encrypt the associated certificate with the same key $k$.
 
 \begin{table}[t!]
-\small
+\footnotesize
 \centering
 \begin{tabular}{ l  p{1.9in} } 
  \multicolumn{1}{c}{\bf Design Component} & \multicolumn{1}{c}{\bf Function} \\
@@ -170,7 +170,7 @@ a request, she simply forwards it on to the next peer; this continues until the 
 is an exit proxy. 
 
 \begin{table}[t!]
-\small
+\footnotesize
 \centering
 \begin{tabular}{ l  p{1.9in} } 
  \multicolumn{1}{c}{\bf Design Component} & \multicolumn{1}{c}{\bf Function} \\
@@ -292,8 +292,18 @@ origin servers to generate multiple different encodings of its URLs, such that H
 HMAC$_k$(enc$_2$(URL)).  Each origin server could produce $n$ different encodings of popular URLs, such that 
 the popularity distribution seen by an adversary is a uniform distribution of URL requests across all URLs.  
 
+
+
+\textbf{DHT Replicas.}
+Each exit proxy's hash table can be replicated by another (or many other) exit proxies, spreading the burden across multiple proxies. This behavior would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
+the CDN can cache the content associated with a given URL at more than one cache
+node;
+if only one exit proxy is responsible for a given URL's content, then it would likely only be cached at 
+cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
+helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
+
 \begin{table}[t!]
-\small
+\footnotesize
 \centering
 \begin{tabular}{ l  p{1.9in} } 
  \multicolumn{1}{c}{\bf Design Component} & \multicolumn{1}{c}{\bf Function} \\
@@ -308,14 +318,6 @@ the popularity distribution seen by an adversary is a uniform distribution of UR
 \caption{Design alternative components and their functionality.}
 \label{tab:alternatives}
 \end{table}
-
-\textbf{DHT Replicas.}
-Each exit proxy's hash table can be replicated by another (or many other) exit proxies, spreading the burden across multiple proxies. This behavior would provide less load per exit proxy, as well as redundancy in case of failures.  Additionally, 
-the CDN can cache the content associated with a given URL at more than one cache
-node;
-if only one exit proxy is responsible for a given URL's content, then it would likely only be cached at 
-cache node closest to the exit proxy.  Having multiple exit proxies responsible for a URL's content 
-helps decrease the load on the proxies while maintaining some of the performance benefits of a CDN.
 
 %\textbf{Pre-Fetch DNS Responses.} 
 %One way to increase the performance of \system{} is to pre-fetch DNS responses at 

@@ -13,6 +13,8 @@ described in Section \ref{sec:implementation}.  Figure \ref{fig:impl} shows
 how our measurements reflect \system{} (solid line) and a traditional CDN (dotted 
 line).  
 
+
+
 Figure~\ref{fig:completion} shows the time to first byte (TTFB) and the completion time (i.e., total download time) for
 both \system{} and 
 without \system{}.  We can see the the TTFB using \system{} increases linearly with
@@ -20,7 +22,7 @@ file size, whereas without \system{} TTFB remains fairly constant.  Interestingl
 we can see that there are some fixed-time operations that \system{} performs, which
 is visible by looking at the smaller file sizes. Completion time increases linearly
 with file size, but for both \system{} and without \system{}; while both follow the
-same pattern, the time to complete requests is, as expected, longer using \system{} as it performs many cryptographic operations and proxies traffic between the client and the CDN.
+same pattern, the time to complete requests is longer using \system{} as it performs cryptographic operations and proxies traffic between the client and the CDN. This tradeoff is expected and can be explained by the Anonymity Trilemma~\cite{8418599}, as we enhance anonymity at the cost of higher latency.
 
 %\begin{figure}[t!]
 %\centering
